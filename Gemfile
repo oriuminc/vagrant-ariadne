@@ -3,6 +3,7 @@ source "http://rubygems.org"
 gem "capistrano"
 gem "inifile"
 gem "librarian", "= 0.0.12"
+gem "railsless-deploy"
 gem "vagrant",   "= 0.9.3"
 
 # net-ssh dependency bumped to 2.2.2 (to match librarian)

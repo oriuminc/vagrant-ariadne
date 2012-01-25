@@ -3,4 +3,5 @@
 data/*/
 cookbooks/
 tmp/
+vendor/
 config/config.ini

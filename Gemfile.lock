@@ -71,6 +71,7 @@ GEM
       systemu (~> 2.2.0)
       yajl-ruby
     polyglot (0.3.3)
+    railsless-deploy (1.0.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     systemu (2.2.0)
@@ -99,4 +100,5 @@ DEPENDENCIES
   github-markup
   inifile
   librarian (= 0.0.12)
+  railsless-deploy
   vagrant (= 0.9.3)
