@@ -1,0 +1,6 @@
+.DS_Store
+.vagrant
+data/*/
+cookbooks/
+tmp/
+config/config.ini
