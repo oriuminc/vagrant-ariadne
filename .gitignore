@@ -3,4 +3,4 @@
 data/*/
 cookbooks/
 tmp/
-config/config.ini
+config.ini
