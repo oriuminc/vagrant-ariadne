@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 
-rvm use ruby-1.8.7-p352
-rvm gemset use ariadne
+RUBY_VERS="1.8.7"
+RUBY_PATCH="p352"
+RUBYGEM_VERS="1.8.9"
+RVM_RUBY_NAME="rg_`echo $RUBYGEM_VERS | sed -e 's/\.//g'`"
+PROJECT_GEMSET="ariadne"
+
+# Work whether rubies or gemsets are already installed
+rvm_gemset_create_on_use_flag=1
+rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH}@${PROJECT_GEMSET} -n ${RVM_RUBY_NAME}
+
+# Only install rubygems if not using this version
+if [ ! `gem -v | grep $RUBYGEM_VERS` ] ; then
+  rvm rubygems $RUBYGEM_VERS
+fi
+
+# Ensure vagrant and irb run with Gemfile bundle
 alias vagrant="bundle exec vagrant"
 alias irb="bundle exec irb"
