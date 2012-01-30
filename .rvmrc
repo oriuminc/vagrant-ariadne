@@ -5,6 +5,7 @@ RUBY_PATCH="p352"
 RUBYGEM_VERS="1.8.9"
 RVM_RUBY_NAME="rg_`echo $RUBYGEM_VERS | sed -e 's/\.//g'`"
 PROJECT_GEMSET="ariadne"
+BUNDLER_VERS="1.0.21"
 
 # Work whether rubies or gemsets are already installed
 rvm_gemset_create_on_use_flag=1
@@ -13,6 +14,17 @@ rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH}@${PROJECT_GEMSET} -n ${RVM_RUB
 # Only install rubygems if not using this version
 if [ ! `gem -v | grep $RUBYGEM_VERS` ] ; then
   rvm rubygems $RUBYGEM_VERS
+fi
+
+# Install bundler gem if not yet available
+# (Our bundler version should be the latest version)
+if ! echo $(gem list) | grep -F "bundler ($BUNDLER_VERS" > /dev/null; then
+  gem install bundler -v $BUNDLER_VERS
+fi
+
+# Run bundler if any gems not installed
+if ! bundle check > /dev/null; then
+  bundle install
 fi
 
 # Ensure vagrant and irb run with Gemfile bundle
