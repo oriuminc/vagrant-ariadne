@@ -27,6 +27,19 @@ if ! bundle check > /dev/null; then
   bundle install
 fi
 
+# Loads a bash function so that "bundle exec" alias works
+# inside and ourside project directory
+# http://tomafro.net/2011/09/tip-automatic-bundle-exec-for-rake-and-more
+be () {
+  if [[ -a Gemfile ]]; then
+    bundle exec $*
+  else
+    command $*
+  fi
+}
+
 # Ensure vagrant and irb run with Gemfile bundle
-alias vagrant="bundle exec vagrant"
-alias irb="bundle exec irb"
+alias vagrant="be vagrant"
+alias irb="be irb"
+alias knife="be knife"
+alias librarian-chef="be librarian-chef"
