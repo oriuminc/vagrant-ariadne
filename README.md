@@ -11,6 +11,8 @@ Ariadne
 Requirements
 ------------
 
+### Xcode
+
 ### RVM
 
 ### Bundler
@@ -25,10 +27,8 @@ Quick Start
 -----------
 
     $ git clone https://github.com/myplanetdigital/ariadne.git
+    $ sh -c "cd ariadne && git checkout `git describe --tags`" # Checkout most recent tag (stable)
     $ cd ariadne
-    $ git checkout `git describe --tags` # Checkout most recent tag (stable)
-    $ bundle install                     # Install gems from Gemfile.lock
-    $ bundle package                     # Store gems locally
     $ librarian-chef install             # Install cookbooks from Cheffile.lock
     $ vagrant up                         # Spin up VM
     $ cap deploy                         # Deploy application to VM
