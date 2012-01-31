@@ -13,15 +13,19 @@ Requirements
 
 ### Xcode
 
-### RVM
+### [RVM][about-rvm]
 
-### Bundler
+[Installation instructions][install-rvm]
 
-### Librarian
+### [Bundler][about-bundler]
 
-### Vagrant
+Bundler will be install automatically by RVM.
 
-### Capistrano
+### [Librarian][about-lib]
+
+### [Vagrant][about-vagrant]
+
+### [Capistrano][about-cap]
 
 Quick Start
 -----------
@@ -45,3 +49,10 @@ Files
 ### `Vagrantfile`
 
 ### `Capfile`
+
+   [about-rvm]:     <http://beginrescueend.com/>
+   [about-bundler]: <http://gembundler.com/>
+   [about-lib]:     <https://github.com/applicationsonline/librarian>
+   [about-vagrant]: <http://vagrantup.com/>
+   [about-cap]:     <https://github.com/capistrano/capistrano/wiki>
+   [install-rvm]:   <http://beginrescueend.com/rvm/install/>
