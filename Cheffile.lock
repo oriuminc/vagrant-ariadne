@@ -1,0 +1,23 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    apt (1.2.2)
+    build-essential (1.0.0)
+    git (0.10.0)
+      runit (>= 0.0.0)
+      yum (>= 0.0.0)
+    nginx (0.99.2)
+      build-essential (>= 0.0.0)
+      runit (>= 0.0.0)
+    runit (0.14.2)
+    varnish (0.7.0)
+    vim (1.0.2)
+    yum (0.5.2)
+
+DEPENDENCIES
+  apt (>= 0)
+  git (>= 0)
+  nginx (>= 0)
+  varnish (>= 0)
+  vim (>= 0)
+

@@ -31,11 +31,12 @@ Quick Start
 -----------
 
     $ git clone https://github.com/myplanetdigital/ariadne.git
-    $ sh -c "cd ariadne && git checkout `git describe --tags`" # Checkout most recent tag (stable)
+    $ # TODO: sh -c "cd ariadne && git checkout `git describe --tags`" # Checkout most recent tag (stable)
     $ cd ariadne
-    $ librarian-chef install             # Install cookbooks from Cheffile.lock
-    $ vagrant up                         # Spin up VM
-    $ cap deploy                         # Deploy application to VM
+    $ librarian-chef install              # Install cookbooks from Cheffile.lock
+    $ # TODO: vagrant up                          # Spin up VM
+    $ # TODO: vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
+    $ # TODO: cap deploy                          # Deploy application to VM
 
 Files
 -----
