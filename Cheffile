@@ -5,9 +5,9 @@ site 'http://community.opscode.com/api/v1'
 
 # ACQUIA
 %w{
+  apache2
   apt
   git
-  nginx
   varnish
   vim
 }.each do |cb|

@@ -31,14 +31,21 @@ Vagrant::Config.run do |config|
 
   # config.vm.network :bridged
 
-  # config.vm.forward_port 80, 8080
+  # If exists, share the Squid cache directory between host and VM
+  host_cache_dir = "~/Library/Caches/squid"
+  if Dir.exists? File.expand_path(host_cache_dir)
+    config.vm.share_folder "squid-cache", "/var/spool/squid3", host_cache_dir, :owner => "root", :group => "root"
+  end
+
+  config.vm.forward_port 80, 8080
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
-    chef.add_recipe "mysql"
-    chef.add_role "web"
+    chef.roles_path     = "roles"
+
+    chef.add_role("acquia")
 
     # You may also specify custom JSON attributes:
-    chef.json = { :mysql_password => "foo" }
+    #chef.json = { :mysql_password => "foo" }
   end
 end
