@@ -9,7 +9,7 @@
     "recipe[apt]",
     "recipe[vim]",
     "recipe[git]",
-    "recipe[apache2]",
+    "recipe[apache2::mod_php5]",
     "recipe[varnish]"
   ],
   "description": "Approximates the acquia hosting environment.",

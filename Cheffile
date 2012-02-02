@@ -8,8 +8,13 @@ site 'http://community.opscode.com/api/v1'
   apache2
   apt
   git
+  php
   varnish
   vim
 }.each do |cb|
   cookbook cb
 end
+
+cookbook "xdebug",
+  :git => 'https://github.com/myplanetdigital/chef-xdebug.git',
+  :ref => 'GH-xforty-1'

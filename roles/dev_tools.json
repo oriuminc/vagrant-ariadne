@@ -1,0 +1,19 @@
+{
+  "name": "dev_tools",
+  "default_attributes": {
+    "xdebug": {
+      "remote_enable": "1",
+      "remote_host": "33.33.33.1"
+    }
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[xdebug]"
+  ],
+  "description": "Development and debugging tools for local environments.",
+  "chef_type": "role",
+  "override_attributes": {
+  }
+}

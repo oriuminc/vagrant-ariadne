@@ -3,18 +3,37 @@ SITE
   specs:
     apache2 (1.0.8)
     apt (1.2.2)
+    build-essential (1.0.0)
     git (0.10.0)
       runit (>= 0.0.0)
       yum (>= 0.0.0)
+    mysql (1.2.2)
+      openssl (>= 0.0.0)
+    openssl (1.0.0)
+    php (1.0.0)
+      build-essential (>= 0.0.0)
+      mysql (>= 0.0.0)
+      xml (>= 0.0.0)
     runit (0.14.2)
     varnish (0.7.0)
     vim (1.0.2)
+    xml (1.0.2)
     yum (0.5.2)
+
+GIT
+  remote: https://github.com/myplanetdigital/chef-xdebug.git
+  ref: GH-xforty-1
+  sha: dbe6dacd52b545a4323f47589fb6e1a340a7c534
+  specs:
+    xdebug (0.0.1)
+      php (>= 0.0.0)
 
 DEPENDENCIES
   apache2 (>= 0)
   apt (>= 0)
   git (>= 0)
+  php (>= 0)
   varnish (>= 0)
   vim (>= 0)
+  xdebug (>= 0)
 

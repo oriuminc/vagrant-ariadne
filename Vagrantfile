@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
+  config.vm.define "ariadne"
 
   # Load required rubygems with helpful error if not installed.
   begin
@@ -27,7 +28,7 @@ Vagrant::Config.run do |config|
   config.vm.box = box
   config.vm.box_url = baseboxes[box]
 
-  # config.vm.network :hostonly, "33.33.33.10"
+  config.vm.network :hostonly, "33.33.33.10"
 
   # config.vm.network :bridged
 
@@ -40,10 +41,10 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 80, 8080
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "cookbooks"
+    chef.cookbooks_path = [ "cookbooks", "cookbooks-overrides" ]
     chef.roles_path     = "roles"
 
-    chef.add_role("acquia")
+    chef.add_role("ariadne")
 
     # You may also specify custom JSON attributes:
     #chef.json = { :mysql_password => "foo" }

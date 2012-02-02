@@ -4,7 +4,7 @@ gem "capistrano"
 gem "inifile"
 gem "librarian", "= 0.0.12"
 gem "railsless-deploy"
-gem "vagrant",   "= 0.9.3"
+gem "vagrant",   "= 0.9.4"
 
 # net-ssh dependency bumped to 2.2.2 (to match librarian)
 gem "chef",

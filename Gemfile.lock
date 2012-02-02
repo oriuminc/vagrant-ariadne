@@ -80,7 +80,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     uuidtools (2.1.2)
-    vagrant (0.9.3)
+    vagrant (0.9.4)
       archive-tar-minitar (= 0.5.2)
       childprocess (~> 0.3.0)
       erubis (~> 2.7.0)
@@ -101,4 +101,4 @@ DEPENDENCIES
   inifile
   librarian (= 0.0.12)
   railsless-deploy
-  vagrant (= 0.9.3)
+  vagrant (= 0.9.4)

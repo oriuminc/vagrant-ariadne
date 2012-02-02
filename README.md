@@ -17,16 +17,6 @@ Requirements
 
 [Installation instructions][install-rvm]
 
-### [Bundler][about-bundler]
-
-Bundler will be install automatically by RVM.
-
-### [Librarian][about-lib]
-
-### [Vagrant][about-vagrant]
-
-### [Capistrano][about-cap]
-
 Recommended
 -----------
 
@@ -73,13 +63,36 @@ Files
 
 ### `.rvmrc`
 
+Used by RVM (Ruby Version Manager) to create a sandboxed project
+environment with specific verion of ruby and rubygems. You'll be
+prompted to run this file on entering the project directory, and it
+will kick-start the tools that act on the files below.
+
+ * *Some of the files below will have "lock" files. The intention is that
+   a user will edit the non-lock file directly, and then the lock file
+   will be generated to specify exact versions for all dependencies. You
+   can think of it as if the Gemfile is specifying the intended environment
+   to the degree of precision we care to define, and the Gemfile.lock locks
+   down the absolute environment without a shadow of a doubt.*
+
 ### `Gemfile`
+
+Used by [Bundler][about-bundler] to install the required gem versions
+into the sandbox.
 
 ### `Cheffile`
 
+Used by [Librarian][about-lib] to define and retrieve specific external
+cookbook versions which the Chef provisioner inside Vagrant will use to
+configure its VM.
+
 ### `Vagrantfile`
 
+[Vagrant][about-vagrant]
+
 ### `Capfile`
+
+[Capistrano][about-cap]
 
    [about-rvm]:     <http://beginrescueend.com/>
    [about-bundler]: <http://gembundler.com/>
