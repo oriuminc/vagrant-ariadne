@@ -28,17 +28,12 @@ Vagrant::Config.run do |config|
   config.vm.box = box
   config.vm.box_url = baseboxes[box]
 
-  config.vm.network :hostonly, "33.33.33.10"
+  config.vm.network "33.33.33.10"
 
-  # config.vm.network :bridged
+  # Detect if squid is running
+  squid_running = true unless %x[ ps ax | grep -v 'grep' | grep 'squid.conf' ].empty?
 
-  # If exists, share the Squid cache directory between host and VM
-  host_cache_dir = "~/Library/Caches/squid"
-  if Dir.exists? File.expand_path(host_cache_dir)
-    config.vm.share_folder "squid-cache", "/var/spool/squid3", host_cache_dir, :owner => "root", :group => "root"
-  end
-
-  config.vm.forward_port 80, 8080
+  config.vm.forward_port "web", 80, 8080
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = [ "cookbooks", "cookbooks-overrides" ]
@@ -46,7 +41,7 @@ Vagrant::Config.run do |config|
 
     chef.add_role("ariadne")
 
-    # You may also specify custom JSON attributes:
-    #chef.json = { :mysql_password => "foo" }
+    # Used to set .wgetrc and .curlrc to proxy
+    chef.json = { :squid => true } if squid_running
   end
 end

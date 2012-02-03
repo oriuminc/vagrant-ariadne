@@ -1,16 +1,19 @@
 source "http://rubygems.org"
 
 gem "capistrano"
+gem "chef"
 gem "inifile"
 gem "librarian", "= 0.0.12"
 gem "railsless-deploy"
-gem "vagrant",   "= 0.9.4"
-
-# net-ssh dependency bumped to 2.2.2 (to match librarian)
-gem "chef",
-  :git => "https://github.com/opscode/chef.git",
-  :ref => "ba4d58f4223"
+gem "vagrant",   "= 0.8.10"
 
 group :development do
+  # Hammer.vim plugin requirements
   gem "github-markup"
+  gem "tilt"
+  gem "coderay"
+  # Testing
+  gem "vagrant-kick"
+  gem "aruba"
+  gem "cuken"
 end

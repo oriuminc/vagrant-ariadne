@@ -1,0 +1,2 @@
+php -v | grep 'with Xdebug' #Test whether Xdebug loaded
+ls -al /home/vagrant/.*rc
