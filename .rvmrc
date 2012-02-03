@@ -24,5 +24,5 @@ fi
 
 # Run bundler if any gems not installed
 if ! bundle check > /dev/null; then
-  bundle install --binstubs --path=vendor --without=development
+  bundle install --binstubs --path=vendor
 fi
