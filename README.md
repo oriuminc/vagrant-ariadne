@@ -35,17 +35,18 @@ likelihood of unexpected behavior with future changes to Ariadne.
 
   1. Install and run SquidMan 2.5 [[DOWNLOAD][download-squid]]
   2. Set a Cache size and set the HTTP port to "3128"
-  3. Restart SquidMan
-  4. Run these shell commands:
+  3. In the "Clients" tab, add a new entry for `33.33.33.10`
+  4. Stop and the start SquidMan
+  5. Run these shell commands:
 
-     $ # Wget not installed on OS X by default,
-     $ # but Drush will use it automatically if available
-     $ echo 'http_proxy=localhost:3128' >> ~/.wgetrc
-     $
-     $ # Curl is available by default on OS X
-     $ echo 'proxy localhost:3128' >> ~/.curlrc
+      $ # Wget not installed on OS X by default,
+      $ # but Drush will use it automatically if available
+      $ echo 'http_proxy=localhost:3128' >> ~/.wgetrc
+      $
+      $ # Curl is available by default on OS X
+      $ echo 'proxy localhost:3128' >> ~/.curlrc
 
-  5. Reprovision your VM if already running: `vagrant provision`
+  6. Reprovision your VM if already running: `vagrant provision`
 
 Quick Start
 -----------
