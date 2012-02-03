@@ -7,7 +7,9 @@
   },
   "run_list": [
     "role[acquia]",
-    "role[dev_tools]"
+    "role[dev_tools]",
+    "recipe[git]",
+    "recipe[vim]"
   ],
   "description": "Master role for Ariadne development environment.",
   "chef_type": "role",

@@ -7,10 +7,7 @@
   },
   "run_list": [
     "recipe[apt]",
-    "recipe[vim]",
-    "recipe[git]",
-    "recipe[apache2::mod_php5]",
-    "recipe[varnish]"
+    "role[apache2_mod_php]"
   ],
   "description": "Approximates the acquia hosting environment.",
   "chef_type": "role",
