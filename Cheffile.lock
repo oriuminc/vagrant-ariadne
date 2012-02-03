@@ -23,7 +23,7 @@ SITE
 GIT
   remote: https://github.com/myplanetdigital/chef-xdebug.git
   ref: GH-xforty-1
-  sha: dbe6dacd52b545a4323f47589fb6e1a340a7c534
+  sha: 99bb4745aff7c2e4b59535e000e7cf83c3fe3fa5
   specs:
     xdebug (0.0.1)
       php (>= 0.0.0)
