@@ -26,12 +26,12 @@ SquidMan is the OS X port of the Squid3 caching proxy, which has been
 optimized as a web cache. It can be used to cache and reuse frequently
 accessed web pages and files.
 
-If installed on the host, ariadne will share the cache directory with
-the VM, which will allow both to share the same files.
+If installed on the host, Ariadne will also send all curl and wget
+requests on the VM through SquidMan on the host.
 
 While newer versions are available, SquidMan 2.5 is most likely to
 match the current version of squid3 isntalled on the VM, reducing the
-likelihood of unexpected behavior.
+likelihood of unexpected behavior with future changes to Ariadne.
 
   1. Install and run SquidMan 2.5 [[DOWNLOAD][download-squid]]
   2. Set a Cache size and set the HTTP port to "3128"
@@ -45,18 +45,62 @@ likelihood of unexpected behavior.
      $ # Curl is available by default on OS X
      $ echo 'proxy localhost:3128' >> ~/.curlrc
 
-  5. Reload your VM if already running: `vagrant reload`
+  5. Reprovision your VM if already running: `vagrant provision`
 
 Quick Start
 -----------
 
     $ git clone https://github.com/myplanetdigital/ariadne.git
+    $ chmod +x ~/.rvm/hooks/after_cd_bundler                           # Activate Bundler RVM hook
     $ # TODO: sh -c "cd ariadne && git checkout `git describe --tags`" # Checkout most recent tag (stable)
     $ cd ariadne
     $ librarian-chef install              # Install cookbooks from Cheffile.lock
     $ vagrant up                          # Spin up VM
-    $ # TODO: vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
+    $ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
     $ # TODO: cap deploy                          # Deploy application to VM
+
+Development Tools
+=================
+
+## [Xdebug][about-xdebug]
+
+Xdebug is a PHP extension which provides debugging and profiling
+capabilities. It can provide debug info with the following:
+
+ * stack and function traces in error messages with full parameter display
+ * memory allocation
+ * protection for infinite recursions
+ * interactive debugging (with IDE)
+ * code coverage analysis
+
+To trigger Xdebug to start doing it's thing once you've set up your IDE
+for remote debugging, simply enter an address like so:
+
+   http://example.localdomain:1234/path/to/page?XDEBUG_SESSION_START
+
+### Installation
+
+For ease of use, we've included tried and tested setup instructions for
+varios common IDE's.
+
+#### Emacs
+
+Download a recent version of Geben and follow instructions in the
+included README. Alternatively, copy the lines below into your terminal
+[[README][install-xdebug-emacs1]]:
+
+    $ curl http://geben-on-emacs.googlecode.com/files/geben-0.26.tar.gz -o /tmp/geben-0.26.tar.gz
+    $ tar -xzf /tmp/geben-0.26.tar.gz && cd /tmp/geben-0.26
+    $ make
+    $ sudo make install
+
+Complete installation by pasting this into your `~/.emacs` file
+[[Blog Post][install-xdebug-emacs2]]:
+
+    (add-to-list 'load-path "/opt/local/share/emacs/site-lisp/geben") ;Geben directory
+    (require 'geben)
+
+### Komodo
 
 Files
 -----
@@ -94,10 +138,14 @@ configure its VM.
 
 [Capistrano][about-cap]
 
-   [about-rvm]:     <http://beginrescueend.com/>
-   [about-bundler]: <http://gembundler.com/>
-   [about-lib]:     <https://github.com/applicationsonline/librarian>
-   [about-vagrant]: <http://vagrantup.com/>
-   [about-cap]:     <https://github.com/capistrano/capistrano/wiki>
-   [install-rvm]:   <http://beginrescueend.com/rvm/install/>
-   [download-squid]: <http://web.me.com/adg/downloads/SquidMan2.5.dmg>
+   [about-rvm]:      http://beginrescueend.com/
+   [about-bundler]:  http://gembundler.com/
+   [about-lib]:      https://github.com/applicationsonline/librarian
+   [about-vagrant]:  http://vagrantup.com/
+   [about-cap]:      https://github.com/capistrano/capistrano/wiki
+   [install-rvm]:    http://beginrescueend.com/rvm/install/
+   [download-squid]: http://web.me.com/adg/downloads/SquidMan2.5.dmg
+   [about-squidman]: http://web.me.com/adg/squidman/
+   [about-xdebug]:   http://xdebug.org/
+   [install-xdebug-emacs1]: http://code.google.com/p/geben-on-emacs/source/browse/trunk/README
+   [install-xdebug-emacs2]: http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x

@@ -10,7 +10,8 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[xdebug]"
+    "recipe[xdebug]",
+    "recipe[ariadne::squid]"
   ],
   "description": "Development and debugging tools for local environments.",
   "chef_type": "role",
