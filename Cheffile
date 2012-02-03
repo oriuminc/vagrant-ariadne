@@ -18,3 +18,7 @@ end
 cookbook "xdebug",
   :git => 'https://github.com/myplanetdigital/chef-xdebug.git',
   :ref => 'GH-xforty-1'
+
+cookbook 'drush',
+  :git => 'https://github.com/patcon/chef-drush.git',
+  :ref => 'refactor'

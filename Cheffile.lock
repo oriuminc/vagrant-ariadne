@@ -28,9 +28,18 @@ GIT
     xdebug (0.0.1)
       php (>= 0.0.0)
 
+GIT
+  remote: https://github.com/patcon/chef-drush.git
+  ref: refactor
+  sha: de1d72009b030becee20615c0c8f453f02aef2ec
+  specs:
+    drush (0.9.1)
+      php (>= 0.0.0)
+
 DEPENDENCIES
   apache2 (>= 0)
   apt (>= 0)
+  drush (>= 0)
   git (>= 0)
   php (>= 0)
   varnish (>= 0)

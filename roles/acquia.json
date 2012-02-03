@@ -7,7 +7,8 @@
   },
   "run_list": [
     "recipe[apt]",
-    "role[apache2_mod_php]"
+    "role[apache2_mod_php]",
+    "recipe[drush::make]"
   ],
   "description": "Approximates the acquia hosting environment.",
   "chef_type": "role",
