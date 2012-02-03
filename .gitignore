@@ -1,7 +1,16 @@
+# General system
 .DS_Store
+
+# Project
 .vagrant
 data/*/
+config/config.ini
+
+# Librarian
 cookbooks/
 tmp/
+
+# RVM/Bundler
 vendor/
-config/config.ini
+bin/
+.bundle/
