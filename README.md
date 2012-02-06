@@ -17,6 +17,17 @@ Requirements
 
 [Installation instructions][install-rvm]
 
+Please note that RVM will add its load commands to the `.bash_profile` file by
+default. Depending on your shell, this may not be appropriate (ie. Zsh
+usually needs it in `.zshrc` file).
+
+If, after installing, you open up a new shell and the `rvm` command
+doesn't exist, type this (replacing `.zshrc` as appropriate for your
+shell):
+
+    $ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bash_profile
+    $ source ~/.zshrc
+
 Recommended
 -----------
 
