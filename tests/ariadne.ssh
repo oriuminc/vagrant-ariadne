@@ -2,3 +2,4 @@ php -v | grep 'with Xdebug' #Test whether Xdebug loaded
 ls -al /home/vagrant/.*rc
 pear -V 2>&1 | grep 'PEAR Version'
 varnishstat -1f cache_hit # Print varnish cache hit count
+sudo -iuvagrant wget --quiet -O /tmp/test.tar.gz http://ftp.drupal.org/files/projects/securepages-6.x-1.9.tar.gz

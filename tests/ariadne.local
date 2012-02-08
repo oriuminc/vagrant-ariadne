@@ -1,1 +1,2 @@
-curl example.localdomain:8080 | grep '<title>'
+tail -2 ~/Library/Logs/squid/squid-access.log
+curl localhost:8080 --noproxy localhost | grep '<title>'
