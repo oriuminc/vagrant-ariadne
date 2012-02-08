@@ -1,7 +1,12 @@
 # This script is used to diff the runs easily,
-# as the changes in log tails indicate functionality
+# as the changes in log tails indicate functionality.
+
+#### MUST BE RUN FROM VAGRANT PROJECT ROOT
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 echo "Running 'vagrant kick' 1 of 2..."
-vagrant kick > tests/tmp.log
+vagrant kick > ${DIR}/tmp.log
 echo "Running 'vagrant kick' 2 of 2..."
-(sleep 5 && echo "Diffing test runs...") & vagrant kick | diff tests/tmp.log -
-rm tests/tmp.log
+(sleep 5 && echo "Diffing test runs...") & vagrant kick | diff ${DIR}/tmp.log -
+rm ${DIR}/tmp.log
