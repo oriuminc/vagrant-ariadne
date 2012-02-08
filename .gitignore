@@ -6,11 +6,7 @@
 data/*/
 config/config.ini
 
-# Librarian
+# Librarian/RVM/Bundler
 cookbooks/
 tmp/
-
-# RVM/Bundler
-vendor/
-bin/
 .bundle/
