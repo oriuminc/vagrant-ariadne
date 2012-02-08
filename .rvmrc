@@ -4,12 +4,10 @@ RUBY_VERS="1.9.2"
 RUBY_PATCH="p290"
 RUBYGEM_VERS="1.8.15"
 RVM_RUBY_NAME="rg_`echo $RUBYGEM_VERS | sed -e 's/\.//g'`"
-PROJECT_GEMSET="ariadne"
 BUNDLER_VERS="1.0.21"
 
 # Work whether rubies or gemsets are already installed
-rvm_gemset_create_on_use_flag=1
-rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH}@${PROJECT_GEMSET} -n ${RVM_RUBY_NAME}
+rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH} -n ${RVM_RUBY_NAME}
 
 # Only install rubygems if not using this version
 if [ ! `gem -v | grep $RUBYGEM_VERS` ] ; then
