@@ -8,5 +8,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "Running 'vagrant kick' 1 of 2..."
 vagrant kick > ${DIR}/tmp.log
 echo "Running 'vagrant kick' 2 of 2..."
-(sleep 5 && echo "Diffing test runs...") & vagrant kick | diff ${DIR}/tmp.log -
+vagrant kick | diff ${DIR}/tmp.log -
 rm ${DIR}/tmp.log
