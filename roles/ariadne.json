@@ -10,7 +10,7 @@
     "role[dev_tools]",
     "recipe[git]",
     "recipe[vim]",
-    "recipe[ariadne]"
+    "recipe[ariadne::example]"
   ],
   "description": "Master role for Ariadne development environment.",
   "chef_type": "role",

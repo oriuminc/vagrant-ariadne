@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: ariadne
-# Recipe:: default
+# Recipe:: example
 #
 # Copyright 2012, Myplanet Digital, Inc.
 #
@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-project = node['vagrant']['project']
+project = 'example'
 site = "#{project}.localdomain"
 
 directory "/var/www/#{project}" do
@@ -37,6 +37,7 @@ file "/var/www/#{project}/index.php" do
 print phpinfo();
 ?>
   EOH
+  notifies :restart, "service[varnish]"
 end
 
 web_app site do
