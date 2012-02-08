@@ -9,7 +9,8 @@
     "role[acquia]",
     "role[dev_tools]",
     "recipe[git]",
-    "recipe[vim]"
+    "recipe[vim]",
+    "recipe[ariadne]"
   ],
   "description": "Master role for Ariadne development environment.",
   "chef_type": "role",

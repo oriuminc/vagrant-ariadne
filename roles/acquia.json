@@ -8,6 +8,7 @@
   "run_list": [
     "recipe[apt]",
     "role[apache2_mod_php]",
+    "role[varnish_frontend]",
     "recipe[drush::make]"
   ],
   "description": "Approximates the acquia hosting environment.",

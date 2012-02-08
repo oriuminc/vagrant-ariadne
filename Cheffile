@@ -9,7 +9,6 @@ site 'http://community.opscode.com/api/v1'
   apt
   git
   php
-  varnish
   vim
 }.each do |cb|
   cookbook cb
@@ -22,3 +21,11 @@ cookbook "xdebug",
 cookbook 'drush',
   :git => 'https://github.com/patcon/chef-drush.git',
   :ref => 'refactor'
+
+cookbook 'xhprof',
+  :git => 'git://github.com/myplanetdigital/chef-xhprof.git',
+  :ref => 'GH-msonnabaum-2'
+
+#cookbook 'varnish',
+#  :git => 'https://github.com/myplanetdigital/chef-varnish.git',
+#  :ref => 'master'

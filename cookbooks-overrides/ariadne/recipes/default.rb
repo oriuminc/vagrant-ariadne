@@ -18,3 +18,30 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
+
+project = node['vagrant']['project']
+site = "#{project}.localdomain"
+
+directory "/var/www/#{project}" do
+  group "www-data"
+  owner "www-data"
+  mode "0755"
+end
+
+file "/var/www/#{project}/index.php" do
+  owner "www-data"
+  group "www-data"
+  mode "0755"
+  content <<-EOH
+<?php
+print phpinfo();
+?>
+  EOH
+end
+
+web_app site do
+  template "sites.conf.erb"
+  server_name site
+  server_aliases [ "www.#{site}" ]
+  docroot "/var/www/#{project}"
+end

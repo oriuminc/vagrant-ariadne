@@ -17,7 +17,8 @@ Vagrant::Config.run do |config|
   ini = IniFile.new("config/config.ini")
 
   # Use 1) ENV variable, 2) INI config file, then 3) Default
-  box = ENV['box'] ||= ini['vagrant']['box'] ||= "hardy64"
+  box     = ENV['box']     ||= ini['vagrant']['box']     ||= "hardy64"
+  project = ENV['project'] ||= ini['vagrant']['project']
 
   # Mash of box names and urls
   baseboxes = {
@@ -33,6 +34,7 @@ Vagrant::Config.run do |config|
   # Detect if squid is running
   squid_running = true unless %x[ ps ax | grep -v 'grep' | grep 'squid.conf' ].empty?
 
+  #config.vm.share_folder "apt-cache", "/var/cache/apt/", "./data/apt-cache", :owner => "root", :group => "root"
   config.vm.forward_port "web", 80, 8080
 
   config.vm.provision :chef_solo do |chef|
@@ -42,6 +44,11 @@ Vagrant::Config.run do |config|
     chef.add_role("ariadne")
 
     # Used to set .wgetrc and .curlrc to proxy
-    chef.json = { :squid => true } if squid_running
+    chef.json = {
+      :squid => squid_running,
+      :vagrant => {
+        :project => project
+      }
+    }
   end
 end
