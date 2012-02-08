@@ -32,7 +32,7 @@ Vagrant::Config.run do |config|
   config.vm.network "33.33.33.10"
 
   # Detect if squid is running
-  squid_running = true unless %x[ ps ax | grep -v 'grep' | grep 'squid.conf' ].empty?
+  squid_running = true unless %x[ ps ax | grep -v 'grep' | grep 'SquidMan' ].empty?
 
   config.vm.forward_port "web", 80, 8080
 
