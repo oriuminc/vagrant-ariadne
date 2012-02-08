@@ -1,2 +1,3 @@
-tail -2 ~/Library/Logs/squid/squid-access.log
-curl localhost:8080 --noproxy localhost | grep '<title>'
+tail -1 ~/Library/Logs/squid/squid-access.log                                # Did Wget in VM hit local SquidMan cache?
+
+curl example.dev:8080 --silent --noproxy example.dev | grep '<title>'        # Curl VM to trigger varnish hit count

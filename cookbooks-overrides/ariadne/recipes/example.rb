@@ -20,7 +20,7 @@
 #
 
 project = 'example'
-site = "#{project}.localdomain"
+site = "#{project}.dev"
 
 directory "/var/www/#{project}" do
   group "www-data"

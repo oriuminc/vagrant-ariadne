@@ -1,5 +1,6 @@
-php -v | grep 'with Xdebug' #Test whether Xdebug loaded
-ls -al /home/vagrant/.*rc
-pear -V 2>&1 | grep 'PEAR Version'
-varnishstat -1f cache_hit # Print varnish cache hit count
-sudo -iuvagrant wget --quiet -O /tmp/test.tar.gz http://ftp.drupal.org/files/projects/securepages-6.x-1.9.tar.gz
+php -v | grep 'with Xdebug'                                  # Check whether Xdebug loaded
+ls -al /home/vagrant/.*rc                                    # Check whether wgetrc and curlrc were placed (if SquidMan running)
+pear -V 2>&1 | grep 'PEAR Version'                           # Check PEAR version
+varnishstat -1f cache_hit                                    # Check Varnish cache hit count
+tail -1 /var/log/apache2/example.dev-access.log              # Check Varnish cache hit count
+sudo -iuvagrant wget --quiet -O /tmp/test.tar.gz http://ftp.drupal.org/files/projects/securepages-6.x-1.9.tar.gz # Test host SquidMan cache
