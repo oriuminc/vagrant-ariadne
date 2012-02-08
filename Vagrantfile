@@ -34,7 +34,6 @@ Vagrant::Config.run do |config|
   # Detect if squid is running
   squid_running = true unless %x[ ps ax | grep -v 'grep' | grep 'squid.conf' ].empty?
 
-  #config.vm.share_folder "apt-cache", "/var/cache/apt/", "./data/apt-cache", :owner => "root", :group => "root"
   config.vm.forward_port "web", 80, 8080
 
   config.vm.provision :chef_solo do |chef|
