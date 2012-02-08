@@ -47,6 +47,7 @@ requests through SquidMan on the host.
   4. Stop and start SquidMan.
   5. Run these shell commands:
 
+    ```
     $ # Curl is available by default on OS X.
     $ # Drush uses this if Wget is not installed.
     $ echo 'proxy localhost:3128' >> ~/.curlrc
@@ -54,6 +55,7 @@ requests through SquidMan on the host.
     $ # Wget not installed on OS X by default,
     $ # but Drush will automatically favor it if available.
     $ echo 'http_proxy=localhost:3128' >> ~/.wgetrc
+    ```
 
   6. Reprovision your VM if already running: `vagrant provision`
 
