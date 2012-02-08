@@ -1,2 +1,4 @@
 php -v | grep 'with Xdebug' #Test whether Xdebug loaded
 ls -al /home/vagrant/.*rc
+pear -V 2>&1 | grep 'PEAR Version'
+varnishstat -1f cache_hit # Print varnish cache hit count
