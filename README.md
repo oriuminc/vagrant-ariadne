@@ -40,22 +40,18 @@ accessed web pages and files.
 If installed on the host, Ariadne will also send all curl and wget
 requests on the VM through SquidMan on the host.
 
-While newer versions are available, SquidMan 2.5 is most likely to
-match the current version of squid3 isntalled on the VM, reducing the
-likelihood of unexpected behavior with future changes to Ariadne.
-
-  1. Install and run SquidMan 2.5 [[DOWNLOAD][download-squid]]
+  1. Install and run SquidMan 3.1 [[DOWNLOAD][download-squid]]
   2. Set a Cache size and set the HTTP port to "3128"
   3. In the "Clients" tab, add a new entry for `33.33.33.10`
   4. Stop and the start SquidMan
   5. Run these shell commands:
 
+      $ # Curl is available by default on OS X
+      $ echo 'proxy localhost:3128' >> ~/.curlrc
+      $
       $ # Wget not installed on OS X by default,
       $ # but Drush will use it automatically if available
       $ echo 'http_proxy=localhost:3128' >> ~/.wgetrc
-      $
-      $ # Curl is available by default on OS X
-      $ echo 'proxy localhost:3128' >> ~/.curlrc
 
   6. Reprovision your VM if already running: `vagrant provision`
 
@@ -64,6 +60,7 @@ Quick Start
 
     $ git clone https://github.com/myplanetdigital/ariadne.git
     $ chmod +x ~/.rvm/hooks/after_cd_bundler                           # Activate Bundler RVM hook
+    $ exec $SHELL                                                      # Reload your shell
     $ # TODO: sh -c "cd ariadne && git checkout `git describe --tags`" # Checkout most recent tag (stable)
     $ cd ariadne
     $ librarian-chef install              # Install cookbooks from Cheffile.lock
