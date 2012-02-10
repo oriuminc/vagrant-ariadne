@@ -117,6 +117,8 @@ backend default {
 #     return (deliver);
 # }
 
+# Ref: https://www.varnish-cache.org/trac/wiki/VarnishAndDrupal
+
 sub vcl_recv {
   // Remove has_js and Google Analytics __* cookies.
   set req.http.Cookie = regsuball(req.http.Cookie, "(^|;\s*)(__[a-z]+|has_js)=[^;]*", "");
