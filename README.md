@@ -151,6 +151,27 @@ configure its VM.
 
 [Capistrano][about-cap]
 
+Testing & Contributing
+----------------------
+
+Currently, there is a ariadne::example recipe in the run list, which is
+used get Chef to add a simple test site, at least until we have
+Capistrano doing deployments. It should be available at
+`example.dev:8080` after running `vagrant up`, so long as this line has
+been added to your hosts file:
+
+    127.0.0.1 example.dev
+
+Ariadne is using [`vagrant-kick`][about-vagrant-kick] as a simple
+testing framework. Basically, when you run the command `vagrant kick`,
+each line in `tests/ariadne.ssh` will be run on VM, and each line in
+`tests/ariadne.local` will be run on the host. This is a quick way to
+confirm output. Since some tests are most visible by viewing the
+differences between two consecutive `vagrant kick` runs, there is a
+quick script that will output the diff between two runs. (You must run
+it from the project root with `./tests/run-test-diff.sh`.) Feel free to
+add your own sanity checks to these files when adding new functionality.
+
    [about-rvm]:      http://beginrescueend.com/
    [about-bundler]:  http://gembundler.com/
    [about-lib]:      https://github.com/applicationsonline/librarian
