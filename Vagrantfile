@@ -44,6 +44,11 @@ Vagrant::Config.run do |config|
 
     # Used to set .wgetrc and .curlrc to proxy
     chef.json = {
+      :mysql => {
+        :server_debian_password => 'root',
+        :server_root_password   => 'root',
+        :server_repl_password   => 'root'
+      },
       :squid => squid_running,
       :vagrant => {
         :project => project

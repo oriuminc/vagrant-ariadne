@@ -14,6 +14,7 @@ group :development do
   gem "coderay"
   # Testing
   gem "vagrant-kick"
+  gem "watir-webdriver"
   gem "aruba"
   gem "cuken"
 end

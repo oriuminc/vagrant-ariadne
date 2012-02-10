@@ -1,3 +1,4 @@
 tail -1 ~/Library/Logs/squid/squid-access.log                                # Did Wget in VM hit local SquidMan cache?
 
-curl example.dev:8080 --silent --noproxy example.dev | grep '<title>'        # Curl VM to trigger varnish hit count
+#curl example.dev:8080 --silent --noproxy example.dev | grep '<title>'        # Curl VM to trigger varnish hit count
+bundle exec ruby -r watir-webdriver -e "b = Watir::Browser.new; b.goto('http://example.dev:8080'); b.close"

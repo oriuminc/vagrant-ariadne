@@ -22,27 +22,32 @@
 project = 'example'
 site = "#{project}.dev"
 
-directory "/var/www/#{project}" do
-  group "www-data"
-  owner "www-data"
+directory "/mnt/www/html" do
+  owner "root"
+  group "root"
   mode "0755"
+  recursive true
 end
 
-file "/var/www/#{project}/index.php" do
-  owner "www-data"
-  group "www-data"
-  mode "0755"
-  content <<-EOH
-<?php
-print phpinfo();
-?>
+#directory "/mnt/www/html/#{project}" do
+#  owner node['apache2']['user']
+#  group "vagrant"
+#end
+
+bash "Downloading drupal..." do
+  cwd "/mnt/www/html"
+  code <<-EOH
+  http_proxy=http://33.33.33.1:3128 drush -y dl drupal --drupal-project-rename=#{project}
+  (cd #{project} && drush -y site-install minimal --db-url=mysqli://root:#{node['mysql']['server_root_password']}@localhost/#{project})
+  chown -R #{node['apache']['user']}:vagrant #{project}
+  #chmod -R 440 #{project}
   EOH
-  notifies :restart, "service[varnish]"
+  not_if "test -e /mnt/www/html/#{project}"
 end
 
 web_app site do
   template "sites.conf.erb"
   server_name site
   server_aliases [ "www.#{site}" ]
-  docroot "/var/www/#{project}"
+  docroot "/mnt/www/html/#{project}"
 end

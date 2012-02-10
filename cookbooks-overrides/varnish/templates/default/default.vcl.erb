@@ -116,3 +116,26 @@ backend default {
 # "};
 #     return (deliver);
 # }
+
+sub vcl_recv {
+  // Remove has_js and Google Analytics __* cookies.
+  set req.http.Cookie = regsuball(req.http.Cookie, "(^|;\s*)(__[a-z]+|has_js)=[^;]*", "");
+  // Remove a ";" prefix, if present.
+  set req.http.Cookie = regsub(req.http.Cookie, "^;\s*", "");
+  // Remove empty cookies.
+  if (req.http.Cookie ~ "^\s*$") {
+    unset req.http.Cookie;
+  }
+
+  // Cache all requests by default, overriding the
+  // standard Varnish behavior.
+  // if (req.request == "GET" || req.request == "HEAD") {
+  //   return (lookup);
+  // }
+}
+
+sub vcl_hash {
+  if (req.http.Cookie) {
+    set req.hash += req.http.Cookie;
+  }
+}

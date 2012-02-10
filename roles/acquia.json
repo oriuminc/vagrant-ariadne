@@ -8,6 +8,8 @@
   "run_list": [
     "recipe[apt]",
     "role[apache2_mod_php]",
+    "role[drupal]",
+    "role[mysql_server]",
     "role[varnish_frontend]",
     "recipe[drush::make]"
   ],
