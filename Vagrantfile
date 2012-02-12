@@ -31,6 +31,10 @@ Vagrant::Config.run do |config|
 
   config.vm.network "33.33.33.10"
 
+  if File.directory? File.expand_path "./data/apt-cache/partial/"
+    config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./data/apt-cache", :owner => "root", :group => "root"
+  end
+
   # Detect if squid is running
   squid_running = true unless %x[ ps ax | grep -v 'grep' | grep 'SquidMan' ].empty?
 

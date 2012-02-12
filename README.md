@@ -59,6 +59,16 @@ requests through SquidMan on the host.
 
   6. Reprovision your VM if already running: `vagrant provision`
 
+### Persistent apt cache
+
+Every time Vagrant provisions a machine, the VM must redownload all the
+software packages using the apt package manager. While the VM caches
+all the downloaded files in a special directory, this directory is lost,
+whenever a VM is destroyed and rebuilt. To persist this cache directory
+as a shared directory, run this from the root dir of this git repo:
+
+    $ mkdir -p data/apt-cache/partial
+
 Quick Start
 -----------
 
