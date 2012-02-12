@@ -29,11 +29,6 @@ directory "/mnt/www/html" do
   recursive true
 end
 
-#directory "/mnt/www/html/#{project}" do
-#  owner node['apache2']['user']
-#  group "vagrant"
-#end
-
 bash "Downloading drupal..." do
   cwd "/mnt/www/html"
   code <<-EOH
@@ -42,6 +37,7 @@ bash "Downloading drupal..." do
   chown -R #{node['apache']['user']}:vagrant #{project}
   #chmod -R 440 #{project}
   EOH
+  notifies :restart, "service[varnish]"
   not_if "test -e /mnt/www/html/#{project}"
 end
 
