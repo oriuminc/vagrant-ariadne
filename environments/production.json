@@ -1,0 +1,21 @@
+{
+  "name": "production",
+  "description": "Configuration for a production-like Acquia environment.",
+  "cookbook_versions": {
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+    "apache": {
+      "prefork": {
+        "startservers": "60",
+        "minspareservers": "60",
+        "maxspareservers": "60",
+        "maxclients": "60",
+        "maxrequestsperchild": "2000"
+      }
+    }
+  },
+  "override_attributes": {
+  }
+}
