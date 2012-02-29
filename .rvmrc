@@ -4,7 +4,7 @@ RUBY_VERS="1.9.2"
 RUBY_PATCH="p290"
 RUBYGEM_VERS="1.8.15"
 RVM_RUBY_NAME="rg_`echo $RUBYGEM_VERS | sed -e 's/\.//g'`"
-BUNDLER_VERS="1.0.21"
+BUNDLER_VERS="1.0.22"
 
 # Work whether rubies or gemsets are already installed
 rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH} -n ${RVM_RUBY_NAME}
@@ -16,7 +16,7 @@ fi
 
 # Install bundler gem if not yet available
 # (Our bundler version should be the latest version)
-if ! echo $(gem list) | grep -F "bundler ($BUNDLER_VERS" > /dev/null; then
+if ! command -v bundle > /dev/null ; then
   gem install bundler -v $BUNDLER_VERS
 fi
 
