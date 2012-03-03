@@ -1,6 +1,12 @@
 {
   "name": "acquia",
   "default_attributes": {
+    "drush": {
+      "references": [
+        "7.x-4.5",
+        "7.x-5.0-rc4"
+      ]
+    }
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
