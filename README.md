@@ -11,18 +11,26 @@ Ariadne
 Goals
 -----
 
- * Use the tools on the local host machine. (Drush, IDE, etc.)
+ * Use your preferred tools from the local host machine
+   (Drush, IDE, etc.)
+ * Changes should be immediately observable in browser
+ * Implement as little code as possible that is specific to the
+   Vagrant environment. It will strive to be as "production-like" as
+   possible.
  * Configure VM with advanced performance tools (Varnish,
    Memcache, etc.)
  * Configure VM with debugging tools (xhprof, xdebug, webgrind)
- * Changes should be immediately observable in browser
- * Should be able to deploy from:
+ * Allow apt packages to persist between VM builds (shared folder)
+ * Allow downloaded modules to be cached in such a way as to persist
+   between VM builds (Squid web cache with shared folder)
+ * Can deploy working site easily from:
     1) install profile, or
-    2) site-as-repo (with DB dump)
- * Install profile run should be straight-forward to test, even for
-   uncommitted changes
- * Install profile run should be able to append arbitrary
-   settings.php snippets
+    2) site-as-repo
+ * Install profiles:
+    * are simple to run, even for uncommitted changes
+    * are able to append arbitrary settings.php snippets
+ * Both install profiles & site-as-repos:
+    * should be able to import DB dumps (remote or local)
  * Should ALWAYS be able to push to remote repo, even after install
    profile run from uncommitted changes
 
@@ -104,105 +112,7 @@ Development Tools
 =================
 
 ## [Xdebug][about-xdebug]
-
-Xdebug is a PHP extension which provides debugging and profiling
-capabilities. It can provide debug info with the following:
-
- * stack and function traces in error messages with full parameter display
- * memory allocation
- * protection for infinite recursions
- * interactive debugging (with IDE)
- * code coverage analysis
-
-To trigger Xdebug to start doing it's thing once you've set up your IDE
-for remote debugging, simply enter an address like so:
-
-   http://example.localdomain:1234/path/to/page?XDEBUG_SESSION_START
-
-### Installation
-
-For ease of use, we've included tried and tested setup instructions for
-varios common IDE's.
-
-#### Emacs
-
-Download a recent version of Geben and follow instructions in the
-included README. Alternatively, copy the lines below into your terminal
-[[README][install-xdebug-emacs1]]:
-
-    $ curl http://geben-on-emacs.googlecode.com/files/geben-0.26.tar.gz -o /tmp/geben-0.26.tar.gz
-    $ tar -xzf /tmp/geben-0.26.tar.gz && cd /tmp/geben-0.26
-    $ make
-    $ sudo make install
-
-Complete installation by pasting this into your `~/.emacs` file
-[[Blog Post][install-xdebug-emacs2]]:
-
-    (add-to-list 'load-path "/opt/local/share/emacs/site-lisp/geben") ;Geben directory
-    (require 'geben)
-
-### Komodo
-
-Files
------
-
-### `.rvmrc`
-
-Used by RVM (Ruby Version Manager) to create a sandboxed project
-environment with specific version of ruby and rubygems. You'll be
-prompted to run this file on entering the project directory, and it
-will kick-start the tools that act on the files below.
-
- * *Some of the files below will have "lock" files. The intention is that
-   a user will edit the non-lock file directly, and then the lock file
-   will be generated to specify exact versions for all dependencies. You
-   can think of it as if the Gemfile is specifying the intended environment
-   to the degree of precision we care to define, and the Gemfile.lock locks
-   down the absolute environment without a shadow of a doubt.*
-
-### `Gemfile`
-
-Used by [Bundler][about-bundler] to install the required gem versions
-into the sandbox.
-
-### `Cheffile`
-
-Used by [Librarian][about-lib] to define and retrieve specific external
-cookbook versions which the Chef provisioner inside Vagrant will use to
-configure its VM.
-
-### `Vagrantfile`
-
-[Vagrant][about-vagrant]
-
-### `Capfile`
-
-[Capistrano][about-cap]
-
-Testing & Contributing
-----------------------
-
-Currently, there is a ariadne::example recipe in the run list, which is
-used get Chef to add a simple test site, at least until we have
-Capistrano doing deployments. It should be available at
-`example.dev:8080` after running `vagrant up`, so long as this line has
-been added to your hosts file:
-
-    127.0.0.1 example.dev
-
-Ariadne is using [`vagrant-kick`][about-vagrant-kick] as a simple
-testing framework. Basically, when you run the command `vagrant kick`,
-each line in `tests/ariadne.ssh` will be run on VM, and each line in
-`tests/ariadne.local` will be run on the host. This is a quick way to
-confirm output. Since some tests are most visible by viewing the
-differences between two consecutive `vagrant kick` runs, there is a
-quick script that will output the diff between two runs. (You must run
-it from the project root with `./tests/run-test-diff.sh`.) Feel free to
-add your own sanity checks to these files when adding new functionality.
-
-   [about-rvm]:             http://beginrescueend.com/                                         
-   [about-bundler]:         http://gembundler.com/                                             
-   [about-lib]:             https://github.com/applicationsonline/librarian                    
+???MANY LINES MISSING
    [about-vagrant]:         http://vagrantup.com/                                              
    [about-cap]:             https://github.com/capistrano/capistrano/wiki                      
    [about-vagrant-kick]:    https://github.com/arioch/vagrant-kick#readme                      
