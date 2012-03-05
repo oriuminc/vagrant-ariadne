@@ -1,6 +1,7 @@
 #
 # Author::  Joshua Timberman (<joshua@opscode.com>)
 # Author::  Seth Chisamore (<schisamo@opscode.com>)
+# Author::  Patrick Connolly (<patrick@myplanetdigital.com>)
 # Cookbook Name:: php
 # Recipe:: module_apc
 #
@@ -26,12 +27,26 @@ when "centos", "redhat", "fedora"
       action :install
     end
   end
-  php_pear "apc" do
-    action :install
-    directives(:shm_size => "128M", :enable_cli => 0, :enabled => 1)
-  end
 when "debian", "ubuntu"
-  package "php-apc" do
-    action :install
+  %w{ libpcre3-dev }.each do |pkg|
+    package pkg do
+      action :install
+    end
   end
+end
+
+php_pear "apc" do
+  action :install
+  directives ({
+    :enabled          => 1,
+    :shm_segments     => 1,
+    :optimization     => 0,
+    :shm_size         => "96M", # See Acquia ini note (per-site php.ini)
+    :ttl              => 7200,
+    :user_ttl         => 7200,
+    :num_files_hint   => 1024,
+    :mmap_file_mask   => "/dev/zero", # See Acquia ini note
+    :enable_cli       => 1,
+    :cache_by_default => 1
+  })
 end

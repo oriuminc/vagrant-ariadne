@@ -14,6 +14,7 @@
   "run_list": [
     "recipe[apt]",
     "role[apache2_mod_php]",
+    "recipe[php::module_apc]",
     "role[drupal]",
     "role[mysql_server]",
     "role[varnish_frontend]",
