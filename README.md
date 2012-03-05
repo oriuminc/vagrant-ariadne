@@ -8,6 +8,24 @@ Ariadne
 
  * Source: https://github.com/myplanetdigital/ariadne
 
+Goals
+-----
+
+ * Use the tools on the local host machine. (Drush, IDE, etc.)
+ * Configure VM with advanced performance tools (Varnish,
+   Memcache, etc.)
+ * Configure VM with debugging tools (xhprof, xdebug, webgrind)
+ * Changes should be immediately observable in browser
+ * Should be able to deploy from:
+    1) install profile, or
+    2) site-as-repo (with DB dump)
+ * Install profile run should be straight-forward to test, even for
+   uncommitted changes
+ * Install profile run should be able to append arbitrary
+   settings.php snippets
+ * Should ALWAYS be able to push to remote repo, even after install
+   profile run from uncommitted changes
+
 Requirements
 ------------
 
@@ -22,7 +40,7 @@ default. Depending on your shell, this may not be appropriate. (For
 example, Zsh usually needs the command in `.zshrc`).
 
 After installation, if you open up a new shell and the `rvm` command
-doesn't exist, type the following (replacing `.bach_profile` as
+doesn't exist, type the following (replacing `.bash_profile` as
 appropriate for your shell):
 
     $ echo '# Load RVM function' >> ~/.bash_profile
@@ -131,7 +149,7 @@ Files
 ### `.rvmrc`
 
 Used by RVM (Ruby Version Manager) to create a sandboxed project
-environment with specific verion of ruby and rubygems. You'll be
+environment with specific version of ruby and rubygems. You'll be
 prompted to run this file on entering the project directory, and it
 will kick-start the tools that act on the files below.
 
@@ -182,14 +200,15 @@ quick script that will output the diff between two runs. (You must run
 it from the project root with `./tests/run-test-diff.sh`.) Feel free to
 add your own sanity checks to these files when adding new functionality.
 
-   [about-rvm]:      http://beginrescueend.com/
-   [about-bundler]:  http://gembundler.com/
-   [about-lib]:      https://github.com/applicationsonline/librarian
-   [about-vagrant]:  http://vagrantup.com/
-   [about-cap]:      https://github.com/capistrano/capistrano/wiki
-   [install-rvm]:    http://beginrescueend.com/rvm/install/
-   [download-squid]: http://web.me.com/adg/downloads/SquidMan2.5.dmg
-   [about-squidman]: http://web.me.com/adg/squidman/
-   [about-xdebug]:   http://xdebug.org/
-   [install-xdebug-emacs1]: http://code.google.com/p/geben-on-emacs/source/browse/trunk/README
-   [install-xdebug-emacs2]: http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x
+   [about-rvm]:             http://beginrescueend.com/                                         
+   [about-bundler]:         http://gembundler.com/                                             
+   [about-lib]:             https://github.com/applicationsonline/librarian                    
+   [about-vagrant]:         http://vagrantup.com/                                              
+   [about-cap]:             https://github.com/capistrano/capistrano/wiki                      
+   [about-vagrant-kick]:    https://github.com/arioch/vagrant-kick#readme                      
+   [install-rvm]:           http://beginrescueend.com/rvm/install/                             
+   [download-squid]:        http://web.me.com/adg/downloads/SquidMan2.5.dmg                    
+   [about-squidman]:        http://web.me.com/adg/squidman/                                    
+   [about-xdebug]:          http://xdebug.org/                                                 
+   [install-xdebug-emacs1]: http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
+   [install-xdebug-emacs2]: http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
