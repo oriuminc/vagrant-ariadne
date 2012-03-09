@@ -15,7 +15,6 @@
     "recipe[apt]",
     "role[apache2_mod_php]",
     "recipe[php::module_apc]",
-    "recipe[ariadne::php_cli_restrict_ini]",
     "role[drupal]",
     "role[mysql_server]",
     "role[varnish_frontend]",
