@@ -35,6 +35,8 @@ Vagrant::Config.run do |config|
     config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./data/apt-cache", :owner => "root", :group => "root"
   end
 
+  config.vm.share_folder "html", "/mnt/www/html", "./data/html"
+
   # Detect if squid is running
   squid_running = true unless %x[ ps ax | grep -v 'grep' | grep 'SquidMan' ].empty?
 
