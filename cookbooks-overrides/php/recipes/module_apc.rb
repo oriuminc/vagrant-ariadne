@@ -20,6 +20,8 @@
 # limitations under the License.
 #
 
+require_recipe "build-essential"
+
 case node['platform']
 when "centos", "redhat", "fedora"
   %w{ httpd-devel pcre pcre-devel }.each do |pkg|
@@ -36,7 +38,12 @@ when "debian", "ubuntu"
 end
 
 php_pear "apc" do
-  action :install
+  case node['lsb']['codename']
+  when "hardy"
+    version "3.0.19"
+  when "lucid"
+    version "3.1.4"
+  end
   directives ({
     :enabled          => 1,
     :shm_segments     => 1,
@@ -49,4 +56,5 @@ php_pear "apc" do
     :enable_cli       => 1,
     :cache_by_default => 1
   })
+  action :install
 end

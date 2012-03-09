@@ -46,6 +46,7 @@ GIT
 DEPENDENCIES
   apache2 (>= 0)
   apt (>= 0)
+  build-essential (>= 0)
   drush (>= 0)
   git (>= 0)
   php (>= 0)

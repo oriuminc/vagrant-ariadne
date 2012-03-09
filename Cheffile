@@ -7,6 +7,7 @@ site 'http://community.opscode.com/api/v1'
 %w{
   apache2
   apt
+  build-essential
   git
   php
   vim
