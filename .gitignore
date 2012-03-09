@@ -5,6 +5,7 @@
 .vagrant
 data/*/
 config/config.ini
+condel-build/
 
 # Librarian/RVM/Bundler
 cookbooks/

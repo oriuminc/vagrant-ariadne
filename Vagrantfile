@@ -40,6 +40,9 @@ Vagrant::Config.run do |config|
 
   config.vm.forward_port "web", 80, 8080
 
+  # Update Chef if not at 0.10.8
+  config.vm.provision :shell, :inline => 'if [ "`knife -v | awk \'{print $NF}\'`" != "0.10.8" ]; then echo "Upgrading Chef to 0.10.8..."; gem install chef -v 0.10.8; fi'
+
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = [ "cookbooks", "cookbooks-overrides" ]
     chef.roles_path     = "roles"

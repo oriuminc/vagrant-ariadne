@@ -19,6 +19,26 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+branch = "master"
+
+git "/vagrant/data/condel" do
+  repository "https://github.com/myplanetdigital/condel.git"
+  reference branch
+  additional_remotes Hash["write" => "git@github.com:myplanetdigital/condel.git"]
+  action :checkout
+end
+
+%w{
+  /vagrant/data/condel
+}.each do |dir|
+  bash "Checking out #{branch} branch of #{dir}" do
+    user "vagrant"
+    code <<-EOH
+    cd #{dir} && git checkout #{branch}
+    EOH
+  end
+end
+
 project = 'example'
 site = "#{project}.dev"
 
@@ -29,16 +49,33 @@ directory "/mnt/www/html" do
   recursive true
 end
 
-bash "Downloading drupal..." do
+bash "Running drush_make..." do
   cwd "/mnt/www/html"
   code <<-EOH
-  http_proxy=http://33.33.33.1:3128 drush -y dl drupal --drupal-project-rename=#{project}
-  (cd #{project} && drush -y site-install minimal --db-url=mysqli://root:#{node['mysql']['server_root_password']}@localhost/#{project})
-  chown -R #{node['apache']['user']}:vagrant #{project}
-  #chmod -R 440 #{project}
+  drush -y make /vagrant/data/condel/local.condel.build /mnt/www/html/#{project}
+  (cd #{project} && drush -y site-install condel --db-url=mysqli://root:#{node['mysql']['server_root_password']}@localhost/#{project})
   EOH
   notifies :restart, "service[varnish]"
   not_if "test -e /mnt/www/html/#{project}"
+end
+
+bash "Installing site..." do
+  user "vagrant"
+  cwd "/mnt/www/html"
+  code <<-EOH
+  (cd #{project} && drush -y site-install condel --db-url=mysqli://root:#{node['mysql']['server_root_password']}@localhost/#{project})
+
+  chmod u+w /mnt/www/html/#{project}/sites/default/settings.php
+
+  for f in /vagrant/data/condel/includes/*.settings.php
+  do
+    # Concatenate newline and snippet, then append to settings.php
+    echo "" | cat - $f | sudo tee -a /mnt/www/html/#{project}/sites/default/settings.php
+  done
+
+  chmod u-w /mnt/www/html/#{project}/sites/default/settings.php
+  EOH
+  only_if "test -w /mnt/www/html/#{project}/sites/default/settings.php"
 end
 
 web_app site do
