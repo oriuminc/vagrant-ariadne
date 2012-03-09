@@ -33,6 +33,7 @@ directory cli_dir do
 end
 
 %w{
+  apc
   curl
   gd
   memcache
