@@ -4,7 +4,7 @@ RUBY_VERS="1.9.2"
 RUBY_PATCH="p290"
 RUBYGEM_VERS="1.8.15"
 RVM_RUBY_NAME="rg_`echo $RUBYGEM_VERS | sed -e 's/\.//g'`"
-BUNDLER_VERS="1.0.22"
+BUNDLER_VERS="1.1.0"
 
 # Work whether rubies or gemsets are already installed
 rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH} -n ${RVM_RUBY_NAME}
