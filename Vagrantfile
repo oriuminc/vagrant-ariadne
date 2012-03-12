@@ -41,6 +41,7 @@ Vagrant::Config.run do |config|
   squid_running = true unless %x[ ps ax | grep -v 'grep' | grep 'SquidMan' ].empty?
 
   config.vm.forward_port "web", 80, 8080
+  config.vm.forward_port "mysql", 3306, 3306
 
   # Update Chef if not at 0.10.8
   config.vm.provision :shell, :inline => 'if [ "`knife -v | awk \'{print $NF}\'`" != "0.10.8" ]; then echo "Upgrading Chef to 0.10.8..."; gem install chef -v 0.10.8; fi'
@@ -56,7 +57,9 @@ Vagrant::Config.run do |config|
       :mysql => {
         :server_debian_password => 'root',
         :server_root_password   => 'root',
-        :server_repl_password   => 'root'
+        :server_repl_password   => 'root',
+        :allow_remote_root => true,
+        :bind_address => '0.0.0.0',
       },
       :squid => squid_running,
       :vagrant => {
