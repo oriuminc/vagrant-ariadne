@@ -8,6 +8,17 @@ Ariadne
 
  * Source: https://github.com/myplanetdigital/ariadne
 
+This project aims to create a local Vagrant environment that mimics Acquia's
+infrastructure as closely as possible, using cookbooks and roles that can easily be
+used to deploy an actual cluster.
+
+This environent is being built in conjunction with the [ConDel base
+install profile][condel]. This is necessary, since many server
+configurations can only be fully utilized with specific site
+configuration. The long-term goal is to create an install profile that
+is amenable to using Drupal in a development workflow, that utlizes
+[Continuous Delivery][CD-summary] practices.
+
 Goals
 -----
 
@@ -113,6 +124,8 @@ Development Tools
 
 ## [Xdebug][about-xdebug]
 ???MANY LINES MISSING
+   [condel]:                https://github.com/myplanetdigital/condel
+   [CD-summary]:            http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-vagrant]:         http://vagrantup.com/                                              
    [about-cap]:             https://github.com/capistrano/capistrano/wiki                      
    [about-vagrant-kick]:    https://github.com/arioch/vagrant-kick#readme                      
