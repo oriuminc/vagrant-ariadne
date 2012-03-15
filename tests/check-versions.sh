@@ -10,12 +10,12 @@ Memcached-APT dpkg-query -W | grep -E php5-memcached[[:space:]]+ | cut -f2
 EOF)
 
 # All the servers to test
-servers=(ariadne spartan@staging-1041.prod.hosting.acquia.com spartan@ded-1039.prod.hosting.acquia.com)
+servers=(ariadne spartan@ded-1039.prod.hosting.acquia.com)
 
 # Step through COMMAND_MATRIX line by line
 IFS=$'\n'$'\r'
 (
-  echo COMPONENT VAGRANT STAGING PRODUCTION
+  echo COMPONENT VAGRANT ACQUIA
   for line in $COMMAND_MATRIX; do
     # Get component
     COMPONENT=`echo $line | cut -d' ' -f1`
