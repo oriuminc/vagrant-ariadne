@@ -3,15 +3,16 @@
 COMMAND_MATRIX=$(cat <<EOF
 Varnish varnishstat -V 2>&1 | grep -i ^varnish | cut -d' ' -f2 | cut -d- -f2
 Git git --version | awk '{print \$NF}'
-drush drush --version | awk '{print \$NF}'
-drush_make drush make --version -n 2>/dev/null | grep -E ^[[:digit:]]
+MySQL mysql -V | awk '{print \$5}' | cut -d, -f1
+Drush drush --version | awk '{print \$NF}'
+Drush_Make drush make --version -n 2>/dev/null | grep -E ^[[:digit:]]
 PHP php -v | grep ^PHP | awk '{print \$2}'
 PEAR pear -V 2>&1 | grep ^PEAR | awk '{print \$3}'
-APC-PHP-cli       php --ri apc       | grep -i ^version | awk '{print \$3}'
-Memcache-PHP-cli  php --ri memcache  | grep -i ^version | awk '{print \$3}'
-Memcached-PHP-cli php --ri memcached | grep -i ^version | awk '{print \$3}'
-Xdebug-PHP-cli    php --ri xdebug    | grep -i ^version | awk '{print \$3}'
 Memcached memcached -h 2>&1 | grep -i ^memcached | awk '{print \$2}'
+APC-PHP-cli       php --ri apc       | grep -i ^version  | awk '{print \$3}'
+Memcache-PHP-cli  php --ri memcache  | grep -i ^revision | awk '{print "r" \$4}' # No version info in 2.2.0
+Memcached-PHP-cli php --ri memcached | grep -i ^version  | awk '{print \$3}'
+Xdebug-PHP-cli    php --ri xdebug    | grep -i ^version  | awk '{print \$3}'
 APC-PECL       pecl list | grep APC                      | awk '{print \$2}'
 Memcache-PECL  pecl list | grep memcache                 | awk '{print \$2}'
 Memcached-PECL pecl list | grep -E memcached[[:space:]]+ | awk '{print \$2}'
@@ -29,6 +30,7 @@ servers=(ariadne spartan@ded-1039.prod.hosting.acquia.com)
 # Step through COMMAND_MATRIX line by line
 IFS=$'\n'$'\r'
 (
+  printf '%20s\n' | tr ' ' '-'
   echo COMPONENT VAGRANT ACQUIA
   for line in $COMMAND_MATRIX; do
     # Get component
@@ -53,5 +55,5 @@ IFS=$'\n'$'\r'
       ROW="$ROW $RESULT"
     done
     echo $ROW
-  done
+  done | sort
 ) | column -t
