@@ -1,9 +1,12 @@
 # Format is as follows:
 # COMPONENT remaining lines are command for retrieving version
 COMMAND_MATRIX=$(cat <<EOF
+varnishstat -V 2>&1 | grep -i ^varnish
 PHP php -v | grep ^PHP | cut -d' ' -f2
 PEAR pear -V 2>&1 | grep ^PEAR | cut -d' ' -f3
-Xdebug php -v | grep -i xdebug
+Memcached memcached -h 2>&1 | grep -i ^memcached | cut -d' ' -f2
+Memcached-PECL pecl list | grep -E memcached[[:space:]]+
+Memcached-APT dpkg-query -W | grep -E php5-memcached[[:space:]]+ | cut -f2
 EOF)
 
 # All the servers to test
@@ -16,6 +19,7 @@ IFS=$'\n'$'\r'
   for line in $COMMAND_MATRIX; do
     # Get component
     COMPONENT=`echo $line | cut -d' ' -f1`
+    echo "Checking $COMPONENT" 1>&2
     # Get command for retrieving version
     COMMAND=`echo $line | cut -d' ' -f2-`
 
