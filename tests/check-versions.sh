@@ -1,7 +1,7 @@
 # Format is as follows:
 # COMPONENT remaining lines are command for retrieving version
 COMMAND_MATRIX=$(cat <<EOF
-varnishstat -V 2>&1 | grep -i ^varnish
+Varnish varnishstat -V 2>&1 | grep -i ^varnish
 PHP php -v | grep ^PHP | cut -d' ' -f2
 PEAR pear -V 2>&1 | grep ^PEAR | cut -d' ' -f3
 Memcached memcached -h 2>&1 | grep -i ^memcached | cut -d' ' -f2
