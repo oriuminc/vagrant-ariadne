@@ -2,6 +2,7 @@
   "name": "dev_tools",
   "default_attributes": {
     "xdebug": {
+      "version": "2.0.2",
       "remote_enable": "1",
       "remote_host": "33.33.33.1"
     }

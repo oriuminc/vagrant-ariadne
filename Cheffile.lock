@@ -1,8 +1,8 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apache2 (1.1.0)
-    apt (1.3.2)
+    apache2 (1.1.2)
+    apt (1.4.0)
     build-essential (1.0.0)
     git (0.10.0)
       runit (>= 0.0.0)
@@ -16,7 +16,7 @@ SITE
       build-essential (>= 0.0.0)
       mysql (>= 0.0.0)
       xml (>= 0.0.0)
-    runit (0.14.2)
+    runit (0.15.0)
     vim (1.0.2)
     xml (1.0.2)
     yum (0.5.2)
@@ -30,6 +30,14 @@ GIT
       php (>= 0.0.0)
 
 GIT
+  remote: https://github.com/msonnabaum/chef-percona.git
+  ref: master
+  sha: 330d9133d8c1861003742ad3464f29ea4390289f
+  specs:
+    percona (1.2.2)
+      openssl (>= 0.0.0)
+
+GIT
   remote: https://github.com/myplanetdigital/chef-xdebug.git
   ref: GH-xforty-1
   sha: 99bb4745aff7c2e4b59535e000e7cf83c3fe3fa5
@@ -40,10 +48,18 @@ GIT
 GIT
   remote: https://github.com/patcon/chef-drush.git
   ref: refactor
-  sha: de1d72009b030becee20615c0c8f453f02aef2ec
+  sha: 8bb7c3e673524a7afb3878d547d67ec0439712a8
   specs:
     drush (0.9.1)
       php (>= 0.0.0)
+
+GIT
+  remote: https://github.com/varnish/cookbooks.git
+  path: varnish
+  ref: master
+  sha: 4bd33a4cc166c2107e851522ebbf3ad03c5143d9
+  specs:
+    varnish (0.7.0)
 
 DEPENDENCIES
   apache2 (>= 0)
@@ -52,7 +68,9 @@ DEPENDENCIES
   drush (>= 0)
   git (>= 0)
   memcached (>= 0)
+  percona (>= 0)
   php (>= 0)
+  varnish (>= 0)
   vim (>= 0)
   xdebug (>= 0)
   xhprof (>= 0)

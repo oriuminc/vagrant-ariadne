@@ -1,6 +1,7 @@
 name "mysql_server"
 description "Configure host to run MySQL server."
 run_list(
+  "recipe[mysql]",
   "recipe[mysql::server]"
 )
 default_attributes(

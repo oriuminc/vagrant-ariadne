@@ -12,11 +12,13 @@
   "env_run_lists": {
   },
   "run_list": [
+    "recipe[ariadne::add_php_ppa]",
     "recipe[apt]",
     "role[apache2_mod_php]",
     "recipe[php::module_apc]",
     "recipe[memcached]",
     "recipe[php::module_memcache]",
+    "recipe[php::module_memcached]",
     "role[drupal]",
     "role[mysql_server]",
     "role[varnish_frontend]",

@@ -35,15 +35,14 @@ when "debian", "ubuntu"
       action :install
     end
   end
+  case node['lsb']['codename']
+  when "hardy"
+    package "apache2-threaded-dev"
+  end
 end
 
 php_pear "apc" do
-  case node['lsb']['codename']
-  when "hardy"
-    version "3.0.19"
-  when "lucid"
-    version "3.1.4"
-  end
+  version "3.0.19"
   directives ({
     :enabled          => 1,
     :shm_segments     => 1,

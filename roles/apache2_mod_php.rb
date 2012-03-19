@@ -27,9 +27,5 @@ default_attributes(
       :threadsperchild => 16,
       :maxrequestsperchild => 0
     }
-  },
-  :php5 => {
-    :max_execution_time => "60",
-    :memory_limit => "256M"
   }
 )

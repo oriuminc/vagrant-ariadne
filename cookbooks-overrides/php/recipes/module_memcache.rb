@@ -33,6 +33,7 @@ pkgs.each do |pkg|
 end
 
 php_pear "memcache" do
+  version "2.2.0"
   action :install
   directives({
     :dbpath                => "/var/lib/memcache",
