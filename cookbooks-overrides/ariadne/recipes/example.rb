@@ -52,7 +52,7 @@ end
 bash "Running drush_make..." do
   cwd "/mnt/www/html"
   code <<-EOH
-  drush -y make /vagrant/data/condel/local.condel.build /mnt/www/html/#{project}
+  drush -y make /vagrant/data/condel/local.condel.build /mnt/www/html/#{project} -v
   (cd #{project} && drush -y site-install condel --db-url=mysqli://root:#{node['mysql']['server_root_password']}@localhost/#{project})
   EOH
   notifies :restart, "service[varnish]"
