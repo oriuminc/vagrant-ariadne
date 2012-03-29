@@ -30,14 +30,11 @@ when "centos", "redhat", "fedora"
     end
   end
 when "debian", "ubuntu"
-  %w{ libpcre3-dev }.each do |pkg|
+  # apache2-threaded-dev needed for APC-3.0.19
+  %w{ libpcre3-dev apache2-threaded-dev }.each do |pkg|
     package pkg do
       action :install
     end
-  end
-  case node['lsb']['codename']
-  when "hardy"
-    package "apache2-threaded-dev"
   end
 end
 
@@ -47,7 +44,8 @@ php_pear "apc" do
     :enabled          => 1,
     :shm_segments     => 1,
     :optimization     => 0,
-    :shm_size         => "96M", # See Acquia ini note (per-site php.ini)
+    # No "M" suffix for shm_size in old APC versions.
+    :shm_size         => "96", # See Acquia ini note (per-site php.ini).
     :ttl              => 7200,
     :user_ttl         => 7200,
     :num_files_hint   => 1024,

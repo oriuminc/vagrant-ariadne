@@ -14,7 +14,7 @@ Memcache-PHP-cli  php --ri memcache  | grep -i ^revision | awk '{print "r" \$4}'
 Memcached-PHP-cli php --ri memcached | grep -i ^version  | awk '{print \$3}'
 Xdebug-PHP-cli    php --ri xdebug    | grep -i ^version  | awk '{print \$3}'
 APC-PECL       pecl list | grep APC                      | awk '{print \$2}'
-Memcache-PECL  pecl list | grep memcache                 | awk '{print \$2}'
+Memcache-PECL  pecl list | grep -E memcache[[:space:]]+  | awk '{print \$2}'
 Memcached-PECL pecl list | grep -E memcached[[:space:]]+ | awk '{print \$2}'
 Xdebug-PECL    pecl list | grep xdebug                   | awk '{print \$2}'
 APC-APT        dpkg-query -Wf='\${Version}' php*-apc       2>/dev/null

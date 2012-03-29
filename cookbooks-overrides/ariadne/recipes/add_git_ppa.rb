@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: ariadne
-# Recipe:: php_cli_restrict_ini
+# Recipe:: add_git_ppa
 #
 # Copyright 2012, Myplanet Digital, Inc.
 #
@@ -19,33 +19,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-cli_dir = "/etc/php5/cli/conf.d"
-
-link cli_dir do
-  action :delete
-  only_if "test -L #{cli_dir}"
-end
-
-directory cli_dir do
-  owner "root"
-  group "root"
-  mode "0755"
-end
-
-%w{
-  apc
-  curl
-  gd
-  memcache
-  mysqli
-  mysql
-  pdo
-  pdo_mysql
-}.each do |mod|
-  link "#{cli_dir}/#{mod}.ini" do
-    owner "root"
-    group "root"
-    to "/etc/php5/conf.d/#{mod}.ini"
-    not_if "test -L #{cli_dir}/#{mod}.ini"
-  end
+# Need to get
+apt_repository "git-core" do
+  uri "http://ppa.launchpad.net/git-core/ppa/#{node['platform']}"
+  distribution node['lsb']['codename']
+  components [ "main" ]
+  key "E1DF1F24"
 end
