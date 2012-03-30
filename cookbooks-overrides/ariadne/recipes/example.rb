@@ -52,8 +52,8 @@ end
 bash "Running drush_make..." do
   cwd "/mnt/www/html"
   code <<-EOH
-  drush make /vagrant/data/condel/local.condel.build /mnt/www/html/#{project} --verbose --yes
-  (cd #{project} && drush site-install condel --db-url=mysqli://root:#{node['mysql']['server_root_password']}@localhost/#{project} --yes)
+  drush make /vagrant/data/condel/local.condel.build /mnt/www/html/#{project} --yes --working-copy
+  (cd #{project} && drush site-install condel --db-url=mysqli://root:#{node['mysql']['server_root_password']}@localhost/#{project} --account-pass=admin --yes)
   EOH
   #notifies :restart, "service[varnish]"
   not_if "test -e /mnt/www/html/#{project}"
