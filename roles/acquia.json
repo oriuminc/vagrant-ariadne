@@ -19,7 +19,6 @@
     "recipe[php::module_memcached]",
     "role[drupal]",
     "role[mysql_server]",
-    "role[varnish_frontend]",
     "recipe[drush]"
   ],
   "description": "Approximates the acquia hosting environment.",
