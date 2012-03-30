@@ -9,7 +9,7 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[ariadne::add_php_ppa]",
+    "recipe[php::add_php_ppa]",
     "recipe[apt]",
     "role[apache2_mod_php]",
     "recipe[php::acquia_pear]",
