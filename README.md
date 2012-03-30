@@ -106,6 +106,16 @@ as a shared directory, run this from the root dir of this git repo:
 
     $ mkdir -p data/apt-cache/partial
 
+Misc Notes
+----------
+
+* For example.rb (which might be temporary), the default password is set
+to "admin" during site-install. Also, while the local site can send mail
+to actual email addresses, the default email for admin is set to
+vagrant@localhost, so that any sent mail will be readable at /var/mail/vagrant
+in the VM. This default is mainly to prevent site-install errorsm, and
+can be edited on the Drupal's user page for the admin.
+
 Quick Start
 -----------
 

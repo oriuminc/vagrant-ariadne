@@ -11,6 +11,7 @@ site 'http://community.opscode.com/api/v1'
   git
   memcached
   php
+  postfix
   varnish
   vim
 }.each do |cb|

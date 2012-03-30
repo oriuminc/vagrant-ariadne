@@ -5,12 +5,16 @@
       "version": "2.0.2",
       "remote_enable": "1",
       "remote_host": "33.33.33.1"
+    },
+    "postfix": {
+      "mydomain": "$myhostname"
     }
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
   },
   "run_list": [
+    "recipe[postfix]",
     "recipe[xdebug]",
     "recipe[ariadne::squid]"
   ],
