@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: ariadne
+# Cookbook Name:: php
 # Recipe:: add_php_ppa
 #
 # Copyright 2012, Myplanet Digital, Inc.

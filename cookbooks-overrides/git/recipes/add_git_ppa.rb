@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: ariadne
+# Cookbook Name:: git
 # Recipe:: add_git_ppa
 #
 # Copyright 2012, Myplanet Digital, Inc.
