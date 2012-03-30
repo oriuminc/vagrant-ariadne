@@ -17,6 +17,7 @@ SITE
       mysql (>= 0.0.0)
       xml (>= 0.0.0)
     runit (0.15.0)
+    varnish (0.7.0)
     vim (1.0.2)
     xml (1.0.2)
     yum (0.5.2)
@@ -52,14 +53,6 @@ GIT
   specs:
     drush (0.9.1)
       php (>= 0.0.0)
-
-GIT
-  remote: https://github.com/varnish/cookbooks.git
-  path: varnish
-  ref: master
-  sha: 4bd33a4cc166c2107e851522ebbf3ad03c5143d9
-  specs:
-    varnish (0.7.0)
 
 DEPENDENCIES
   apache2 (>= 0)

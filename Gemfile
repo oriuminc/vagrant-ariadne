@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem "capistrano"
+gem "capistrano-drush-make"
 gem "chef"
 gem "inifile"
 gem "librarian", "= 0.0.12"

@@ -11,6 +11,7 @@ site 'http://community.opscode.com/api/v1'
   git
   memcached
   php
+  varnish
   vim
 }.each do |cb|
   cookbook cb
@@ -27,11 +28,6 @@ cookbook 'drush',
 cookbook 'xhprof',
   :git => 'git://github.com/myplanetdigital/chef-xhprof.git',
   :ref => 'GH-msonnabaum-2'
-
-cookbook 'varnish',
-  :git => 'https://github.com/varnish/cookbooks.git',
-  :path => 'varnish',
-  :ref => 'master'
 
 cookbook 'percona',
   :git => 'https://github.com/msonnabaum/chef-percona.git',
