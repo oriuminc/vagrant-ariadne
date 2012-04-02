@@ -20,6 +20,8 @@
 #
 
 branch = "master"
+project = node['ariadne']['project']
+site = "#{project}.dev"
 
 git "/vagrant/data/condel" do
   repository "https://github.com/myplanetdigital/condel.git"
@@ -39,9 +41,6 @@ end
   end
 end
 
-project = 'example'
-site = "#{project}.dev"
-
 directory "/mnt/www/html" do
   owner "root"
   group "root"
@@ -49,33 +48,16 @@ directory "/mnt/www/html" do
   recursive true
 end
 
-bash "Running drush_make..." do
-  cwd "/mnt/www/html"
-  code <<-EOH
-  drush make /vagrant/data/condel/local.condel.build /mnt/www/html/#{project} --yes --working-copy
-  (cd #{project} && drush site-install condel --db-url=mysqli://root:#{node['mysql']['server_root_password']}@localhost/#{project} --account-pass=admin --account-mail=vagrant@localhost --yes)
-  EOH
-  #notifies :restart, "service[varnish]"
-  not_if "test -e /mnt/www/html/#{project}"
-end
-
-bash "Installing site..." do
+bash "Running Drupal install script..." do
   user "vagrant"
-  cwd "/mnt/www/html"
-  code <<-EOH
-  (cd #{project} && drush -y site-install condel --db-url=mysqli://root:#{node['mysql']['server_root_password']}@localhost/#{project})
-
-  chmod u+w /mnt/www/html/#{project}/sites/default/settings.php
-
-  for f in /vagrant/data/condel/includes/*.settings.php
-  do
-    # Concatenate newline and snippet, then append to settings.php
-    echo "" | cat - $f | sudo tee -a /mnt/www/html/#{project}/sites/default/settings.php
-  done
-
-  chmod u-w /mnt/www/html/#{project}/sites/default/settings.php
-  EOH
-  only_if "test -w /mnt/www/html/#{project}/sites/default/settings.php"
+  code ". #{node['filesystem']['v-root']['mount']}/config/scripts/01-build.sh"
+  environment({
+    'PROJECT'              => project,
+    'SERVER_ROOT_PASSWORD' => node['mysql']['server_root_password'],
+    'ACCOUNT_PASS'         => 'admin',
+    'ACCOUNT_MAIL'         => 'vagrant@localhost'
+  })
+  not_if "test -e /mnt/www/html/#{project}"
 end
 
 web_app site do
