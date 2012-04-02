@@ -20,7 +20,7 @@
 
 # Bring PEAR version close to Acquia's 1.6.1
 # php-pear package's default version too old to install apc...
-current_vers = %x[ pear -V | grep -i PEAR | awk '{print $NF}' ]
+current_vers = %x[ pear -V 2>&1 | grep -i PEAR | awk '{print $NF}' | tr -d '\n' ]
 target_vers = "1.6.1"
 php_pear "PEAR" do
   version target_vers
