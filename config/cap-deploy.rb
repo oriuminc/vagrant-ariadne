@@ -1,22 +1,27 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+###################################
+## capistrano-drush-make configs ##
+###################################
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :deploy_via, :drush_make
+set :strategy, Capistrano::Deploy::Strategy::DrushMake.new(self)
+set :drush_makefile, "local.condel.build"
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+############################
+## capistrano-ash configs ##
+############################
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+# Needed to avoid error
+set :multisites, {}
+set :default_multisite, "condel.dev"
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+set :stages, %w[ dev staging ]
+set :default_stage, "dev"
+
+########################
+## capistrano configs ##
+########################
+
+set :application, "condel"
+set :scm, "git"
+set :repository, "https://github.com/myplanetdigital/condel.git"
+
