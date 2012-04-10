@@ -58,6 +58,7 @@ bash "Running Drupal install script..." do
     'ACCOUNT_MAIL'         => 'vagrant@localhost'
   })
   not_if "test -e /mnt/www/html/#{project}"
+  notifies :restart, "service[varnish]"
 end
 
 web_app site do
