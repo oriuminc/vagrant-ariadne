@@ -2,7 +2,7 @@
   "name": "acquia",
   "default_attributes": {
     "drush": {
-      "references": "7.x-5.0"
+      "version": "5.0.0"
     }
   },
   "json_class": "Chef::Role",
@@ -19,7 +19,7 @@
     "recipe[php::module_memcached]",
     "role[drupal]",
     "role[mysql_server]",
-    "recipe[drush]"
+    "recipe[drush::make]"
   ],
   "description": "Approximates the acquia hosting environment.",
   "chef_type": "role",

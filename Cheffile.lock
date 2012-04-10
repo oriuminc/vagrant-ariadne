@@ -1,7 +1,7 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apache2 (1.1.2)
+    apache2 (1.1.4)
     apt (1.4.0)
     build-essential (1.0.0)
     git (0.10.0)
@@ -32,6 +32,14 @@ GIT
       php (>= 0.0.0)
 
 GIT
+  remote: https://github.com/msonnabaum/chef-drush.git
+  ref: v0.10.0
+  sha: c7d7f34fe15dfdc0bac50746ce9c6859e0b650b8
+  specs:
+    drush (0.10.0)
+      php (>= 0.0.0)
+
+GIT
   remote: https://github.com/msonnabaum/chef-percona.git
   ref: master
   sha: 330d9133d8c1861003742ad3464f29ea4390289f
@@ -45,14 +53,6 @@ GIT
   sha: 99bb4745aff7c2e4b59535e000e7cf83c3fe3fa5
   specs:
     xdebug (0.0.1)
-      php (>= 0.0.0)
-
-GIT
-  remote: https://github.com/patcon/chef-drush.git
-  ref: refactor
-  sha: 8bb7c3e673524a7afb3878d547d67ec0439712a8
-  specs:
-    drush (0.9.1)
       php (>= 0.0.0)
 
 DEPENDENCIES
