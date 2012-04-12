@@ -20,11 +20,31 @@
 
 # Bring PEAR version close to Acquia's 1.6.1
 # php-pear package's default version too old to install apc...
-current_vers = %x[ pear -V 2>&1 | grep -i PEAR | awk '{print $NF}' | tr -d '\n' ]
-target_vers = "1.6.1"
-php_pear "PEAR" do
-  version target_vers
+
+plugin_path = File.expand_path "#{File.dirname(__FILE__)}/../files/default/plugins"
+
+Ohai::Config[:plugin_path] << plugin_path
+
+ohai "reload_pear" do
+  plugin "pear"
+end.run_action(:reload)
+
+log node['languages']['pear']['version']
+
+ruby_block "get_pear_vers_before_pecl_compile"  do
+  block do
+    original_pear_version = node['languages']['pear']['version']
+    original_pear_version = Gem::Version.create(original_pear_version)
+  end
+end
+
+declared_pear_version = Gem::Version.create("1.6.1")
+
+# Needs a unique resource name or else wonkiness
+php_pear "PEAR-compile-pecl" do
+  package_name "PEAR"
+  version declared_pear_version.to_s
   options "--force"
   action :install
-  only_if { Gem::Version.create(current_vers) != Gem::Version.create(target_vers)  }
+  only_if { original_pear_version != declared_pear_version }
 end
