@@ -50,7 +50,8 @@ end
 
 bash "Running Drupal install script..." do
   user "vagrant"
-  code ". #{node['filesystem']['v-root']['mount']}/config/scripts/01-build.sh"
+  group "vagrant"
+  code ". #{node['filesystem']['v-root']['mount']}/data/condel/includes/scripts/01-build.sh"
   environment({
     'PROJECT'              => project,
     'SERVER_ROOT_PASSWORD' => node['mysql']['server_root_password'],
