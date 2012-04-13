@@ -22,8 +22,8 @@ cookbook "xdebug",
   :ref => 'GH-xforty-1'
 
 cookbook 'drush',
-  :git => 'https://github.com/msonnabaum/chef-drush.git',
-  :ref => 'v0.10.0'
+  :git => 'https://github.com/patcon/chef-drush.git',
+  :ref => 'msonnabaum-GH-10'
 
 cookbook 'xhprof',
   :git => 'git://github.com/myplanetdigital/chef-xhprof.git',
