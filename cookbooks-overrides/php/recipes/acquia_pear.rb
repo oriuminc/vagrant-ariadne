@@ -18,33 +18,33 @@
 # limitations under the License.
 #
 
-# Bring PEAR version close to Acquia's 1.6.1
-# php-pear package's default version too old to install apc...
-
+# Load pear Ohai plugin from this cookbook
 plugin_path = File.expand_path "#{File.dirname(__FILE__)}/../files/default/plugins"
-
 Ohai::Config[:plugin_path] << plugin_path
 
-ohai "reload_pear" do
+o = ohai "reload_pear" do
   plugin "pear"
-end.run_action(:reload)
-
-log node['languages']['pear']['version']
-
-ruby_block "get_pear_vers_before_pecl_compile"  do
-  block do
-    original_pear_version = node['languages']['pear']['version']
-    original_pear_version = Gem::Version.create(original_pear_version)
-  end
 end
 
-declared_pear_version = Gem::Version.create("1.6.1")
+# Run at resource compilation too, to avoid errors when using log resource
+o.run_action(:reload)
+
+# Bring PEAR version close to Acquia's 1.6.1
+# php-pear package's default version too new to install old apc...
+
+#declared_pear_version = Gem::Version.create("1.6.1")
 
 # Needs a unique resource name or else wonkiness
-php_pear "PEAR-compile-pecl" do
+p = php_pear "PEAR-compile-pecl" do
   package_name "PEAR"
-  version declared_pear_version.to_s
+  #version declared_pear_version.to_s
+  version "1.6.1"
   options "--force"
   action :install
-  only_if { original_pear_version != declared_pear_version }
+  only_if do
+    declared_pear_version = Gem::Version.create(p.version)
+    original_pear_version = node['languages']['pear']['version']
+    original_pear_version = Gem::Version.create(original_pear_version)
+    original_pear_version != declared_pear_version
+  end
 end
