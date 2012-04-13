@@ -48,6 +48,13 @@ directory "/mnt/www/html" do
   recursive true
 end
 
+# Drush can't create when run by vagrant user
+directory "/tmp/drush" do
+  owner "root"
+  group "root"
+  mode "0777"
+end
+
 bash "Running Drupal install script..." do
   user "vagrant"
   group "vagrant"
