@@ -16,6 +16,7 @@
   "run_list": [
     "recipe[postfix]",
     "recipe[xdebug]",
+    "recipe[squid]",
     "recipe[ariadne::squid]"
   ],
   "description": "Development and debugging tools for local environments.",

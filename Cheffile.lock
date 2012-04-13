@@ -61,6 +61,13 @@ GIT
     drush (0.10.0)
       php (>= 0.0.0)
 
+GIT
+  remote: https://github.com/xforty/chef-squid.git
+  ref: master
+  sha: 446a441ae9d060a0e2403bdbaf8b220f9f5337be
+  specs:
+    squid (0.0.1)
+
 DEPENDENCIES
   apache2 (>= 0)
   apt (>= 0)
@@ -71,6 +78,7 @@ DEPENDENCIES
   percona (>= 0)
   php (>= 0)
   postfix (>= 0)
+  squid (>= 0)
   varnish (>= 0)
   vim (>= 0)
   xdebug (>= 0)
