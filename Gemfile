@@ -9,6 +9,7 @@ gem "inifile"
 gem "librarian"
 gem "railsless-deploy"
 gem "vagrant"
+gem "vagrant-vbguest"
 
 group :development do
   # Hammer.vim plugin requirements
