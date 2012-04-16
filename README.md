@@ -48,6 +48,15 @@ Goals
 Requirements
 ------------
 
+### Virtualbox (v4.1.12 recommended)
+
+Also, when prompted, be sure to download and install "Oracle VM
+VirtualBox Extension Pack", which contains the correct version of the
+[Virtualbox Guest Additions][vbox-guest] package. This provides utlities
+intended to  be installed on any VM running on VBox. Thankfully, we'll be
+using a [Vagrant plugin called vbguest][vagrant-vbguest], which will
+handle copying this package into any VM that is out of date.
+
 ### Xcode
 
 ### [RVM][about-rvm]
@@ -145,3 +154,5 @@ Development Tools
    [about-xdebug]:          http://xdebug.org/                                                 
    [install-xdebug-emacs1]: http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
    [install-xdebug-emacs2]: http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
+   [vbox-guest]:            http://www.virtualbox.org/manual/ch04.html#idp5980192
+   [vagrant-vbguest]:       https://github.com/dotless-de/vagrant-vbguest#readme
