@@ -35,6 +35,7 @@ Vagrant::Config.run do |config|
     config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./data/apt-cache", :owner => "root", :group => "root"
   end
 
+  config.vm.share_folder "gem-cache", "/opt/ruby/lib/ruby/gems/1.8/cache", "./tmp/ruby/1.9.1/cache"
   config.vm.share_folder "html", "/mnt/www/html", "./data/html"
 
   # Detect if squid is running
@@ -44,7 +45,7 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 3306, 3306
 
   # Update Chef if not at 0.10.8
-  config.vm.provision :shell, :inline => 'if [ "`knife -v | awk \'{print $NF}\'`" != "0.10.8" ]; then echo "Upgrading Chef to 0.10.8..."; gem install chef -v 0.10.8; fi'
+  config.vm.provision :shell, :inline => 'if [ "`knife -v | awk \'{print $NF}\'`" != "0.10.8" ]; then echo "Upgrading Chef to 0.10.8..."; gem install chef -v 0.10.8 --no-rdoc --no-ri; fi'
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = [ "cookbooks", "cookbooks-overrides" ]
