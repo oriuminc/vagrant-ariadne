@@ -143,6 +143,14 @@ Development Tools
 
 ## [Xdebug][about-xdebug]
 ???MANY LINES MISSING
+
+Known Issues
+============
+
+* Having dnsmasq installed on the host computer can lead to unexpected
+  behavior related to `resolv.conf` in the VM. This will manifest as a
+  failure to upgrade chef (via rubygems) during boot, right off the bat.
+
    [condel]:                https://github.com/myplanetdigital/condel
    [CD-summary]:            http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-vagrant]:         http://vagrantup.com/                                              
