@@ -48,7 +48,7 @@ Vagrant::Config.run do |config|
   config.vm.provision :shell, :inline => 'if [ "`knife -v | awk \'{print $NF}\'`" != "0.10.8" ]; then echo "Upgrading Chef to 0.10.8..."; gem install chef -v 0.10.8 --no-rdoc --no-ri; fi'
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = [ "cookbooks", "cookbooks-overrides" ]
+    chef.cookbooks_path = [ "cookbooks", "cookbooks-merge" ]
     chef.roles_path     = "roles"
 
     chef.add_role("ariadne")
