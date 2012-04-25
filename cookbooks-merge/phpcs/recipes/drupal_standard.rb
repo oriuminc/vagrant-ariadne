@@ -13,10 +13,3 @@ bash "copy-drupal-standard" do
     cp -Rf #{Chef::Config[:file_cache_path]}/drupalcs/Drupal $(pear config-get php_dir)/PHP/CodeSniffer/Standards/
   EOH
 end
-
-bash "create-drupalcs-alias" do
-  user "vagrant"
-  code <<-EOH
-    alias drupalcs='phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme'
-  EOH
-end
