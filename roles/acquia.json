@@ -20,6 +20,7 @@
     "role[drupal]",
     "role[mysql_server]",
     "role[varnish_frontend]",
+    "recipe[drush::utils]",
     "recipe[drush::make]"
   ],
   "description": "Approximates the acquia hosting environment.",
