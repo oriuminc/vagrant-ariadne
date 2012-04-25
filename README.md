@@ -51,7 +51,7 @@ Goals
  * Configure VM with debugging tools (xhprof, xdebug, webgrind)
  * Allow apt packages to persist between VM builds (shared folder)
  * Allow downloaded modules to be cached in such a way as to persist
-   between VM builds (eg. Vbox shared folder)
+   between VM builds (Squid web cache with shared folder)
  * Can deploy working site easily from:
     1) install profile, or
     2) site-as-repo
@@ -87,6 +87,15 @@ Xcode should also work, although it will not always be fully tested.
 
 [Installation instructions][install-rvm]
 
+To ensure you get the right version of RVM, run this variation of the
+install script:
+
+    curl -L https://github.com/wayneeseguin/rvm/blob/1.13.0/binscripts/rvm-installer | bash -s stable
+
+(You may trivially remove RVM at any time, without lasting effect, by
+running `rvm implode` and reversing any of the manual changes made in
+following paragraphs.)
+
 Please note that RVM will add its load commands to `.bash_profile` by
 default. Depending on your shell, this may not be appropriate. (For
 example, Zsh usually needs the command in `.zshrc`).
@@ -101,6 +110,33 @@ appropriate for your shell):
 
 Recommended
 -----------
+
+### [SquidMan proxy cache][about-squidman]
+
+SquidMan is the OS X port of the Squid3 caching proxy, which has been
+optimized as a web cache. It can be used to cache and reuse frequently
+accessed files.
+
+If installed on the host, Ariadne will also send the VM's curl and wget
+requests through SquidMan on the host.
+
+  1. Install and run SquidMan 3.1 [[DOWNLOAD][download-squid]].
+  2. Set "Cache size" and set the HTTP port to `3128`.
+  3. In the "Clients" tab, add a new entry for `33.33.33.10`.
+  4. Stop and start SquidMan.
+  5. Run these shell commands:
+
+    ```
+    $ # Curl is available by default on OS X.
+    $ # Drush uses this if Wget is not installed.
+    $ echo 'proxy localhost:3128' >> ~/.curlrc
+    $
+    $ # Wget not installed on OS X by default,
+    $ # but Drush will automatically favor it if available.
+    $ echo 'http_proxy=localhost:3128' >> ~/.wgetrc
+    ```
+
+  6. Reprovision your VM if already running: `vagrant provision`
 
 ### Persistent apt cache
 
@@ -131,23 +167,22 @@ Development Tools
 Known Issues
 ============
 
-* **Having dnsmasq installed** on the host computer can lead to unexpected
+* Having dnsmasq installed on the host computer can lead to unexpected
   behavior related to `resolv.conf` in the VM. This will manifest as a
   failure to upgrade chef (via rubygems) during boot, right off the bat.
-* Due to the method we use to avoid having to type `bundle exec` before
-  every command, **we can only run `vagrant` (and any other gem-related
-  command) in the vagrant project root.**
 
-   [condel]:                  https://github.com/myplanetdigital/condel
-   [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
-   [about-vagrant]:           http://vagrantup.com/                                              
-   [about-cap]:               https://github.com/capistrano/capistrano/wiki                      
-   [about-vagrant-kick]:      https://github.com/arioch/vagrant-kick#readme                      
-   [install-rvm]:             http://beginrescueend.com/rvm/install/                             
+   [condel]:                 https://github.com/myplanetdigital/condel
+   [CD-summary]:             http://continuousdelivery.com/2010/02/continuous-delivery/
+   [about-vagrant]:          http://vagrantup.com/                                              
+   [about-cap]:              https://github.com/capistrano/capistrano/wiki                      
+   [about-vagrant-kick]:     https://github.com/arioch/vagrant-kick#readme                      
+   [install-rvm]:            http://beginrescueend.com/rvm/install/                             
+   [download-squid]:         http://web.me.com/adg/downloads/SquidMan2.5.dmg                    
    [about-osx-gcc-installer]: https://github.com/kennethreitz/osx-gcc-installer#readme
-   [about-xdebug]:            http://xdebug.org/                                                 
-   [install-xdebug-emacs1]:   http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
-   [install-xdebug-emacs2]:   http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
-   [vbox-downloads]:          http://www.virtualbox.org/wiki/Downloads
-   [vbox-guest]:              http://www.virtualbox.org/manual/ch04.html#idp5980192
-   [vagrant-vbguest]:         https://github.com/dotless-de/vagrant-vbguest#readme
+   [about-squidman]:         http://web.me.com/adg/squidman/                                    
+   [about-xdebug]:           http://xdebug.org/                                                 
+   [install-xdebug-emacs1]:  http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
+   [install-xdebug-emacs2]:  http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
+   [vbox-downloads]:         http://www.virtualbox.org/wiki/Downloads
+   [vbox-guest]:             http://www.virtualbox.org/manual/ch04.html#idp5980192
+   [vagrant-vbguest]:       https://github.com/dotless-de/vagrant-vbguest#readme
