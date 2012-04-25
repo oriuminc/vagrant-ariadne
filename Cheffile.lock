@@ -1,8 +1,8 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apache2 (1.1.4)
-    apt (1.4.0)
+    apache2 (1.1.6)
+    apt (1.4.2)
     build-essential (1.0.0)
     git (0.10.0)
       runit (>= 0.0.0)
@@ -16,7 +16,7 @@ SITE
       build-essential (>= 0.0.0)
       mysql (>= 0.0.0)
       xml (>= 0.0.0)
-    postfix (0.8.4)
+    postfix (1.2.0)
     runit (0.15.0)
     vim (1.0.2)
     xml (1.0.2)
