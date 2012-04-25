@@ -28,7 +28,7 @@ recommended software versions, which have been tested to work:
 * [RVM](#req-rvm) v1.10.2
 * [Virtualbox _and Extension Pack_](#req-vbox) v4.1.12
 
-### Run
+Run the following on the first run, cloning as needed:
 
     $ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook
     $ exec $SHELL                                               # Reload your shell
