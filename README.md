@@ -78,7 +78,9 @@ intended to be installed on any VM running on VBox. Thankfully, we'll be
 using a [Vagrant plugin called vbguest][vagrant-vbguest], which will
 handle copying this package into any VM that is out of date.
 
-### Xcode
+### [OSX GCC Installer][about-osx-gcc-installer]
+
+Xcode should also work, although it will not always be fully tested.
 
 <a name="req-rvm" />
 ### [RVM][about-rvm] (
@@ -160,17 +162,18 @@ Known Issues
   behavior related to `resolv.conf` in the VM. This will manifest as a
   failure to upgrade chef (via rubygems) during boot, right off the bat.
 
-   [condel]:                https://github.com/myplanetdigital/condel
-   [CD-summary]:            http://continuousdelivery.com/2010/02/continuous-delivery/
-   [about-vagrant]:         http://vagrantup.com/                                              
-   [about-cap]:             https://github.com/capistrano/capistrano/wiki                      
-   [about-vagrant-kick]:    https://github.com/arioch/vagrant-kick#readme                      
-   [install-rvm]:           http://beginrescueend.com/rvm/install/                             
-   [download-squid]:        http://web.me.com/adg/downloads/SquidMan2.5.dmg                    
-   [about-squidman]:        http://web.me.com/adg/squidman/                                    
-   [about-xdebug]:          http://xdebug.org/                                                 
-   [install-xdebug-emacs1]: http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
-   [install-xdebug-emacs2]: http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
-   [vbox-downloads]:        http://www.virtualbox.org/wiki/Downloads
-   [vbox-guest]:            http://www.virtualbox.org/manual/ch04.html#idp5980192
-   [vagrant-vbguest]:       https://github.com/dotless-de/vagrant-vbguest#readme
+   [condel]:                  https://github.com/myplanetdigital/condel
+   [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
+   [about-vagrant]:           http://vagrantup.com/                                              
+   [about-cap]:               https://github.com/capistrano/capistrano/wiki                      
+   [about-vagrant-kick]:      https://github.com/arioch/vagrant-kick#readme                      
+   [install-rvm]:             http://beginrescueend.com/rvm/install/                             
+   [download-squid]:          http://web.me.com/adg/downloads/SquidMan2.5.dmg                    
+   [about-osx-gcc-installer]: https://github.com/kennethreitz/osx-gcc-installer#readme
+   [about-squidman]:          http://web.me.com/adg/squidman/                                    
+   [about-xdebug]:            http://xdebug.org/                                                 
+   [install-xdebug-emacs1]:   http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
+   [install-xdebug-emacs2]:   http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
+   [vbox-downloads]:          http://www.virtualbox.org/wiki/Downloads
+   [vbox-guest]:              http://www.virtualbox.org/manual/ch04.html#idp5980192
+   [vagrant-vbguest]:         https://github.com/dotless-de/vagrant-vbguest#readme
