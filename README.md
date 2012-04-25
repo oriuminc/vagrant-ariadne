@@ -131,9 +131,12 @@ Development Tools
 Known Issues
 ============
 
-* Having dnsmasq installed on the host computer can lead to unexpected
+* **Having dnsmasq installed** on the host computer can lead to unexpected
   behavior related to `resolv.conf` in the VM. This will manifest as a
   failure to upgrade chef (via rubygems) during boot, right off the bat.
+* Due to the method we use to avoid having to type `bundle exec` before
+  every command, **we can only run `vagrant` (and any other gem-related
+  command) in the vagrant project root.**
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
