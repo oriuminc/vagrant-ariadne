@@ -30,13 +30,15 @@ recommended software versions, which have been tested to work:
 
 Run the following on the first run, cloning as needed:
 
-    $ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook
-    $ exec $SHELL                                               # Reload your shell
-    $ git clone https://github.com/myplanetdigital/ariadne.git
-    $ cd ariadne
-    $ librarian-chef install              # Install cookbooks from Cheffile.lock
-    $ vagrant up                          # Spin up VM
-    $ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
+```sh
+$ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook
+$ exec $SHELL                                               # Reload your shell
+$ git clone https://github.com/myplanetdigital/ariadne.git
+$ cd ariadne
+$ librarian-chef install              # Install cookbooks from Cheffile.lock
+$ vagrant up                          # Spin up VM
+$ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
+```
 
 Goals
 -----
@@ -91,8 +93,9 @@ Xcode should also work, although it will not always be fully tested.
 To ensure you get the right version of RVM, run this variation of the
 install script:
 
-    curl -L https://github.com/wayneeseguin/rvm/blob/1.13.0/binscripts/rvm-installer | bash -s stable
-
+```sh
+curl -L https://github.com/wayneeseguin/rvm/blob/1.13.0/binscripts/rvm-installer | bash -s stable
+```
 (You may trivially remove RVM at any time, without lasting effect, by
 running `rvm implode` and reversing any of the manual changes made in
 following paragraphs.)
@@ -105,9 +108,11 @@ After installation, if you open up a new shell and the `rvm` command
 doesn't exist, type the following (replacing `.bash_profile` as
 appropriate for your shell):
 
-    $ echo '# Load RVM function' >> ~/.bash_profile
-    $ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bash_profile
-    $ source ~/.bash_profile
+```sh
+$ echo '# Load RVM function' >> ~/.bash_profile
+$ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bash_profile
+$ source ~/.bash_profile
+```
 
 Recommended
 -----------
@@ -120,7 +125,9 @@ all the downloaded files in a special directory, this directory is lost,
 whenever a VM is destroyed and rebuilt. To persist this cache directory
 as a shared directory, run this from the root dir of this git repo:
 
-    $ mkdir -p data/apt-cache/partial
+```sh
+$ mkdir -p data/apt-cache/partial
+```
 
 Misc Notes
 ----------
@@ -145,16 +152,16 @@ Known Issues
   behavior related to `resolv.conf` in the VM. This will manifest as a
   failure to upgrade chef (via rubygems) during boot, right off the bat.
 
-   [condel]:                 https://github.com/myplanetdigital/condel
-   [CD-summary]:             http://continuousdelivery.com/2010/02/continuous-delivery/
-   [about-vagrant]:          http://vagrantup.com/                                              
-   [about-cap]:              https://github.com/capistrano/capistrano/wiki                      
-   [about-vagrant-kick]:     https://github.com/arioch/vagrant-kick#readme                      
-   [install-rvm]:            http://beginrescueend.com/rvm/install/                             
+   [condel]:                  https://github.com/myplanetdigital/condel
+   [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
+   [about-vagrant]:           http://vagrantup.com/                                              
+   [about-cap]:               https://github.com/capistrano/capistrano/wiki                      
+   [about-vagrant-kick]:      https://github.com/arioch/vagrant-kick#readme                      
+   [install-rvm]:             http://beginrescueend.com/rvm/install/                             
    [about-osx-gcc-installer]: https://github.com/kennethreitz/osx-gcc-installer#readme
-   [about-xdebug]:           http://xdebug.org/                                                 
-   [install-xdebug-emacs1]:  http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
-   [install-xdebug-emacs2]:  http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
-   [vbox-downloads]:         http://www.virtualbox.org/wiki/Downloads
-   [vbox-guest]:             http://www.virtualbox.org/manual/ch04.html#idp5980192
-   [vagrant-vbguest]:       https://github.com/dotless-de/vagrant-vbguest#readme
+   [about-xdebug]:            http://xdebug.org/                                                 
+   [install-xdebug-emacs1]:   http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
+   [install-xdebug-emacs2]:   http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
+   [vbox-downloads]:          http://www.virtualbox.org/wiki/Downloads
+   [vbox-guest]:              http://www.virtualbox.org/manual/ch04.html#idp5980192
+   [vagrant-vbguest]:         https://github.com/dotless-de/vagrant-vbguest#readme
