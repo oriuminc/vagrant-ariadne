@@ -14,6 +14,7 @@
   "env_run_lists": {
   },
   "run_list": [
+    "recipe[phpcs]",
     "recipe[postfix]",
     "recipe[xdebug]"
   ],
