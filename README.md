@@ -19,6 +19,24 @@ configuration. The long-term goal is to create an install profile that
 is amenable to using Drupal in a development workflow, that utlizes
 [Continuous Delivery][CD-summary] practices.
 
+Quick Start
+-----------
+
+If you have any issues, please ensure you've installed the following
+recommended software versions, which have been tested to work:
+
+* [RVM](#req-rvm) v1.10.2
+* [Virtualbox _and Extension Pack_](#req-vbox) v4.1.12
+
+    $ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook
+    $ exec $SHELL                                               # Reload your shell
+    $ git clone https://github.com/myplanetdigital/ariadne.git
+    $ cd ariadne
+    $ librarian-chef install              # Install cookbooks from Cheffile.lock
+    $ vagrant up                          # Spin up VM
+    $ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
+    $ # TODO: cap deploy                  # Deploy application to VM
+
 Goals
 -----
 
@@ -48,18 +66,22 @@ Goals
 Requirements
 ------------
 
-### Virtualbox (v4.1.12 recommended)
+<a name="req-vbox" />
+### Virtualbox
 
-Also, when prompted, be sure to download and install "Oracle VM
-VirtualBox Extension Pack", which contains the correct version of the
+[Downloads page][vbox-downloads]
+
+Be sure to install your version's matching "Extension Pack" from the
+download page, as it contains the correct version of the
 [Virtualbox Guest Additions][vbox-guest] package. This provides utlities
-intended to  be installed on any VM running on VBox. Thankfully, we'll be
+intended to be installed on any VM running on VBox. Thankfully, we'll be
 using a [Vagrant plugin called vbguest][vagrant-vbguest], which will
 handle copying this package into any VM that is out of date.
 
 ### Xcode
 
-### [RVM][about-rvm]
+<a name="req-rvm" />
+### [RVM][about-rvm] (
 
 [Installation instructions][install-rvm]
 
@@ -125,19 +147,6 @@ vagrant@localhost, so that any sent mail will be readable at /var/mail/vagrant
 in the VM. This default is mainly to prevent site-install errorsm, and
 can be edited on the Drupal's user page for the admin.
 
-Quick Start
------------
-
-    $ chmod +x ~/.rvm/hooks/after_cd_bundler                           # Activate Bundler RVM hook
-    $ exec $SHELL                                                      # Reload your shell
-    $ git clone https://github.com/myplanetdigital/ariadne.git
-    $ # TODO: sh -c "cd ariadne && git checkout `git describe --tags`" # Checkout most recent tag (stable)
-    $ cd ariadne
-    $ librarian-chef install              # Install cookbooks from Cheffile.lock
-    $ vagrant up                          # Spin up VM
-    $ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
-    $ # TODO: cap deploy                          # Deploy application to VM
-
 Development Tools
 =================
 
@@ -162,5 +171,6 @@ Known Issues
    [about-xdebug]:          http://xdebug.org/                                                 
    [install-xdebug-emacs1]: http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
    [install-xdebug-emacs2]: http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
+   [vbox-downloads]:        http://www.virtualbox.org/wiki/Downloads
    [vbox-guest]:            http://www.virtualbox.org/manual/ch04.html#idp5980192
    [vagrant-vbguest]:       https://github.com/dotless-de/vagrant-vbguest#readme
