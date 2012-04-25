@@ -38,9 +38,6 @@ Vagrant::Config.run do |config|
   config.vm.share_folder "gem-cache", "/opt/ruby/lib/ruby/gems/1.8/cache", "./tmp/ruby/1.9.1/cache"
   config.vm.share_folder "html", "/mnt/www/html", "./data/html"
 
-  # Detect if squid is running
-  squid_running = true unless %x[ ps ax | grep -v 'grep' | grep 'SquidMan' ].empty?
-
   config.vm.forward_port 80, 8080
   config.vm.forward_port 3306, 3306
 
@@ -62,7 +59,6 @@ Vagrant::Config.run do |config|
         :allow_remote_root => true,
         :bind_address => '0.0.0.0',
       },
-      :squid => squid_running,
       :ariadne => {
         :project => project
       }
