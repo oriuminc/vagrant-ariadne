@@ -34,8 +34,7 @@ Run the following on the first run, cloning as needed:
 $ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook
 $ exec $SHELL                                               # Reload your shell
 $ git clone https://github.com/myplanetdigital/ariadne.git
-$ cd ariadne
-$ librarian-chef install              # Install cookbooks from Cheffile.lock
+$ cd ariadne                          # rvmrc script will run
 $ vagrant up                          # Spin up VM
 $ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
 ```
