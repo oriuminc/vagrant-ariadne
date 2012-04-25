@@ -9,7 +9,8 @@ rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH}
 
 # Install bundler gem if not yet available
 # (Our bundler version should be the latest version)
-if ! bundle -v | grep "$BUNDLER_VERS" > /dev/null ; then
+bundle -v | grep "$BUNDLER_VERS" > /dev/null
+if [ "$?" -ne "0" ] ; then
   gem install bundler -v $BUNDLER_VERS --no-rdoc --no-ri
 fi
 
