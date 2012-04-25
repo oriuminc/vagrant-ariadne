@@ -28,14 +28,13 @@ recommended software versions, which have been tested to work:
 * [RVM](#req-rvm) v1.10.2
 * [Virtualbox _and Extension Pack_](#req-vbox) v4.1.12
 
-    $ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook
-    $ exec $SHELL                                               # Reload your shell
-    $ git clone https://github.com/myplanetdigital/ariadne.git
-    $ cd ariadne
-    $ librarian-chef install              # Install cookbooks from Cheffile.lock
-    $ vagrant up                          # Spin up VM
-    $ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
-    $ # TODO: cap deploy                  # Deploy application to VM
+      $ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook
+      $ exec $SHELL                                               # Reload your shell
+      $ git clone https://github.com/myplanetdigital/ariadne.git
+      $ cd ariadne
+      $ librarian-chef install              # Install cookbooks from Cheffile.lock
+      $ vagrant up                          # Spin up VM
+      $ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
 
 Goals
 -----
@@ -51,7 +50,7 @@ Goals
  * Configure VM with debugging tools (xhprof, xdebug, webgrind)
  * Allow apt packages to persist between VM builds (shared folder)
  * Allow downloaded modules to be cached in such a way as to persist
-   between VM builds (Squid web cache with shared folder)
+   between VM builds (eg. shared folder)
  * Can deploy working site easily from:
     1) install profile, or
     2) site-as-repo
@@ -111,33 +110,6 @@ appropriate for your shell):
 Recommended
 -----------
 
-### [SquidMan proxy cache][about-squidman]
-
-SquidMan is the OS X port of the Squid3 caching proxy, which has been
-optimized as a web cache. It can be used to cache and reuse frequently
-accessed files.
-
-If installed on the host, Ariadne will also send the VM's curl and wget
-requests through SquidMan on the host.
-
-  1. Install and run SquidMan 3.1 [[DOWNLOAD][download-squid]].
-  2. Set "Cache size" and set the HTTP port to `3128`.
-  3. In the "Clients" tab, add a new entry for `33.33.33.10`.
-  4. Stop and start SquidMan.
-  5. Run these shell commands:
-
-    ```
-    $ # Curl is available by default on OS X.
-    $ # Drush uses this if Wget is not installed.
-    $ echo 'proxy localhost:3128' >> ~/.curlrc
-    $
-    $ # Wget not installed on OS X by default,
-    $ # but Drush will automatically favor it if available.
-    $ echo 'http_proxy=localhost:3128' >> ~/.wgetrc
-    ```
-
-  6. Reprovision your VM if already running: `vagrant provision`
-
 ### Persistent apt cache
 
 Every time Vagrant provisions a machine, the VM must redownload all the
@@ -177,9 +149,7 @@ Known Issues
    [about-cap]:              https://github.com/capistrano/capistrano/wiki                      
    [about-vagrant-kick]:     https://github.com/arioch/vagrant-kick#readme                      
    [install-rvm]:            http://beginrescueend.com/rvm/install/                             
-   [download-squid]:         http://web.me.com/adg/downloads/SquidMan2.5.dmg                    
    [about-osx-gcc-installer]: https://github.com/kennethreitz/osx-gcc-installer#readme
-   [about-squidman]:         http://web.me.com/adg/squidman/                                    
    [about-xdebug]:           http://xdebug.org/                                                 
    [install-xdebug-emacs1]:  http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
    [install-xdebug-emacs2]:  http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
