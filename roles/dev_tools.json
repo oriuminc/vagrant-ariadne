@@ -6,6 +6,9 @@
       "remote_enable": "1",
       "remote_host": "33.33.33.1"
     },
+    "phpcs": {
+      "drupalcs_git_ref": "7.x-1.0-alpha1"
+    },
     "postfix": {
       "mydomain": "$myhostname"
     }
