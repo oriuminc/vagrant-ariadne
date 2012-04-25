@@ -50,8 +50,8 @@ end
 
 # Drush can't create when run by vagrant user
 directory "/tmp/drush" do
-  owner "root"
-  group "root"
+  owner "vagrant"
+  group "vagrant"
   mode "0777"
 end
 
