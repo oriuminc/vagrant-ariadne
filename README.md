@@ -28,15 +28,16 @@ recommended software versions, which have been tested to work:
 * [RVM](#req-rvm) v1.10.2
 * [Virtualbox _and Extension Pack_](#req-vbox) v4.1.12
 
-    $ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook
-    $ exec $SHELL                                               # Reload your shell
-    $ git clone https://github.com/myplanetdigital/ariadne.git
-    $ cd ariadne
-    $ librarian-chef install              # Install cookbooks from Cheffile.lock
-    $ vagrant up                          # Spin up VM
-    $ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
-    $ # TODO: cap deploy                  # Deploy application to VM
-
+```sh
+    $ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook  
+    $ exec $SHELL                                               # Reload your shell  
+    $ git clone https://github.com/myplanetdigital/ariadne.git  
+    $ cd ariadne  
+    $ librarian-chef install              # Install cookbooks from Cheffile.lock  
+    $ vagrant up                          # Spin up VM  
+    $ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config  
+    $ # TODO: cap deploy                  # Deploy application to VM  
+```
 Goals
 -----
 
@@ -90,7 +91,9 @@ Xcode should also work, although it will not always be fully tested.
 To ensure you get the right version of RVM, run this variation of the
 install script:
 
+```sh
     curl -L https://github.com/wayneeseguin/rvm/blob/1.13.0/binscripts/rvm-installer | bash -s stable
+```
 
 (You may trivially remove RVM at any time, without lasting effect, by
 running `rvm implode` and reversing any of the manual changes made in
@@ -103,11 +106,11 @@ example, Zsh usually needs the command in `.zshrc`).
 After installation, if you open up a new shell and the `rvm` command
 doesn't exist, type the following (replacing `.bash_profile` as
 appropriate for your shell):
-
+```sh
     $ echo '# Load RVM function' >> ~/.bash_profile
     $ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bash_profile
     $ source ~/.bash_profile
-
+```
 Recommended
 -----------
 
@@ -126,7 +129,7 @@ requests through SquidMan on the host.
   4. Stop and start SquidMan.
   5. Run these shell commands:
 
-    ```
+    ```sh
     $ # Curl is available by default on OS X.
     $ # Drush uses this if Wget is not installed.
     $ echo 'proxy localhost:3128' >> ~/.curlrc
@@ -146,7 +149,9 @@ all the downloaded files in a special directory, this directory is lost,
 whenever a VM is destroyed and rebuilt. To persist this cache directory
 as a shared directory, run this from the root dir of this git repo:
 
+```sh
     $ mkdir -p data/apt-cache/partial
+```
 
 Misc Notes
 ----------
