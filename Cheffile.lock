@@ -1,7 +1,7 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apache2 (1.1.6)
+    apache2 (1.1.8)
     apt (1.4.2)
     build-essential (1.0.0)
     git (0.10.0)
