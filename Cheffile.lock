@@ -47,6 +47,14 @@ GIT
       php (>= 0.0.0)
 
 GIT
+  remote: https://github.com/myplanetdigital/chef-phpunit.git
+  ref: metadata-dep-fix
+  sha: 3079255c543b924de1add6ef91e226f9700de7e2
+  specs:
+    phpunit (0.9.1)
+      php (>= 0.0.0)
+
+GIT
   remote: https://github.com/myplanetdigital/chef-xdebug.git
   ref: GH-xforty-1
   sha: 99bb4745aff7c2e4b59535e000e7cf83c3fe3fa5
@@ -79,6 +87,7 @@ DEPENDENCIES
   percona (>= 0)
   php (>= 0)
   phpcs (>= 0)
+  phpunit (>= 0)
   postfix (>= 0)
   varnish (>= 0)
   vim (>= 0)
