@@ -8,9 +8,7 @@ gem "chef",
 gem "inifile"
 gem "librarian"
 gem "railsless-deploy"
-gem "vagrant", # 1.0.2 with myplanetdigital/vagrant/hosts-patch
-  :git => "https://github.com/myplanetdigital/vagrant.git",
-  :ref => "hosts-patch"
+gem "vagrant"
 gem "vagrant-vbguest"
 
 group :development do
