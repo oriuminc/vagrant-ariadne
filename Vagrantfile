@@ -30,6 +30,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = baseboxes[box]
 
   config.vm.network :hostonly, "33.33.33.10"
+  config.vm.domains = 'condel.dev www.condel.dev'
 
   if File.directory? File.expand_path "./data/apt-cache/partial/"
     config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./data/apt-cache", :owner => "root", :group => "root"
