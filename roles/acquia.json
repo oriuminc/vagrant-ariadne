@@ -9,10 +9,8 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[php::add_php_ppa]",
     "recipe[apt]",
     "role[apache2_mod_php]",
-    "recipe[php::acquia_pear]",
     "recipe[php::module_apc]",
     "recipe[memcached]",
     "recipe[php::module_memcache]",
