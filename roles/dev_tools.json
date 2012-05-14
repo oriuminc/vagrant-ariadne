@@ -2,7 +2,7 @@
   "name": "dev_tools",
   "default_attributes": {
     "xdebug": {
-      "version": "2.0.2",
+      "version": "2.2.0",
       "remote_enable": "1",
       "remote_host": "33.33.33.1"
     },
@@ -18,6 +18,7 @@
   },
   "run_list": [
     "recipe[phpcs::drupal_standard]",
+    "recipe[build-essential]",
     "recipe[phpunit]",
     "recipe[postfix]",
     "recipe[xdebug]"

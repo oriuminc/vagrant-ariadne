@@ -18,6 +18,7 @@ SITE
       xml (>= 0.0.0)
     postfix (1.2.0)
     runit (0.15.0)
+    varnish (0.9.2)
     vim (1.0.2)
     xml (1.0.2)
     yum (0.5.2)
@@ -48,8 +49,8 @@ GIT
 
 GIT
   remote: https://github.com/myplanetdigital/chef-phpunit.git
-  ref: metadata-dep-fix
-  sha: 3079255c543b924de1add6ef91e226f9700de7e2
+  ref: GH-7-version-attr
+  sha: 8f4f9b1a5e256b458ec3cac3ab57984c8b196a2c
   specs:
     phpunit (0.9.1)
       php (>= 0.0.0)
@@ -61,13 +62,6 @@ GIT
   specs:
     xdebug (0.0.1)
       php (>= 0.0.0)
-
-GIT
-  remote: https://github.com/opscode-cookbooks/varnish.git
-  ref: 0.9.2
-  sha: a957c36977166288dde83119e8eb01d4961c7c6c
-  specs:
-    varnish (0.9.2)
 
 GIT
   remote: https://github.com/patcon/chef-drush.git
