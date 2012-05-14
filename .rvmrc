@@ -4,6 +4,7 @@ RUBY_VERS="1.9.3"
 RUBY_PATCH="p194"
 BUNDLER_VERS="1.1.3"
 
+
 # Work whether rubies or gemsets are already installed
 rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH}
 
@@ -18,7 +19,7 @@ fi
 # Run bundler if any gems not installed
 if ! bundle check > /dev/null; then
   echo "Installing bundled gems via Bundler..."
-  bundle install --binstubs=tmp/bundler/bin --path=tmp
+  bundle install --binstubs=tmp/bundler/bin --path=tmp --without=development
 fi
 
 # Download and install chef cookbooks

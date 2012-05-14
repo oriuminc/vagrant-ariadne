@@ -1,24 +1,27 @@
 source "http://rubygems.org"
 
-gem "capistrano"
-gem "capistrano-drush-make"
 gem "chef",
   :git => "https://github.com/opscode/chef.git",
   :ref => "ba4d58f4223"
 gem "inifile"
 gem "librarian"
-gem "railsless-deploy"
 gem "vagrant"
 gem "vagrant-vbguest"
 
 group :development do
+  # Experimentation
+  gem "capistrano"
+  gem "capistrano-drush-make"
+  gem "railsless-deploy"
   # Hammer.vim plugin requirements
+  gem "coderay"
   gem "github-markup"
   gem "tilt"
-  gem "coderay"
   # Testing
-  gem "vagrant-test"
-  gem "watir-webdriver"
   gem "aruba"
   gem "cuken"
+  gem "jenkins"
+  gem "jenkins-war"
+  gem "vagrant-test"
+  gem "watir-webdriver"
 end
