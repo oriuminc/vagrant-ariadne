@@ -10,8 +10,10 @@ run_list(
 )
 default_attributes(
   :php => {
-    :directives => {
-      :memory_limit => "160M"
+    :ini => {
+      :directives => {
+        :memory_limit => "160M"
+      }
     }
   },
   :apache => {

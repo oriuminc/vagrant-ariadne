@@ -15,6 +15,7 @@
     "recipe[memcached]",
     "recipe[php::module_memcache]",
     "recipe[php::module_memcached]",
+    "recipe[php::write_inis]",
     "role[drupal]",
     "role[mysql_server]",
     "role[varnish_frontend]",

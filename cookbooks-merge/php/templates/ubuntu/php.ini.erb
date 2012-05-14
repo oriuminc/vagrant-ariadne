@@ -1853,6 +1853,6 @@ ldap.max_links = -1
 ; End:
 
 ; Allow directives to be added from chef attributes.
-<% node['php']['directives'].each do |k,v| -%>
+<% node['php']['ini']['directives'].each do |k,v| -%>
 <%= "#{k}=\"#{v}\"" %>
 <% end -%>
