@@ -1,8 +1,6 @@
 source "http://rubygems.org"
 
-gem "chef",
-  :git => "https://github.com/opscode/chef.git",
-  :ref => "ba4d58f4223"
+gem "chef"
 gem "inifile"
 gem "librarian"
 gem "vagrant"
