@@ -41,8 +41,11 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 80, 8080
   config.vm.forward_port 3306, 3306
 
-  # Update Chef if not at 0.10.8
-  config.vm.provision :shell, :inline => 'if [ "`knife -v | awk \'{print $NF}\'`" != "0.10.8" ]; then echo "Upgrading Chef to 0.10.8..."; gem install chef -v 0.10.8 --no-rdoc --no-ri; fi'
+  # Update Chef if not at 0.10.10
+  config.vm.provision :shell do |shell|
+    shell.path = "config/upgrade_chef.sh"
+    shell.args = "0.10.10"
+  end
 
   config.vm.provision :chef_solo do |chef|
     # Include roles/ and any directories of format */roles/
