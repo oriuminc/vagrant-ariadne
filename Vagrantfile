@@ -17,7 +17,7 @@ Vagrant::Config.run do |config|
   ini = IniFile.new("config/config.ini")
 
   # Use 1) ENV variable, 2) INI config file, then 3) Default
-  box     = ENV['box']     ||= ini['vagrant']['box']     ||= "hardy64"
+  box     = ENV['box']     ||= ini['vagrant']['box']     ||= "lucid64"
   project = ENV['project'] ||= ini['vagrant']['project']
 
   # Mash of box names and urls
@@ -31,11 +31,8 @@ Vagrant::Config.run do |config|
 
   config.vm.network :hostonly, "33.33.33.10"
 
-  if File.directory? File.expand_path "./data/apt-cache/partial/"
-    config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./data/apt-cache", :owner => "root", :group => "root"
-  end
-
-  config.vm.share_folder "gem-cache", "/opt/ruby/lib/ruby/gems/1.8/cache", "./tmp/ruby/1.9.1/cache"
+  config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./data/apt-cache", :owner => "root", :group => "root"
+  config.vm.share_folder "gem-cache", "./tmp/ruby/1.9.1/cache", "./tmp/ruby/1.9.1/cache"
   config.vm.share_folder "html", "/mnt/www/html", "./data/html"
 
   config.vm.forward_port 80, 8080
@@ -60,17 +57,16 @@ Vagrant::Config.run do |config|
 
     chef.add_role("ariadne")
 
-    # Used to set .wgetrc and .curlrc to proxy
     chef.json = {
-      :mysql => {
-        :server_debian_password => 'root',
-        :server_root_password   => 'root',
-        :server_repl_password   => 'root',
-        :allow_remote_root => true,
-        :bind_address => '0.0.0.0',
+      "mysql" => {
+        "server_debian_password" => "root",
+        "server_root_password"   => "root",
+        "server_repl_password"   => "root",
+        "allow_remote_root" => true,
+        "bind_address" => "0.0.0.0",
       },
-      :ariadne => {
-        :project => project
+      "ariadne" => {
+        "project" => project
       }
     }
   end
