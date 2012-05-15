@@ -31,9 +31,13 @@ Vagrant::Config.run do |config|
 
   config.vm.network :hostonly, "33.33.33.10"
 
-  config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./data/apt-cache", :owner => "root", :group => "root"
-  config.vm.share_folder "gem-cache", "./tmp/ruby/1.9.1/cache", "./tmp/ruby/1.9.1/cache"
-  config.vm.share_folder "html", "/mnt/www/html", "./data/html"
+  # Use vagrant-dns plugin to configure DNS server
+  config.dns.tld = "dev"
+  config.dns.patterns = [ /^.*#{project}.dev$/ ]
+
+  config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./data/apt-cache", :nfs => true
+  config.vm.share_folder "gem-cache", "./tmp/ruby/1.9.1/cache", "./tmp/ruby/1.9.1/cache", :nfs => true
+  config.vm.share_folder "html", "/mnt/www/html", "./data/html", :nfs => true
 
   config.vm.forward_port 80, 8080
   config.vm.forward_port 3306, 3306
@@ -55,7 +59,8 @@ Vagrant::Config.run do |config|
     ckbkdirs = File.join("*", "cookbooks")
     chef.cookbooks_path = chef.cookbooks_path | Dir.glob(ckbkdirs)
 
-    chef.add_role("ariadne")
+    chef.add_role "ariadne"
+    #chef.add_recipe "project_#{project}"
 
     chef.json = {
       "mysql" => {

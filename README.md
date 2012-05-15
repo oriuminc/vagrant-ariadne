@@ -12,7 +12,8 @@ This project aims to create a local Vagrant environment that mimics Acquia's
 infrastructure as closely as possible, using cookbooks and roles that can easily be
 used to deploy an actual cluster.
 
-This environent is being built in conjunction with the [ConDel base
+This environent is being built in conjunction with a base installation
+profile. Currently, this experimentation is being done with the [ConDel base
 install profile][condel]. This is necessary, since many server
 configurations can only be fully utilized with specific site
 configuration. The long-term goal is to create an install profile that
@@ -25,19 +26,28 @@ Quick Start
 If you have any issues, please ensure you've installed the following
 recommended software versions, which have been tested to work:
 
-* [RVM](#req-rvm) v1.10.2
+* [RVM](#req-rvm) v1.13.0
 * [Virtualbox _and Extension Pack_](#req-vbox) v4.1.12
 
 Run the following on the first run, cloning as needed:
 
 ```sh
-$ chmod +x ~/.rvm/hooks/after_cd_bundler                    # Activate Bundler RVM hook
-$ exec $SHELL                                               # Reload your shell
+$ curl -L get.rvm.io | bash -s stable    # Install RVM
+$ source ~/.rvm/scripts/rvm
+$ chmod +x ~/.rvm/hooks/after_cd_bundler # Activate Bundler RVM hook
+$ exec $SHELL                            # Reload your shell
 $ git clone https://github.com/myplanetdigital/ariadne.git
-$ cd ariadne                          # rvmrc script will run
-$ vagrant up                          # Spin up VM
-$ vagrant ssh_config >> ~/.ssh/config # Adds a project entry to ssh config
+$ cd ariadne                             # rvmrc script will run
+$ rvmsudo vagrant dns --install          # Install DNS server (OSX only)
+$ vagrant up                             # Spin up VM
+$ vagrant ssh_config >> ~/.ssh/config    # Adds a project entry to ssh config
 ```
+
+### TODO
+
+Site will be accessible at:
+
+    http://PROJECTNAME.dev
 
 Goals
 -----
@@ -85,32 +95,15 @@ handle copying this package into any VM that is out of date.
 Xcode should also work, although it will not always be fully tested.
 
 <a name="req-rvm" />
-### [RVM][about-rvm] (
+### [RVM][about-rvm]
 
-[Installation instructions][install-rvm]
+[Full installation instructions][install-rvm]
 
-To ensure you get the right version of RVM, run this variation of the
-install script:
+#### Quick Install
 
-```sh
-curl -L https://github.com/wayneeseguin/rvm/blob/1.13.0/binscripts/rvm-installer | bash -s stable
 ```
-(You may trivially remove RVM at any time, without lasting effect, by
-running `rvm implode` and reversing any of the manual changes made in
-following paragraphs.)
-
-Please note that RVM will add its load commands to `.bash_profile` by
-default. Depending on your shell, this may not be appropriate. (For
-example, Zsh usually needs the command in `.zshrc`).
-
-After installation, if you open up a new shell and the `rvm` command
-doesn't exist, type the following (replacing `.bash_profile` as
-appropriate for your shell):
-
-```sh
-$ echo '# Load RVM function' >> ~/.bash_profile
-$ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bash_profile
-$ source ~/.bash_profile
+$ curl -L get.rvm.io | bash -s stable
+$ source ~/.rvm/scripts/rvm
 ```
 
 Recommended
@@ -128,6 +121,22 @@ as a shared directory, run this from the root dir of this git repo:
 $ mkdir -p data/apt-cache/partial
 ```
 
+### [vagrant-dns server][vagrant-dns]
+
+Built-in DNS server for resolving vagrant domains on OSX. Server stops
+and starts with VM itself, and it can be easily uninstalled (see
+vagrant-dns README).
+
+If you find yourself in a broken system state related to URL's that
+aren't resolving, restart vagrant-dns fresh with the following:
+
+```sh
+$ rvmsudo vagrant dns --uninstall
+$ rm -r ~/.vagrant.d/tmp/dns
+$ rvmsudo vagrant dns --install
+$ vagrant reload
+```
+
 Misc Notes
 ----------
 
@@ -142,7 +151,6 @@ Development Tools
 =================
 
 ## [Xdebug][about-xdebug]
-???MANY LINES MISSING
 
 Known Issues
 ============
@@ -164,3 +172,4 @@ Known Issues
    [vbox-downloads]:          http://www.virtualbox.org/wiki/Downloads
    [vbox-guest]:              http://www.virtualbox.org/manual/ch04.html#idp5980192
    [vagrant-vbguest]:         https://github.com/dotless-de/vagrant-vbguest#readme
+   [vagrant-dns]:             https://github.com/BerlinVagrant/vagrant-dns#readme

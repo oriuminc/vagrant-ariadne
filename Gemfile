@@ -4,6 +4,7 @@ gem "chef"
 gem "inifile"
 gem "librarian"
 gem "vagrant"
+gem "vagrant-dns"
 gem "vagrant-vbguest"
 
 group :development do
