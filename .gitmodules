@@ -1,3 +1,0 @@
-[submodule "cookbooks-merge/starship"]
-	path = cookbooks-merge/starship
-	url = git@github.com:myplanetdigital/ariadne.git
