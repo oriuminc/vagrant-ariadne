@@ -40,7 +40,8 @@ $ git clone https://github.com/myplanetdigital/ariadne.git
 $ cd ariadne                             # rvmrc script will run
 $ rvmsudo vagrant dns --install          # Install DNS server (OSX only)
 $ vagrant up                             # Spin up VM
-$ vagrant ssh_config >> ~/.ssh/config    # Adds a project entry to ssh config
+$ rake send_keys                         # Transfer RSA keypair to VM
+$ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
 ```
 
 ### TODO
