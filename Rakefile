@@ -19,3 +19,13 @@ task :send_keys do
     puts "SSH keys sent to #{vm.name} VM!"
   end
 end
+
+task :fix_network do
+  env = Vagrant::Environment.new
+  env.vms.each do |id, vm|
+    raise Vagrant::Errors::VMNotCreatedError if !vm.created?
+    raise Vagrant::Errors::VMNotRunningError if vm.state != :running
+
+    vm.channel.sudo("/etc/init.d/networking restart")
+  end
+end

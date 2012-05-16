@@ -159,6 +159,12 @@ Known Issues
 * Having dnsmasq installed on the host computer can lead to unexpected
   behavior related to `resolv.conf` in the VM. This will manifest as a
   failure to upgrade chef (via rubygems) during boot, right off the bat.
+* Sometimes if you lose internet connection on your host, the network
+  inside the VM must be reset. [[Reference][network-fix-ref]] If you
+  experience a lack of connectivity in your VM, run this from the host:
+
+
+    $ rake fix_network
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
@@ -174,3 +180,4 @@ Known Issues
    [vbox-guest]:              http://www.virtualbox.org/manual/ch04.html#idp5980192
    [vagrant-vbguest]:         https://github.com/dotless-de/vagrant-vbguest#readme
    [vagrant-dns]:             https://github.com/BerlinVagrant/vagrant-dns#readme
+   [network-fix-ref]:         http://stackoverflow.com/questions/10378185/vagrant-a-better-to-way-to-reset-my-guest-vagrant-vms-network

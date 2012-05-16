@@ -20,7 +20,7 @@ end
 
 cookbook "xdebug",
   :git => 'https://github.com/myplanetdigital/chef-xdebug.git',
-  :ref => 'GH-xforty-1'
+  :ref => 'master'
 
 cookbook "phpcs",
   :git => 'https://github.com/myplanetdigital/chef-phpcs.git',
