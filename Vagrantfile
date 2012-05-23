@@ -42,10 +42,10 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 80, 8080
   config.vm.forward_port 3306, 3306
 
-  # Update Chef if not at 0.10.10
+  # Update Chef in VM to specific version before running provisioner
   config.vm.provision :shell do |shell|
     shell.path = "config/upgrade_chef.sh"
-    shell.args = "0.10.10"
+    shell.args = "0.10.8" # Chef version
   end
 
   config.vm.provision :chef_solo do |chef|

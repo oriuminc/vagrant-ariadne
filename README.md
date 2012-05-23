@@ -26,8 +26,8 @@ Quick Start
 If you have any issues, please ensure you've installed the following
 recommended software versions, which have been tested to work:
 
-* [RVM](#req-rvm) v1.13.0
-* [Virtualbox _and Extension Pack_](#req-vbox) v4.1.12
+* [RVM](#req-rvm) v1.13.8
+* [Virtualbox _and Extension Pack_](#req-vbox) v4.1.16
 
 Run the following on the first run, cloning as needed:
 
