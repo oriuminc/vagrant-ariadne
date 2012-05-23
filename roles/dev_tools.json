@@ -10,6 +10,9 @@
     "phpcs": {
       "drupalcs_git_ref": "7.x-1.0-alpha1"
     },
+    "phpunit": {
+      "version": "3.6.10"
+    },
     "postfix": {
       "mydomain": "$myhostname"
     }
