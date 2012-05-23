@@ -4,7 +4,8 @@
     "xdebug": {
       "version": "2.2.0",
       "remote_enable": "1",
-      "remote_host": "33.33.33.1"
+      "remote_host": "33.33.33.1",
+      "remote_log": "/var/log/xdebug.log"
     },
     "phpcs": {
       "drupalcs_git_ref": "7.x-1.0-alpha1"

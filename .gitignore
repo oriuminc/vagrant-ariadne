@@ -4,6 +4,7 @@
 # Project
 .vagrant
 data/*/
+project-*/
 
 # Librarian/RVM/Bundler
 cookbooks/

@@ -19,55 +19,31 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-branch = "master"
-project = node['ariadne']['project']
-site = "#{project}.dev"
+require_recipe "ariadne::default"
 
-git "/vagrant/data/condel" do
-  repository "https://github.com/myplanetdigital/condel.git"
-  reference branch
-  additional_remotes Hash["write" => "git@github.com:myplanetdigital/condel.git"]
-  action :checkout
-end
+project = "example"
 
-%w{
-  /vagrant/data/condel
-}.each do |dir|
-  bash "Checking out #{branch} branch of #{dir}" do
-    user "vagrant"
-    code <<-EOH
-    cd #{dir} && git checkout #{branch}
-    EOH
-  end
-end
-
-directory "/mnt/www/html" do
-  owner "root"
-  group "root"
-  mode "0755"
-  recursive true
-end
-
-# Drush can't create when run by vagrant user
-directory "/tmp/drush" do
-  owner "vagrant"
-  group "vagrant"
-  mode "0777"
-end
-
-bash "Running Drupal install script..." do
+bash "Installing example Drupal site..." do
   user "vagrant"
   group "vagrant"
-  code ". #{node['filesystem']['v-root']['mount']}/data/condel/includes/scripts/01-build.sh"
-  environment({
-    'PROJECT'              => project,
-    'SERVER_ROOT_PASSWORD' => node['mysql']['server_root_password'],
-    'ACCOUNT_PASS'         => 'admin',
-    'ACCOUNT_MAIL'         => 'vagrant@localhost'
-  })
-  not_if "test -e /mnt/www/html/#{project}"
-  notifies :restart, "service[varnish]"
+  cwd "/mnt/www/html"
+  code <<-EOH
+    drush -y dl drupal \
+      --drupal-project-rename=#{project} \
+      --cache
+    drush -y si \
+      --root=/mnt/www/html/#{project} \
+      --db-url=mysqli://root:root@localhost/#{project} \
+      --site-name="Ariadne Vanilla Drupal Example" \
+      --site-mail=vagrant+site@localhost \
+      --account-mail=vagrant+admin@locahost \
+      --account-name=admin \
+      --account-pass=admin
+  EOH
+  not_if "test -d /mnt/www/html/example"
 end
+
+site = "#{project}.dev"
 
 web_app site do
   template "sites.conf.erb"

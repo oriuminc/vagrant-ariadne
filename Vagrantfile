@@ -50,18 +50,19 @@ Vagrant::Config.run do |config|
   end
 
   config.vm.provision :chef_solo do |chef|
-    # Include roles/ and any directories of format */roles/
-    chef.roles_path = [ "roles" ]
-    roledirs = File.join("*", "roles")
-    chef.roles_path = chef.roles_path | Dir.glob(roledirs)
+    chef.roles_path = "roles"
 
+    # Standard cookbook paths plus those of format project-*/cookbooks/
     chef.cookbooks_path = [ "cookbooks", "cookbooks-merge" ]
-    # Also include any directories of format */cookbooks
-    ckbkdirs = File.join("*", "cookbooks")
+    ckbkdirs = File.join("project-*", "cookbooks")
     chef.cookbooks_path = chef.cookbooks_path | Dir.glob(ckbkdirs)
 
+    # Set up basic environment
     chef.add_role "ariadne"
-    #chef.add_recipe "project_#{project}"
+
+    # Add recipe for example site if no project set.
+    project_recipe = project.empty? ? "ariadne::example" : "project_#{project}"
+    chef.add_recipe project_recipe
 
     chef.json = {
       "mysql" => {
