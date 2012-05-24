@@ -23,7 +23,7 @@ require_recipe "ariadne::default"
 
 project = "example"
 
-bash "Installing example Drupal site..." do
+bash "Downloading Drupal..." do
   user "vagrant"
   group "vagrant"
   cwd "/mnt/www/html"
@@ -31,6 +31,14 @@ bash "Installing example Drupal site..." do
     drush -y dl drupal \
       --drupal-project-rename=#{project} \
       --cache
+  EOH
+  not_if "test -d /mnt/www/html/example"
+end
+
+bash "Installing example Drupal site..." do
+  user "vagrant"
+  group "vagrant"
+  code <<-EOH
     drush -y si \
       --root=/mnt/www/html/#{project} \
       --db-url=mysqli://root:root@localhost/#{project} \
@@ -40,7 +48,6 @@ bash "Installing example Drupal site..." do
       --account-name=admin \
       --account-pass=admin
   EOH
-  not_if "test -d /mnt/www/html/example"
 end
 
 site = "#{project}.dev"
