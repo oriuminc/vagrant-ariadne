@@ -1,5 +1,7 @@
 # General system
 .DS_Store
+*.tar.gz
+*.zip
 
 # Project
 .vagrant
