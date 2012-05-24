@@ -36,7 +36,7 @@ Vagrant::Config.run do |config|
   config.dns.patterns = [ /^.*#{project}.dev$/ ]
 
   # Share directories to speed up boot and general site code directory
-  config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./data/apt-cache", :nfs => true
+  config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "./tmp/apt/cache", :nfs => true
   config.vm.share_folder "gem-cache", "/opt/ruby/lib/ruby/gems/1.8/cache", "./tmp/ruby/1.9.1/cache", :nfs => true
   config.vm.share_folder "html", "/mnt/www/html", "./data/html", :nfs => true
 
