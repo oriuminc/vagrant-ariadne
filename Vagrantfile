@@ -20,6 +20,10 @@ Vagrant::Config.run do |config|
   box     = ENV['box']     ||= ini['vagrant']['box']     ||= "lucid64"
   project = ENV['project'] ||= ini['vagrant']['project']
 
+  # Write project (or lack thereof) to inifile
+  ini['vagrant']['project'] = project
+  ini.write("config/config.ini")
+
   # Mash of box names and urls
   baseboxes = {
     "hardy64" => "https://myplanet.box.com/shared/static/pkmp7lus3ojvd4vlusuj.box",

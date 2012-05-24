@@ -46,9 +46,15 @@ $ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
 
 ### TODO
 
-Site will be accessible at:
+* Doc DNS and where site will be accessible:
+
 
     http://PROJECTNAME.dev
+
+* Doc how `project=PROJECTNAME vagrant up` will boot a specific
+  project (and will write to `config/config.ini` so only need once).
+* Doc format that Ariadne expects for this project repo.
+* Doc rake tasks.
 
 Goals
 -----
