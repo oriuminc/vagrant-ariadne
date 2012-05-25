@@ -28,3 +28,4 @@ bundle exec librarian-chef install
 # Create dirs for vagrant shared_folder
 mkdir -p tmp/apt/cache/partial
 mkdir -p data/html
+mkdir -p data/make
