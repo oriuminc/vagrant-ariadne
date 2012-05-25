@@ -1,0 +1,2 @@
+Host github.com, git.*.com
+  StrictHostKeyChecking no
