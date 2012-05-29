@@ -165,6 +165,12 @@ Known Issues
 * Having dnsmasq installed on the host computer can lead to unexpected
   behavior related to `resolv.conf` in the VM. This will manifest as a
   failure to upgrade chef (via rubygems) during boot, right off the bat.
+* Given how agent\_forwarding happens using your host machine's ssh
+  credentials, ssh-agent must be running and have a saved passphrase, or
+  else it can't pass this passphrase into the VM, and the chef run will
+  fail when authorization is needed (likely during Git commands). Ensure
+  that you've authorized ssh-agent at least once on the host before
+  provisioning.
 * Sometimes if you lose internet connection on your host, the network
   inside the VM must be reset. [[Reference][network-fix-ref]] If you
   experience a lack of connectivity in your VM, run this from the host:

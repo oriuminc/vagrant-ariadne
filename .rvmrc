@@ -29,3 +29,10 @@ bundle exec librarian-chef install
 mkdir -p tmp/apt/cache/partial
 mkdir -p data/html
 mkdir -p data/make
+
+# Ensure that ssh-agent has at least one key loaded
+ssh-add -L > /dev/null
+if [ "$?" -ne "0" ] ; then
+  echo "ssh-agent must have at least one key loaded for agent forwarding..."
+  ssh-add
+fi
