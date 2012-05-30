@@ -6,7 +6,7 @@
 # Project
 .vagrant
 data/*/
-project-*/
+ariadne-*/
 
 # Librarian/RVM/Bundler
 cookbooks/

@@ -24,5 +24,5 @@ task :init_project do
   username = ENV['repo'].split("/")[0]
   repo = ENV['repo'].split("/")[1]
   projectname = repo.sub(/^ariadne-/, '')
-  system "git clone git@github.com:#{username}/#{repo}.git project-#{projectname}"
+  system "git clone git@github.com:#{username}/#{repo}.git ariadne-#{projectname}"
 end
