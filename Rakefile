@@ -18,3 +18,11 @@ task :fresh_start do
   system "rm -rf tmp/ cookbooks/ .bundle/"
   system "chmod -R u+x data/html/; rm -rf data/html/*"
 end
+
+desc "Import a ariadne project from GitHub. Example `rake init_project repo=username/demo`"
+task :init_project do
+  username = ENV['repo'].split("/")[0]
+  repo = ENV['repo'].split("/")[1]
+  projectname = repo.sub(/^ariadne-/, '')
+  system "git clone https://github.com/#{username}/#{repo}.git project-#{projectname}"
+end
