@@ -62,9 +62,9 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
     chef.roles_path = "roles"
 
-    # Standard cookbook paths plus those of format project-*/cookbooks/
+    # Standard cookbook paths plus those of format */cookbooks/
     chef.cookbooks_path = [ "cookbooks", "cookbooks-merge" ]
-    ckbkdirs = File.join("project-*", "cookbooks")
+    ckbkdirs = File.join("*", "cookbooks")
     chef.cookbooks_path = chef.cookbooks_path | Dir.glob(ckbkdirs)
 
     # Set up basic environment
