@@ -8,53 +8,94 @@ Ariadne
 
  * Source: https://github.com/myplanetdigital/ariadne
 
-This project aims to create a local Vagrant environment that mimics Acquia's
+**Ariadne is in active development at Myplanet Digital, and should be
+considered alpha code. Stability and full documentation not yet
+guaranteed.**
+
+Ariadne is a standardized virtual machine (VM) development environment for
+easily developing Drupal sites in a local sandbox that is essentially
+identical to a fully-configured cloud server. It attempts to emulate an
+Acquia/Pantheon server as closely as possible, with added development tools. Once
+several simple requirements have been met, it can be set up using
+only a few commands from your computer's terminal.
+
+The current iteration aims to create a local Vagrant environment that mimics Acquia's
 infrastructure as closely as possible, using cookbooks and roles that can easily be
 used to deploy an actual cluster.
 
-This environent is being built in conjunction with a base installation
-profile. Currently, this experimentation is being done with the [ConDel base
-install profile][condel]. This is necessary, since many server
-configurations can only be fully utilized with specific site
-configuration. The long-term goal is to create an install profile that
-is amenable to using Drupal in a development workflow, that utlizes
-[Continuous Delivery][CD-summary] practices.
+
+Tested on Mac OSX Snow Leopard & Lion (should work on Linux).
+
+Requirements (Recommended versions)
+-----------------------------------
+
+* [Virtualbox _and Extension Pack_](#req-vbox) (v4.1.16)
 
 Quick Start
 -----------
+
+How It Works
+------------
+
+Vagrant uses Virtualbox to boot a stripped-down VM image, and then uses
+the Chef configuration management tool (one of the few components
+installed on the VM initially) to bring that blank slate into a fully
+configured state.
+
+The VM will be configured identically whether installed on Mac or Linux
+(and theoretically, Vagrant supports Windows as well, although Ariadne
+is untested in this respect.
+
+Usage
+-----
+
+### Quick Start
+
+```sh
+$ curl -L get.rvm.io | bash -s stable                # Install/Update RVM
+$ source ~/.rvm/scripts/rvm
+$ git clone https://github.com/myplanetdigital/ariadne.git
+$ cd ariadne                                         # rvmrc script will run
+$ rvmsudo bundle exec vagrant dns --install          # Install DNS server (OSX only)
+$ bundle exec vagrant up                             # Spin up VM
+$ bundle exec vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
+```
+
+*Note: The `vagrant up` command will take quite some time regardless, but it
+will take longer on the first run, as it must download a basebox VM
+image, which can be several hundred MB.*
+
+Congratulations! You now have a configured server image on your local
+machine!
 
 If you have any issues, please ensure you've installed the following
 recommended software versions, which have been tested to work:
 
 * [RVM](#req-rvm) v1.13.8
-* [Virtualbox _and Extension Pack_](#req-vbox) v4.1.16
 
-Run the following on the first run, cloning as needed:
+### What's with this `bundle exec` business?
 
-```sh
-$ curl -L get.rvm.io | bash -s stable    # Install RVM
-$ source ~/.rvm/scripts/rvm
-$ chmod +x ~/.rvm/hooks/after_cd_bundler # Activate Bundler RVM hook
-$ exec $SHELL                            # Reload your shell
-$ git clone https://github.com/myplanetdigital/ariadne.git
-$ cd ariadne                             # rvmrc script will run
-$ rvmsudo vagrant dns --install          # Install DNS server (OSX only)
-$ vagrant up                             # Spin up VM
-$ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
-```
+We use bundler to sandbox a set of gems of known versions, and bundler
+needs to act as a middleman to ensure that the designated commands are
+run with these sandboxed gems instead of the system gems. That's where
+`bundle exec` comes in. The commands may appear to run successfully
+without, but you will likely encounter mysterious errors and odd
+failures, so we highly discourage it.
 
-### TODO
+If you'd rather not type `bundle exec` every time, we can install and
+configure 2 great terminal tools:
 
-* Doc DNS and where site will be accessible:
-
-
-    http://PROJECTNAME.dev
-
-* Doc how `project=PROJECTNAME vagrant up` will boot a specific
-  project (and will write to `config/config.ini` so only need once).
-* Doc format that Ariadne expects for this project repo.
-* Doc rake tasks.
-* Doc that host SSH keys are forwarded in
+* [Install Zsh][install-zsh], an alternative to your native shell.
+* After that, [install Oh My Zsh][install-oh-my-zsh], a community-driven
+  set of plugins and tweaks for Zsh.
+* Now, we want to enable the Zsh plugin for bundler, which will append
+  `bundle exec` to a given set of `bundled_commands` whenever they're
+run within a project folder like Ariadne's. Open up your `~/.zshrc` and
+ensure that `bundler` appears in the `plugins` array. (ie.
+`plugins=(plugin1 plugin2 plugin3 bundler)`).
+* Lastly, add `vagrant` to the list of `bundled_commands` in
+  `~/.oh-my-zsh/plugins/bundler/bundler.plugin.zsh`.
+* Restart a new terminal session and you're good to go!
 
 Goals
 -----
@@ -106,27 +147,16 @@ Xcode should also work, although it will not always be fully tested.
 
 [Full installation instructions][install-rvm]
 
-#### Quick Install
-
-```
-$ curl -L get.rvm.io | bash -s stable
-$ source ~/.rvm/scripts/rvm
-```
-
-Recommended
------------
+Features
+--------
 
 ### Persistent apt cache
 
 Every time Vagrant provisions a machine, the VM must redownload all the
-software packages using the apt package manager. While the VM caches
-all the downloaded files in a special directory, this directory is lost,
-whenever a VM is destroyed and rebuilt. To persist this cache directory
-as a shared directory, run this from the root dir of this git repo:
-
-```sh
-$ mkdir -p data/apt-cache/partial
-```
+software packages using the apt package manager. Normally the VM caches
+all the downloaded files in a special directory, but this directory is lost
+whenever a VM is destroyed and rebuilt. For this reason, we share the
+directory in `tmp/apt/cache`, so it will persist between VM builds.
 
 ### [vagrant-dns server][vagrant-dns]
 
@@ -178,6 +208,23 @@ Known Issues
 
     $ rake fix_network
 
+To Do
+=====
+
+* Create sister project to provide a base install profile that is
+  pre-configured to use the advanced components (Memcache, Varnish,
+  etc.)
+* Doc DNS and where site will be accessible:
+
+
+    http://PROJECTNAME.dev
+
+* Doc how `project=PROJECTNAME vagrant up` will boot a specific
+  project (and will write to `config/config.ini` so only need once).
+* Doc format that Ariadne expects for this project repo.
+* Doc rake tasks.
+* Doc that host SSH keys are forwarded in
+
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-vagrant]:           http://vagrantup.com/                                              
@@ -193,3 +240,5 @@ Known Issues
    [vagrant-vbguest]:         https://github.com/dotless-de/vagrant-vbguest#readme
    [vagrant-dns]:             https://github.com/BerlinVagrant/vagrant-dns#readme
    [network-fix-ref]:         http://stackoverflow.com/questions/10378185/vagrant-a-better-to-way-to-reset-my-guest-vagrant-vms-network
+   [install-zsh]:             http://jesperrasmussen.com/switching-bash-with-zsh
+   [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup
