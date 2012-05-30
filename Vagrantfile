@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+current_dir = File.dirname(__FILE__)
+
 Vagrant::Config.run do |config|
   config.vm.define "ariadne"
 
@@ -14,7 +16,7 @@ Vagrant::Config.run do |config|
   end
 
   # Import configs from ini file.
-  ini = IniFile.new("config/config.ini")
+  ini = IniFile.new("#{current_dir}/config/config.ini")
 
   # Use 1) ENV variable, 2) INI config file, then 3) Default
   box     = ENV['box']     ||= ini['vagrant']['box']     ||= "lucid64"
@@ -22,7 +24,7 @@ Vagrant::Config.run do |config|
 
   # Write project (or lack thereof) to inifile
   ini['vagrant']['project'] = project
-  ini.write("config/config.ini")
+  ini.write("#{current_dir}/config/config.ini")
 
   # Mash of box names and urls
   baseboxes = {
