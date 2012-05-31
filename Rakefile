@@ -17,6 +17,7 @@ task :fresh_start do
   system "bundle exec vagrant destroy --force"
   system "rm -rf tmp/ cookbooks/ .bundle/"
   system "chmod -R u+x data/html/; rm -rf data/html/*"
+  system "rvm remove 1.9.3-p194-ariadne"
 end
 
 desc "Import a ariadne project from GitHub. Example `rake init_project repo=username/demo`"

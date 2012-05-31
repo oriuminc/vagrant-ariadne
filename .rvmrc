@@ -2,10 +2,10 @@
 
 RUBY_VERS="1.9.3"
 RUBY_PATCH="p194"
-BUNDLER_VERS="1.1.3"
+BUNDLER_VERS="1.1.4"
 
 # Work whether rubies or gemsets are already installed
-rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH}
+rvm --install use ruby-${RUBY_VERS}-${RUBY_PATCH} -n ariadne
 
 # Install bundler gem if not yet available
 # (Our bundler version should be the latest version)
