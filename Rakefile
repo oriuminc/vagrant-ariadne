@@ -27,3 +27,22 @@ task :init_project do
   projectname = repo.sub(/^ariadne-/, '')
   system "git clone git@github.com:#{username}/#{repo}.git ariadne-#{projectname}"
 end
+
+desc "Transfers your user-specific .gitconfig to the VM."
+task :send_gitconfig do
+  env = Vagrant::Environment.new
+  env.vms.each do |id, vm|
+    raise Vagrant::Errors::VMNotCreatedError if !vm.created?
+    raise Vagrant::Errors::VMNotRunningError if vm.state != :running
+
+    ssh_info = vm.ssh.info
+    ssh_host = ssh_info[:host]
+    ssh_port = ssh_info[:port]
+    ssh_user = ssh_info[:username]
+    private_key_path = ssh_info[:private_key_path]
+
+    system "scp -i #{private_key_path} -P #{ssh_port} ~/.gitconfig #{ssh_user}@#{ssh_host}:~"
+    raise "Could not find .gitconfig in home directory (~)." if $? != 0
+    puts ".gitconfig sent to #{vm.name} VM!"
+  end
+end
