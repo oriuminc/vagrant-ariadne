@@ -20,10 +20,10 @@ task :fresh_start do
   system "rvm remove 1.9.3-p194-ariadne"
 end
 
-desc "Import a ariadne project from GitHub. Example `rake init_project repo=username/demo`"
-task :init_project do
-  username = ENV['repo'].split("/")[0]
-  repo = ENV['repo'].split("/")[1]
+desc "Import an Ariadne project from GitHub, using format `username/repo`."
+task :init_project, [:repo] do |t, args|
+  username = args.repo.split("/")[0]
+  repo = args.repo.split("/")[1]
   projectname = repo.sub(/^ariadne-/, '')
   system "git clone git@github.com:#{username}/#{repo}.git ariadne-#{projectname}"
 end
