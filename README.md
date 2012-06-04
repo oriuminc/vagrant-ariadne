@@ -209,6 +209,11 @@ Known Issues
 
     $ rake fix_network
 
+* When `cd`ing into non-root of project directory, for example
+  `ariadne/data`, `.rvmrc` will create new directories relative to that
+dir. See notes in the `.rvmrc` for info on why normal bash script
+approach is avoided.
+
 To Do
 =====
 

@@ -25,6 +25,11 @@ fi
 echo "Installing Chef cookbooks via librarian..."
 bundle exec librarian-chef install
 
+# # TODO: Figure out way to find current directory without mysteriously replacing
+# # $PS1 prompt with ~DIR
+# DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# # Ref: http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
+
 # Create dirs for vagrant shared_folder
 mkdir -p tmp/apt/cache/partial
 mkdir -p data/html
