@@ -196,19 +196,10 @@ Known Issues
 * Having dnsmasq installed on the host computer can lead to unexpected
   behavior related to `resolv.conf` in the VM. This will manifest as a
   failure to upgrade chef (via rubygems) during boot, right off the bat.
-* Given how agent\_forwarding happens using your host machine's ssh
-  credentials, ssh-agent must be running and have a saved passphrase, or
-  else it can't pass this passphrase into the VM, and the chef run will
-  fail when authorization is needed (likely during Git commands). Ensure
-  that you've authorized ssh-agent at least once on the host before
-  provisioning.
-* Sometimes if you lose internet connection on your host, the network
-  inside the VM must be reset. [[Reference][network-fix-ref]] If you
-  experience a lack of connectivity in your VM, run this from the host:
-
-
-    $ rake fix_network
-
+* Various issues like DNS, network connectivity, easy gitconfig, etc.
+  can be dealt with using the various rake tasks. To see all the
+available tasks and their descriptions, run `rake -T` (for short
+descriptions) or `rake -D` (for full descriptions).
 * When `cd`ing into non-root of project directory, for example
   `ariadne/data`, `.rvmrc` will create new directories relative to that
 dir. See notes in the `.rvmrc` for info on why normal bash script
@@ -228,7 +219,6 @@ To Do
 * Doc how `project=PROJECTNAME vagrant up` will boot a specific
   project (and will write to `config/config.ini` so only need once).
 * Doc format that Ariadne expects for this project repo.
-* Doc rake tasks.
 * Doc that host SSH keys are forwarded in
 
    [condel]:                  https://github.com/myplanetdigital/condel
