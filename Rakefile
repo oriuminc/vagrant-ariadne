@@ -27,7 +27,7 @@ task :fresh_start do
   system "bundle exec vagrant destroy --force"
   system "rm -r ~/.vagrant.d/tmp/dns"
   system "rm -rf tmp/ cookbooks/ .bundle/"
-  system "chmod -R u+x data/html/; rm -rf data/html/*"
+  system "chmod -R u+w data/html/; rm -rf data/html/*"
   system "rvm remove 1.9.3-p194-ariadne"
 end
 
