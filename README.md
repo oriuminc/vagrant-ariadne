@@ -12,27 +12,19 @@ Ariadne
 considered alpha code. Stability and full documentation not yet
 guaranteed.**
 
-Ariadne is a standardized virtual machine (VM) development environment for
-easily developing Drupal sites in a local sandbox that is essentially
-identical to a fully-configured cloud server. It attempts to emulate an
-Acquia/Pantheon server as closely as possible, with added development tools. Once
-several simple requirements have been met, it can be set up using
-only a few commands from your computer's terminal.
+Ariadne is a standardized virtual machine (VM) development environment
+for easily developing Drupal sites in a local sandbox that is
+essentially identical to a fully-configured hosted solution. It attempts
+to emulate a dedicated Acquia/Pantheon server as closely as possible,
+with added development tools. Once several simple system requirements
+have been met, it can be set up using only a few commands from your
+computer's terminal.
 
 The current iteration aims to create a local Vagrant environment that mimics Acquia's
 infrastructure as closely as possible, using cookbooks and roles that can easily be
 used to deploy an actual cluster.
 
-
 Tested on Mac OSX Snow Leopard & Lion (should work on Linux).
-
-Requirements (Recommended versions)
------------------------------------
-
-* [Virtualbox _and Extension Pack_](#req-vbox) (v4.1.16)
-
-Quick Start
------------
 
 How It Works
 ------------
@@ -42,25 +34,30 @@ the Chef configuration management tool (one of the few components
 installed on the VM initially) to bring that blank slate into a fully
 configured state.
 
-The VM will be configured identically whether installed on Mac or Linux
-(and theoretically, Vagrant supports Windows as well, although Ariadne
-is untested in this respect.
+The VM will be configured identically whether installed on Mac or Linux.
+(Theoretically, Vagrant supports Windows as well, although Ariadne
+is untested in this respect.)
 
 Usage
 -----
 
+### Requirements
+
+*Recommended versions in parentheses.*
+
+* [Virtualbox and Extension Pack][vbox-downloads][*](#note-vbox) (v4.1.16)
+* [OSX GCC Installer][about-osx-gcc-installer][*](#note-gcc-installer)
+
 ### Quick Start
 
-```sh
-$ curl -L get.rvm.io | bash -s stable                # Install/Update RVM
-$ source ~/.rvm/scripts/rvm
-$ git clone https://github.com/myplanetdigital/ariadne.git
-$ cd ariadne                                         # rvmrc script will run
-$ rvmsudo bundle exec vagrant dns --install          # Install DNS server (OSX only)
-$ bundle exec vagrant up                             # Spin up VM
-$ rake send_gitconfig                                # Send your personal gitconfig to VM 
-$ bundle exec vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
-```
+    $ curl -L get.rvm.io | bash -s stable                # Install/Update RVM
+    $ source ~/.rvm/scripts/rvm
+    $ git clone https://github.com/myplanetdigital/ariadne.git
+    $ cd ariadne                                         # rvmrc script will run
+    $ rvmsudo bundle exec vagrant dns --install          # Install DNS server (OSX only)
+    $ bundle exec vagrant up                             # Spin up VM
+    $ rake send_gitconfig                                # Send your personal gitconfig to VM 
+    $ bundle exec vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
 
 *Note: The `vagrant up` command will take quite some time regardless, but it
 will take longer on the first run, as it must download a basebox VM
@@ -72,7 +69,7 @@ machine!
 If you have any issues, please ensure you've installed the following
 recommended software versions, which have been tested to work:
 
-* [RVM](#req-rvm) v1.13.8
+* [RVM][about-rvm] v1.14.1 [[Full install instructions][install-rvm]]
 
 ### What's with this `bundle exec` business?
 
@@ -124,30 +121,6 @@ Goals
  * Should ALWAYS be able to push to remote repo, even after install
    profile run from uncommitted changes
 
-Requirements
-------------
-
-<a name="req-vbox" />
-### Virtualbox
-
-[Downloads page][vbox-downloads]
-
-Be sure to install your version's matching "Extension Pack" from the
-download page, as it contains the correct version of the
-[Virtualbox Guest Additions][vbox-guest] package. This provides utlities
-intended to be installed on any VM running on VBox. Thankfully, we'll be
-using a [Vagrant plugin called vbguest][vagrant-vbguest], which will
-handle copying this package into any VM that is out of date.
-
-### [OSX GCC Installer][about-osx-gcc-installer]
-
-Xcode should also work, although it will not always be fully tested.
-
-<a name="req-rvm" />
-### [RVM][about-rvm]
-
-[Full installation instructions][install-rvm]
-
 Features
 --------
 
@@ -177,6 +150,17 @@ $ vagrant reload
 
 Misc Notes
 ----------
+
+<a name="note-vbox" />
+* Be sure to install your version's matching "Extension Pack" from the
+download page, as it contains the correct version of the
+[Virtualbox Guest Additions][vbox-guest] package. This provides utlities
+intended to be installed on any VM running on VBox. Thankfully, we'll be
+using a [Vagrant plugin called vbguest][vagrant-vbguest], which will
+handle copying this package into any VM that is out of date.
+
+<a name="note-gcc-installer" />
+* Xcode should also work, although it will not always be fully tested.
 
 * For example.rb (which might be temporary), the default password is set
 to "admin" during site-install. Also, while the local site can send mail
