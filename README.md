@@ -51,7 +51,7 @@ Usage
 
 ### Quick Start
 
-    $ curl -L get.rvm.io | bash -s version 1.14.1        # Install/Update RVM
+    $ curl -L get.rvm.io | bash -s 1.14.1        # Install/Update RVM
     $ source ~/.rvm/scripts/rvm
     $ git clone https://github.com/myplanetdigital/ariadne.git
     $ cd ariadne                                         # rvmrc script will run
@@ -87,8 +87,18 @@ configure these great command-line tools:
 run within a project folder like Ariadne's. Open up your `~/.zshrc` and
 ensure that `bundler` appears in the `plugins` array. (ie.
 `plugins=(plugin1 plugin2 plugin3 bundler)`).
+
+
+    $ sed -i "" -E 's/^plugins=\((.*)\)$/plugins=(\1 bundler)/g' ~/.zshrc
+
 * Lastly, add `vagrant` to the list of `bundled_commands` in
-  `~/.oh-my-zsh/plugins/bundler/bundler.plugin.zsh`.
+  `~/.oh-my-zsh/plugins/bundler/bundler.plugin.zsh`. Although it's not
+explicitly necessary, we'll add the `librarian-chef` command as well.
+
+
+    $ sed -i "" 's/unicorn_rails)/unicorn_rails vagrant)/g' ~/.oh-my-zsh/plugins/bundler/bundler.plugin.zsh
+    $ sed -i "" 's/guard middleman/guard librarian-chef middleman/g' ~/.oh-my-zsh/plugins/bundler/bundler.plugin.zsh
+
 * Restart a new terminal session and you're good to go! (You will still
   need to use `bundle exec` for the rare `rvmsudo` command.)
 
@@ -195,6 +205,8 @@ To Do
   project (and will write to `config/config.ini` so only need once).
 * Doc format that Ariadne expects for this project repo.
 * Doc that host SSH keys are forwarded in
+* Create rake tasks for configuring zsh bundler plugin for `vagrant` and
+  `librarian-chef` commands (currently README instructions).
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
