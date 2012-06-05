@@ -21,20 +21,6 @@ if ! bundle check > /dev/null; then
   bundle install --path=tmp --without=development
 fi
 
-# Download and install chef cookbooks
-echo "Installing Chef cookbooks via librarian..."
-bundle exec librarian-chef install
-
-# # TODO: Figure out way to find current directory without mysteriously replacing
-# # $PS1 prompt with ~DIR
-# DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-# # Ref: http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
-
-# Create dirs for vagrant shared_folder
-mkdir -p tmp/apt/cache/partial
-mkdir -p data/html
-mkdir -p data/make
-
 # Ensure that ssh-agent has at least one key loaded
 ssh-add -L > /dev/null
 if [ "$?" -ne "0" ] ; then
