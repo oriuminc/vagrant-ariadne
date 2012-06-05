@@ -43,14 +43,15 @@ Usage
 
 ### Requirements
 
-*Recommended versions in parentheses.*
+*Tested versions in parentheses.*
 
-* [Virtualbox and Extension Pack][vbox-downloads][*](#note-vbox) (v4.1.16)
-* [OSX GCC Installer][about-osx-gcc-installer][*](#note-gcc-installer)
+* [Virtualbox and Extension Pack][vbox-downloads] [[[Note]](#note-vbox) (v4.1.16)
+* [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
+* [RVM][about-rvm] (v1.14.1) - Dealt with in "Quick Start" below
 
 ### Quick Start
 
-    $ curl -L get.rvm.io | bash -s stable                # Install/Update RVM
+    $ curl -L get.rvm.io | bash -s version 1.14.1        # Install/Update RVM
     $ source ~/.rvm/scripts/rvm
     $ git clone https://github.com/myplanetdigital/ariadne.git
     $ cd ariadne                                         # rvmrc script will run
@@ -64,24 +65,19 @@ will take longer on the first run, as it must download a basebox VM
 image, which can be several hundred MB.*
 
 Congratulations! You now have a configured server image on your local
-machine!
-
-If you have any issues, please ensure you've installed the following
-recommended software versions, which have been tested to work:
-
-* [RVM][about-rvm] v1.14.1 [[Full install instructions][install-rvm]]
+machine, available at http://example.dev!
 
 ### What's with this `bundle exec` business?
 
-We use bundler to sandbox a set of gems of known versions, and bundler
-needs to act as a middleman to ensure that the designated commands are
-run with these sandboxed gems instead of the system gems. That's where
-`bundle exec` comes in. The commands may appear to run successfully
-without, but you will likely encounter mysterious errors and odd
-failures, so we highly discourage it.
+We use bundler to sandbox a set of ruby gems of known versions, and
+bundler needs to act as a middleman to ensure that the designated
+commands are run with these sandboxed gems instead of the system gems.
+That's where `bundle exec` comes in. The commands may appear to run
+successfully without, but you are likely to encounter instabilities if
+you neglect to include it, so we highly encourage its use.
 
-If you'd rather not type `bundle exec` every time, we can install and
-configure 2 great terminal tools:
+If you'd rather not type `bundle exec` every time, you can install and
+configure these great command-line tools:
 
 * [Install Zsh][install-zsh], an alternative to your native shell.
 * After that, [install Oh My Zsh][install-oh-my-zsh], a community-driven
@@ -93,7 +89,8 @@ ensure that `bundler` appears in the `plugins` array. (ie.
 `plugins=(plugin1 plugin2 plugin3 bundler)`).
 * Lastly, add `vagrant` to the list of `bundled_commands` in
   `~/.oh-my-zsh/plugins/bundler/bundler.plugin.zsh`.
-* Restart a new terminal session and you're good to go!
+* Restart a new terminal session and you're good to go! (You will still
+  need to use `bundle exec` for the rare `rvmsudo` command.)
 
 Goals
 -----
@@ -207,6 +204,7 @@ To Do
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
+   [about-rvm]:               https://rvm.io/
    [about-vagrant]:           http://vagrantup.com/                                              
    [about-cap]:               https://github.com/capistrano/capistrano/wiki                      
    [about-vagrant-kick]:      https://github.com/arioch/vagrant-kick#readme                      
