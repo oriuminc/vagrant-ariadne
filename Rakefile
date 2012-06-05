@@ -28,10 +28,10 @@ Currently, the `github_repo` argument is expected to be in the format
 `username/repo_name`. If repo_name is prefixed with 'ariadne-', this will be
 stripped before cloning to `cookbooks-projects`."
 task :init_project, [:github_repo] do |t, args|
-  username = args.repo.split("/")[0]
-  repo = args.repo.split("/")[1]
-  projectname = repo.sub(/^ariadne-/, '')
-  system "git clone git@github.com:#{username}/#{repo}.git cookbooks-projects/#{projectname}"
+  username = args.github_repo.split("/")[0]
+  repo_name = args.github_repo.split("/")[1]
+  project_name = repo_name.sub(/^ariadne-/, '')
+  system "git clone git@github.com:#{username}/#{repo_name}.git cookbooks-projects/#{project_name}"
 end
 
 desc "Restarts the network service inside the VM.
@@ -84,7 +84,7 @@ task :send_gitconfig do
   end
 end
 
-desc "Bring Ariadne back to a pristine state, good-as-new.
+desc "WARNING! Will bring Ariadne back to a pristine state, good-as-new.
 
 This will:
 * uninstall the DNS resolver and tmp vagrant-dns files
@@ -96,6 +96,6 @@ task :fresh_start do
   system "bundle exec vagrant destroy --force"
   system "rm -r ~/.vagrant.d/tmp/dns"
   system "rm -rf tmp/ cookbooks/ .bundle/"
-  system "chmod -R u+w data/html/; rm -rf data/html/*"
+  system "chmod -R u+w data/html/; rm -rf data/html data/make cookbooks-projects/*;"
   system "rvm remove 1.9.3-p194-ariadne"
 end
