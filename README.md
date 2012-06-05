@@ -136,14 +136,8 @@ and starts with VM itself, and it can be easily uninstalled (see
 vagrant-dns README).
 
 If you find yourself in a broken system state related to URL's that
-aren't resolving, restart vagrant-dns fresh with the following:
-
-```sh
-$ rvmsudo vagrant dns --uninstall
-$ rm -r ~/.vagrant.d/tmp/dns
-$ rvmsudo vagrant dns --install
-$ vagrant reload
-```
+aren't resolving, there's a rake task to restart vagrant-dns. (You can
+list all rake tasks using `rake -T` or `rake -D`.)
 
 Misc Notes
 ----------

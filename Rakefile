@@ -53,9 +53,12 @@ desc "Clear DNS cache and restart resolver.
 
 Sometimes the Mac's DNS resolver controlled by vagrant-dns can go wonky. This
 will clear the Mac's DNS cache and restart the vagrant-dns resolver."
-task :refresh_dns do
-  system "scacheutil -flushcache"
+task :restart_dns do
+  system "rvmsudo bundle exec vagrant dns --uninstall"
+  system "rm -r ~/.vagrant.d/tmp/dns"
   system "vagrant dns --restart"
+  system "rvmsudo bundle exec vagrant dns --install"
+  system "scacheutil -flushcache"
 end
 
 desc "Transfers your user-specific .gitconfig to the VM.
