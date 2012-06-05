@@ -68,7 +68,7 @@ Vagrant::Config.run do |config|
     chef.add_role "ariadne"
 
     # Add recipe for example site if no project set.
-    project_recipe = project.empty? ? "ariadne::example" : "project_#{project}"
+    project_recipe = project.empty? ? "ariadne::example" : project
     chef.add_recipe project_recipe
 
     chef.json = {
