@@ -2,7 +2,7 @@
   "name": "acquia",
   "default_attributes": {
     "drush": {
-      "version": "5.1.0"
+      "version": "5.4.0"
     }
   },
   "json_class": "Chef::Role",
