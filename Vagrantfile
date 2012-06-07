@@ -36,10 +36,14 @@ Vagrant::Config.run do |config|
   config.dns.tld = "dev"
   config.dns.patterns = [ /^.*#{project}.dev$/ ]
 
-  # Share directories to speed up boot and general site code directory
-  config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "#{current_dir}/tmp/apt/cache", :nfs => true
-  config.vm.share_folder "gem-cache", "/opt/ruby/lib/ruby/gems/1.8/cache", "#{current_dir}/tmp/ruby/1.9.1/cache", :nfs => true
-  config.vm.share_folder "html", "/mnt/www/html", "#{current_dir}/data/html", :nfs => true
+  # Only enable NFS shares on *nix systems (Windows doesn't need).
+  # Ref: http://vagrantup.com/v1/docs/nfs.html
+  nfs_flag = (RUBY_PLATFORM =~ /linux/ or RUBY_PLATFORM =~ /darwin/)
+
+  # Share directories for project data and various caches
+  config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "#{current_dir}/tmp/apt/cache", :nfs => nfs_flag
+  config.vm.share_folder "gem-cache", "/opt/ruby/lib/ruby/gems/1.8/cache", "#{current_dir}/tmp/ruby/1.9.1/cache", :nfs => nfs_flag
+  config.vm.share_folder "html", "/mnt/www/html", "#{current_dir}/data/html", :nfs => nfs_flag
 
   config.vm.forward_port 80, 8080
   config.vm.forward_port 3306, 3306

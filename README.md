@@ -51,7 +51,7 @@ Usage
 
 ### Quick Start
 
-    $ curl -L get.rvm.io | bash -s 1.14.1        # Install/Update RVM
+    $ curl -L get.rvm.io | bash -s 1.14.1                # Install/Update RVM
     $ source ~/.rvm/scripts/rvm
     $ git clone https://github.com/myplanetdigital/ariadne.git
     $ cd ariadne                                         # rvmrc script will run
