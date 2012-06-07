@@ -189,6 +189,13 @@ descriptions) or `rake -D` (for full descriptions).
   `ariadne/data`, `.rvmrc` will create new directories relative to that
 dir. See notes in the `.rvmrc` for info on why normal bash script
 approach is avoided.
+* Oh god. The lucid64 basebox is 64 bit, so you must have a system
+  running in 64-bit mode in order to boot it. Some models of 64-bit
+Macbooks will boot to 32-bit mode by default. Please run `uname -m` and
+ensure the system architecture is `x86_64`. (Alternatively, `i386`
+indicates 32-bit mode.) [This Apple knowledgebase
+article][apple-sys-arch] should help you configure your machine
+correctly if it's not already.
 
 To Do
 =====
@@ -226,3 +233,4 @@ To Do
    [network-fix-ref]:         http://stackoverflow.com/questions/10378185/vagrant-a-better-to-way-to-reset-my-guest-vagrant-vms-network
    [install-zsh]:             http://jesperrasmussen.com/switching-bash-with-zsh
    [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup
+   [apple-sys-arch]:          http://support.apple.com/kb/ht3773
