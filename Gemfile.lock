@@ -66,7 +66,6 @@ GEM
     httparty (0.6.1)
       crack (= 0.1.8)
     i18n (0.6.0)
-    inifile (1.1.0)
     ipaddress (0.8.0)
     jenkins (0.6.8)
       builder (~> 2.1.2)
@@ -178,7 +177,6 @@ DEPENDENCIES
   coderay
   cuken
   github-markup
-  inifile
   jenkins
   jenkins-war
   librarian

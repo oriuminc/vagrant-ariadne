@@ -3,28 +3,19 @@
 
 current_dir = File.dirname(__FILE__)
 
+# Import configs from YAML file.
+yml = YAML.load_file "#{current_dir}/config/config.yml"
+
+# Use 1) ENV variable, 2) YAML config file, then 3) Default
+box     = ENV['box']     ||= yml['box']     ||= "lucid64"
+project = ENV['project'] ||= yml['project']
+
+# Write project (or lack thereof) to YAML config file
+yml['project'] = project
+File.open("#{current_dir}/config/config.yml", 'w') { |f| YAML.dump(yml, f) }
+
 Vagrant::Config.run do |config|
   config.vm.define "ariadne"
-
-  # Load required rubygems with helpful error if not installed.
-  begin
-    require 'inifile'
-  rescue LoadError
-    print "Please ensure that the 'inifile' ruby gem is installed.\n"
-    print "Vagrant command execution aborted.\n"
-    exit
-  end
-
-  # Import configs from ini file.
-  ini = IniFile.new("#{current_dir}/config/config.ini")
-
-  # Use 1) ENV variable, 2) INI config file, then 3) Default
-  box     = ENV['box']     ||= ini['vagrant']['box']     ||= "lucid64"
-  project = ENV['project'] ||= ini['vagrant']['project']
-
-  # Write project (or lack thereof) to inifile
-  ini['vagrant']['project'] = project
-  ini.write("#{current_dir}/config/config.ini")
 
   # Mash of box names and urls
   baseboxes = {

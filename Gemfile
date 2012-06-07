@@ -1,7 +1,6 @@
 source "http://rubygems.org"
 
 gem "chef"
-gem "inifile"
 gem "librarian"
 gem "rake"
 gem "vagrant"
