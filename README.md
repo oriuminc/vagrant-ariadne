@@ -170,13 +170,8 @@ vagrant@localhost, so that any sent mail will be readable at /var/mail/vagrant
 in the VM. This default is mainly to prevent site-install errorsm, and
 can be edited on the Drupal's user page for the admin.
 
-Development Tools
-=================
-
-## [Xdebug][about-xdebug]
-
-Known Issues
-============
+Known & Potential Issues
+------------------------
 
 * Having dnsmasq installed on the host computer can lead to unexpected
   behavior related to `resolv.conf` in the VM. This will manifest as a
@@ -196,9 +191,15 @@ ensure the system architecture is `x86_64`. (Alternatively, `i386`
 indicates 32-bit mode.) [This Apple knowledgebase
 article][apple-sys-arch] should help you configure your machine
 correctly if it's not already.
+* Ariadne has been tested with a lucid64 basebox that was built on
+  **2012-05-07T21:00:04Z**. Please consider downloading a newer build if
+your is out of date. To see when your basebox was built, run this
+command:
+
+    $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
 
 To Do
-=====
+-----
 
 * Create sister project to provide a base install profile that is
   pre-configured to use the advanced components (Memcache, Varnish,
@@ -214,6 +215,7 @@ To Do
 * Doc that host SSH keys are forwarded in
 * Create rake tasks for configuring zsh bundler plugin for `vagrant` and
   `librarian-chef` commands (currently README instructions).
+* Create a "Development Tools" section to explain components and setup.
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
