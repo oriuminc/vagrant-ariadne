@@ -211,7 +211,8 @@ To Do
 
 * Doc how `project=PROJECTNAME vagrant up` will boot a specific
   project (and will write to `config/config.ini` so only need once).
-* Doc format that Ariadne expects for this project repo.
+* Doc format that Ariadne expects for this project repo (incl.
+  subVagrantfile)
 * Doc that host SSH keys are forwarded in
 * Create rake tasks for configuring zsh bundler plugin for `vagrant` and
   `librarian-chef` commands (currently README instructions).

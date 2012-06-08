@@ -36,6 +36,12 @@ Vagrant::Config.run do |config|
   config.dns.tld = "dev"
   config.dns.patterns = [ /^.*#{project}.dev$/ ]
 
+  # Load subVagrantfile from project
+  if !project.empty?
+    subvagrantfile = "cookbooks-projects/#{project}/subVagrantfile"
+    load subvagrantfile if File.exists? subvagrantfile
+  end
+
   # Only enable NFS shares on *nix systems (Windows doesn't need).
   # Ref: http://vagrantup.com/v1/docs/nfs.html
   nfs_flag = (RUBY_PLATFORM =~ /linux/ or RUBY_PLATFORM =~ /darwin/)
