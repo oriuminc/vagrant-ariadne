@@ -88,16 +88,18 @@ run within a project folder like Ariadne's. Open up your `~/.zshrc` and
 ensure that `bundler` appears in the `plugins` array. (ie.
 `plugins=(plugin1 plugin2 plugin3 bundler)`).
 
-
+    ```
     $ sed -i "" -E 's/^plugins=\((.*)\)$/plugins=(\1 bundler)/g' ~/.zshrc
+    ```
 
 * Lastly, add `vagrant` to the list of `bundled_commands` in
   `~/.oh-my-zsh/plugins/bundler/bundler.plugin.zsh`. Although it's not
 explicitly necessary, we'll add the `librarian-chef` command as well.
 
-
+    ```
     $ sed -i "" 's/unicorn_rails)/unicorn_rails vagrant)/g' ~/.oh-my-zsh/plugins/bundler/bundler.plugin.zsh
     $ sed -i "" 's/guard middleman/guard librarian-chef middleman/g' ~/.oh-my-zsh/plugins/bundler/bundler.plugin.zsh
+    ```
 
 * Restart a new terminal session and you're good to go! (You will still
   need to use `bundle exec` for the rare `rvmsudo` command.)
@@ -196,7 +198,9 @@ correctly if it's not already.
 your is out of date. To see when your basebox was built, run this
 command:
 
+    ```
     $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
+    ```
 
 To Do
 -----
@@ -206,8 +210,9 @@ To Do
   etc.)
 * Doc DNS and where site will be accessible:
 
-
+    ```
     http://PROJECTNAME.dev
+    ```
 
 * Doc how `project=PROJECTNAME vagrant up` will boot a specific
   project (and will write to `config/config.ini` so only need once).
