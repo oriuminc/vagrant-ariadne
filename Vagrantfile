@@ -28,6 +28,9 @@ Vagrant::Config.run do |config|
 
   config.vm.network :hostonly, "33.33.33.10"
 
+  config.vm.customize ["modifyvm", :id, "--memory", 1000]
+  config.vm.customize ["modifyvm", :id, "--cpus", 2]
+
   # Forward keys and ssh configs into VM
   # Caveats: https://github.com/mitchellh/vagrant/issues/105
   config.ssh.forward_agent = true
