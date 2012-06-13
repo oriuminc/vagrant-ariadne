@@ -6,7 +6,7 @@ Ariadne
 >
 > *-- Cobb, Inception*
 
- * Source: https://github.com/myplanetdigital/ariadne
+* Source: https://github.com/myplanetdigital/ariadne
 
 **Ariadne is in active development at Myplanet Digital, and should be
 considered alpha code. Stability and full documentation not yet
