@@ -56,10 +56,31 @@ Usage
     $ git clone https://github.com/myplanetdigital/ariadne.git
     $ cd ariadne                                         # rvmrc script will run
     $ rake setup                                         # Runs first-time setup commands
-    $ # STOP: If booting a specific ariadne project,
-    $ # this is where to run `rake init_project` task
-    $ bundle exec vagrant up                             # Spin up VM with example site
-    $ rake send_gitconfig                                # Send your personal gitconfig to VM 
+
+You're now set up and ready to boot a machine. If you'd like to spin up
+an example project (currently a simple Drupal install), run this
+command:
+
+    $ bundle exec vagrant up
+
+Since Ariadne can also be used to spin up specific Ariadne projects, you
+can also run this with reference to an Ariadne github project:
+
+    $ bundle exec rake "init_project[USERNAME/REPO]"
+    $ project=PROJECTNAME bundle exec vagrant up
+
+Please see the project repo README for more specific instructions.
+
+
+**Note:** Unfortunately, there are currently no public examples of the format
+expected for an Ariadne project repo, but we will try to make one
+available soon. It is basically just a chef cookbook to take the VM
+through the last mile of project-specific configuration.
+
+After you VM has spun up, here are several commands that might be
+useful:
+
+    $ bundle exec rake send_gitconfig                    # Send your personal gitconfig to VM 
     $ bundle exec vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
 
 *Note: The `vagrant up` command will take quite some time regardless, but it
