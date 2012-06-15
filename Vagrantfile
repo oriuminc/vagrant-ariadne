@@ -49,7 +49,7 @@ Vagrant::Config.run do |config|
   config.vm.share_folder "html", "/mnt/www/html", "#{current_dir}/data/html", :nfs => nfs_flag
 
   config.vm.forward_port 80, 8080
-  config.vm.forward_port 3306, 3306
+  config.vm.forward_port 3306, 9306, :auto => true
 
   # Update Chef in VM to specific version before running provisioner
   config.vm.provision :shell do |shell|
