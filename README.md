@@ -55,7 +55,7 @@ Usage
     $ source ~/.rvm/scripts/rvm
     $ git clone https://github.com/myplanetdigital/ariadne.git
     $ cd ariadne                                         # rvmrc script will run
-    $ rake setup                                         # Runs first-time setup commands
+    $ bundle exec rake setup                             # Runs first-time setup commands
 
 You're now set up and ready to boot a machine. If you'd like to spin up
 an example project (currently a simple Drupal install), run this
@@ -66,7 +66,7 @@ command:
 Since Ariadne can also be used to spin up specific Ariadne projects, you
 can also run this with reference to an Ariadne github project:
 
-    $ bundle exec rake "init_project[USERNAME/REPO]"
+    $ bundle exec rake "init_project[USERNAME/ariadne-PROJECTNAME]"
     $ project=PROJECTNAME bundle exec vagrant up
 
 Please see the project repo README for more specific instructions.
@@ -245,6 +245,17 @@ To Do
 * Create rake tasks for configuring zsh bundler plugin for `vagrant` and
   `librarian-chef` commands (currently README instructions).
 * Create a "Development Tools" section to explain components and setup.
+* Better output for `setup` rake task.
+* Docs mysql port on host forwarded to VM.
+* Docs cores/memory and config file logic
+* Docs the need to refresh browser for DNS **or** run dns rake task
+  first.
+* Figure out how to remove www (and subdomain) redirect from apache conf
+  template.
+* Add CLI vagrant options to set config.yml settings: box, memory,
+  cores.
+* Add check for VM architecture being higher than host (ie. running
+  64-bit VM on 32-bit machine).
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
