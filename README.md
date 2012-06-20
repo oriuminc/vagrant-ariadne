@@ -256,6 +256,8 @@ To Do
   cores.
 * Add check for VM architecture being higher than host (ie. running
   64-bit VM on 32-bit machine).
+* Add more baseboxes to mash in Vagrantfile.
+* Doc how to choose new baseboxes.
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
