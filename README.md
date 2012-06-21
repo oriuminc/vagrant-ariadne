@@ -184,16 +184,22 @@ download page, as it contains the correct version of the
 intended to be installed on any VM running on VBox. Thankfully, we'll be
 using a [Vagrant plugin called vbguest][vagrant-vbguest], which will
 handle copying this package into any VM that is out of date.
-
 <a name="note-gcc-installer" />
 * Xcode should also work, although it will not always be fully tested.
-
 * For example.rb (which might be temporary), the default password is set
 to "admin" during site-install. Also, while the local site can send mail
 to actual email addresses, the default email for admin is set to
 vagrant@localhost, so that any sent mail will be readable at /var/mail/vagrant
 in the VM. This default is mainly to prevent site-install errorsm, and
 can be edited on the Drupal's user page for the admin.
+* Several VM properties can be set in the `config/config.yml` file:
+  `basebox`, `project`, `memory` and `cpu_count`. Any one of these can also
+be set on the command line while running vagrant commands, and the
+values will be written into `config.yml` for later. For example:
+`memory=2000 cpu_count=4 bundle exec vagrant reload` will reload the VM
+using 4 cores and with 2GB of RAM.
+* Several baseboxes are hardcoded into the Vagrantfile for options as
+  `basebox`: `hardy64`, `lucid32` & `lucid64`
 
 Known & Potential Issues
 ------------------------
@@ -252,12 +258,9 @@ To Do
   first.
 * Figure out how to remove www (and subdomain) redirect from apache conf
   template.
-* Add CLI vagrant options to set config.yml settings: box, memory,
-  cores.
 * Add check for VM architecture being higher than host (ie. running
-  64-bit VM on 32-bit machine).
-* Add more baseboxes to mash in Vagrantfile.
-* Doc how to choose new baseboxes.
+  64-bit VM on 32-bit machine) with warning.
+* Move basebox definitions in YML file.
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/

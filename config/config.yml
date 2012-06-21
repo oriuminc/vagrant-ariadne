@@ -1,3 +1,5 @@
 ---
-box: lucid64
+basebox: lucid64
 project: ''
+memory: 1000
+cpu_count: 2

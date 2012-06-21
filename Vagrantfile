@@ -6,12 +6,17 @@ current_dir = File.dirname(__FILE__)
 # Import configs from YAML file.
 yml = YAML.load_file "#{current_dir}/config/config.yml"
 
-# Use 1) ENV variable, 2) YAML config file, then 3) Default
-box     = ENV['box']     ||= yml['box']     ||= "lucid64"
-project = ENV['project'] ||= yml['project']
+# Use 1) ENV variable, then 2) YAML config file
+basebox   = ENV['basebox']   ||= yml['basebox']
+project   = ENV['project']   ||= yml['project']
+memory    = ENV['memory'].to_i    ||= yml['memory'].to_i
+cpu_count = ENV['cpu_count'].to_i ||= yml['cpu_count'].to_i
 
-# Write project (or lack thereof) to YAML config file
+# Write property to YAML config file
+yml['basebox'] = basebox
 yml['project'] = project
+yml['memory'] = memory
+yml['cpu_count'] = cpu_count
 File.open("#{current_dir}/config/config.yml", 'w') { |f| YAML.dump(yml, f) }
 
 Vagrant::Config.run do |config|
@@ -20,16 +25,17 @@ Vagrant::Config.run do |config|
   # Mash of box names and urls
   baseboxes = {
     "hardy64" => "https://myplanet.box.com/shared/static/pkmp7lus3ojvd4vlusuj.box",
-    "lucid64" => "http://files.vagrantup.com/lucid64.box"
+    "lucid64" => "http://files.vagrantup.com/lucid64.box",
+    "lucid32" => "http://files.vagrantup.com/lucid32.box",
   }
 
-  config.vm.box = box
-  config.vm.box_url = baseboxes[box]
+  config.vm.box = basebox
+  config.vm.box_url = baseboxes[basebox]
 
   config.vm.network :hostonly, "33.33.33.10"
 
-  config.vm.customize ["modifyvm", :id, "--memory", 1000]
-  config.vm.customize ["modifyvm", :id, "--cpus", 2]
+  config.vm.customize ["modifyvm", :id, "--memory", memory]
+  config.vm.customize ["modifyvm", :id, "--cpus", cpu_count]
 
   # Forward keys and ssh configs into VM
   # Caveats: https://github.com/mitchellh/vagrant/issues/105
