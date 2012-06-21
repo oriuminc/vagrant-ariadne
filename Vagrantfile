@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Add our custom strings to the load path
+I18n.load_path << File.expand_path("../config/locales/en.yml", __FILE__)
+
 current_dir = File.dirname(__FILE__)
 
 # Import configs from YAML file.
@@ -11,6 +14,12 @@ basebox   = ENV['basebox']   ||= yml['basebox']
 project   = ENV['project']   ||= yml['project']
 memory    = ENV['memory'].to_i    ||= yml['memory'].to_i
 cpu_count = ENV['cpu_count'].to_i ||= yml['cpu_count'].to_i
+
+# Raise error if running 64-bit VM on 32-bit host system.
+class AriadneError < Vagrant::Errors::VagrantError
+  error_key "ariadne_arch_crosscheck"
+end
+raise AriadneError if basebox.match('64$') && `uname -m`.chomp === 'i386'
 
 # Write property to YAML config file
 yml['basebox'] = basebox

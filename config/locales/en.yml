@@ -1,0 +1,9 @@
+en:
+  vagrant:
+    errors:
+      ariadne_arch_crosscheck: |-
+        It seems that you might be trying to boot a 64-bit basebox VM using a system
+        that is running in 32-bit mode. Should you encounter any errors, please try
+        reloading your VM with a 32-bit basebox. 
+
+        For example, `basebox=lucid32 bundle exec vagrant reload`

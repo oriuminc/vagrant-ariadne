@@ -258,9 +258,9 @@ To Do
   first.
 * Figure out how to remove www (and subdomain) redirect from apache conf
   template.
-* Add check for VM architecture being higher than host (ie. running
-  64-bit VM on 32-bit machine) with warning.
 * Move basebox definitions in YML file.
+* Convert to rubygem
+* Add proper string support using `i18n` gem.
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
