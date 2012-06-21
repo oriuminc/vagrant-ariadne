@@ -1,10 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+current_dir = File.dirname(__FILE__)
+
 # Add our custom strings to the load path
 I18n.load_path << File.expand_path("../config/locales/en.yml", __FILE__)
-
-current_dir = File.dirname(__FILE__)
 
 # Import configs from YAML file.
 yml = YAML.load_file "#{current_dir}/config/config.yml"
@@ -12,31 +12,26 @@ yml = YAML.load_file "#{current_dir}/config/config.yml"
 # Use 1) ENV variable, then 2) YAML config file
 basebox   = ENV['basebox']   ||= yml['basebox']
 project   = ENV['project']   ||= yml['project']
-memory    = ENV['memory'].to_i    ||= yml['memory'].to_i
-cpu_count = ENV['cpu_count'].to_i ||= yml['cpu_count'].to_i
+memory    = ENV['memory']    ||= yml['memory'].to_s
+cpu_count = ENV['cpu_count'] ||= yml['cpu_count'].to_s
 
 # Raise error if running 64-bit VM on 32-bit host system.
 class AriadneError < Vagrant::Errors::VagrantError
   error_key "ariadne_arch_crosscheck"
 end
-raise AriadneError if basebox.match('64$') && `uname -m`.chomp === 'i386'
 
 # Write property to YAML config file
 yml['basebox'] = basebox
 yml['project'] = project
-yml['memory'] = memory
-yml['cpu_count'] = cpu_count
+yml['memory'] = memory.to_i
+yml['cpu_count'] = cpu_count.to_i
 File.open("#{current_dir}/config/config.yml", 'w') { |f| YAML.dump(yml, f) }
 
 Vagrant::Config.run do |config|
   config.vm.define "ariadne"
 
   # Mash of box names and urls
-  baseboxes = {
-    "hardy64" => "https://myplanet.box.com/shared/static/pkmp7lus3ojvd4vlusuj.box",
-    "lucid64" => "http://files.vagrantup.com/lucid64.box",
-    "lucid32" => "http://files.vagrantup.com/lucid32.box",
-  }
+  baseboxes = YAML.load_file "#{current_dir}/config/baseboxes.yml"
 
   config.vm.box = basebox
   config.vm.box_url = baseboxes[basebox]

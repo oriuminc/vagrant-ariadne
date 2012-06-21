@@ -198,8 +198,9 @@ be set on the command line while running vagrant commands, and the
 values will be written into `config.yml` for later. For example:
 `memory=2000 cpu_count=4 bundle exec vagrant reload` will reload the VM
 using 4 cores and with 2GB of RAM.
-* Several baseboxes are hardcoded into the Vagrantfile for options as
-  `basebox`: `hardy64`, `lucid32` & `lucid64`
+* Several baseboxes that are presumed to work for Ariadne are available
+  for use: `lucid32` & `lucid64`. (More may be added to
+`config/baseboxes.yml` in the future.)
 
 Known & Potential Issues
 ------------------------
@@ -258,7 +259,6 @@ To Do
   first.
 * Figure out how to remove www (and subdomain) redirect from apache conf
   template.
-* Move basebox definitions in YML file.
 * Convert to rubygem
 * Add proper string support using `i18n` gem.
 
