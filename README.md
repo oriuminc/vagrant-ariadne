@@ -192,15 +192,26 @@ to actual email addresses, the default email for admin is set to
 vagrant@localhost, so that any sent mail will be readable at /var/mail/vagrant
 in the VM. This default is mainly to prevent site-install errorsm, and
 can be edited on the Drupal's user page for the admin.
-* Several VM properties can be set in the `config/config.yml` file:
-  `basebox`, `project`, `memory` and `cpu_count`. Any one of these can also
-be set on the command line while running vagrant commands, and the
-values will be written into `config.yml` for later. For example:
-`memory=2000 cpu_count=4 bundle exec vagrant reload` will reload the VM
-using 4 cores and with 2GB of RAM.
+* Several configuration settings can be tweaked in the
+  `config/config.yml`: `project`, `basebox`, `memory`, `cpu_count`.
+Alternatively, any one of these can also be set on the command line
+while running vagrant commands, and the values will be written into
+`config.yml`. For example: `memory=2000 cpu_count=4 bundle exec vagrant
+reload` will reload the VM using 4 cores and with 2GB of RAM.
 * Several baseboxes that are presumed to work for Ariadne are available
   for use: `lucid32` & `lucid64`. (More may be added to
 `config/baseboxes.yml` in the future.)
+* Ariadne's DNS resolver is set up to send all `*.dev` domains to the
+  localhost, ie. Vagrant.
+* Ariadne uses agent forwarding to forward the host machine's ssh
+  session into the VM, including keys and passphrases stored by
+ssh-agent. What this means is that your VM will have the same Git/SSH
+access that you enjoy on your local machine.
+* The standard MySQL port `3306` inside the VM has been forwarded to
+  port `9306` on the local machine. This was done to avoid conflicts on
+systems with `3306` is already in use by MySQL on the local machine.
+When the VM is booted, you may connect your MySQL GUI to port `9306` to
+access the VM's MySQL directly.
 
 Known & Potential Issues
 ------------------------
@@ -235,32 +246,26 @@ command:
 To Do
 -----
 
+* Finish reorganizing README.
+* Output why passphrase is being prompted on entering ariadne
+  directory.
+* Figure out how to remove www (and subdomain) redirect from apache conf
+  template.
+* Better output for `setup` rake task.
+* Create rake tasks for configuring zsh bundler plugin for `vagrant` and
+  `librarian-chef` commands (currently README instructions).
+* Doc the need to refresh browser for DNS **or** run dns rake task
+  first.
 * Create sister project to provide a base install profile that is
   pre-configured to use the advanced components (Memcache, Varnish,
   etc.)
-* Doc DNS and where site will be accessible:
-
-    ```
-    http://PROJECTNAME.dev
-    ```
-
-* Doc how `project=PROJECTNAME vagrant up` will boot a specific
-  project (and will write to `config/config.ini` so only need once).
-* Doc format that Ariadne expects for this project repo (incl.
-  subVagrantfile)
-* Doc that host SSH keys are forwarded in
-* Create rake tasks for configuring zsh bundler plugin for `vagrant` and
-  `librarian-chef` commands (currently README instructions).
+* Doc format that Ariadne expects for project repos, and provide a demo.
+  (It is a straightforward Chef cookbook.)
 * Create a "Development Tools" section to explain components and setup.
-* Better output for `setup` rake task.
-* Docs mysql port on host forwarded to VM.
-* Docs cores/memory and config file logic
-* Docs the need to refresh browser for DNS **or** run dns rake task
-  first.
-* Figure out how to remove www (and subdomain) redirect from apache conf
-  template.
-* Convert to rubygem
+* Either avoid using the confusing word "host" (vs "guest" VM) to
+  describe local machine, or define terminology somewhere.
 * Add proper string support using `i18n` gem.
+* Convert to rubygem?
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
