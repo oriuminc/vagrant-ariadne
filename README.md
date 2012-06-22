@@ -24,7 +24,8 @@ The current iteration aims to create a local Vagrant environment that mimics Acq
 infrastructure as closely as possible, using cookbooks and roles that can easily be
 used to deploy an actual cluster.
 
-Tested on Mac OSX Snow Leopard & Lion (should work on Linux).
+Tested on Mac OSX Snow Leopard & Lion and Ubuntu 12.04 (should work on other flavours
+of Linux).
 
 How It Works
 ------------
@@ -48,6 +49,17 @@ Usage
 * [Virtualbox and Extension Pack][vbox-downloads] [[[Note]](#note-vbox) (v4.1.16)
 * [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
 * [RVM][about-rvm] (v1.14.1) - Dealt with in "Quick Start" below
+
+For Ubuntu, you'll need to install the following packages:
+
+* build-essential (11.5ubuntu2)
+* libssl-dev (1.0.1-4ubuntu5.2)
+* libreadline5 (5.2-11)
+* libreadline-gplv2-dev (5.2-11)
+* zlib1g (1:1.2.3.4.dfsg-3ubuntu4)
+* zlib1g-dev (1:1.2.3.4.dfsg-3ubuntu4)
+* nfs-common (1:1.2.5-3ubuntu3)
+* nfs-kernel-server (1:1.2.5-3ubuntu3)
 
 ### Quick Start
 
@@ -242,6 +254,20 @@ command:
     ```
     $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
     ```
+* When setting up the example project on Ubuntu, you may get the following error:
+
+    ```
+    [ariadne] Mounting NFS shared folders...
+    Mounting NFS shared folders failed. This is most often caused by the NFS
+    client software not being installed on the guest machine. Please verify
+    that the NFS client software is properly installed, and consult any resources
+    specific to the linux distro you're using for more information on how to
+    do this.
+    ```
+  ... even though `bundle exec vagrant ssh`-ing into the VM shows that the shared
+  folder mounted successfully. Note that you can still run
+  `bundle exec vagrant provision` to continue setting up the machine.
+
 
 To Do
 -----
