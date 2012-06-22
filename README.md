@@ -59,6 +59,7 @@ For Ubuntu, you'll need to install the following packages:
 * zlib1g (1:1.2.3.4.dfsg-3ubuntu4)
 * zlib1g-dev (1:1.2.3.4.dfsg-3ubuntu4)
 * nfs-common (1:1.2.5-3ubuntu3)
+* nfs-kernel-server (1:1.2.5-3ubuntu3)
 
 ### Quick Start
 
