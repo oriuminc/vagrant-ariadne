@@ -72,8 +72,8 @@ GIT
 
 GIT
   remote: https://github.com/myplanetdigital/chef-xdebug.git
-  ref: master
-  sha: 17c1fdb5bceea0feee7f84f7c3710eeee42dbd35
+  ref: create-logfile
+  sha: cbdad80aaa9bee642d1772e945ed7c92745a2260
   specs:
     xdebug (0.0.1)
       php (>= 0.0.0)

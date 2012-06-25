@@ -21,7 +21,7 @@ end
 
 cookbook "xdebug",
   :git => 'https://github.com/myplanetdigital/chef-xdebug.git',
-  :ref => 'master'
+  :ref => 'create-logfile'
 
 cookbook "phpcs",
   :git => 'https://github.com/myplanetdigital/chef-phpcs.git',
