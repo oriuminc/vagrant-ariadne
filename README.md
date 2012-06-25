@@ -249,6 +249,8 @@ To Do
 * Finish reorganizing README.
 * Output why passphrase is being prompted on entering ariadne
   directory.
+* Submit pull request to [resolve warning from
+  drush](https://github.com/myplanetdigital/ariadne/issues/9)
 * Figure out how to remove www (and subdomain) redirect from apache conf
   template.
 * Better output for `setup` rake task.
