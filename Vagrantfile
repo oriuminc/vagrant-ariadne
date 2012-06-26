@@ -38,8 +38,8 @@ Vagrant::Config.run do |config|
 
   config.vm.network :hostonly, "33.33.33.10"
 
-  config.vm.customize ["modifyvm", :id, "--memory", memory]
-  config.vm.customize ["modifyvm", :id, "--cpus", cpu_count]
+  config.vm.customize ["modifyvm", :id, "--memory", memory.to_i]
+  config.vm.customize ["modifyvm", :id, "--cpus", cpu_count.to_i]
 
   # Forward keys and ssh configs into VM
   # Caveats: https://github.com/mitchellh/vagrant/issues/105
