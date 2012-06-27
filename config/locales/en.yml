@@ -6,4 +6,4 @@ en:
         that is running in 32-bit mode. Should you encounter any errors, please try
         reloading your VM with a 32-bit basebox. 
 
-        For example, `basebox=lucid32 bundle exec vagrant reload`
+        For example, `basebox=lucid32 vagrant reload`

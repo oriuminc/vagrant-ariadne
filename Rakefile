@@ -7,12 +7,12 @@ temporary vagrant-dns files, and creates several empty directories required for
 sharing with the VM."
 task :setup do
   p "Installing cookbooks using Librarian gem..."
-  system "bundle exec librarian-chef install"
+  system "librarian-chef install"
   if RUBY_PLATFORM =~ /darwin/
     p "Starting vagrant-dns server..."
     p "(You may be prompted for your system password.)"
-    system "bundle exec vagrant dns --restart"
-    system "rvmsudo bundle exec vagrant dns --install"
+    system "vagrant dns --restart"
+    system "rvmsudo vagrant dns --install"
   end
 
   rel_dirs = %w{
@@ -66,7 +66,7 @@ task :restart_dns do
 
   p "Uninstalled DNS resolver..."
   p "(You may be prompted for your system password.)"
-  system "rvmsudo bundle exec vagrant dns --uninstall"
+  system "rvmsudo vagrant dns --uninstall"
 
   p "Removing temporary files..."
   system "rm -r ~/.vagrant.d/tmp/dns"
@@ -75,7 +75,7 @@ task :restart_dns do
   system "vagrant dns --restart"
 
   p "Re-installing DNS resolver..."
-  system "rvmsudo bundle exec vagrant dns --install"
+  system "rvmsudo vagrant dns --install"
 
   p "Flushing OSX DNS cache..."
   system "scacheutil -flushcache"
@@ -112,8 +112,8 @@ This will:
 * delete cookbooks, gems, apt packages, project-specific data & tmp dns files
 * remove ariadne ruby version and source"
 task :fresh_start do
-  system "rvmsudo bundle exec vagrant dns --uninstall"
-  system "bundle exec vagrant destroy --force"
+  system "rvmsudo vagrant dns --uninstall"
+  system "vagrant destroy --force"
   system "rm -r ~/.vagrant.d/tmp/dns"
   system "rm -rf tmp/ cookbooks/ .bundle/"
   system "chmod -R u+w data/html/; rm -rf data/html data/make cookbooks-projects/*;"

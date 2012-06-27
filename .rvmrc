@@ -28,5 +28,5 @@ if [ "$?" -ne "0" ] ; then
   ssh-add
 fi
 
-# rvm-bundler gem must regen binstubs
+# activate rubygems-bundler (eff you, `bundle exec`)
 gem regenerate_binstubs
