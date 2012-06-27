@@ -52,10 +52,11 @@ Quick Start
 
 ### Setup
 
-    $ curl -L get.rvm.io | bash -s 1.14.1                # Install/Update RVM
-    $ source ~/.rvm/scripts/rvm
+    $ curl -L get.rvm.io | bash -s 1.14.1    # Install/Update RVM
+    $ exec $SHELL                            # Reloads shell
+    $ rvm reload                             # Reloads RVM
     $ git clone https://github.com/myplanetdigital/ariadne.git
-    $ cd ariadne                                         # rvmrc script will run
+    $ cd ariadne                             # rvmrc script will run
     $ rake setup                             # Runs first-time setup commands
 
 You're now set up and ready to boot a machine. This can be either a demo
