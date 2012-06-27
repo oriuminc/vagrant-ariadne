@@ -216,12 +216,11 @@ To Do
   drush](https://github.com/myplanetdigital/ariadne/issues/9)
 * Figure out how to remove www (and subdomain) redirect from apache conf
   template.
-* Better output for `setup` rake task.
 * Doc the need to refresh browser for DNS **or** run dns rake task
   first.
 * Create sister project to provide a base install profile that is
   pre-configured to use the advanced components (Memcache, Varnish,
-  etc.)
+  etc.) In progress: [2ndleveldeep][2ndleveldeep-profile]
 * Doc format that Ariadne expects for project repos, and provide a demo.
   (It is a straightforward Chef cookbook.)
 * Create a "Development Tools" section to explain components and setup.
@@ -250,3 +249,4 @@ To Do
    [install-zsh]:             http://jesperrasmussen.com/switching-bash-with-zsh
    [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup
    [apple-sys-arch]:          http://support.apple.com/kb/ht3773
+   [2ndleveldeep-profile]:    https://github.com/myplanetdigital/2ndleveldeep#readme

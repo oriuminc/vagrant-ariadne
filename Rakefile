@@ -6,9 +6,14 @@ This runs librarian-chef to install cookbooks, creates properly-permissioned
 temporary vagrant-dns files, and creates several empty directories required for
 sharing with the VM."
 task :setup do
+  p "Installing cookbooks using Librarian gem..."
   system "bundle exec librarian-chef install"
-  system "bundle exec vagrant dns --restart"
-  system "rvmsudo bundle exec vagrant dns --install"
+  if RUBY_PLATFORM =~ /darwin/
+    p "Starting vagrant-dns server..."
+    p "(You may be prompted for your system password.)"
+    system "bundle exec vagrant dns --restart"
+    system "rvmsudo bundle exec vagrant dns --install"
+  end
 
   rel_dirs = %w{
     tmp/apt/cache/partial
@@ -16,7 +21,9 @@ task :setup do
     data/make
     cookbooks-projects
   }
+  p "Creating required directories:"
   rel_dirs.each do |rel_dir|
+    p rel_dir
     abs_dir = File.join(Dir::pwd, rel_dir)
     FileUtils.mkdir_p abs_dir
   end
@@ -49,15 +56,28 @@ task :fix_network do
   end
 end
 
-desc "Clear DNS cache and restart resolver.
+desc "Clear DNS cache and restart resolver. (OSX only!)
 
 Sometimes the Mac's DNS resolver controlled by vagrant-dns can go wonky. This
 will clear the Mac's DNS cache and restart the vagrant-dns resolver."
 task :restart_dns do
+  # Raise exception immediately unless running OSX
+  raise "vagrant-dns only works on OSX!" unless RUBY_PLATFORM =~ /darwin/
+
+  p "Uninstalled DNS resolver..."
+  p "(You may be prompted for your system password.)"
   system "rvmsudo bundle exec vagrant dns --uninstall"
+
+  p "Removing temporary files..."
   system "rm -r ~/.vagrant.d/tmp/dns"
+
+  p "Restarting DNS server..."
   system "vagrant dns --restart"
+
+  p "Re-installing DNS resolver..."
   system "rvmsudo bundle exec vagrant dns --install"
+
+  p "Flushing OSX DNS cache..."
   system "scacheutil -flushcache"
 end
 
