@@ -238,6 +238,13 @@ To Do
 * Convert to rubygem?
 * Cache downloaded Drupal modules in shared folder.
 
+Contributing
+------------
+
+Ariadne is being developed using the [git-flow tool][gitflow] and
+methodology. The take-home message is that pull requests should be
+submitted to the `develop` branch.
+
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-rvm]:               https://rvm.io/
@@ -258,3 +265,4 @@ To Do
    [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup
    [apple-sys-arch]:          http://support.apple.com/kb/ht3773
    [2ndleveldeep-profile]:    https://github.com/myplanetdigital/2ndleveldeep#readme
+   [gitflow]:                 https://github.com/nvie/gitflow#readme
