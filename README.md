@@ -198,6 +198,12 @@ Known Issues
     `ariadne/data`, `.rvmrc` will create new directories relative to
     that dir. See notes in the `.rvmrc` for info on why normal bash script
     approach is avoided.
+  - It seems that some network connections (seems to be Rogers-related),
+    will result in misconfigurations of `/etc/resolv.conf` in the VM. If
+    your VM is unable to download packages or run `apt-get update`, please
+    compare the `/etc/resolv.conf` of the VM with that on your host computer
+    (which presumeably works fine). Copy the relevant bits from your host
+    machine. Working on sorting out the origins of this.
   - Oh god. The lucid64 basebox is 64 bit, so you must have a system
     running in 64-bit mode in order to boot it. Some models of 64-bit
     Macbooks will boot to 32-bit mode by default. Please run `uname -m` and
