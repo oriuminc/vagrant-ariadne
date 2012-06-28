@@ -83,10 +83,8 @@ we'll note a few general items that apply to any approach:
   - After the demo or project-specific VM has spun up, here are several
     commands that might be useful:
 
-        ```
         $ rake send_gitconfig                    # Send your personal gitconfig to VM 
         $ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
-        ```
 
   - The `vagrant up` command will take quite some time regardless, but
     it will take longer on the first run, as it must download a basebox
@@ -228,9 +226,7 @@ Known Issues
     if yours is out of date. To see when your basebox was built, run this
     command:
 
-        ```
         $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
-        ```
 
 To Do
 -----
