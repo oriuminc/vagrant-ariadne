@@ -86,7 +86,7 @@ we'll note a few general items that apply to any approach:
         ```
         $ rake send_gitconfig                    # Send your personal gitconfig to VM 
         $ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
-        ````
+        ```
 
   - The `vagrant up` command will take quite some time regardless, but
     it will take longer on the first run, as it must download a basebox
@@ -225,7 +225,7 @@ Known Issues
     correctly if it's not already.
   - Ariadne has been tested with a lucid64 basebox that was built on
     **2012-05-07T21:00:04Z**. Please consider downloading a newer build
-    if your is out of date. To see when your basebox was built, run this
+    if yours is out of date. To see when your basebox was built, run this
     command:
 
         ```
