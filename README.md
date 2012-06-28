@@ -24,7 +24,8 @@ The current iteration aims to create a local Vagrant environment that mimics Acq
 infrastructure as closely as possible, using cookbooks and roles that can easily be
 used to deploy an actual cluster.
 
-Tested on Mac OSX Snow Leopard & Lion (should work on Linux).
+Tested on Mac OSX Snow Leopard & Lion and Ubuntu 12.04 (should work on other flavours
+of Linux).
 
 How It Works
 ------------
@@ -46,6 +47,17 @@ Requirements
   - [Virtualbox and Extension Pack][vbox-downloads] [[[Note]](#note-vbox) (v4.1.16)
   - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
   - [RVM][about-rvm] (v1.14.1) - Dealt with in "Quick Start" below
+
+For Ubuntu, you'll need to install the following packages:
+
+  - build-essential (11.5ubuntu2)
+  - libssl-dev (1.0.1-4ubuntu5.2)
+  - libreadline5 (5.2-11)
+  - libreadline-gplv2-dev (5.2-11)
+  - zlib1g (1:1.2.3.4.dfsg-3ubuntu4)
+  - zlib1g-dev (1:1.2.3.4.dfsg-3ubuntu4)
+  - nfs-common (1:1.2.5-3ubuntu3)
+  - nfs-kernel-server (1:1.2.5-3ubuntu3)
 
 Quick Start
 -----------
