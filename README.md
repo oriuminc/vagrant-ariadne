@@ -236,19 +236,6 @@ command:
     ```
     $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
     ```
-* When setting up the example project on Ubuntu, you may get the following error:
-
-    ```
-    [ariadne] Mounting NFS shared folders...
-    Mounting NFS shared folders failed. This is most often caused by the NFS
-    client software not being installed on the guest machine. Please verify
-    that the NFS client software is properly installed, and consult any resources
-    specific to the linux distro you're using for more information on how to
-    do this.
-    ```
-  ... even though `bundle exec vagrant ssh`-ing into the VM shows that the shared
-  folder mounted successfully. Note that you can still run
-  `bundle exec vagrant provision` to continue setting up the machine.
 
 
 To Do
