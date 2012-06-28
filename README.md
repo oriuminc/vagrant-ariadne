@@ -237,6 +237,8 @@ To Do
 * Add proper string support using `i18n` gem.
 * Convert to rubygem?
 * Cache downloaded Drupal modules in shared folder.
+* Generate project website from `docs/` dir like [Composer
+  does][composer-docs]
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
@@ -258,3 +260,4 @@ To Do
    [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup
    [apple-sys-arch]:          http://support.apple.com/kb/ht3773
    [2ndleveldeep-profile]:    https://github.com/myplanetdigital/2ndleveldeep#readme
+   [composer-docs]:           https://github.com/composer/composer/tree/master/doc
