@@ -123,6 +123,14 @@ Goals
 Features
 --------
 
+### SSH agent forwarding
+
+Your host machine's SSH session is forwarded into the VM, so when you
+SSH in or run Chef, the system will have all the same access that you
+have on your host machine. In other words, if you can clone a git repo
+or SSH into a remote machine from your host machine, you'll be able to
+do it on the VM as well. Wahoo!
+
 ### Persistent apt cache
 
 Every time Vagrant provisions a machine, the VM must redownload all the
@@ -217,9 +225,6 @@ Known Issues
 To Do
 -----
 
-* Finish reorganizing README.
-* Output why passphrase is being prompted on entering ariadne
-  directory.
 * Submit pull request to [resolve warning from
   drush](https://github.com/myplanetdigital/ariadne/issues/9)
 * Figure out how to remove www (and subdomain) redirect from apache conf
@@ -239,6 +244,8 @@ To Do
 * Cache downloaded Drupal modules in shared folder.
 * Generate project website from `docs/` dir like [Composer
   does][composer-docs]
+* Convert example project to use `drush qd --no-server`.
+* Auto-detect number of cores on OSX.
 
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
