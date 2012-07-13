@@ -98,11 +98,9 @@ available soon. It is basically just a chef cookbook to take the VM
 through the last mile of project-specific configuration.*
 
 Since Ariadne can also be used to spin up specific Ariadne projects, you
-can also run this with reference to an Ariadne project in USERNAME/REPO
-format. For now, it is assumed that ariadne project repos will be hosted
-on Github.
-
-    $ rake "init_project[USERNAME/ariadne-PROJECTNAME]"
+can also run this with a [Git URL](http://git-scm.com/docs/git-clone#_git_urls)
+to an Ariadne project repository.
+    $ rake "init_project[GITURL]"
     $ project=PROJECTNAME vagrant up
 
 Goals
