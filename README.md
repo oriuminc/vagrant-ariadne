@@ -43,7 +43,7 @@ Requirements
 
 *Tested versions in parentheses.*
 
-  - [Virtualbox and Extension Pack][vbox-downloads] [[[Note]](#note-vbox) (v4.1.16)
+  - [Virtualbox and Extension Pack][vbox-downloads] [[Note]](#note-vbox) (v4.1.16)
   - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
   - [RVM][about-rvm] (v1.14.1) - Dealt with in "Quick Start" below
 
@@ -71,10 +71,8 @@ we'll note a few general items that apply to any approach:
   - After the demo or project-specific VM has spun up, here are several
     commands that might be useful:
 
-        ```
-        $ rake send_gitconfig                    # Send your personal gitconfig to VM 
+        $ rake send_gitconfig                    # Send your personal gitconfig to VM
         $ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
-        ````
 
   - The `vagrant up` command will take quite some time regardless, but
     it will take longer on the first run, as it must download a basebox
@@ -92,11 +90,6 @@ machine, available at http://example.dev!
 
 #### Ariadne Project
 
-**Note:** *Unfortunately, there are currently no public examples of the format
-expected for an Ariadne project repo, but we will try to make one
-available soon. It is basically just a chef cookbook to take the VM
-through the last mile of project-specific configuration.*
-
 Since Ariadne can also be used to spin up specific Ariadne projects, you
 can also run this with reference to an Ariadne project in USERNAME/REPO
 format. For now, it is assumed that ariadne project repos will be hosted
@@ -104,6 +97,21 @@ on Github.
 
     $ rake "init_project[USERNAME/ariadne-PROJECTNAME]"
     $ project=PROJECTNAME vagrant up
+
+An Ariadne project is basically a Chef cookbook to take the VM through the
+last mile of project-specific configuration. An example of an Ariadne project
+is available in the `cookbooks-override/ariadne` folder of this project; most
+notably the file `cookbooks-override/ariadne/recipes/example.rb`, which is run
+when setting up the demo site above.
+
+The Rake command in the code above clones the specified repository into the
+`cookbooks-projects` folder (removing the `ariadne-` from the new directory
+name if it exists). This folder is shared with the guest machine. The
+`project=PROJECTNAME` tells Chef which folder in `cookbooks-projects` to use
+for the final provisioning step.
+
+For simple Drupal projects, you could copy the `cookbooks-override/ariadne`
+folder and use it as a basis for your own Ariadne project.
 
 Goals
 -----
@@ -218,9 +226,7 @@ Known Issues
     if your is out of date. To see when your basebox was built, run this
     command:
 
-        ```
         $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
-        ```
 
 To Do
 -----
@@ -250,14 +256,14 @@ To Do
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-rvm]:               https://rvm.io/
-   [about-vagrant]:           http://vagrantup.com/                                              
-   [about-cap]:               https://github.com/capistrano/capistrano/wiki                      
-   [about-vagrant-kick]:      https://github.com/arioch/vagrant-kick#readme                      
-   [install-rvm]:             http://beginrescueend.com/rvm/install/                             
+   [about-vagrant]:           http://vagrantup.com/
+   [about-cap]:               https://github.com/capistrano/capistrano/wiki
+   [about-vagrant-kick]:      https://github.com/arioch/vagrant-kick#readme
+   [install-rvm]:             http://beginrescueend.com/rvm/install/
    [about-osx-gcc-installer]: https://github.com/kennethreitz/osx-gcc-installer#readme
-   [about-xdebug]:            http://xdebug.org/                                                 
-   [install-xdebug-emacs1]:   http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
-   [install-xdebug-emacs2]:   http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
+   [about-xdebug]:            http://xdebug.org/
+   [install-xdebug-emacs1]:   http://code.google.com/p/geben-on-emacs/source/browse/trunk/README
+   [install-xdebug-emacs2]:   http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x
    [vbox-downloads]:          http://www.virtualbox.org/wiki/Downloads
    [vbox-guest]:              http://www.virtualbox.org/manual/ch04.html#idp5980192
    [vagrant-vbguest]:         https://github.com/dotless-de/vagrant-vbguest#readme
