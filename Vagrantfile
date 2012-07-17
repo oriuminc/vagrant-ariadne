@@ -28,7 +28,8 @@ yml['cpu_count'] = cpu_count.to_i
 File.open("#{current_dir}/config/config.yml", 'w') { |f| YAML.dump(yml, f) }
 
 Vagrant::Config.run do |config|
-  config.vm.define "ariadne"
+  project_name = project.empty? ? "ariadne" : project
+  config.vm.define project_name
 
   # Mash of box names and urls
   baseboxes = YAML.load_file "#{current_dir}/config/baseboxes.yml"
