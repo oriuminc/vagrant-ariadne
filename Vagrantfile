@@ -58,7 +58,7 @@ Vagrant::Config.run do |config|
   config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "#{current_dir}/tmp/apt/cache", :nfs => nfs_flag
   config.vm.share_folder "html", "/mnt/www/html", "#{current_dir}/data/html", :nfs => nfs_flag
 
-  config.vm.forward_port 80, 8080, :auto => true
+  config.vm.forward_port 80, 8080
   config.vm.forward_port 3306, 9306
 
   # Update Chef in VM to specific version before running provisioner
