@@ -19,6 +19,7 @@ task :setup do
     tmp/apt/cache/partial
     data/html
     data/make
+    data/profiles
     cookbooks-projects
   }
   p "Creating required directories:"
