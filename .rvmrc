@@ -19,14 +19,14 @@ fi
 if ! bundle check > /dev/null; then
   echo "Installing bundled gems via Bundler..."
   bundle install --without=development
+  echo "Activating rubygems-bundler..." # Eff you, `bundle exec`
+  gem regenerate_binstubs
 fi
 
 # Ensure that ssh-agent has at least one key loaded
 ssh-add -L > /dev/null
 if [ "$?" -ne "0" ] ; then
-  echo "ssh-agent must have at least one key loaded for agent forwarding..."
+  echo "ssh-agent must have at least one key loaded for agent forwarding."
+  echo "Please enter your ssh key passphrase to load it into ssh-agent..."
   ssh-add
 fi
-
-# activate rubygems-bundler (eff you, `bundle exec`)
-gem regenerate_binstubs
