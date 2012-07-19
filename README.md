@@ -246,7 +246,6 @@ To Do
   does][composer-docs]
 * Convert example project to use `drush qd --no-server`.
 * Auto-detect number of cores on OSX.
-* Implement `/etc/drush/drush.ini` to remove `memory_limit` cap.
 * Install Apache Solr 3.5.
 
    [condel]:                  https://github.com/myplanetdigital/condel
