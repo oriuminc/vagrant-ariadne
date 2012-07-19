@@ -30,16 +30,14 @@ task :setup do
   end
 end
 
-desc "Import an Ariadne project from GitHub.
+desc "Import an Ariadne project from an external git repo.
 
-Currently, the `github_repo` argument is expected to be in the format
-`username/repo_name`. If repo_name is prefixed with 'ariadne-', this will be
-stripped before cloning to `cookbooks-projects`."
-task :init_project, [:github_repo] do |t, args|
-  username = args.github_repo.split("/")[0]
-  repo_name = args.github_repo.split("/")[1]
-  project_name = repo_name.sub(/^ariadne-/, '')
-  system "git clone git@github.com:#{username}/#{repo_name}.git cookbooks-projects/#{project_name}"
+If the repo name is prefixed with 'ariadne-', this will be stripped before
+cloning to `cookbooks-projects`."
+task :init_project, [:repo] do |t, args|
+  repository_name = args.repo.sub(/\.git$/, '').split(/([\w-]+)?$/)[-1]
+  project_name = repository_name.sub(/^ariadne-/, '')
+  system "git clone #{args.repo} cookbooks-projects/#{project_name}"
 end
 
 desc "Restarts the network service inside the VM.

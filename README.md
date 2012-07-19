@@ -91,11 +91,10 @@ machine, available at http://example.dev!
 #### Ariadne Project
 
 Since Ariadne can also be used to spin up specific Ariadne projects, you
-can also run this with reference to an Ariadne project in USERNAME/REPO
-format. For now, it is assumed that ariadne project repos will be hosted
-on Github.
+can also run this with a [Git URL][git-url-docs] pointing to an Ariadne
+project repo.
 
-    $ rake "init_project[USERNAME/ariadne-PROJECTNAME]"
+    $ rake "init_project[GITURL]"
     $ project=PROJECTNAME vagrant up
 
 An Ariadne project is basically a Chef cookbook to take the VM through the
@@ -275,3 +274,4 @@ To Do
    [apple-sys-arch]:          http://support.apple.com/kb/ht3773
    [2ndleveldeep-profile]:    https://github.com/myplanetdigital/2ndleveldeep#readme
    [composer-docs]:           https://github.com/composer/composer/tree/master/doc
+   [git-url-docs]:            http://git-scm.com/docs/git-clone#_git_urls
