@@ -43,16 +43,16 @@ Requirements
 
 *Tested versions in parentheses.*
 
-  - [Virtualbox and Extension Pack][vbox-downloads] [[Note]](#note-vbox) (v4.1.16)
+  - [Virtualbox and Extension Pack][vbox-downloads] [[Note]](#note-vbox) (v4.1.18)
   - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
-  - [RVM][about-rvm] (v1.14.1) - Dealt with in "Quick Start" below
+  - [RVM][about-rvm] (v1.14.6) - Dealt with in "Quick Start" below
 
 Quick Start
 -----------
 
 ### Setup
 
-    $ curl -L get.rvm.io | bash -s 1.14.1    # Install/Update RVM
+    $ curl -L get.rvm.io | bash -s 1.14.6    # Install/Update RVM
     $ exec $SHELL                            # Reloads shell
     $ rvm reload                             # Reloads RVM
     $ git clone https://github.com/myplanetdigital/ariadne.git
