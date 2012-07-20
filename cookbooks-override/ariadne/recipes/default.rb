@@ -19,27 +19,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-# Chef runs output `stdin: not a tty`
-# Resolves GH-14 until upstream PR accepted
-file "/root/.profile" do
-  owner "root"
-  group "root"
-  mode "0644"
-  content <<-EOH
-# ~/.profile: executed by Bourne-compatible login shells.
-
-if [ "$BASH" ]; then
-  if [ -f ~/.bashrc ]; then
-    . ~/.bashrc
-  fi
-fi
-
-if `tty -s`; then
-  mesg n
-fi
-  EOH
-end
-
 # Drush can't create when run by vagrant user
 directory "/tmp/drush" do
   owner "vagrant"
