@@ -184,6 +184,15 @@ Notes
     while running vagrant commands, and the values will be written into
     `config.yml`. For example: `memory=2000 cpu_count=4 vagrant reload` will
     reload the VM using 4 cores and with 2GB of RAM.
+  - These is a special environment variable that can be set for use
+    during any vagrant command that results in a chef run: `clean=true
+    vagrant provision`. It is up the each external ariadne project cookbook
+    to implement this feature, but the intention is that it makes it simpler
+    to wipe out any data directories needed to rebuild the site.  For
+    example, `vagrant provision` will not run `drush make` and `drush
+    site-install` when it detects that the docroot is already present, but
+    setting the `clean=true` variable can tell chef to delete the docroot,
+    and so the site will be rebuilt as it was during the first chef run.
   - Several baseboxes that are presumed to work for Ariadne are
     available for use: `lucid32` & `lucid64`. (More may be added to
     `config/baseboxes.yml` in the future.)
