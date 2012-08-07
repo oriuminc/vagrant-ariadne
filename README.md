@@ -236,6 +236,9 @@ Known Issues
 
         $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
 
+  - LogMeIn Hamachi is known to cause issues with making `pear.php.net`
+    unreachable, and so the environment won't build.
+
 To Do
 -----
 
