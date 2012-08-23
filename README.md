@@ -24,7 +24,8 @@ The current iteration aims to create a local Vagrant environment that mimics Acq
 infrastructure as closely as possible, using cookbooks and roles that can easily be
 used to deploy an actual cluster.
 
-Tested on Mac OSX Snow Leopard & Lion (should work on Linux).
+Tested on Mac OSX Snow Leopard & Lion and Ubuntu 12.04 (should work on
+other flavours of Linux).
 
 How It Works
 ------------
@@ -46,6 +47,10 @@ Requirements
   - [Virtualbox and Extension Pack][vbox-downloads] [[Note]](#note-vbox) (v4.1.18)
   - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
   - [RVM][about-rvm] (v1.14.6) - Dealt with in "Quick Start" below
+
+For Ubuntu, you'll need to install the following packages:
+
+    apt-get install build-essential libssl-dev libreadline5 libreadline-gplv2-dev zlib1g zlib1g-dev nfs-common nfs-kernel-server
 
 Quick Start
 -----------
@@ -222,6 +227,12 @@ Known Issues
     `ariadne/data`, `.rvmrc` will create new directories relative to
     that dir. See notes in the `.rvmrc` for info on why normal bash script
     approach is avoided.
+  - It seems that some network connections (seems to be Rogers-related),
+    will result in misconfigurations of `/etc/resolv.conf` in the VM. If
+    your VM is unable to download packages or run `apt-get update`, please
+    compare the `/etc/resolv.conf` of the VM with that on your host computer
+    (which presumeably works fine). Copy the relevant bits from your host
+    machine. Working on sorting out the origins of this.
   - Oh god. The lucid64 basebox is 64 bit, so you must have a system
     running in 64-bit mode in order to boot it. Some models of 64-bit
     Macbooks will boot to 32-bit mode by default. Please run `uname -m` and
@@ -231,7 +242,7 @@ Known Issues
     correctly if it's not already.
   - Ariadne has been tested with a lucid64 basebox that was built on
     **2012-05-07T21:00:04Z**. Please consider downloading a newer build
-    if your is out of date. To see when your basebox was built, run this
+    if yours is out of date. To see when your basebox was built, run this
     command:
 
         $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
@@ -265,6 +276,14 @@ To Do
 * Auto-detect number of cores on OSX.
 * Install Apache Solr 3.5.
 
+Contributing
+------------
+
+Ariadne is being developed using the [git-flow tool][gitflow] and
+methodology. The take-home message is that pull requests should be
+submitted to the `develop` branch.
+
+<!-- Links -->
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-rvm]:               https://rvm.io/
@@ -287,3 +306,4 @@ To Do
    [2ndleveldeep-profile]:    https://github.com/myplanetdigital/2ndleveldeep#readme
    [composer-docs]:           https://github.com/composer/composer/tree/master/doc
    [git-url-docs]:            http://git-scm.com/docs/git-clone#_git_urls
+   [gitflow]:                 https://github.com/nvie/gitflow#readme
