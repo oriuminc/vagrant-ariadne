@@ -6,7 +6,7 @@ Ariadne
 >
 > *-- Cobb, Inception*
 
-* Source: https://github.com/myplanetdigital/ariadne
+  - Source: https://github.com/myplanetdigital/ariadne
 
 **Ariadne is in active development at Myplanet Digital, and should be
 considered alpha code. Stability and full documentation not yet
@@ -24,7 +24,8 @@ The current iteration aims to create a local Vagrant environment that mimics Acq
 infrastructure as closely as possible, using cookbooks and roles that can easily be
 used to deploy an actual cluster.
 
-Tested on Mac OSX Snow Leopard & Lion (should work on Linux).
+Tested on Mac OSX Snow Leopard & Lion and Ubuntu 12.04 (should work on other flavours
+of Linux).
 
 How It Works
 ------------
@@ -43,9 +44,20 @@ Requirements
 
 *Tested versions in parentheses.*
 
-* [Virtualbox and Extension Pack][vbox-downloads] [[[Note]](#note-vbox) (v4.1.16)
-* [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
-* [RVM][about-rvm] (v1.14.1) - Dealt with in "Quick Start" below
+  - [Virtualbox and Extension Pack][vbox-downloads] [[[Note]](#note-vbox) (v4.1.16)
+  - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
+  - [RVM][about-rvm] (v1.14.1) - Dealt with in "Quick Start" below
+
+For Ubuntu, you'll need to install the following packages:
+
+  - build-essential (11.5ubuntu2)
+  - libssl-dev (1.0.1-4ubuntu5.2)
+  - libreadline5 (5.2-11)
+  - libreadline-gplv2-dev (5.2-11)
+  - zlib1g (1:1.2.3.4.dfsg-3ubuntu4)
+  - zlib1g-dev (1:1.2.3.4.dfsg-3ubuntu4)
+  - nfs-common (1:1.2.5-3ubuntu3)
+  - nfs-kernel-server (1:1.2.5-3ubuntu3)
 
 Quick Start
 -----------
@@ -62,14 +74,38 @@ Quick Start
 You're now set up and ready to boot a machine. This can be either a demo
 site, or a specific project.
 
-#### Launch Demo
+### Booting
+
+Ariadne can be used to boot a simple **demo** or an **Ariadne project**.
+Instructions for each are given in the following sections, but first
+we'll note a few general items that apply to any approach:
+
+  - After the demo or project-specific VM has spun up, here are several
+    commands that might be useful:
+
+        $ rake send_gitconfig                    # Send your personal gitconfig to VM 
+        $ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
+
+  - The `vagrant up` command will take quite some time regardless, but
+    it will take longer on the first run, as it must download a basebox
+    VM image, which can be several hundred MB.
+
+#### Demo
 
 If you'd like to spin up the demo site (currently a simple Drupal
 install), just run this command:
 
     $ vagrant up
 
-#### Booting Demo Project
+Congratulations! You now have a configured server image on your local
+machine, available at http://example.dev!
+
+#### Ariadne Project
+
+**Note:** *Unfortunately, there are currently no public examples of the format
+expected for an Ariadne project repo, but we will try to make one
+available soon. It is basically just a chef cookbook to take the VM
+through the last mile of project-specific configuration.*
 
 Since Ariadne can also be used to spin up specific Ariadne projects, you
 can also run this with reference to an Ariadne project in USERNAME/REPO
@@ -79,39 +115,19 @@ on Github.
     $ rake "init_project[USERNAME/ariadne-PROJECTNAME]"
     $ project=PROJECTNAME vagrant up
 
-Please see the project repo README for additional instructions.
-
-**Note:** Unfortunately, there are currently no public examples of the format
-expected for an Ariadne project repo, but we will try to make one
-available soon. It is basically just a chef cookbook to take the VM
-through the last mile of project-specific configuration.
-
-After you VM has spun up, here are several commands that might be
-useful:
-
-    $ rake send_gitconfig                    # Send your personal gitconfig to VM 
-    $ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
-
-*Note: The `vagrant up` command will take quite some time regardless, but it
-will take longer on the first run, as it must download a basebox VM
-image, which can be several hundred MB.*
-
-Congratulations! You now have a configured server image on your local
-machine, available at http://example.dev!
-
 Goals
 -----
 
- * Use your preferred tools from the local host machine
+ - Use your preferred tools from the local host machine
    (Drush, IDE, etc.)
- * Changes should be immediately observable in browser
- * Implement as little server configuration as possible that is specific
+ - Changes should be immediately observable in browser
+ - Implement as little server configuration as possible that is specific
    to the Vagrant environment. It will strive to be as "production-like"
    as possible.
- * Configured with advanced performance tools (Varnish,
+ - Configured with advanced performance tools (Varnish,
    Memcache, APC, etc.)
- * Configured with debugging tools (xhprof, xdebug, webgrind)
- * Provision VM as quickly as possible (persistent shared folders for
+ - Configured with debugging tools (xhprof, xdebug, webgrind)
+ - Provision VM as quickly as possible (persistent shared folders for
    caches)
 
 Features
@@ -141,71 +157,76 @@ Notes
 -----
 
 <a name="note-vbox" />
-* Be sure to install your version's matching "Extension Pack" from the
-download page, as it contains the correct version of the
-[Virtualbox Guest Additions][vbox-guest] package. This provides utlities
-intended to be installed on any VM running on VBox. Thankfully, we'll be
-using a [Vagrant plugin called vbguest][vagrant-vbguest], which will
-handle copying this package into any VM that is out of date.
+  - Be sure to install your version's matching "Extension Pack" from the
+    download page, as it contains the correct version of the [Virtualbox
+    Guest Additions][vbox-guest] package. This provides utlities intended to
+    be installed on any VM running on VBox. Thankfully, we'll be using a
+    [Vagrant plugin called vbguest][vagrant-vbguest], which will handle
+    copying this package into any VM that is out of date.
 <a name="note-gcc-installer" />
-* Xcode should also work (as opposed to just the OXS GCC installer),
-  although it will not always be fully tested.
-* For example.rb (which might be temporary), the default password is set
-to "admin" during site-install. Also, while the local site can send mail
-to actual email addresses, the default email for admin is set to
-vagrant@localhost, so that any sent mail will be readable at /var/mail/vagrant
-in the VM. This default is mainly to prevent site-install errors, and
-can be edited on the Drupal's user page for the admin.
-* Several configuration settings can be tweaked in the
-  `config/config.yml`: `project`, `basebox`, `memory`, `cpu_count`.
-Alternatively, any one of these can also be set on the command line
-while running vagrant commands, and the values will be written into
-`config.yml`. For example: `memory=2000 cpu_count=4 vagrant
-reload` will reload the VM using 4 cores and with 2GB of RAM.
-* Several baseboxes that are presumed to work for Ariadne are available
-  for use: `lucid32` & `lucid64`. (More may be added to
-`config/baseboxes.yml` in the future.)
-* Ariadne's DNS resolver is set up to send all `*.dev` domains to the
-  localhost, ie. Vagrant.
-* Ariadne uses agent forwarding to forward the host machine's ssh
-  session into the VM, including keys and passphrases stored by
-ssh-agent. What this means is that your VM will have the same Git/SSH
-access that you enjoy on your local machine.
-* The standard MySQL port `3306` inside the VM has been forwarded to
-  port `9306` on the local machine. This was done to avoid conflicts on
-systems with `3306` is already in use by MySQL on the local machine.
-When the VM is booted, you may connect your MySQL GUI to port `9306` to
-access the VM's MySQL directly.
+  - Xcode should also work (as opposed to just the OXS GCC installer),
+    although it will not always be fully tested.
+  - For the demo, the default password is set to "admin" during
+    site-install. Also, while the local site can send mail to actual
+    email addresses, the default email for admin is set to
+    `vagrant@localhost`, so that any sent mail will be readable at
+    `/var/mail/vagrant` in the VM. This default is mainly to prevent
+    site-install errors, and can be edited via the admin user's account
+    page.
+  - Several configuration settings can be tweaked in the
+    `config/config.yml`: `project`, `basebox`, `memory`, `cpu_count`.
+    Alternatively, any one of these can also be set on the command line
+    while running vagrant commands, and the values will be written into
+    `config.yml`. For example: `memory=2000 cpu_count=4 vagrant reload` will
+    reload the VM using 4 cores and with 2GB of RAM.
+  - Several baseboxes that are presumed to work for Ariadne are
+    available for use: `lucid32` & `lucid64`. (More may be added to
+    `config/baseboxes.yml` in the future.)
+  - Ariadne's DNS resolver is set up to send all `*.dev` domains to the
+    localhost, ie. Vagrant.
+  - Ariadne uses agent forwarding to forward the host machine's ssh
+    session into the VM, including keys and passphrases stored by
+    ssh-agent. What this means is that your VM will have the same Git/SSH
+    access that you enjoy on your local machine.
+  - The standard MySQL port `3306` inside the VM has been forwarded to
+    port `9306` on the local machine. This was done to avoid conflicts
+    on systems with `3306` is already in use by MySQL on the local machine.
+    When the VM is booted, you may connect your MySQL GUI to port `9306` to
+    access the VM's MySQL directly.
 
 Known Issues
 ------------
 
-* Having dnsmasq installed on the host computer can lead to unexpected
-  behavior related to `resolv.conf` in the VM. This will manifest as a
-  failure to upgrade chef (via rubygems) during boot, right off the bat.
-* Various issues like DNS, network connectivity, easy gitconfig setup,
-  etc.  can be dealt with using the various rake tasks. To see all the
-available tasks and their descriptions, run `rake -T` (for short
-descriptions) or `rake -D` (for full descriptions).
-* When `cd`ing into non-root of project directory, for example
-  `ariadne/data`, `.rvmrc` will create new directories relative to that
-dir. See notes in the `.rvmrc` for info on why normal bash script
-approach is avoided.
-* Oh god. The lucid64 basebox is 64 bit, so you must have a system
-  running in 64-bit mode in order to boot it. Some models of 64-bit
-Macbooks will boot to 32-bit mode by default. Please run `uname -m` and
-ensure the system architecture is `x86_64`. (Alternatively, `i386`
-indicates 32-bit mode.) [This Apple knowledgebase
-article][apple-sys-arch] should help you configure your machine
-correctly if it's not already.
-* Ariadne has been tested with a lucid64 basebox that was built on
-  **2012-05-07T21:00:04Z**. Please consider downloading a newer build if
-your is out of date. To see when your basebox was built, run this
-command:
+  - Having dnsmasq installed on the host computer can lead to unexpected
+    behavior related to `resolv.conf` in the VM. This will manifest as a
+    failure to upgrade chef (via rubygems) during boot, right off the bat.
+  - Various issues like DNS, network connectivity, easy gitconfig setup,
+    etc.  can be dealt with using the various rake tasks. To see all the
+    available tasks and their descriptions, run `rake -T` (for short
+    descriptions) or `rake -D` (for full descriptions).
+  - When `cd`ing into non-root of project directory, for example
+    `ariadne/data`, `.rvmrc` will create new directories relative to
+    that dir. See notes in the `.rvmrc` for info on why normal bash script
+    approach is avoided.
+  - It seems that some network connections (seems to be Rogers-related),
+    will result in misconfigurations of `/etc/resolv.conf` in the VM. If
+    your VM is unable to download packages or run `apt-get update`, please
+    compare the `/etc/resolv.conf` of the VM with that on your host computer
+    (which presumeably works fine). Copy the relevant bits from your host
+    machine. Working on sorting out the origins of this.
+  - Oh god. The lucid64 basebox is 64 bit, so you must have a system
+    running in 64-bit mode in order to boot it. Some models of 64-bit
+    Macbooks will boot to 32-bit mode by default. Please run `uname -m` and
+    ensure the system architecture is `x86_64`. (Alternatively, `i386`
+    indicates 32-bit mode.) [This Apple knowledgebase
+    article][apple-sys-arch] should help you configure your machine
+    correctly if it's not already.
+  - Ariadne has been tested with a lucid64 basebox that was built on
+    **2012-05-07T21:00:04Z**. Please consider downloading a newer build
+    if yours is out of date. To see when your basebox was built, run this
+    command:
 
-    ```
-    $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
-    ```
+        $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
 
 To Do
 -----
@@ -231,6 +252,13 @@ To Do
 * Convert to rubygem?
 * Cache downloaded Drupal modules in shared folder.
 
+Contributing
+------------
+
+Ariadne is being developed using the [git-flow tool][gitflow] and
+methodology. The take-home message is that pull requests should be
+submitted to the `develop` branch.
+
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-rvm]:               https://rvm.io/
@@ -251,3 +279,4 @@ To Do
    [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup
    [apple-sys-arch]:          http://support.apple.com/kb/ht3773
    [2ndleveldeep-profile]:    https://github.com/myplanetdigital/2ndleveldeep#readme
+   [gitflow]:                 https://github.com/nvie/gitflow#readme
