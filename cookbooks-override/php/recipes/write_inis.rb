@@ -20,7 +20,7 @@
 #
 
 modules = Array.new
-node['php']['directives'].each_key do |mod|
+node['php']['pear']['directives'].each_key do |mod|
   modules << mod
 end
 modules.uniq!
@@ -32,6 +32,10 @@ modules.each do |name|
     owner "root"
     group "root"
     mode "0644"
-    variables(:name => name, :directives => node['php']['directives'][name])
+    variables({
+      :name => name,
+      :extensions => {},
+      :directives => node['php']['pear']['directives'][name]
+    })
   end
 end

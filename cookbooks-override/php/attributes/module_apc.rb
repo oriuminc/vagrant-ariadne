@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-default['php']['directives']['apc'] = {
+default['php']['pear']['directives']['apc'] = {
   "enabled"          => "1",
   "shm_segments"     => "1",
   "optimization"     => "0",

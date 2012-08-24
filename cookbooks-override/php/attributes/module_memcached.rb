@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-default['php']['directives']['memcached'] = {
+default['php']['pear']['directives']['memcached'] = {
   "sess_locking"          => "On",
   "sess_lock_wait"        => "150000",
   "sess_prefix"           => "memc.sess.key.",

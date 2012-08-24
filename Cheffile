@@ -3,15 +3,12 @@
 
 site 'http://community.opscode.com/api/v1'
 
-# ACQUIA
 %w{
   apache2
   apt
   build-essential
-  database
   git
   memcached
-  php
   postfix
   varnish
   vim
@@ -22,6 +19,10 @@ end
 cookbook "xdebug",
   :git => 'https://github.com/myplanetdigital/chef-xdebug.git',
   :ref => 'create-logfile'
+
+cookbook "php",
+  :git => 'https://github.com/myplanetdigital/chef-php.git',
+  :ref => 'COOK-543-ini-tunable'
 
 cookbook "phpcs",
   :git => 'https://github.com/myplanetdigital/chef-phpcs.git',
