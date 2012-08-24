@@ -43,8 +43,8 @@ GIT
 
 GIT
   remote: https://github.com/myplanetdigital/chef-php.git
-  ref: COOK-543-ini-tunable
-  sha: 4890d18a117f8e9b4b77adf0b1f19080c3df5371
+  ref: develop
+  sha: bacd6e482b1385e03381478a5e57a0a588483a25
   specs:
     php (1.0.2)
       build-essential (>= 0.0.0)
