@@ -73,10 +73,7 @@ Vagrant::Config.run do |config|
 
     # Set up basic environment
     chef.add_role "ariadne"
-
-    # Add recipe for example site if no project set.
-    project_recipe = project.empty? ? "ariadne::example" : project
-    chef.add_recipe project_recipe
+    chef.add_recipe project
 
     # Option so cookbooks can wipe files when set on command-line
     clean = true unless ENV['clean'].nil?

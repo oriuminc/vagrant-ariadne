@@ -102,11 +102,11 @@ project repo.
     $ rake "init_project[GITURL]"
     $ project=PROJECTNAME vagrant up
 
-An Ariadne project is basically a Chef cookbook to take the VM through the
-last mile of project-specific configuration. An example of an Ariadne project
-is available in the `cookbooks-override/ariadne` folder of this project; most
-notably the file `cookbooks-override/ariadne/recipes/example.rb`, which is run
-when setting up the demo site above.
+An Ariadne project is basically a Chef cookbook to take the VM through
+the last mile of project-specific configuration. An example of an
+Ariadne project cookbook is available in the
+`cookbooks-projects/example` folder of this project, which is run when
+setting up the demo site above.
 
 The Rake command in the code above clones the specified repository into the
 `cookbooks-projects` folder (removing the `ariadne-` from the new directory
@@ -212,6 +212,10 @@ Notes
     on systems with `3306` is already in use by MySQL on the local machine.
     When the VM is booted, you may connect your MySQL GUI to port `9306` to
     access the VM's MySQL directly.
+  - If your `config/config.yml` file is showing up as altered when
+    running `git status`, and you'd like git to [un]ignore it locally:
+
+        git update-index --[no-]assume-unchanged config/config.yml
 
 Known Issues
 ------------

@@ -1,5 +1,5 @@
 ---
 basebox: lucid64
-project: ''
+project: example
 memory: 1000
 cpu_count: 2
