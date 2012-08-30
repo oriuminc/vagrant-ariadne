@@ -3,44 +3,33 @@
 
 site 'http://community.opscode.com/api/v1'
 
-%w{
-  apache2
-  apt
-  build-essential
-  git
-  memcached
-  postfix
-  varnish
-  vim
-}.each do |cb|
-  cookbook cb
-end
-
-cookbook "xdebug",
-  :git => 'https://github.com/myplanetdigital/chef-xdebug.git',
-  :ref => 'create-logfile'
-
-cookbook "php",
-  :git => 'https://github.com/myplanetdigital/chef-php.git',
-  # Includes COOK-543-ini-tunable and COOK-1348-rescue-error
-  :ref => 'develop'
-
-cookbook "phpcs",
-  :git => 'https://github.com/myplanetdigital/chef-phpcs.git',
-  :ref => 'v1.0.0'
-
-cookbook "phpunit",
-  :git => 'https://github.com/myplanetdigital/chef-phpunit.git',
-  :ref => 'GH-7-version-attr'
-
+cookbook 'apache2'
+cookbook 'apt'
+cookbook 'build-essential'
 cookbook 'drush',
   :git => 'https://github.com/patcon/chef-drush.git',
   :ref => 'msonnabaum-GH-10'
-
-cookbook 'xhprof',
-  :git => 'git://github.com/myplanetdigital/chef-xhprof.git',
-  :ref => 'GH-msonnabaum-2'
-
+cookbook 'git'
+cookbook 'memcached'
 cookbook 'percona',
   :git => 'https://github.com/msonnabaum/chef-percona.git',
   :ref => 'master'
+cookbook 'php',
+  :git => 'https://github.com/myplanetdigital/chef-php.git',
+  # Includes COOK-543-ini-tunable and COOK-1348-rescue-error
+  :ref => 'develop'
+cookbook 'phpcs',
+  :git => 'https://github.com/myplanetdigital/chef-phpcs.git',
+  :ref => 'v1.0.0'
+cookbook 'phpunit',
+  :git => 'https://github.com/myplanetdigital/chef-phpunit.git',
+  :ref => 'GH-7-version-attr'
+cookbook 'postfix'
+cookbook 'varnish'
+cookbook 'vim'
+cookbook 'xdebug',
+  :git => 'https://github.com/myplanetdigital/chef-xdebug.git',
+  :ref => 'create-logfile'
+cookbook 'xhprof',
+  :git => 'git://github.com/myplanetdigital/chef-xhprof.git',
+  :ref => 'GH-msonnabaum-2'
