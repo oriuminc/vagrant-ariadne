@@ -135,6 +135,21 @@ Goals
 Features
 --------
 
+### Incredibly standardized environment
+
+We've tried to lock everything down as much as possible, to ensure that
+when one user encounters an issue, we all encounter it together. Here
+are the tools we've used:
+
+  - **Recommended version of Virtualbox** to boot the virtual machines.
+  - **Standard baseboxes** reliably built with [Veewee][veewee], an
+    automated basebox-building tool.
+  - **Ruby Version Manager (RVM)** to ensure a specific ruby version.
+  - **Bundler** to ensure specific versions of critical gem packages and
+    their dependencies.
+  - **Librarian** to ensure specific versions of Chef cookbooks are
+    used, which in turn ensures identical VM configuration.
+
 ### SSH agent forwarding
 
 Your host machine's SSH session is forwarded into the VM, so when you
@@ -321,3 +336,4 @@ Here's the gist of how we're applying it:
    [composer-docs]:           https://github.com/composer/composer/tree/master/doc
    [git-url-docs]:            http://git-scm.com/docs/git-clone#_git_urls
    [gitflow]:                 https://github.com/nvie/gitflow#readme
+   [veewee]:                  https://github.com/jedi4ever/veewee#readme
