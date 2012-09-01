@@ -120,17 +120,19 @@ folder and use it as a basis for your own Ariadne project.
 Goals
 -----
 
- - Use your preferred tools from the local host machine
-   (Drush, IDE, etc.)
- - Changes should be immediately observable in browser
- - Implement as little server configuration as possible that is specific
-   to the Vagrant environment. It will strive to be as "production-like"
-   as possible.
- - Configured with advanced performance tools (Varnish,
-   Memcache, APC, etc.)
- - Configured with debugging tools (xhprof, xdebug, webgrind)
- - Provision VM as quickly as possible (persistent shared folders for
-   caches)
+  - Use your preferred tools from the local host machine
+    (Drush, IDE, etc.)
+  - Changes should be immediately observable in browser
+  - Implement as little server configuration as possible that is specific
+    to the Vagrant environment. It will strive to be as "production-like"
+    as possible.
+  - Configured with advanced performance tools (Varnish,
+    Memcache, APC, etc.)
+  - Configured with Percona, the drop-in MySQL replacement used by
+    enterprise Drupal hosting providers.
+  - Configured with debugging tools (xhprof, xdebug, webgrind)
+  - Provision VM as quickly as possible (persistent shared folders for
+    caches)
 
 Features
 --------

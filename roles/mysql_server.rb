@@ -1,8 +1,7 @@
 name "mysql_server"
 description "Configure host to run MySQL server."
 run_list(
-  "recipe[mysql]",
-  "recipe[mysql::server]"
+  "recipe[percona::server]"
 )
 default_attributes(
   :mysql => {
@@ -10,6 +9,9 @@ default_attributes(
     :tunable => {
       :key_buffer => "384M",
       :table_cache => "4096",
-    }
+    },
+  },
+  :percona => {
+    :version => "5.5",
   }
 )

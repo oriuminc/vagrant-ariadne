@@ -11,8 +11,11 @@ cookbook 'drush',
   :ref => 'msonnabaum-GH-10'
 cookbook 'git'
 cookbook 'memcached'
+cookbook 'mysql',
+  :git => 'https://github.com/myplanetdigital/chef-mysql.git',
+  :ref => 'COOK-1610-bypass-preseed'
 cookbook 'percona',
-  :git => 'https://github.com/msonnabaum/chef-percona.git',
+  :git => 'https://github.com/myplanetdigital/chef-percona.git',
   :ref => 'master'
 cookbook 'php',
   :git => 'https://github.com/myplanetdigital/chef-php.git',
