@@ -17,10 +17,7 @@ cookbook 'mysql',
 cookbook 'percona',
   :git => 'https://github.com/myplanetdigital/chef-percona.git',
   :ref => 'master'
-cookbook 'php',
-  :git => 'https://github.com/myplanetdigital/chef-php.git',
-  # Includes COOK-543-ini-tunable and COOK-1348-rescue-error
-  :ref => 'develop'
+cookbook 'php'
 cookbook 'phpcs',
   :git => 'https://github.com/myplanetdigital/chef-phpcs.git',
   :ref => 'v1.0.0'
