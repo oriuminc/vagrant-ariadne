@@ -60,6 +60,10 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 80, 8080, :auto => true
   config.vm.forward_port 3306, 9306
 
+  # Uncomment for testing, to speed up initial provisioning by preventing the
+  # vbguest Vagrant plugin from upgrading the Virtualbox Guest Additions.
+  #config.vbguest.no_install = true
+
   # Update Chef in VM to specific version before running provisioner
   config.vm.provision :shell do |shell|
     shell.path = "config/upgrade_chef.sh"
