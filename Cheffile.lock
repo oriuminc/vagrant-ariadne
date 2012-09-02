@@ -24,6 +24,14 @@ SITE
     yum (0.8.0)
 
 GIT
+  remote: https://github.com/msonnabaum/chef-phpunit.git
+  ref: master
+  sha: 8379017c52c8187a53711286df1f4560b16eea20
+  specs:
+    phpunit (0.9.1)
+      php (>= 0.0.0)
+
+GIT
   remote: https://github.com/myplanetdigital/chef-mysql.git
   ref: COOK-1610-bypass-preseed
   sha: 0aba6d8ee6bc6d92406a9f66584bd0fc8dcabb4e
@@ -46,14 +54,6 @@ GIT
   sha: 50d16ac3d41adf346387183576326105c7c46540
   specs:
     phpcs (1.0.0)
-      php (>= 0.0.0)
-
-GIT
-  remote: https://github.com/myplanetdigital/chef-phpunit.git
-  ref: GH-7-version-attr
-  sha: 8f4f9b1a5e256b458ec3cac3ab57984c8b196a2c
-  specs:
-    phpunit (0.9.1)
       php (>= 0.0.0)
 
 GIT

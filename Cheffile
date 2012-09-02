@@ -22,8 +22,8 @@ cookbook 'phpcs',
   :git => 'https://github.com/myplanetdigital/chef-phpcs.git',
   :ref => 'v1.0.0'
 cookbook 'phpunit',
-  :git => 'https://github.com/myplanetdigital/chef-phpunit.git',
-  :ref => 'GH-7-version-attr'
+  :git => 'https://github.com/msonnabaum/chef-phpunit.git',
+  :ref => 'master'
 cookbook 'postfix'
 cookbook 'varnish'
 cookbook 'vim'
