@@ -31,5 +31,5 @@ cookbook 'xdebug',
   :git => 'https://github.com/myplanetdigital/chef-xdebug.git',
   :ref => 'create-logfile'
 cookbook 'xhprof',
-  :git => 'git://github.com/myplanetdigital/chef-xhprof.git',
-  :ref => 'GH-msonnabaum-2'
+  :git => 'https://github.com/myplanetdigital/chef-xhprof.git',
+  :ref => 'GH-msonnabaum-3'

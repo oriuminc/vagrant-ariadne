@@ -24,14 +24,6 @@ SITE
     yum (0.8.0)
 
 GIT
-  remote: git://github.com/myplanetdigital/chef-xhprof.git
-  ref: GH-msonnabaum-2
-  sha: d8e27610b46b6e28d4fa1d0c118dc50f21de0bbe
-  specs:
-    xhprof (0.9.0)
-      php (>= 0.0.0)
-
-GIT
   remote: https://github.com/myplanetdigital/chef-mysql.git
   ref: COOK-1610-bypass-preseed
   sha: 0aba6d8ee6bc6d92406a9f66584bd0fc8dcabb4e
@@ -70,6 +62,15 @@ GIT
   sha: cbdad80aaa9bee642d1772e945ed7c92745a2260
   specs:
     xdebug (0.0.1)
+      php (>= 0.0.0)
+
+GIT
+  remote: https://github.com/myplanetdigital/chef-xhprof.git
+  ref: GH-msonnabaum-3
+  sha: 0d3690cd9e7ec1a469d30c5023130b5e2a29597d
+  specs:
+    xhprof (0.9.0)
+      apt (>= 0.0.0)
       php (>= 0.0.0)
 
 GIT
