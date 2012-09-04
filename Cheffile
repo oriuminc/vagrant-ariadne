@@ -1,35 +1,35 @@
 #!/usr/bin/env ruby
 #^syntax detection
 
-site 'http://community.opscode.com/api/v1'
+site "http://community.opscode.com/api/v1"
 
-cookbook 'apache2'
-cookbook 'apt'
-cookbook 'build-essential'
-cookbook 'drush',
-  :git => 'https://github.com/patcon/chef-drush.git',
-  :ref => 'msonnabaum-GH-10'
-cookbook 'git'
-cookbook 'memcached'
-cookbook 'mysql',
-  :git => 'https://github.com/myplanetdigital/chef-mysql.git',
-  :ref => 'COOK-1610-bypass-preseed'
-cookbook 'percona',
-  :git => 'https://github.com/myplanetdigital/chef-percona.git',
-  :ref => 'master'
-cookbook 'php'
-cookbook 'phpcs',
-  :git => 'https://github.com/myplanetdigital/chef-phpcs.git',
-  :ref => 'v1.0.0'
-cookbook 'phpunit',
-  :git => 'https://github.com/msonnabaum/chef-phpunit.git',
-  :ref => 'master'
-cookbook 'postfix'
-cookbook 'varnish'
-cookbook 'vim'
-cookbook 'xdebug',
-  :git => 'https://github.com/myplanetdigital/chef-xdebug.git',
-  :ref => 'create-logfile'
-cookbook 'xhprof',
-  :git => 'https://github.com/myplanetdigital/chef-xhprof.git',
-  :ref => 'GH-msonnabaum-3'
+cookbook "apache2"
+cookbook "apt"
+cookbook "build-essential"
+cookbook "drush",
+  :git => "http://github.com/patcon/chef-drush.git",
+  :ref => "msonnabaum-GH-10"
+cookbook "git"
+cookbook "memcached"
+cookbook "mysql",
+  :git => "http://github.com/myplanetdigital/chef-mysql.git",
+  :ref => "COOK-1610-bypass-preseed"
+cookbook "percona",
+  :git => "http://github.com/myplanetdigital/chef-percona.git",
+  :ref => "master"
+cookbook "php"
+cookbook "phpcs",
+  :git => "http://github.com/myplanetdigital/chef-phpcs.git",
+  :ref => "v1.0.0"
+cookbook "phpunit",
+  :git => "http://github.com/msonnabaum/chef-phpunit.git",
+  :ref => "master"
+cookbook "postfix"
+cookbook "varnish"
+cookbook "vim"
+cookbook "xdebug",
+  :git => "http://github.com/myplanetdigital/chef-xdebug.git",
+  :ref => "create-logfile"
+cookbook "xhprof",
+  :git => "http://github.com/myplanetdigital/chef-xhprof.git",
+  :ref => "GH-msonnabaum-3"
