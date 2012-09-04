@@ -64,6 +64,7 @@ Vagrant::Config.run do |config|
 
   config.vm.forward_port 80, 8080, :auto => true
   config.vm.forward_port 3306, 9306
+  config.vm.forward_port 8080, 8081
 
   # Uncomment for testing, to speed up initial provisioning by preventing the
   # vbguest Vagrant plugin from upgrading the Virtualbox Guest Additions.

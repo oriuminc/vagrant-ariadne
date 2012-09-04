@@ -9,6 +9,9 @@ SITE
       dmg (>= 0.0.0)
       runit (>= 0.0.0)
       yum (>= 0.0.0)
+    java (1.5.4)
+    jpackage (0.10.0)
+      java (>= 0)
     memcached (1.0.4)
       runit (>= 0.0.0)
     openssl (1.0.0)
@@ -22,6 +25,15 @@ SITE
     vim (1.0.2)
     xml (1.0.4)
     yum (0.8.0)
+
+GIT
+  remote: https://github.com/bryanwb/chef-tomcat.git
+  ref: master
+  sha: 49b5e560ffaad1d36c2f64e5de50b37e133380ef
+  specs:
+    tomcat (0.10.3)
+      java (>= 0)
+      jpackage (>= 0)
 
 GIT
   remote: https://github.com/msonnabaum/chef-drush.git
@@ -121,6 +133,7 @@ DEPENDENCIES
   phpcs (>= 0)
   phpunit (>= 0)
   postfix (>= 0)
+  tomcat (>= 0)
   varnish (>= 0)
   vim (>= 0)
   webgrind (>= 0)

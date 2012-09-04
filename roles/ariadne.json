@@ -18,6 +18,7 @@
     "recipe[vim]",
     "recipe[openssh]",
     "role[acquia]",
+    "role[solr]",
     "role[dev_tools]",
     "recipe[ariadne::default]"
   ],

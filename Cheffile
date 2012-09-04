@@ -35,6 +35,9 @@ cookbook "phpunit",
   # PR: https://github.com/msonnabaum/chef-phpunit/pull/9
   :ref => "GH-9-pear-errors"
 cookbook "postfix"
+cookbook "tomcat",
+  :git => "https://github.com/bryanwb/chef-tomcat.git",
+  :ref => "master"
 cookbook "varnish"
 cookbook "vim"
 cookbook "webgrind",
