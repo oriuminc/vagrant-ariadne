@@ -138,7 +138,7 @@ Goals
 
   - Install Virtualbox
   - Install RubyInstaller & DevKit
-  - Install Rubygems in cmd
+  - Install Rubygems (http://docs.rubygems.org/read/chapter/3) in cmd
   - Add VBoxManage to Windows %PATH%: http://www.computerhope.com/issues/ch000549.htm
   - Clone the project
   - Run `bundle install`
@@ -311,6 +311,7 @@ To Do
 * Convert example project to use `drush qd --no-server`.
 * Auto-detect number of cores on OSX.
 * Install Apache Solr 3.5 with Tomcat (centOS?)
+* Investigate RVM in Cygwin: http://www.tiplite.com/how-to-install-rvm-on-windows-using-cygwin/
 
 Contributing
 ------------
