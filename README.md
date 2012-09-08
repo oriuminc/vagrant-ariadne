@@ -133,6 +133,15 @@ Goals
   - Configured with debugging tools (xhprof, xdebug, webgrind)
   - Provision VM as quickly as possible (persistent shared folders for
     caches)
+	
+### Running on Windows (WIP)
+
+  - Install Virtualbox
+  - Install Cygwin with:
+    - make
+	- ruby
+	- gcc
+  - Add VBoxManage to Windows %PATH%: http://www.computerhope.com/issues/ch000549.htm
 
 Features
 --------
