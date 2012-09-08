@@ -26,7 +26,8 @@ GEM
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (0.12.10)
-    ffi (1.1.5)
+    ffi (1.0.9)
+    ffi (1.0.9-x86-mingw32)
     highline (1.6.14)
     i18n (0.6.1)
     ipaddress (0.8.0)
@@ -44,6 +45,8 @@ GEM
     mixlib-config (1.1.2)
     mixlib-log (1.4.1)
     mixlib-shellout (1.1.0)
+    mixlib-shellout (1.1.0-x86-mingw32)
+      win32-process (~> 0.6.5)
     moneta (0.6.0)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -89,13 +92,24 @@ GEM
       rubydns
       vagrant
     vagrant-vbguest (0.3.5)
+    win32-api (1.4.8-x86-mingw32)
+    win32-process (0.6.6)
+      windows-pr (>= 1.2.2)
+    windows-api (0.4.2)
+      win32-api (>= 1.4.5)
+    windows-pr (1.2.2)
+      win32-api (>= 1.4.5)
+      windows-api (>= 0.3.0)
     yajl-ruby (1.1.0)
+    yajl-ruby (1.1.0-x86-mingw32)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   chef
+  ffi (<= 1.0.9)
   librarian
   rake
   rubygems-bundler
