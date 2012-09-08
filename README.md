@@ -137,11 +137,17 @@ Goals
 ### Running on Windows (WIP)
 
   - Install Virtualbox
-  - Install Cygwin with:
-    - make
-	- ruby
-	- gcc
+  - Install RubyInstaller & DevKit
+  - Install Rubygems in cmd
   - Add VBoxManage to Windows %PATH%: http://www.computerhope.com/issues/ch000549.htm
+  - Clone the project
+  - Run `bundle install`
+  - Run `bundle exec rake setup` (You'll likely need `bundle exec` before most commands going forward.)
+  - Add domain to hosts file at `C:\Windows\System32\drivers\etc\hosts`:
+  
+        127.0.0.1 example.dev
+		
+  -- Visit your site at `http://example.dev:8080`
 
 Features
 --------
