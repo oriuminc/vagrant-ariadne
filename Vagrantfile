@@ -46,8 +46,10 @@ Vagrant::Config.run do |config|
   config.ssh.forward_agent = true
 
   # Use vagrant-dns plugin to configure DNS server
-  config.dns.tld = "dev"
-  config.dns.patterns = [ /^.*\.dev$/ ]
+  unless Vagrant::Util::Platform.windows?
+    config.dns.tld = "dev"
+    config.dns.patterns = [ /^.*\.dev$/ ]
+  end
 
   # Only enable NFS shares on *nix systems (Windows doesn't need).
   # Ref: http://vagrantup.com/v1/docs/nfs.html
