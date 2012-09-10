@@ -44,9 +44,9 @@ Requirements
 
 *Tested versions in parentheses.*
 
-  - [Virtualbox and Extension Pack][vbox-downloads] [[Note]](#note-vbox) (v4.1.18)
+  - [Virtualbox and Extension Pack][vbox-downloads] [[Note]](#note-vbox) (v4.1.22)
   - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
-  - [RVM][about-rvm] (v1.14.6) - Dealt with in "Quick Start" below
+  - [RVM][about-rvm] (v1.15.8) - Dealt with in "Quick Start" below
 
 For Ubuntu, you'll need to install the following packages:
 
@@ -57,8 +57,7 @@ Quick Start
 
 ### Setup
 
-    $ curl -L get.rvm.io | bash -s 1.14.6    # Install/Update RVM
-    $ exec $SHELL                            # Reloads shell
+    $ curl -L get.rvm.io | bash -s 1.15.8    # Install/Update RVM
     $ rvm reload                             # Reloads RVM
     $ git clone https://github.com/myplanetdigital/ariadne.git
     $ cd ariadne                             # rvmrc script will run
@@ -285,6 +284,15 @@ Known Issues
 
   - LogMeIn Hamachi is known to cause issues with making `pear.php.net`
     unreachable, and so the environment won't build.
+  - Sometimes you might get an error like this while running `vagrant up`:
+
+        The VM failed to remain in the "running" state while attempting to boot.
+        This is normally caused by a misconfiguration or host system incompatibilities.
+        Please open the VirtualBox GUI and attempt to boot the virtual machine
+        manually to get a more informative error message.
+
+    Should this occur, running `vagrant reload` seems to skirt the issue.
+
 
 To Do
 -----
