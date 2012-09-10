@@ -180,6 +180,21 @@ If you find yourself in a broken system state related to URL's that
 aren't resolving, there's a rake task to restart vagrant-dns. (You can
 list all rake tasks using `rake -T` or `rake -D`.)
 
+Upgrading
+---------
+
+Should you pull changes or switch branches, you'll very likely need to
+rerun the setup. At the very least, you should exit and re-enter the
+ariadne directory so that RVM will rerun the `.rvmrc` script, where some
+setup happens. You should then run `rake setup` again.
+
+If you want to be extra sure that you're running in the same environment
+that your version of Ariadne was tested on, rerun the RVM setup script,
+then open a new shell. (The version of RVM that Ariadne was tested on
+might vary, and this ensure you're using the exact same one.) You can
+also ensure that you're using the recommended version of Virtualbox,
+verifiable in this README.
+
 Notes
 -----
 
