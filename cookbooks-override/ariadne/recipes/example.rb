@@ -58,4 +58,5 @@ web_app site do
   server_name site
   server_aliases [ "www.#{site}" ]
   docroot "/mnt/www/html/#{project}"
+  notifies :restart, "service[varnish]"
 end
