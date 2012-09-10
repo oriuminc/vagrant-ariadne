@@ -1,3 +1,11 @@
+GIT
+  remote: http://github.com/npeters/vagrant-putty.git
+  revision: 2bfceb1b26624e621d7a1c774f143ae0ea73b3f5
+  ref: master
+  specs:
+    vagrant-putty (0.0.3)
+      vagrant (>= 1.0.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -115,4 +123,5 @@ DEPENDENCIES
   rubygems-bundler
   vagrant (> 1)
   vagrant-dns
+  vagrant-putty!
   vagrant-vbguest
