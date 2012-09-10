@@ -9,6 +9,7 @@ cookbook "bash",
   :git => "https://github.com/myplanetdigital/chef-bash.git",
   # PR: https://github.com/mszoernyi/chef-bash/pull/1
   :ref => "feature/bash_profile-resource"
+cookbook "ark"
 cookbook "build-essential"
 cookbook "drush",
   :git => "https://github.com/msonnabaum/chef-drush.git",
