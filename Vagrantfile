@@ -57,7 +57,7 @@ Vagrant::Config.run do |config|
   config.vm.share_folder "apt-cache", "/var/cache/apt/archives", "#{current_dir}/tmp/apt/cache", :nfs => nfs_flag
   config.vm.share_folder "html", "/mnt/www/html", "#{current_dir}/data/html", :nfs => nfs_flag
 
-  config.vm.forward_port 80, 8080
+  config.vm.forward_port 80, 8080, :auto => true
   config.vm.forward_port 3306, 9306
 
   # Update Chef in VM to specific version before running provisioner
@@ -78,6 +78,9 @@ Vagrant::Config.run do |config|
     project_recipe = project.empty? ? "ariadne::example" : project
     chef.add_recipe project_recipe
 
+    # Option so cookbooks can wipe files when set on command-line
+    clean = true unless ENV['clean'].nil?
+
     chef.json = {
       "mysql" => {
         "server_debian_password" => "root",
@@ -87,7 +90,8 @@ Vagrant::Config.run do |config|
         "bind_address" => "0.0.0.0",
       },
       "ariadne" => {
-        "project" => project
+        "project" => project,
+        "clean" => clean,
       }
     }
   end

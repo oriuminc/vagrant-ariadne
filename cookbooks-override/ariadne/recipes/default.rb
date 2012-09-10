@@ -26,6 +26,22 @@ directory "/tmp/drush" do
   mode "0777"
 end
 
+# Create ~/.drush/ so available for other things to be dropped in.
+directory "/home/vagrant/.drush" do
+  owner "vagrant"
+  group "vagrant"
+  mode "0700"
+end
+
+# PHP cli and apache processes share php.ini,
+# so must explicitly set needs of drush.
+file "/home/vagrant/.drush/drush.ini" do
+  owner "vagrant"
+  group "vagrant"
+  mode "0644"
+  content "memory_limit = -1"
+end
+
 # Allow SSH and Git to work with github.com and git.*.com without manually
 # allowing host keys.
 cookbook_file "/etc/ssh/ssh_config" do

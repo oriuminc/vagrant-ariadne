@@ -24,8 +24,8 @@ The current iteration aims to create a local Vagrant environment that mimics Acq
 infrastructure as closely as possible, using cookbooks and roles that can easily be
 used to deploy an actual cluster.
 
-Tested on Mac OSX Snow Leopard & Lion and Ubuntu 12.04 (should work on other flavours
-of Linux).
+Tested on Mac OSX Snow Leopard & Lion and Ubuntu 12.04 (should work on
+other flavours of Linux).
 
 How It Works
 ------------
@@ -44,9 +44,13 @@ Requirements
 
 *Tested versions in parentheses.*
 
-  - [Virtualbox and Extension Pack][vbox-downloads] [[[Note]](#note-vbox) (v4.1.16)
+  - [Virtualbox and Extension Pack][vbox-downloads] [[Note]](#note-vbox) (v4.1.18)
   - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
-  - [RVM][about-rvm] (v1.14.1) - Dealt with in "Quick Start" below
+  - [RVM][about-rvm] (v1.14.6) - Dealt with in "Quick Start" below
+
+For Ubuntu, you'll need to install the following packages:
+
+    apt-get install build-essential libssl-dev libreadline5 libreadline-gplv2-dev zlib1g zlib1g-dev nfs-common nfs-kernel-server
 
 For Ubuntu, you'll need to install the following packages:
 
@@ -64,7 +68,7 @@ Quick Start
 
 ### Setup
 
-    $ curl -L get.rvm.io | bash -s 1.14.1    # Install/Update RVM
+    $ curl -L get.rvm.io | bash -s 1.14.6    # Install/Update RVM
     $ exec $SHELL                            # Reloads shell
     $ rvm reload                             # Reloads RVM
     $ git clone https://github.com/myplanetdigital/ariadne.git
@@ -83,7 +87,7 @@ we'll note a few general items that apply to any approach:
   - After the demo or project-specific VM has spun up, here are several
     commands that might be useful:
 
-        $ rake send_gitconfig                    # Send your personal gitconfig to VM 
+        $ rake send_gitconfig                    # Send your personal gitconfig to VM
         $ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
 
   - The `vagrant up` command will take quite some time regardless, but
@@ -102,18 +106,27 @@ machine, available at http://example.dev!
 
 #### Ariadne Project
 
-**Note:** *Unfortunately, there are currently no public examples of the format
-expected for an Ariadne project repo, but we will try to make one
-available soon. It is basically just a chef cookbook to take the VM
-through the last mile of project-specific configuration.*
-
 Since Ariadne can also be used to spin up specific Ariadne projects, you
-can also run this with reference to an Ariadne project in USERNAME/REPO
-format. For now, it is assumed that ariadne project repos will be hosted
-on Github.
+can also run this with a [Git URL][git-url-docs] pointing to an Ariadne
+project repo.
 
-    $ rake "init_project[USERNAME/ariadne-PROJECTNAME]"
+    $ rake "init_project[GITURL]"
     $ project=PROJECTNAME vagrant up
+
+An Ariadne project is basically a Chef cookbook to take the VM through the
+last mile of project-specific configuration. An example of an Ariadne project
+is available in the `cookbooks-override/ariadne` folder of this project; most
+notably the file `cookbooks-override/ariadne/recipes/example.rb`, which is run
+when setting up the demo site above.
+
+The Rake command in the code above clones the specified repository into the
+`cookbooks-projects` folder (removing the `ariadne-` from the new directory
+name if it exists). This folder is shared with the guest machine. The
+`project=PROJECTNAME` tells Chef which folder in `cookbooks-projects` to use
+for the final provisioning step.
+
+For simple Drupal projects, you could copy the `cookbooks-override/ariadne`
+folder and use it as a basis for your own Ariadne project.
 
 Goals
 -----
@@ -132,6 +145,14 @@ Goals
 
 Features
 --------
+
+### SSH agent forwarding
+
+Your host machine's SSH session is forwarded into the VM, so when you
+SSH in or run Chef, the system will have all the same access that you
+have on your host machine. In other words, if you can clone a git repo
+or SSH into a remote machine from your host machine, you'll be able to
+do it on the VM as well. Wahoo!
 
 ### Persistent apt cache
 
@@ -179,6 +200,15 @@ Notes
     while running vagrant commands, and the values will be written into
     `config.yml`. For example: `memory=2000 cpu_count=4 vagrant reload` will
     reload the VM using 4 cores and with 2GB of RAM.
+  - These is a special environment variable that can be set for use
+    during any vagrant command that results in a chef run: `clean=true
+    vagrant provision`. It is up the each external ariadne project cookbook
+    to implement this feature, but the intention is that it makes it simpler
+    to wipe out any data directories needed to rebuild the site.  For
+    example, `vagrant provision` will not run `drush make` and `drush
+    site-install` when it detects that the docroot is already present, but
+    setting the `clean=true` variable can tell chef to delete the docroot,
+    and so the site will be rebuilt as it was during the first chef run.
   - Several baseboxes that are presumed to work for Ariadne are
     available for use: `lucid32` & `lucid64`. (More may be added to
     `config/baseboxes.yml` in the future.)
@@ -228,12 +258,12 @@ Known Issues
 
         $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
 
+  - LogMeIn Hamachi is known to cause issues with making `pear.php.net`
+    unreachable, and so the environment won't build.
+
 To Do
 -----
 
-* Finish reorganizing README.
-* Output why passphrase is being prompted on entering ariadne
-  directory.
 * Submit pull request to [resolve warning from
   drush](https://github.com/myplanetdigital/ariadne/issues/9)
 * Figure out how to remove www (and subdomain) redirect from apache conf
@@ -251,6 +281,11 @@ To Do
 * Add proper string support using `i18n` gem.
 * Convert to rubygem?
 * Cache downloaded Drupal modules in shared folder.
+* Generate project website from `docs/` dir like [Composer
+  does][composer-docs]
+* Convert example project to use `drush qd --no-server`.
+* Auto-detect number of cores on OSX.
+* Install Apache Solr 3.5.
 
 Contributing
 ------------
@@ -259,17 +294,35 @@ Ariadne is being developed using the [git-flow tool][gitflow] and
 methodology. The take-home message is that pull requests should be
 submitted to the `develop` branch.
 
+Here's the gist of how we're applying it:
+
+  - New features happen on `develop` branch, not `master`.
+  - Release branches are created in preparation for a tagged release,
+    and only bugfixes happen on release branches.
+  - When it seems all bugs are fixed on release branch, it's merged into
+    `master`, tagged, and the release branch is removed.
+  - When developing new features on `develop`, feature branches are
+    recommended.
+
+Contributing
+------------
+
+Ariadne is being developed using the [git-flow tool][gitflow] and
+methodology. The take-home message is that pull requests should be
+submitted to the `develop` branch.
+
+<!-- Links -->
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-rvm]:               https://rvm.io/
-   [about-vagrant]:           http://vagrantup.com/                                              
-   [about-cap]:               https://github.com/capistrano/capistrano/wiki                      
-   [about-vagrant-kick]:      https://github.com/arioch/vagrant-kick#readme                      
-   [install-rvm]:             http://beginrescueend.com/rvm/install/                             
+   [about-vagrant]:           http://vagrantup.com/
+   [about-cap]:               https://github.com/capistrano/capistrano/wiki
+   [about-vagrant-kick]:      https://github.com/arioch/vagrant-kick#readme
+   [install-rvm]:             http://beginrescueend.com/rvm/install/
    [about-osx-gcc-installer]: https://github.com/kennethreitz/osx-gcc-installer#readme
-   [about-xdebug]:            http://xdebug.org/                                                 
-   [install-xdebug-emacs1]:   http://code.google.com/p/geben-on-emacs/source/browse/trunk/README 
-   [install-xdebug-emacs2]:   http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x 
+   [about-xdebug]:            http://xdebug.org/
+   [install-xdebug-emacs1]:   http://code.google.com/p/geben-on-emacs/source/browse/trunk/README
+   [install-xdebug-emacs2]:   http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x
    [vbox-downloads]:          http://www.virtualbox.org/wiki/Downloads
    [vbox-guest]:              http://www.virtualbox.org/manual/ch04.html#idp5980192
    [vagrant-vbguest]:         https://github.com/dotless-de/vagrant-vbguest#readme
@@ -279,4 +332,6 @@ submitted to the `develop` branch.
    [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup
    [apple-sys-arch]:          http://support.apple.com/kb/ht3773
    [2ndleveldeep-profile]:    https://github.com/myplanetdigital/2ndleveldeep#readme
+   [composer-docs]:           https://github.com/composer/composer/tree/master/doc
+   [git-url-docs]:            http://git-scm.com/docs/git-clone#_git_urls
    [gitflow]:                 https://github.com/nvie/gitflow#readme
