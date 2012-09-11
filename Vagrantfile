@@ -67,7 +67,7 @@ Vagrant::Config.run do |config|
   # Update Chef in VM to specific version before running provisioner
   config.vm.provision :shell do |shell|
     shell.path = "config/upgrade_chef.sh"
-    shell.args = "10.14.0" # Chef version
+    shell.args = "10.14.2" # Chef version
   end
 
   config.vm.provision :chef_solo do |chef|

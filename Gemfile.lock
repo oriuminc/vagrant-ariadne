@@ -3,7 +3,7 @@ GEM
   specs:
     archive-tar-minitar (0.5.2)
     bunny (0.7.9)
-    chef (10.14.0)
+    chef (10.14.2)
       bunny (>= 0.6.0, < 0.8.0)
       erubis
       highline (>= 1.6.9)
