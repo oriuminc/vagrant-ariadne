@@ -12,6 +12,7 @@ yml = YAML.load_file "#{current_dir}/config/config.yml"
 # Use 1) ENV variable, then 2) YAML config file
 basebox   = ENV['basebox']   ||= yml['basebox']
 project   = ENV['project']   ||= yml['project']
+branch    = ENV['branch']    ||= yml['branch']
 memory    = ENV['memory']    ||= yml['memory'].to_s
 cpu_count = ENV['cpu_count'] ||= yml['cpu_count'].to_s
 
@@ -23,6 +24,7 @@ end
 # Write property to YAML config file
 yml['basebox'] = basebox
 yml['project'] = project
+yml['branch'] = branch
 yml['memory'] = memory.to_i
 yml['cpu_count'] = cpu_count.to_i
 File.open("#{current_dir}/config/config.yml", 'w') { |f| YAML.dump(yml, f) }
@@ -92,6 +94,7 @@ Vagrant::Config.run do |config|
       },
       "ariadne" => {
         "project" => project,
+        "branch" => branch,
         "clean" => clean,
       }
     }

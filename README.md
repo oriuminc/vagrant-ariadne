@@ -229,6 +229,14 @@ Notes
     site-install` when it detects that the docroot is already present, but
     setting the `clean=true` variable can tell chef to delete the docroot,
     and so the site will be rebuilt as it was during the first chef run.
+  - If your project's individual ariadne cookbook (for last-mile
+    configuration) has implemented it, you can specify the branch of
+    your project to build:
+
+        branch=123-story-description clean=true vagrant provision
+
+    Keep in mind that the `branch` flag might not have any effect in
+    some case, such as the default `example` project.
   - Several baseboxes that are presumed to work for Ariadne are
     available for use: `lucid32` & `lucid64`. (More may be added to
     `config/baseboxes.yml` in the future.)
