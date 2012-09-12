@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-default['php']['directives']['memcache']  = {
+default['php']['pear']['directives']['memcache']  = {
   "dbpath"                => "/var/lib/memcache",
   "maxreclevel"           => "0",
   "maxfiles"              => "0",

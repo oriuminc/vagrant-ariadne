@@ -12,6 +12,7 @@ yml = YAML.load_file "#{current_dir}/config/config.yml"
 # Use 1) ENV variable, then 2) YAML config file
 basebox   = ENV['basebox']   ||= yml['basebox']
 project   = ENV['project']   ||= yml['project']
+branch    = ENV['branch']    ||= yml['branch']
 memory    = ENV['memory']    ||= yml['memory'].to_s
 cpu_count = ENV['cpu_count'] ||= yml['cpu_count'].to_s
 
@@ -23,6 +24,7 @@ end
 # Write property to YAML config file
 yml['basebox'] = basebox
 yml['project'] = project
+yml['branch'] = branch
 yml['memory'] = memory.to_i
 yml['cpu_count'] = cpu_count.to_i
 File.open("#{current_dir}/config/config.yml", 'w') { |f| YAML.dump(yml, f) }
@@ -60,10 +62,14 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 80, 8080, :auto => true
   config.vm.forward_port 3306, 9306
 
+  # Uncomment for testing, to speed up initial provisioning by preventing the
+  # vbguest Vagrant plugin from upgrading the Virtualbox Guest Additions.
+  #config.vbguest.no_install = true
+
   # Update Chef in VM to specific version before running provisioner
   config.vm.provision :shell do |shell|
     shell.path = "config/upgrade_chef.sh"
-    shell.args = "0.10.8" # Chef version
+    shell.args = "10.14.2" # Chef version
   end
 
   config.vm.provision :chef_solo do |chef|
@@ -73,10 +79,7 @@ Vagrant::Config.run do |config|
 
     # Set up basic environment
     chef.add_role "ariadne"
-
-    # Add recipe for example site if no project set.
-    project_recipe = project.empty? ? "ariadne::example" : project
-    chef.add_recipe project_recipe
+    chef.add_recipe project
 
     # Option so cookbooks can wipe files when set on command-line
     clean = true unless ENV['clean'].nil?
@@ -91,6 +94,7 @@ Vagrant::Config.run do |config|
       },
       "ariadne" => {
         "project" => project,
+        "branch" => branch,
         "clean" => clean,
       }
     }

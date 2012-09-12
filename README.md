@@ -44,9 +44,9 @@ Requirements
 
 *Tested versions in parentheses.*
 
-  - [Virtualbox and Extension Pack][vbox-downloads] [[Note]](#note-vbox) (v4.1.18)
+  - [Virtualbox and Extension Pack][vbox-downloads] [[Note]](#note-vbox) (v4.1.22)
   - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
-  - [RVM][about-rvm] (v1.14.6) - Dealt with in "Quick Start" below
+  - [RVM][about-rvm] (v1.15.8) - Dealt with in "Quick Start" below
 
 For Ubuntu, you'll need to install the following packages:
 
@@ -68,8 +68,7 @@ Quick Start
 
 ### Setup
 
-    $ curl -L get.rvm.io | bash -s 1.14.6    # Install/Update RVM
-    $ exec $SHELL                            # Reloads shell
+    $ curl -L get.rvm.io | bash -s 1.15.8    # Install/Update RVM
     $ rvm reload                             # Reloads RVM
     $ git clone https://github.com/myplanetdigital/ariadne.git
     $ cd ariadne                             # rvmrc script will run
@@ -113,11 +112,11 @@ project repo.
     $ rake "init_project[GITURL]"
     $ project=PROJECTNAME vagrant up
 
-An Ariadne project is basically a Chef cookbook to take the VM through the
-last mile of project-specific configuration. An example of an Ariadne project
-is available in the `cookbooks-override/ariadne` folder of this project; most
-notably the file `cookbooks-override/ariadne/recipes/example.rb`, which is run
-when setting up the demo site above.
+An Ariadne project is basically a Chef cookbook to take the VM through
+the last mile of project-specific configuration. An example of an
+Ariadne project cookbook is available in the
+`cookbooks-projects/example` folder of this project, which is run when
+setting up the demo site above.
 
 The Rake command in the code above clones the specified repository into the
 `cookbooks-projects` folder (removing the `ariadne-` from the new directory
@@ -131,20 +130,37 @@ folder and use it as a basis for your own Ariadne project.
 Goals
 -----
 
- - Use your preferred tools from the local host machine
-   (Drush, IDE, etc.)
- - Changes should be immediately observable in browser
- - Implement as little server configuration as possible that is specific
-   to the Vagrant environment. It will strive to be as "production-like"
-   as possible.
- - Configured with advanced performance tools (Varnish,
-   Memcache, APC, etc.)
- - Configured with debugging tools (xhprof, xdebug, webgrind)
- - Provision VM as quickly as possible (persistent shared folders for
-   caches)
+  - Use your preferred tools from the local host machine
+    (Drush, IDE, etc.)
+  - Changes should be immediately observable in browser
+  - Implement as little server configuration as possible that is specific
+    to the Vagrant environment. It will strive to be as "production-like"
+    as possible.
+  - Configured with advanced performance tools (Varnish,
+    Memcache, APC, etc.)
+  - Configured with Percona, the drop-in MySQL replacement used by
+    enterprise Drupal hosting providers.
+  - Configured with debugging tools (xhprof, xdebug, webgrind)
+  - Provision VM as quickly as possible (persistent shared folders for
+    caches)
 
 Features
 --------
+
+### Incredibly standardized environment
+
+We've tried to lock everything down as much as possible, to ensure that
+when one user encounters an issue, we all encounter it together. Here
+are the tools we've used:
+
+  - **Recommended version of Virtualbox** to boot the virtual machines.
+  - **Standard baseboxes** reliably built with [Veewee][veewee], an
+    automated basebox-building tool.
+  - **Ruby Version Manager (RVM)** to ensure a specific ruby version.
+  - **Bundler** to ensure specific versions of critical gem packages and
+    their dependencies.
+  - **Librarian** to ensure specific versions of Chef cookbooks are
+    used, which in turn ensures identical VM configuration.
 
 ### SSH agent forwarding
 
@@ -173,6 +189,21 @@ vagrant-dns README).
 If you find yourself in a broken system state related to URL's that
 aren't resolving, there's a rake task to restart vagrant-dns. (You can
 list all rake tasks using `rake -T` or `rake -D`.)
+
+Upgrading
+---------
+
+Should you pull changes or switch branches, you'll very likely need to
+rerun the setup. At the very least, you should exit and re-enter the
+ariadne directory so that RVM will rerun the `.rvmrc` script, where some
+setup happens. You should then run `rake setup` again.
+
+If you want to be extra sure that you're running in the same environment
+that your version of Ariadne was tested on, rerun the RVM setup script,
+then open a new shell. (The version of RVM that Ariadne was tested on
+might vary, and this ensure you're using the exact same one.) You can
+also ensure that you're using the recommended version of Virtualbox,
+verifiable in this README.
 
 Notes
 -----
@@ -209,6 +240,14 @@ Notes
     site-install` when it detects that the docroot is already present, but
     setting the `clean=true` variable can tell chef to delete the docroot,
     and so the site will be rebuilt as it was during the first chef run.
+  - If your project's individual ariadne cookbook (for last-mile
+    configuration) has implemented it, you can specify the branch of
+    your project to build:
+
+        branch=123-story-description clean=true vagrant provision
+
+    Keep in mind that the `branch` flag might not have any effect in
+    some case, such as the default `example` project.
   - Several baseboxes that are presumed to work for Ariadne are
     available for use: `lucid32` & `lucid64`. (More may be added to
     `config/baseboxes.yml` in the future.)
@@ -223,6 +262,10 @@ Notes
     on systems with `3306` is already in use by MySQL on the local machine.
     When the VM is booted, you may connect your MySQL GUI to port `9306` to
     access the VM's MySQL directly.
+  - If your `config/config.yml` file is showing up as altered when
+    running `git status`, and you'd like git to [un]ignore it locally:
+
+        git update-index --[no-]assume-unchanged config/config.yml
 
 Known Issues
 ------------
@@ -260,6 +303,15 @@ Known Issues
 
   - LogMeIn Hamachi is known to cause issues with making `pear.php.net`
     unreachable, and so the environment won't build.
+  - Sometimes you might get an error like this while running `vagrant up`:
+
+        The VM failed to remain in the "running" state while attempting to boot.
+        This is normally caused by a misconfiguration or host system incompatibilities.
+        Please open the VirtualBox GUI and attempt to boot the virtual machine
+        manually to get a more informative error message.
+
+    Should this occur, running `vagrant reload` seems to skirt the issue.
+
 
 To Do
 -----
@@ -285,7 +337,7 @@ To Do
   does][composer-docs]
 * Convert example project to use `drush qd --no-server`.
 * Auto-detect number of cores on OSX.
-* Install Apache Solr 3.5.
+* Install Apache Solr 3.5 with Tomcat (centOS?)
 
 Contributing
 ------------
@@ -335,3 +387,4 @@ submitted to the `develop` branch.
    [composer-docs]:           https://github.com/composer/composer/tree/master/doc
    [git-url-docs]:            http://git-scm.com/docs/git-clone#_git_urls
    [gitflow]:                 https://github.com/nvie/gitflow#readme
+   [veewee]:                  https://github.com/jedi4ever/veewee#readme

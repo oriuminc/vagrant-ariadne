@@ -1,34 +1,14 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    addressable (2.2.8)
     archive-tar-minitar (0.5.2)
-    aruba (0.3.7)
-      childprocess (>= 0.1.9)
-      cucumber (>= 0.10.5)
-      rspec (>= 2.6.0)
-    builder (2.1.2)
-    bunny (0.8.0)
-    capistrano (2.12.0)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
-    capistrano-ash (1.1.18)
-    capistrano-drush-make (0.1.1)
-      capistrano (>= 2.0)
-      capistrano-ash (>= 1.1.16)
-      capistrano-ext (>= 1.2.1)
-      railsless-deploy (>= 1.0.2)
-    capistrano-ext (1.2.1)
-      capistrano (>= 1.0.0)
-    chef (10.12.0)
-      bunny (>= 0.6.0)
+    bunny (0.7.9)
+    chef (10.14.2)
+      bunny (>= 0.6.0, < 0.8.0)
       erubis
       highline (>= 1.6.9)
       json (>= 1.4.4, <= 1.6.1)
-      mixlib-authentication (>= 1.1.0)
+      mixlib-authentication (>= 1.3.0)
       mixlib-cli (>= 1.1.0)
       mixlib-config (>= 1.1.2)
       mixlib-log (>= 1.3.0)
@@ -41,63 +21,32 @@ GEM
       treetop (~> 1.4.9)
       uuidtools
       yajl-ruby (~> 1.1)
-    childprocess (0.3.4)
+    childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
-    coderay (1.0.7)
-    crack (0.1.8)
-    cucumber (1.2.1)
-      builder (>= 2.1.2)
-      diff-lcs (>= 1.1.3)
-      gherkin (~> 2.11.0)
-      json (>= 1.4.6)
-    cuken (0.1.1)
-      aruba (~> 0.3.3)
-      ssh-forever
-    daemons (1.1.8)
-    diff-lcs (1.1.3)
+    daemons (1.1.9)
     erubis (2.7.0)
-    eventmachine (0.12.10)
-    ffi (1.1.0)
-    gherkin (2.11.1)
-      json (>= 1.4.6)
-    github-markup (0.7.4)
-    highline (1.6.13)
-    hpricot (0.8.6)
-    httparty (0.6.1)
-      crack (= 0.1.8)
-    i18n (0.6.0)
+    eventmachine (1.0.0)
+    ffi (1.1.5)
+    highline (1.6.14)
+    i18n (0.6.1)
     ipaddress (0.8.0)
-    jenkins (0.6.8)
-      builder (~> 2.1.2)
-      hpricot
-      httparty (~> 0.6.1)
-      json_pure (>= 1.5.1)
-      term-ansicolor (>= 1.0.4)
-      thor (~> 0.14.2)
-    jenkins-war (1.447)
     json (1.5.4)
-    json_pure (1.7.3)
-    librarian (0.0.20)
+    librarian (0.0.24)
       archive-tar-minitar (>= 0.5.2)
       chef (>= 0.10)
       highline
-      thor
-    libwebsocket (0.1.4)
-      addressable
+      thor (~> 0.15)
     log4r (1.1.10)
     mime-types (1.19)
-    mixlib-authentication (1.1.4)
+    mixlib-authentication (1.3.0)
       mixlib-log
     mixlib-cli (1.2.2)
     mixlib-config (1.1.2)
     mixlib-log (1.4.1)
-    mixlib-shellout (1.0.0)
+    mixlib-shellout (1.1.0)
     moneta (0.6.0)
-    multi_json (1.3.6)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
-    net-sftp (2.0.5)
-      net-ssh (>= 2.0.9)
     net-ssh (2.2.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
@@ -112,33 +61,16 @@ GEM
       systemu
       yajl-ruby
     polyglot (0.3.3)
-    railsless-deploy (1.0.2)
     rake (0.9.2.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rexec (1.4.1)
-    rspec (2.11.0)
-      rspec-core (~> 2.11.0)
-      rspec-expectations (~> 2.11.0)
-      rspec-mocks (~> 2.11.0)
-    rspec-core (2.11.1)
-    rspec-expectations (2.11.1)
-      diff-lcs (~> 1.1.3)
-    rspec-mocks (2.11.1)
     rubydns (0.4.1)
       eventmachine
       rexec
-    rubyzip (0.9.9)
-    selenium-webdriver (2.25.0)
-      childprocess (>= 0.2.5)
-      libwebsocket (~> 0.1.3)
-      multi_json (~> 1.0)
-      rubyzip
-    ssh-forever (0.2.3)
+    rubygems-bundler (1.1.0)
     systemu (2.5.2)
-    term-ansicolor (1.0.7)
-    thor (0.14.6)
-    tilt (1.3.3)
+    thor (0.16.0)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
@@ -156,33 +88,17 @@ GEM
       daemons
       rubydns
       vagrant
-    vagrant-test (0.1.2)
-      rspec
-      vagrant (>= 0.9.0)
-    vagrant-vbguest (0.3.4)
-    watir-webdriver (0.6.1)
-      selenium-webdriver (>= 2.18.0)
+    vagrant-vbguest (0.3.5)
     yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  aruba
-  capistrano
-  capistrano-drush-make
   chef
-  coderay
-  cuken
-  github-markup
-  jenkins
-  jenkins-war
   librarian
-  railsless-deploy
   rake
-  tilt
-  vagrant
+  rubygems-bundler
+  vagrant (> 1)
   vagrant-dns
-  vagrant-test
   vagrant-vbguest
-  watir-webdriver

@@ -2,57 +2,51 @@ SITE
   remote: http://community.opscode.com/api/v1
   specs:
     apache2 (1.1.12)
-    apt (1.4.4)
-    aws (0.100.0)
+    apt (1.4.8)
     build-essential (1.1.0)
-    chef_handler (1.0.6)
-    database (1.2.0)
-      aws (>= 0.0.0)
-      mysql (>= 1.2.0)
-      postgresql (>= 0.0.0)
-      xfs (>= 0.0.0)
     dmg (1.0.0)
     git (1.0.0)
       dmg (>= 0.0.0)
       runit (>= 0.0.0)
       yum (>= 0.0.0)
-    memcached (1.0.2)
+    memcached (1.0.4)
       runit (>= 0.0.0)
-    mysql (1.2.6)
-      openssl (>= 0.0.0)
-      windows (>= 0.0.0)
     openssl (1.0.0)
-    php (1.0.2)
+    php (1.1.0)
       build-essential (>= 0.0.0)
       mysql (>= 0.0.0)
       xml (>= 0.0.0)
-    postfix (1.2.0)
-    postgresql (0.99.4)
-      openssl (>= 0.0.0)
+    postfix (1.2.2)
     runit (0.15.0)
     varnish (0.9.2)
     vim (1.0.2)
-    windows (1.3.2)
-      chef_handler (>= 0.0.0)
-    xfs (1.0.0)
     xml (1.0.4)
-    yum (0.6.2)
+    yum (0.8.0)
 
 GIT
-  remote: git://github.com/myplanetdigital/chef-xhprof.git
-  ref: GH-msonnabaum-2
-  sha: d8e27610b46b6e28d4fa1d0c118dc50f21de0bbe
+  remote: https://github.com/msonnabaum/chef-phpunit.git
+  ref: master
+  sha: 8379017c52c8187a53711286df1f4560b16eea20
   specs:
-    xhprof (0.9.0)
+    phpunit (0.9.1)
       php (>= 0.0.0)
 
 GIT
-  remote: https://github.com/msonnabaum/chef-percona.git
-  ref: master
-  sha: 330d9133d8c1861003742ad3464f29ea4390289f
+  remote: https://github.com/myplanetdigital/chef-mysql.git
+  ref: COOK-1610-bypass-preseed
+  sha: 0aba6d8ee6bc6d92406a9f66584bd0fc8dcabb4e
   specs:
-    percona (1.2.2)
+    mysql (1.3.0)
+      build-essential (>= 0.0.0)
       openssl (>= 0.0.0)
+
+GIT
+  remote: https://github.com/myplanetdigital/chef-percona.git
+  ref: master
+  sha: 00f48b89a8cc3bcaab57ad0baae7e8cb2d846a1b
+  specs:
+    percona (0.0.1)
+      mysql (>= 1.3.0)
 
 GIT
   remote: https://github.com/myplanetdigital/chef-phpcs.git
@@ -63,19 +57,20 @@ GIT
       php (>= 0.0.0)
 
 GIT
-  remote: https://github.com/myplanetdigital/chef-phpunit.git
-  ref: GH-7-version-attr
-  sha: 8f4f9b1a5e256b458ec3cac3ab57984c8b196a2c
-  specs:
-    phpunit (0.9.1)
-      php (>= 0.0.0)
-
-GIT
   remote: https://github.com/myplanetdigital/chef-xdebug.git
   ref: create-logfile
   sha: cbdad80aaa9bee642d1772e945ed7c92745a2260
   specs:
     xdebug (0.0.1)
+      php (>= 0.0.0)
+
+GIT
+  remote: https://github.com/myplanetdigital/chef-xhprof.git
+  ref: GH-msonnabaum-3
+  sha: 0d3690cd9e7ec1a469d30c5023130b5e2a29597d
+  specs:
+    xhprof (0.9.0)
+      apt (>= 0.0.0)
       php (>= 0.0.0)
 
 GIT
@@ -90,10 +85,10 @@ DEPENDENCIES
   apache2 (>= 0)
   apt (>= 0)
   build-essential (>= 0)
-  database (>= 0)
   drush (>= 0)
   git (>= 0)
   memcached (>= 0)
+  mysql (>= 0)
   percona (>= 0)
   php (>= 0)
   phpcs (>= 0)

@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: ariadne
-# Recipe:: example
+# Cookbook Name:: example
+# Recipe:: default
 #
 # Copyright 2012, Myplanet Digital, Inc.
 #
@@ -53,6 +53,7 @@ end
 site = "#{project}.dev"
 
 web_app site do
+  cookbook "ariadne"
   template "sites.conf.erb"
   port node['apache']['listen_ports'].to_a[0]
   server_name site
