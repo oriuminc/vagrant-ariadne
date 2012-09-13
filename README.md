@@ -305,28 +305,18 @@ Known Issues
 To Do
 -----
 
-* Submit pull request to [resolve warning from
-  drush](https://github.com/myplanetdigital/ariadne/issues/9)
-* Figure out how to remove www (and subdomain) redirect from apache conf
-  template.
+https://github.com/myplanetdigital/ariadne/issues
+
 * Doc the need to refresh browser for DNS **or** run dns rake task
   first.
 * Create sister project to provide a base install profile that is
   pre-configured to use the advanced components (Memcache, Varnish,
   etc.) In progress: [2ndleveldeep][2ndleveldeep-profile]
-* Doc format that Ariadne expects for project repos, and provide a demo.
-  (It is a straightforward Chef cookbook.)
-* Create a "Development Tools" section to explain components and setup.
 * Either avoid using the confusing word "host" (vs "guest" VM) to
   describe local machine, or define terminology somewhere.
 * Add proper string support using `i18n` gem.
 * Convert to rubygem?
-* Cache downloaded Drupal modules in shared folder.
-* Generate project website from `docs/` dir like [Composer
-  does][composer-docs]
 * Convert example project to use `drush qd --no-server`.
-* Auto-detect number of cores on OSX.
-* Install Apache Solr 3.5 with Tomcat (centOS?)
 
 Contributing
 ------------
@@ -366,7 +356,6 @@ Here's the gist of how we're applying it:
    [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup
    [apple-sys-arch]:          http://support.apple.com/kb/ht3773
    [2ndleveldeep-profile]:    https://github.com/myplanetdigital/2ndleveldeep#readme
-   [composer-docs]:           https://github.com/composer/composer/tree/master/doc
    [git-url-docs]:            http://git-scm.com/docs/git-clone#_git_urls
    [gitflow]:                 https://github.com/nvie/gitflow#readme
    [veewee]:                  https://github.com/jedi4ever/veewee#readme
