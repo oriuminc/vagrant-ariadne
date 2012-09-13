@@ -64,14 +64,6 @@ GIT
       php (>= 0.0.0)
 
 GIT
-  remote: https://github.com/myplanetdigital/chef-xdebug.git
-  ref: create-logfile
-  sha: cbdad80aaa9bee642d1772e945ed7c92745a2260
-  specs:
-    xdebug (0.0.1)
-      php (>= 0.0.0)
-
-GIT
   remote: https://github.com/myplanetdigital/chef-xhprof.git
   ref: GH-msonnabaum-3
   sha: 0d3690cd9e7ec1a469d30c5023130b5e2a29597d
@@ -86,6 +78,14 @@ GIT
   sha: 28d9d06fa3498b681dc4187e24321b71e14df406
   specs:
     drush (0.10.0)
+      php (>= 0.0.0)
+
+GIT
+  remote: https://github.com/xforty/chef-xdebug.git
+  ref: master
+  sha: e6745e79b451f692c56e979ab641412a6b2dacb3
+  specs:
+    xdebug (0.0.1)
       php (>= 0.0.0)
 
 DEPENDENCIES
