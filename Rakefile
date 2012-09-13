@@ -17,6 +17,7 @@ task :setup do
 
   rel_dirs = %w{
     tmp/apt/cache/partial
+    tmp/drush/cache
     data/html
     data/make
     data/profiles
