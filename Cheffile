@@ -5,6 +5,9 @@ site "http://community.opscode.com/api/v1"
 
 cookbook "apache2"
 cookbook "apt"
+cookbook "bash",
+  :git => "https://github.com/myplanetdigital/chef-bash.git",
+  :ref => "feature/bash_profile-resource"
 cookbook "build-essential"
 cookbook "drush",
   :git => "https://github.com/patcon/chef-drush.git",

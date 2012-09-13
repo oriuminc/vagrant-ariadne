@@ -50,6 +50,10 @@ cookbook_file "/etc/ssh/ssh_config" do
   mode "0644"
 end
 
+bash_profile "login-dir" do
+  user "vagrant"
+end
+
 # SEE: http://stackoverflow.com/a/8191279/504018
 ruby_block "Give root access to the forwarded ssh agent" do
   block do

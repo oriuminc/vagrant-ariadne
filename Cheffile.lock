@@ -32,6 +32,13 @@ GIT
       php (>= 0.0.0)
 
 GIT
+  remote: https://github.com/myplanetdigital/chef-bash.git
+  ref: feature/bash_profile-resource
+  sha: 1c5d2d9b110e802fe2bdab1c4c4b2ef320565292
+  specs:
+    bash (0.0.0)
+
+GIT
   remote: https://github.com/myplanetdigital/chef-mysql.git
   ref: COOK-1610-bypass-preseed
   sha: 0aba6d8ee6bc6d92406a9f66584bd0fc8dcabb4e
@@ -84,6 +91,7 @@ GIT
 DEPENDENCIES
   apache2 (>= 0)
   apt (>= 0)
+  bash (>= 0)
   build-essential (>= 0)
   drush (>= 0)
   git (>= 0)

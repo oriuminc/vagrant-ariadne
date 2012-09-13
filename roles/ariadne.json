@@ -6,6 +6,7 @@
   "env_run_lists": {
   },
   "run_list": [
+    "recipe[bash]",
     "recipe[git]",
     "recipe[vim]",
     "role[acquia]",
