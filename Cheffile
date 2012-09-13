@@ -23,7 +23,7 @@ cookbook "percona",
 cookbook "php"
 cookbook "phpcs",
   :git => "https://github.com/myplanetdigital/chef-phpcs.git",
-  :ref => "v1.0.0"
+  :ref => "master"
 cookbook "phpunit",
   :git => "https://github.com/msonnabaum/chef-phpunit.git",
   :ref => "master"

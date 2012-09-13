@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-require_recipe "ariadne::default"
+include_recipe "ariadne::default"
 
 project = "example"
 

@@ -50,15 +50,15 @@ GIT
 GIT
   remote: https://github.com/myplanetdigital/chef-percona.git
   ref: master
-  sha: 00f48b89a8cc3bcaab57ad0baae7e8cb2d846a1b
+  sha: d2839b8cd2d5c8ba039705f70d0d14e6a16d3fd1
   specs:
     percona (0.0.1)
       mysql (>= 1.3.0)
 
 GIT
   remote: https://github.com/myplanetdigital/chef-phpcs.git
-  ref: v1.0.0
-  sha: 50d16ac3d41adf346387183576326105c7c46540
+  ref: master
+  sha: d222847865abb4bbc40b217116433ed6419924f1
   specs:
     phpcs (1.0.0)
       php (>= 0.0.0)
