@@ -34,7 +34,7 @@ GIT
 GIT
   remote: https://github.com/myplanetdigital/chef-bash.git
   ref: feature/bash_profile-resource
-  sha: 1c5d2d9b110e802fe2bdab1c4c4b2ef320565292
+  sha: c3fb4df4d4692ccbc27ec1df365a057a81f387ab
   specs:
     bash (0.0.0)
 
