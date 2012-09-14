@@ -1,4 +1,12 @@
-require 'vagrant'
+class String
+  # Strip leading whitespace from each line that is the same as the 
+  # amount of whitespace on the first line of the string.
+  # Leaves _additional_ indentation on later lines intact.
+  # SEE: http://stackoverflow.com/a/5638187/504018
+  def unindent
+    gsub /^#{self[/\A\s*/]}/, ''
+  end
+end
 
 desc "Prepare Ariadne environmnet to spin up a project.
 
@@ -6,6 +14,24 @@ This runs librarian-chef to install cookbooks, creates properly-permissioned
 temporary vagrant-dns files, and creates several empty directories required for
 sharing with the VM."
 task :setup do
+  # Write the config file if doesn't exist.
+  unless File.exists?("config/config.yml")
+    p "Creating config/config.yml..."
+    config = File.open("config/config.yml", "w")
+    config.puts <<-EOF.unindent
+      ---
+      basebox: lucid64
+      project: example
+      branch: develop
+      memory: 1000
+      cpu_count: 2
+
+      # If building an install profile according to Myplanet layout assumptions,
+      # enter its repository URL here. (Otherwise, leave blank.)
+      repo_url: ''
+    EOF
+    config.close
+  end
   p "Installing cookbooks using Librarian gem..."
   system "librarian-chef install"
   if RUBY_PLATFORM =~ /darwin/
@@ -31,6 +57,7 @@ task :setup do
   end
 end
 
+require 'vagrant'
 desc "Import an Ariadne project from an external git repo.
 
 If the repo name is prefixed with 'ariadne-', this will be stripped before
