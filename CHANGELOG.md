@@ -6,6 +6,7 @@
   - Added share\_folder config to `Vagrantfile for persistent drush
     cache between VM builds.
   - `config/config.yml` now generated during `rake setup`. [GH-36]
+  - Resolved issue with pear warning during initial chef run. [GH-12]
 
 1.2.0 (Sept. 12, 2012)
 ----------------------
