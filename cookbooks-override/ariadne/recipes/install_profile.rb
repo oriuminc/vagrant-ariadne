@@ -12,20 +12,6 @@ web_app site_url do
   port node['apache']['listen_ports'].to_a[0]
 end
 
-if node['ariadne']['clean']
-  execute "chmod -R 777 /mnt/www/html/#{repo}"
-  %W{
-    /vagrant/data/profiles/#{repo}
-    /mnt/www/html/#{repo}
-  }.each do |dir|
-    directory dir do
-      recursive true
-      action :delete
-      only_if "test -d #{dir}"
-    end
-  end
-end
-
 git "/vagrant/data/profiles/#{repo}" do
   user "vagrant"
   repository repo_url

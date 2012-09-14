@@ -50,9 +50,33 @@ cookbook_file "/etc/ssh/ssh_config" do
   mode "0644"
 end
 
+# Drop in bash_profile script so that ssh'ing leads to project docroot.
 bash_profile "login-dir" do
   user "vagrant"
 end
+
+# Delete default project dirs if `clean` envvar set.
+if node['ariadne']['clean']
+  project = node['ariadne']['project']
+
+  # Some drupal files might be unwritable so set perms to 777.
+  execute "chmod -R 777 /mnt/www/html/#{project}" do
+    only_if "test -d /mnt/www/html/#{project}"
+  end
+
+  # Delete dirs recursively if they exist.
+  %W{
+    /vagrant/data/profiles/#{project}
+    /mnt/www/html/#{project}
+  }.each do |dir|
+    directory dir do
+      recursive true
+      action :delete
+      only_if "test -d #{dir}"
+    end
+  end
+end
+
 
 # SEE: http://stackoverflow.com/a/8191279/504018
 ruby_block "Give root access to the forwarded ssh agent" do

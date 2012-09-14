@@ -7,6 +7,8 @@
     cache between VM builds.
   - `config/config.yml` now generated during `rake setup`. [GH-36]
   - Resolved issue with pear warning during initial chef run. [GH-12]
+  - Moved `clean` functionality into `ariadne::default`. (Now works for
+    default example recipe as well.)
 
 1.2.0 (Sept. 12, 2012)
 ----------------------

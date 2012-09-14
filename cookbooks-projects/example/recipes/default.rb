@@ -23,19 +23,8 @@ include_recipe "ariadne::default"
 
 project = "example"
 
-bash "Downloading Drupal..." do
-  user "vagrant"
-  group "vagrant"
-  cwd "/mnt/www/html"
-  code <<-EOH
-    drush -y dl drupal \
-      --drupal-project-rename=#{project} \
-      --cache
-  EOH
-  not_if "test -d /mnt/www/html/example"
-end
-
-bash "Installing example Drupal site..." do
+bash "Installing Drupal..." do
+  action :nothing
   user "vagrant"
   group "vagrant"
   code <<-EOH
@@ -50,6 +39,19 @@ bash "Installing example Drupal site..." do
   EOH
 end
 
+bash "Downloading Drupal..." do
+  user "vagrant"
+  group "vagrant"
+  cwd "/mnt/www/html"
+  code <<-EOH
+    drush -y dl drupal \
+      --drupal-project-rename=#{project} \
+      --cache
+  EOH
+  not_if "test -d /mnt/www/html/#{project}"
+  notifies :run, "bash[Installing Drupal...]", :immediately
+end
+
 site = "#{project}.dev"
 
 web_app site do
@@ -59,5 +61,6 @@ web_app site do
   server_name site
   server_aliases [ "www.#{site}" ]
   docroot "/mnt/www/html/#{project}"
+  notifies :reload, "service[apache2]"
   notifies :restart, "service[varnish]"
 end
