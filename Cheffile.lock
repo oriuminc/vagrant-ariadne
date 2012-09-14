@@ -32,14 +32,6 @@ GIT
       php (>= 0.0.0)
 
 GIT
-  remote: https://github.com/msonnabaum/chef-phpunit.git
-  ref: master
-  sha: 8379017c52c8187a53711286df1f4560b16eea20
-  specs:
-    phpunit (0.9.1)
-      php (>= 0.0.0)
-
-GIT
   remote: https://github.com/myplanetdigital/chef-bash.git
   ref: feature/bash_profile-resource
   sha: c3fb4df4d4692ccbc27ec1df365a057a81f387ab
@@ -69,6 +61,14 @@ GIT
   sha: d222847865abb4bbc40b217116433ed6419924f1
   specs:
     phpcs (1.0.0)
+      php (>= 0.0.0)
+
+GIT
+  remote: https://github.com/myplanetdigital/chef-phpunit.git
+  ref: GH-9-pear-errors
+  sha: e215dab712d0a4fb946b173c2b089688a8c7d617
+  specs:
+    phpunit (0.9.1)
       php (>= 0.0.0)
 
 GIT

@@ -25,8 +25,8 @@ cookbook "phpcs",
   :git => "https://github.com/myplanetdigital/chef-phpcs.git",
   :ref => "master"
 cookbook "phpunit",
-  :git => "https://github.com/msonnabaum/chef-phpunit.git",
-  :ref => "master"
+  :git => "https://github.com/myplanetdigital/chef-phpunit.git",
+  :ref => "GH-9-pear-errors"
 cookbook "postfix"
 cookbook "varnish"
 cookbook "vim"
