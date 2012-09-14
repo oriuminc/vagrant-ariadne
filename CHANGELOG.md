@@ -5,6 +5,7 @@
   - Added bash cookbook with bash\_profile resource. 
   - Added share\_folder config to `Vagrantfile for persistent drush
     cache between VM builds.
+  - `config/config.yml` now generated during `rake setup`. [GH-36]
 
 1.2.0 (Sept. 12, 2012)
 ----------------------
