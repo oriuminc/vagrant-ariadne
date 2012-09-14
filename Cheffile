@@ -10,8 +10,8 @@ cookbook "bash",
   :ref => "feature/bash_profile-resource"
 cookbook "build-essential"
 cookbook "drush",
-  :git => "https://github.com/patcon/chef-drush.git",
-  :ref => "msonnabaum-GH-10"
+  :git => "https://github.com/msonnabaum/chef-drush.git",
+  :ref => "master"
 cookbook "git"
 cookbook "memcached"
 cookbook "mysql",
