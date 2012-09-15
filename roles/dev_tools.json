@@ -28,7 +28,8 @@
     "recipe[build-essential]",
     "recipe[phpunit]",
     "recipe[postfix]",
-    "recipe[xdebug]"
+    "recipe[xdebug]",
+    "recipe[webgrind]"
   ],
   "description": "Development and debugging tools for local environments.",
   "chef_type": "role",

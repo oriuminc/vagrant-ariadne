@@ -3,7 +3,7 @@ SITE
   specs:
     apache2 (1.1.12)
     apt (1.4.8)
-    build-essential (1.1.0)
+    build-essential (1.1.2)
     dmg (1.0.0)
     git (1.0.0)
       dmg (>= 0.0.0)
@@ -72,6 +72,16 @@ GIT
       php (>= 0.0.0)
 
 GIT
+  remote: https://github.com/myplanetdigital/chef-webgrind.git
+  ref: master
+  sha: 7b0d6614b60467ba6185d5de0449150763f836d1
+  specs:
+    webgrind (0.0.0)
+      apache2 (>= 0.0.0)
+      git (>= 0.0.0)
+      xdebug (>= 0.0.0)
+
+GIT
   remote: https://github.com/myplanetdigital/chef-xdebug.git
   ref: GH-5-php_pear-zend-template
   sha: 49f1225a003f52bb9dfd2ae121f0024599c74534
@@ -104,6 +114,7 @@ DEPENDENCIES
   postfix (>= 0)
   varnish (>= 0)
   vim (>= 0)
+  webgrind (>= 0)
   xdebug (>= 0)
   xhprof (>= 0)
 

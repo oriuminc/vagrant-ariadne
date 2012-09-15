@@ -30,6 +30,9 @@ cookbook "phpunit",
 cookbook "postfix"
 cookbook "varnish"
 cookbook "vim"
+cookbook "webgrind",
+  :git => "https://github.com/myplanetdigital/chef-webgrind.git",
+  :ref => "master"
 cookbook "xdebug",
   :git => "https://github.com/myplanetdigital/chef-xdebug.git",
   :ref => "GH-5-php_pear-zend-template"
