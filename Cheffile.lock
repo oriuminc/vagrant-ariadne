@@ -72,20 +72,20 @@ GIT
       php (>= 0.0.0)
 
 GIT
+  remote: https://github.com/myplanetdigital/chef-xdebug.git
+  ref: GH-5-php_pear-zend-template
+  sha: 9aefd6e62e91cace973867d6a1daf3ec8228d050
+  specs:
+    xdebug (0.0.1)
+      php (~> 1.1.0)
+
+GIT
   remote: https://github.com/myplanetdigital/chef-xhprof.git
   ref: GH-msonnabaum-3
   sha: 0d3690cd9e7ec1a469d30c5023130b5e2a29597d
   specs:
     xhprof (0.9.0)
       apt (>= 0.0.0)
-      php (>= 0.0.0)
-
-GIT
-  remote: https://github.com/xforty/chef-xdebug.git
-  ref: master
-  sha: e6745e79b451f692c56e979ab641412a6b2dacb3
-  specs:
-    xdebug (0.0.1)
       php (>= 0.0.0)
 
 DEPENDENCIES
