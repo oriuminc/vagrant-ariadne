@@ -31,8 +31,8 @@ cookbook "postfix"
 cookbook "varnish"
 cookbook "vim"
 cookbook "xdebug",
-  :git => "https://github.com/xforty/chef-xdebug.git",
-  :ref => "master"
+  :git => "https://github.com/myplanetdigital/chef-xdebug.git",
+  :ref => "GH-5-php_pear-zend-template"
 cookbook "xhprof",
   :git => "https://github.com/myplanetdigital/chef-xhprof.git",
   :ref => "GH-msonnabaum-3"
