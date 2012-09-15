@@ -74,7 +74,7 @@ GIT
 GIT
   remote: https://github.com/myplanetdigital/chef-xdebug.git
   ref: GH-5-php_pear-zend-template
-  sha: 9aefd6e62e91cace973867d6a1daf3ec8228d050
+  sha: 49f1225a003f52bb9dfd2ae121f0024599c74534
   specs:
     xdebug (0.0.1)
       php (~> 1.1.0)
