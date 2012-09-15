@@ -9,6 +9,8 @@
   - Resolved issue with pear warning during initial chef run. [GH-12]
   - Moved `clean` functionality into `ariadne::default`. (Now works for
     default example recipe as well.)
+  - Installed Webgrind UI. [GH-30]
+  - Upgraded to vagrant v1.0.4.
 
 1.2.0 (Sept. 12, 2012)
 ----------------------
