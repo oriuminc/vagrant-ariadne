@@ -1,7 +1,7 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apache2 (1.1.12)
+    apache2 (1.1.16)
     apt (1.4.8)
     build-essential (1.1.2)
     dmg (1.0.0)
@@ -84,9 +84,10 @@ GIT
 GIT
   remote: https://github.com/myplanetdigital/chef-xdebug.git
   ref: GH-5-php_pear-zend-template
-  sha: 49f1225a003f52bb9dfd2ae121f0024599c74534
+  sha: ecf09e555644e70b2083fd06e0c25ba42e5f209c
   specs:
     xdebug (0.0.1)
+      build-essential (>= 0.0.0)
       php (~> 1.1.0)
 
 GIT
