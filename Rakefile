@@ -57,7 +57,6 @@ task :setup do
   end
 end
 
-require 'vagrant'
 desc "Import an Ariadne project from an external git repo.
 
 If the repo name is prefixed with 'ariadne-', this will be stripped before
@@ -74,6 +73,7 @@ This often needs to be run when you've changes wifi hotspots or have been
 disconnected temporily. If the VM is taking a long to time provision, or timing
 out, run this task."
 task :fix_network do
+  require 'vagrant'
   env = Vagrant::Environment.new
   env.vms.each do |id, vm|
     raise Vagrant::Errors::VMNotCreatedError if !vm.created?
@@ -114,6 +114,7 @@ While this will transfer lots of personal settings into the VM, it perhaps most
 importantly ensures that your commits are tied to your name and email. This
 will ensure that your commits are properly linked your GitHub account."
 task :send_gitconfig do
+  require 'vagrant'
   env = Vagrant::Environment.new
   env.vms.each do |id, vm|
     raise Vagrant::Errors::VMNotCreatedError if !vm.created?
