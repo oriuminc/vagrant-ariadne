@@ -1,8 +1,4 @@
-Ariadne
-=======
-
-[![Build Status](https://secure.travis-ci.org/myplanetdigital/ariadne.png?branch=develop)](http://travis-ci.org/myplanetdigital/ariadne)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/myplanetdigital/ariadne)
+# Ariadne [![Build Status][travisci-badge]][travisci] [![Code Climate][codeclimate-badge]][codeclimate]
 
 > Remember, Ariadne, you are the dreamer, you build this world. I am the
 > subject, my mind populates it.
@@ -342,7 +338,7 @@ License and Author
 ------------------
 
 Author:: [Patrick Connolly][patcon] (<patrick@myplanetdigital.com>)
-[![endorse](http://api.coderwall.com/patcon/endorsecount.png)](http://coderwall.com/patcon)
+[![endorse][coderwall-badge]][coderwall]
 
 Contributors:: https://github.com/myplanetdigital/ariadne/contributors
 
@@ -362,6 +358,12 @@ limitations under the License.
 
 <!-- Links -->
    [patcon]:                  http://about.me/patcon
+   [coderwall]:               http://coderwall.com/patcon
+   [coderwall-badge]:         http://api.coderwall.com/patcon/endorsecount.png
+   [codeclimate]:             https://codeclimate.com/github/myplanetdigital/ariadne
+   [codeclimate-badge]:       https://codeclimate.com/badge.png
+   [travisci]:                http://travis-ci.org/myplanetdigital/ariadne
+   [travisci-badge]:          https://secure.travis-ci.org/myplanetdigital/ariadne.png?branch=develop
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-rvm]:               https://rvm.io/
