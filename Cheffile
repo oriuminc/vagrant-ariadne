@@ -7,6 +7,7 @@ cookbook "apache2"
 cookbook "apt"
 cookbook "bash",
   :git => "https://github.com/myplanetdigital/chef-bash.git",
+  # PR: https://github.com/mszoernyi/chef-bash/pull/1
   :ref => "feature/bash_profile-resource"
 cookbook "build-essential"
 cookbook "drush",
@@ -16,7 +17,12 @@ cookbook "git"
 cookbook "memcached"
 cookbook "mysql",
   :git => "https://github.com/myplanetdigital/chef-mysql.git",
+  # PR: https://github.com/opscode-cookbooks/mysql/pull/33
   :ref => "COOK-1610-bypass-preseed"
+cookbook "openssh",
+  :git => "https://github.com/patcon/chef-openssh.git",
+  # PR: https://github.com/opscode-cookbooks/openssh/pull/4
+  :ref => "patch-1"
 cookbook "percona",
   :git => "https://github.com/myplanetdigital/chef-percona.git",
   :ref => "master"
@@ -26,6 +32,7 @@ cookbook "phpcs",
   :ref => "master"
 cookbook "phpunit",
   :git => "https://github.com/myplanetdigital/chef-phpunit.git",
+  # PR: https://github.com/msonnabaum/chef-phpunit/pull/9
   :ref => "GH-9-pear-errors"
 cookbook "postfix"
 cookbook "varnish"
@@ -35,7 +42,9 @@ cookbook "webgrind",
   :ref => "master"
 cookbook "xdebug",
   :git => "https://github.com/myplanetdigital/chef-xdebug.git",
+  # PR: https://github.com/xforty/chef-xdebug/pull/5
   :ref => "GH-5-php_pear-zend-template"
 cookbook "xhprof",
   :git => "https://github.com/myplanetdigital/chef-xhprof.git",
+  # PR: https://github.com/msonnabaum/chef-xhprof/pull/5
   :ref => "GH-msonnabaum-3"

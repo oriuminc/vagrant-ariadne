@@ -42,14 +42,6 @@ file "/home/vagrant/.drush/drush.ini" do
   content "memory_limit = -1"
 end
 
-# Allow SSH and Git to work with github.com and git.*.com without manually
-# allowing host keys.
-cookbook_file "/etc/ssh/ssh_config" do
-  owner "root"
-  group "root"
-  mode "0644"
-end
-
 # Drop in bash_profile script so that ssh'ing leads to project docroot.
 bash_profile "login-dir" do
   user "vagrant"

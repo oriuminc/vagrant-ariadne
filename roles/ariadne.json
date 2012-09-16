@@ -1,6 +1,14 @@
 {
   "name": "ariadne",
   "default_attributes": {
+    "openssh": {
+      "client": {
+        "strict_host_key_checking": "no"
+      },
+      "server": {
+        "permit_root_login": "no"
+      }
+    }
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
@@ -8,6 +16,7 @@
   "run_list": [
     "recipe[git]",
     "recipe[vim]",
+    "recipe[openssh]",
     "role[acquia]",
     "role[dev_tools]",
     "recipe[ariadne::default]"
