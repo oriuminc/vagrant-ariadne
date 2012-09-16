@@ -1,4 +1,15 @@
 language: ruby
 rvm:
-  - 1.9.3
-script: "true"
+  - 1.8.7 # On default lucid64 base box
+env:
+  - COOKBOOK=ariadne
+  - COOKBOOK=drush
+  - COOKBOOK=git
+  - COOKBOOK=php
+  - COOKBOOK=phpcs
+  - COOKBOOK=solr
+  - COOKBOOK=varnish
+install: bundle install --without default
+script: 
+#  - if [[ -z "$(git show cookbooks-override/$COOKBOOK > /dev/null)" ]]; then exit 0; fi
+  - bundle exec foodcritic -I test/support/foodcritic/* cookbooks-override/$COOKBOOK
