@@ -77,27 +77,10 @@ if node['ariadne']['clean']
   end
 end
 
+::Chef::Resource::RubyBlock.send(:include, Ariadne::Helpers)
 
-# SEE: http://stackoverflow.com/a/8191279/504018
 ruby_block "Give root access to the forwarded ssh agent" do
   block do
-    # find a parent process' ssh agent socket
-    agents = {}
-    ppid = Process.ppid
-    Dir.glob('/tmp/ssh*/agent*').each do |fn|
-      agents[fn.match(/agent\.(\d+)$/)[1]] = fn
-    end
-    while ppid != '1'
-      if (agent = agents[ppid])
-        ENV['SSH_AUTH_SOCK'] = agent
-        break
-      end
-      File.open("/proc/#{ppid}/status", "r") do |file|
-        ppid = file.read().match(/PPid:\s+(\d+)/)[1]
-      end
-    end
-    # Uncomment to require that an ssh-agent be available
-    fail "Could not find running ssh agent - Is config.ssh.forward_agent enabled in Vagrantfile?" unless ENV['SSH_AUTH_SOCK']
+    give_ssh_agent_root
   end
-  action :create
 end

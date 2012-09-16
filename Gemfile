@@ -8,5 +8,6 @@ gem "vagrant", "> 1"
 gem "vagrant-dns"
 gem "vagrant-vbguest"
 
-group :development do
+group :test do
+  gem "foodcritic"
 end
