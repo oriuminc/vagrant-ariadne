@@ -11,4 +11,5 @@ gem "vagrant-vbguest"
 group :test do
   gem "chef"
   gem "foodcritic"
+  gem "strainer"
 end

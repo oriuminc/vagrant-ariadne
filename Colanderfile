@@ -1,0 +1,2 @@
+foodcritic: bundle exec foodcritic $SANDBOX/$COOKBOOK -I ../test/support/foodcritic/* -t '~CINK001' -t '~FC011' -t '~FC031' --epic-fail ''
+knife test: bundle exec knife cookbook test $COOKBOOK --config=../test/support/knife.rb

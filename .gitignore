@@ -9,6 +9,7 @@ data/*/
 cookbooks-projects/*
 !cookbooks-projects/example/
 config/config.yml
+colander/
 
 # Librarian/RVM/Bundler
 cookbooks/
