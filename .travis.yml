@@ -3,4 +3,4 @@ rvm:
   - 1.9.3 # Same as Ariadne host env
 install: bundle install --without default
 script: 
-  - bundle exec foodcritic -I test/support/foodcritic/* -t "~CINK001" -t "~FC011" -t "~FC031" cookbooks-override/*
+  - bundle exec foodcritic -I test/support/foodcritic/* -t "~CINK001" -t "~FC011" -t "~FC031" --epic-fail cookbooks-override/*
