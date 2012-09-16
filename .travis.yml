@@ -4,7 +4,7 @@ notifications:
 rvm:
   - 1.9.3 # Same as Ariadne host env
 install: bundle install --without default
-before_script: bundle exec librarian-chef install
 script: 
   - bundle exec foodcritic cookbooks-override/* -I test/support/foodcritic/* -t '~CINK001' -t '~FC011' -t '~FC031' --epic-fail ''
+  - mkdir cookbooks
   - bundle exec knife cookbook test $(ls -m cookbooks-override | tr -d ',') --config=test/support/knife.rb
