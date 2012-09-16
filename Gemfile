@@ -10,6 +10,7 @@ gem "vagrant-vbguest"
 
 group :test do
   gem "rake"
+  gem "test-kitchen"
   gem "chef"
   gem "foodcritic"
 end

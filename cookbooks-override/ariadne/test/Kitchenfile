@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+cookbook "ariadne" do
+  configuration "install_profile"
+end
