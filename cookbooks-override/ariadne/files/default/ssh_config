@@ -1,4 +1,0 @@
-# Still warm about IP changes, but will automatically
-# add new host key signatures.
-Host *
-  StrictHostKeyChecking no
