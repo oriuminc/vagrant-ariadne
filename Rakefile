@@ -146,3 +146,27 @@ task :fresh_start do
   system "chmod -R u+w data/html/; rm -rf data/html data/make cookbooks-projects/*;"
   system "rvm remove 1.9.3-p194-ariadne"
 end
+
+namespace :test do
+  desc "Runs foodcritic linter"
+  task :foodcritic do
+    if Gem::Version.new("1.9.2") <= Gem::Version.new(RUBY_VERSION.dup)
+      sh "bundle exec foodcritic cookbooks*/* \
+        --include test/support/foodcritic/* \
+        --epic-fail any \
+        -t ~CINK001 \
+        -t ~FC011 \
+        -t ~FC031"
+    else
+      puts "WARN: foodcritic run is skipped as Ruby #{RUBY_VERSION} is < 1.9.2."
+    end
+  end
+
+  desc "Runs knife cookbook test"
+  task :knife do
+    sh "bundle exec knife cookbook test \
+      $(ls -m cookbooks-override | tr -d ',') \
+      $(ls -m cookbooks-projects | tr -d ',') \
+      --config=test/support/knife.rb"
+  end
+end
