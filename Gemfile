@@ -9,5 +9,6 @@ gem "vagrant-dns"
 gem "vagrant-vbguest"
 
 group :test do
+  gem "chef"
   gem "foodcritic"
 end

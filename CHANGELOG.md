@@ -11,7 +11,7 @@
     default example recipe as well.)
   - Installed Webgrind UI. [GH-30]
   - Upgraded to vagrant v1.0.4.
-  - Added Travis CI badge and foodcritic tests (Etsy & CustomInk rules)
+  - Added Travis CI badge and foodcritic/knife tests (Etsy & CustomInk rules)
 
 1.2.0 (Sept. 12, 2012)
 ----------------------
