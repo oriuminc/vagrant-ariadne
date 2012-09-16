@@ -1,4 +1,8 @@
-# Ariadne [![Build Status][travisci-badge]][travisci] [![Code Climate][codeclimate-badge]][codeclimate]
+# Ariadne
+
+[![Build Status][travisci-badge]][travisci]
+[![Dependency Status][gemnasium-badge]][gemnasium]
+[![Code Climate][codeclimate-badge]][codeclimate]
 
 > Remember, Ariadne, you are the dreamer, you build this world. I am the
 > subject, my mind populates it.
@@ -362,6 +366,8 @@ limitations under the License.
    [coderwall-badge]:         http://api.coderwall.com/patcon/endorsecount.png
    [codeclimate]:             https://codeclimate.com/github/myplanetdigital/ariadne
    [codeclimate-badge]:       https://codeclimate.com/badge.png
+   [gemnasium]:               https://gemnasium.com/myplanetdigital/ariadne
+   [gemnasium-badge]:         https://gemnasium.com/myplanetdigital/ariadne.png 
    [travisci]:                http://travis-ci.org/myplanetdigital/ariadne
    [travisci-badge]:          https://secure.travis-ci.org/myplanetdigital/ariadne.png?branch=develop
    [condel]:                  https://github.com/myplanetdigital/condel
