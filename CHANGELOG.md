@@ -12,6 +12,9 @@
   - Installed Webgrind UI. [GH-30]
   - Upgraded to vagrant v1.0.4.
   - Added Travis CI badge and foodcritic/knife tests (Etsy & CustomInk rules)
+  - Disabled root login. [GH-37]
+  - Moved to using `sshd\_config` & `ssh\_config` templates from openssh
+    cookbook.
 
 1.2.0 (Sept. 12, 2012)
 ----------------------
