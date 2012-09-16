@@ -3,5 +3,4 @@ rvm:
   - 1.9.3 # Same as Ariadne host env
 install: bundle install --without default
 script: 
-#  - if [[ -z "$(git show cookbooks-override/$COOKBOOK > /dev/null)" ]]; then exit 0; fi
-  - bundle exec foodcritic -I test/support/foodcritic/* cookbooks-override/*
+  - bundle exec foodcritic -I test/support/foodcritic/* -t "~CINK001" -t "~FC011" -t "~FC031" cookbooks-override/*
