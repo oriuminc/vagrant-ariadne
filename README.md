@@ -4,16 +4,16 @@
 [![Dependency Status][gemnasium-badge]][gemnasium]
 [![Code Climate][codeclimate-badge]][codeclimate]
 
+**Ariadne is in active development at Myplanet Digital, and should be
+considered beta code. Although we dogfood the project, stability and
+full documentation not yet guaranteed.**
+
 > Remember, Ariadne, you are the dreamer, you build this world. I am the
 > subject, my mind populates it.
 >
 > *-- Cobb, Inception*
 
   - Source: https://github.com/myplanetdigital/ariadne
-
-**Ariadne is in active development at Myplanet Digital, and should be
-considered alpha code. Stability and full documentation not yet
-guaranteed.**
 
 Ariadne is a standardized virtual machine (VM) development environment
 for easily developing Drupal sites in a local sandbox that is
