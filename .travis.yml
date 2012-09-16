@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 1.8.7 # On default lucid64 base box
+  - 1.9.3 # Same as Ariadne host env
 env:
   - COOKBOOK=ariadne
   - COOKBOOK=drush
