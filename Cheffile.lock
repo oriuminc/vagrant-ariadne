@@ -1,9 +1,9 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
-    apache2 (1.1.12)
+    apache2 (1.1.16)
     apt (1.4.8)
-    build-essential (1.1.0)
+    build-essential (1.1.2)
     dmg (1.0.0)
     git (1.0.0)
       dmg (>= 0.0.0)
@@ -24,12 +24,19 @@ SITE
     yum (0.8.0)
 
 GIT
-  remote: https://github.com/msonnabaum/chef-phpunit.git
+  remote: https://github.com/msonnabaum/chef-drush.git
   ref: master
-  sha: 8379017c52c8187a53711286df1f4560b16eea20
+  sha: ae0503ca017f923b363e727041d5aa749d45f89f
   specs:
-    phpunit (0.9.1)
+    drush (0.10.0)
       php (>= 0.0.0)
+
+GIT
+  remote: https://github.com/myplanetdigital/chef-bash.git
+  ref: feature/bash_profile-resource
+  sha: c3fb4df4d4692ccbc27ec1df365a057a81f387ab
+  specs:
+    bash (0.0.0)
 
 GIT
   remote: https://github.com/myplanetdigital/chef-mysql.git
@@ -43,26 +50,45 @@ GIT
 GIT
   remote: https://github.com/myplanetdigital/chef-percona.git
   ref: master
-  sha: 00f48b89a8cc3bcaab57ad0baae7e8cb2d846a1b
+  sha: d2839b8cd2d5c8ba039705f70d0d14e6a16d3fd1
   specs:
     percona (0.0.1)
       mysql (>= 1.3.0)
 
 GIT
   remote: https://github.com/myplanetdigital/chef-phpcs.git
-  ref: v1.0.0
-  sha: 50d16ac3d41adf346387183576326105c7c46540
+  ref: master
+  sha: d222847865abb4bbc40b217116433ed6419924f1
   specs:
     phpcs (1.0.0)
       php (>= 0.0.0)
 
 GIT
+  remote: https://github.com/myplanetdigital/chef-phpunit.git
+  ref: GH-9-pear-errors
+  sha: e215dab712d0a4fb946b173c2b089688a8c7d617
+  specs:
+    phpunit (0.9.1)
+      php (>= 0.0.0)
+
+GIT
+  remote: https://github.com/myplanetdigital/chef-webgrind.git
+  ref: master
+  sha: 7b0d6614b60467ba6185d5de0449150763f836d1
+  specs:
+    webgrind (0.0.0)
+      apache2 (>= 0.0.0)
+      git (>= 0.0.0)
+      xdebug (>= 0.0.0)
+
+GIT
   remote: https://github.com/myplanetdigital/chef-xdebug.git
-  ref: create-logfile
-  sha: cbdad80aaa9bee642d1772e945ed7c92745a2260
+  ref: GH-5-php_pear-zend-template
+  sha: ecf09e555644e70b2083fd06e0c25ba42e5f209c
   specs:
     xdebug (0.0.1)
-      php (>= 0.0.0)
+      build-essential (>= 0.0.0)
+      php (~> 1.1.0)
 
 GIT
   remote: https://github.com/myplanetdigital/chef-xhprof.git
@@ -74,21 +100,22 @@ GIT
       php (>= 0.0.0)
 
 GIT
-  remote: https://github.com/patcon/chef-drush.git
-  ref: msonnabaum-GH-10
-  sha: 28d9d06fa3498b681dc4187e24321b71e14df406
+  remote: https://github.com/patcon/chef-openssh.git
+  ref: patch-1
+  sha: 7e75bc590d0facdb9409c050660b52b681fb1afd
   specs:
-    drush (0.10.0)
-      php (>= 0.0.0)
+    openssh (0.8.1)
 
 DEPENDENCIES
   apache2 (>= 0)
   apt (>= 0)
+  bash (>= 0)
   build-essential (>= 0)
   drush (>= 0)
   git (>= 0)
   memcached (>= 0)
   mysql (>= 0)
+  openssh (>= 0)
   percona (>= 0)
   php (>= 0)
   phpcs (>= 0)
@@ -96,6 +123,7 @@ DEPENDENCIES
   postfix (>= 0)
   varnish (>= 0)
   vim (>= 0)
+  webgrind (>= 0)
   xdebug (>= 0)
   xhprof (>= 0)
 

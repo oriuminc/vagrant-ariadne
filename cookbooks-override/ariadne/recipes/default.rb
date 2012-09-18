@@ -42,34 +42,37 @@ file "/home/vagrant/.drush/drush.ini" do
   content "memory_limit = -1"
 end
 
-# Allow SSH and Git to work with github.com and git.*.com without manually
-# allowing host keys.
-cookbook_file "/etc/ssh/ssh_config" do
-  owner "root"
-  group "root"
-  mode "0644"
+# Drop in bash_profile script so that ssh'ing leads to project docroot.
+bash_profile "login-dir" do
+  user "vagrant"
 end
 
-# SEE: http://stackoverflow.com/a/8191279/504018
+# Delete default project dirs if `clean` envvar set.
+if node['ariadne']['clean']
+  project = node['ariadne']['project']
+
+  # Some drupal files might be unwritable so set perms to 777.
+  execute "chmod -R 777 /mnt/www/html/#{project}" do
+    only_if "test -d /mnt/www/html/#{project}"
+  end
+
+  # Delete dirs recursively if they exist.
+  %W{
+    /vagrant/data/profiles/#{project}
+    /mnt/www/html/#{project}
+  }.each do |dir|
+    directory dir do
+      recursive true
+      action :delete
+      only_if "test -d #{dir}"
+    end
+  end
+end
+
+::Chef::Resource::RubyBlock.send(:include, Ariadne::Helpers)
+
 ruby_block "Give root access to the forwarded ssh agent" do
   block do
-    # find a parent process' ssh agent socket
-    agents = {}
-    ppid = Process.ppid
-    Dir.glob('/tmp/ssh*/agent*').each do |fn|
-      agents[fn.match(/agent\.(\d+)$/)[1]] = fn
-    end
-    while ppid != '1'
-      if (agent = agents[ppid])
-        ENV['SSH_AUTH_SOCK'] = agent
-        break
-      end
-      File.open("/proc/#{ppid}/status", "r") do |file|
-        ppid = file.read().match(/PPid:\s+(\d+)/)[1]
-      end
-    end
-    # Uncomment to require that an ssh-agent be available
-    fail "Could not find running ssh agent - Is config.ssh.forward_agent enabled in Vagrantfile?" unless ENV['SSH_AUTH_SOCK']
+    give_ssh_agent_root
   end
-  action :create
 end

@@ -1,5 +1,12 @@
-Ariadne
-=======
+# Ariadne [![Pronunciation](http://cdn4.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/sound_high.png)](http://static.sfdict.com/dictstatic/dictionary/audio/luna/A06/A0674700.mp3)
+
+[![Build Status][travisci-badge]][travisci]
+[![Dependency Status][gemnasium-badge]][gemnasium]
+[![Code Climate][codeclimate-badge]][codeclimate]
+
+**Ariadne is in active development at Myplanet Digital, and should be
+considered beta code. Although we dogfood the project, stability and
+full documentation not yet guaranteed.**
 
 > Remember, Ariadne, you are the dreamer, you build this world. I am the
 > subject, my mind populates it.
@@ -7,10 +14,6 @@ Ariadne
 > *-- Cobb, Inception*
 
   - Source: https://github.com/myplanetdigital/ariadne
-
-**Ariadne is in active development at Myplanet Digital, and should be
-considered alpha code. Stability and full documentation not yet
-guaranteed.**
 
 Ariadne is a standardized virtual machine (VM) development environment
 for easily developing Drupal sites in a local sandbox that is
@@ -316,28 +319,18 @@ Known Issues
 To Do
 -----
 
-* Submit pull request to [resolve warning from
-  drush](https://github.com/myplanetdigital/ariadne/issues/9)
-* Figure out how to remove www (and subdomain) redirect from apache conf
-  template.
+https://github.com/myplanetdigital/ariadne/issues
+
 * Doc the need to refresh browser for DNS **or** run dns rake task
   first.
 * Create sister project to provide a base install profile that is
   pre-configured to use the advanced components (Memcache, Varnish,
   etc.) In progress: [2ndleveldeep][2ndleveldeep-profile]
-* Doc format that Ariadne expects for project repos, and provide a demo.
-  (It is a straightforward Chef cookbook.)
-* Create a "Development Tools" section to explain components and setup.
 * Either avoid using the confusing word "host" (vs "guest" VM) to
   describe local machine, or define terminology somewhere.
 * Add proper string support using `i18n` gem.
 * Convert to rubygem?
-* Cache downloaded Drupal modules in shared folder.
-* Generate project website from `docs/` dir like [Composer
-  does][composer-docs]
 * Convert example project to use `drush qd --no-server`.
-* Auto-detect number of cores on OSX.
-* Install Apache Solr 3.5 with Tomcat (centOS?)
 
 Contributing
 ------------
@@ -356,14 +349,38 @@ Here's the gist of how we're applying it:
   - When developing new features on `develop`, feature branches are
     recommended.
 
-Contributing
-------------
+License and Author
+------------------
 
-Ariadne is being developed using the [git-flow tool][gitflow] and
-methodology. The take-home message is that pull requests should be
-submitted to the `develop` branch.
+Author:: [Patrick Connolly][patcon] (<patrick@myplanetdigital.com>)
+[![endorse][coderwall-badge]][coderwall]
+
+Contributors:: https://github.com/myplanetdigital/ariadne/contributors
+
+Copyright:: 2012, Myplanet Digital, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 <!-- Links -->
+   [patcon]:                  http://about.me/patcon
+   [coderwall]:               http://coderwall.com/patcon
+   [coderwall-badge]:         http://api.coderwall.com/patcon/endorsecount.png
+   [codeclimate]:             https://codeclimate.com/github/myplanetdigital/ariadne
+   [codeclimate-badge]:       https://codeclimate.com/badge.png
+   [gemnasium]:               https://gemnasium.com/myplanetdigital/ariadne
+   [gemnasium-badge]:         https://gemnasium.com/myplanetdigital/ariadne.png 
+   [travisci]:                http://travis-ci.org/myplanetdigital/ariadne
+   [travisci-badge]:          https://secure.travis-ci.org/myplanetdigital/ariadne.png?branch=develop
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-rvm]:               https://rvm.io/
@@ -384,7 +401,6 @@ submitted to the `develop` branch.
    [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup
    [apple-sys-arch]:          http://support.apple.com/kb/ht3773
    [2ndleveldeep-profile]:    https://github.com/myplanetdigital/2ndleveldeep#readme
-   [composer-docs]:           https://github.com/composer/composer/tree/master/doc
    [git-url-docs]:            http://git-scm.com/docs/git-clone#_git_urls
    [gitflow]:                 https://github.com/nvie/gitflow#readme
    [veewee]:                  https://github.com/jedi4ever/veewee#readme

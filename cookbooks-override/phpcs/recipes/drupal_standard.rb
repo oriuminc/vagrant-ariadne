@@ -15,9 +15,6 @@ bash "copy-drupal-standard" do
   not_if "test -d $(pear config-get php_dir)/PHP/CodeSniffer/Standards/Drupal"
 end
 
-file "/home/vagrant/.bash_profile" do
-  owner "vagrant"
-  group "vagrant"
-  content "alias drupalcs='phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme'"
-  action :create_if_missing
+bash_profile "drupalcs-alias" do
+  user "vagrant"
 end

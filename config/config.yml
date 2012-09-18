@@ -1,6 +1,0 @@
----
-basebox: lucid64
-project: example
-branch: develop
-memory: 1000
-cpu_count: 2

@@ -9,4 +9,11 @@ gem "vagrant-dns"
 gem "vagrant-vbguest"
 
 group :development do
+  gem "sahara"
+end
+
+group :test do
+  gem "rake"
+  gem "chef"
+  gem "foodcritic"
 end

@@ -2,10 +2,13 @@
   "name": "dev_tools",
   "default_attributes": {
     "xdebug": {
-      "version": "2.2.0",
-      "remote_enable": "1",
-      "remote_host": "33.33.33.1",
-      "remote_log": "/var/log/xdebug.log"
+      "version": "2.2.1",
+      "directives": {
+        "profiler_enable_trigger": "1",
+        "remote_enable": "1",
+        "remote_host": "33.33.33.1",
+        "remote_log": "/var/log/xdebug.log"
+      }
     },
     "phpcs": {
       "drupalcs_git_ref": "7.x-1.0-alpha1"
@@ -25,7 +28,8 @@
     "recipe[build-essential]",
     "recipe[phpunit]",
     "recipe[postfix]",
-    "recipe[xdebug]"
+    "recipe[xdebug]",
+    "recipe[webgrind]"
   ],
   "description": "Development and debugging tools for local environments.",
   "chef_type": "role",
