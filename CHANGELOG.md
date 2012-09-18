@@ -1,5 +1,8 @@
-1.3.0 (unreleased)
+1.4.0 (unreleased)
 ------------------
+
+1.3.0 (Sept. 18, 2012)
+----------------------
 
   - `vagrant ssh` now starts in docroot of current project.
   - Added bash cookbook with bash\_profile resource. 
@@ -15,6 +18,9 @@
   - Disabled root login. [GH-37]
   - Moved to using `sshd\_config` & `ssh\_config` templates from openssh
     cookbook.
+  - Added link to audio pronunciation of "Ariadne" :)
+  - Added sahara gem to easily create and revert Virtualbox snapshots
+    with Vagrant.
 
 1.2.0 (Sept. 12, 2012)
 ----------------------
