@@ -1,4 +1,4 @@
-# Ariadne
+# Ariadne [![Pronunciation](http://cdn4.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/sound_high.png)](http://static.sfdict.com/dictstatic/dictionary/audio/luna/A06/A0674700.mp3)
 
 [![Build Status][travisci-badge]][travisci]
 [![Dependency Status][gemnasium-badge]][gemnasium]
