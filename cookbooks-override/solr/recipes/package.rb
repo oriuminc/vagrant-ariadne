@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: solr
-# Recipe:: default
+# Recipe:: package
 #
 # Copyright 2012, Myplanet Digital, Inc.
 #
@@ -19,18 +19,21 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-require_recipe "tomcat"
-require_recipe "ark"
+include_recipe "tomcat"
 
-solr_version = "3.5.0"
-ark "solr" do
-  url "http://archive.apache.org/dist/lucene/solr/#{solr_version}/apache-solr-#{solr_version}.tgz"
-  version solr_version
-  owner node['tomcat']['user']
-end
+package "solr-tomcat"
 
-link "#{node['tomcat']['webapp_dir']}/solr-example.war" do
-  to "#{node['ark']['prefix_home']}/solr/example/solr/apache-solr-#{solr_version}.war"
-  owner node['tomcat']['user']
-  group node['tomcat']['group']
+%w{
+  schema-solr3x.xml
+  solrconfig-solr3x.xml
+  protwords.txt
+}.each do |file|
+  link_path = "/etc/solr/conf/#{file.gsub("-solr3x", "")}"
+  target_path = "/mnt/www/html/example/sites/all/modules/apachesolr/solr-conf/#{file}"
+
+  link link_path do
+    to target_path
+    notifies :restart, "service[tomcat]"
+    not_if %{[[ "$(readlink #{link_path})" == "#{target_path}" ]]}
+  end
 end

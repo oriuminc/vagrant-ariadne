@@ -3,6 +3,7 @@ SITE
   specs:
     apache2 (1.1.16)
     apt (1.4.8)
+    ark (0.0.11)
     build-essential (1.1.2)
     dmg (1.0.0)
     git (1.0.0)
@@ -10,8 +11,6 @@ SITE
       runit (>= 0.0.0)
       yum (>= 0.0.0)
     java (1.5.4)
-    jpackage (0.10.0)
-      java (>= 0)
     memcached (1.0.4)
       runit (>= 0.0.0)
     openssl (1.0.0)
@@ -21,19 +20,12 @@ SITE
       xml (>= 0.0.0)
     postfix (1.2.2)
     runit (0.15.0)
+    tomcat (0.11.0)
+      java (>= 0.0.0)
     varnish (0.9.2)
     vim (1.0.2)
     xml (1.0.4)
     yum (0.8.0)
-
-GIT
-  remote: https://github.com/bryanwb/chef-tomcat.git
-  ref: master
-  sha: 49b5e560ffaad1d36c2f64e5de50b37e133380ef
-  specs:
-    tomcat (0.10.3)
-      java (>= 0)
-      jpackage (>= 0)
 
 GIT
   remote: https://github.com/msonnabaum/chef-drush.git
@@ -121,6 +113,7 @@ GIT
 DEPENDENCIES
   apache2 (>= 0)
   apt (>= 0)
+  ark (>= 0)
   bash (>= 0)
   build-essential (>= 0)
   drush (>= 0)
