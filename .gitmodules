@@ -1,0 +1,3 @@
+[submodule "project"]
+	path = project
+	url = git://github.com/myplanetdigital/ariadne.git
