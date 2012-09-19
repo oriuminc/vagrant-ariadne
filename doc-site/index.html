@@ -1,0 +1,436 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ariadne by myplanetdigital</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ariadne</h1>
+        <p>A standardized virtual machine (VM) development environment for easily developing Drupal sites in a local sandbox that is essentially identical to a fully-configured hosted solution.</p>
+
+        <p class="view"><a href="https://github.com/myplanetdigital/ariadne">View the Project on GitHub <small>myplanetdigital/ariadne</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/myplanetdigital/ariadne/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/myplanetdigital/ariadne/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/myplanetdigital/ariadne">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Ariadne <a href="http://static.sfdict.com/dictstatic/dictionary/audio/luna/A06/A0674700.mp3"><img src="http://cdn4.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/sound_high.png" alt="Pronunciation"></a>
+</h1>
+
+<p><a href="http://travis-ci.org/myplanetdigital/ariadne"><img src="https://secure.travis-ci.org/myplanetdigital/ariadne.png?branch=develop" alt="Build Status"></a>
+<a href="https://gemnasium.com/myplanetdigital/ariadne"><img src="https://gemnasium.com/myplanetdigital/ariadne.png" alt="Dependency Status"></a>
+<a href="https://codeclimate.com/github/myplanetdigital/ariadne"><img src="https://codeclimate.com/badge.png" alt="Code Climate"></a></p>
+
+<p><strong>Ariadne is in active development at Myplanet Digital, and should be
+considered beta code. Although we dogfood the project, stability and
+full documentation not yet guaranteed.</strong></p>
+
+<blockquote>
+<p>Remember, Ariadne, you are the dreamer, you build this world. I am the
+subject, my mind populates it.</p>
+
+<p><em>-- Cobb, Inception</em></p>
+</blockquote>
+
+<ul>
+<li>Source: <a href="https://github.com/myplanetdigital/ariadne">https://github.com/myplanetdigital/ariadne</a>
+</li>
+</ul><p>Ariadne is a standardized virtual machine (VM) development environment
+for easily developing Drupal sites in a local sandbox that is
+essentially identical to a fully-configured hosted solution. It attempts
+to emulate a dedicated Acquia/Pantheon server as closely as possible,
+with added development tools. Once several simple system requirements
+have been met, it can be set up using only a few commands from your
+computer's terminal.</p>
+
+<p>The current iteration aims to create a local Vagrant environment that mimics Acquia's
+infrastructure as closely as possible, using cookbooks and roles that can easily be
+used to deploy an actual cluster.</p>
+
+<p>Tested on Mac OSX Snow Leopard &amp; Lion and Ubuntu 12.04 (should work on
+other flavours of Linux).</p>
+
+<h2>How It Works</h2>
+
+<p>Vagrant uses Virtualbox to boot a stripped-down VM image, and then uses
+the Chef configuration management tool (one of the few components
+installed on the VM initially) to bring that blank slate into a fully
+configured state.</p>
+
+<p>The VM will be configured identically whether installed on Mac or Linux.
+(Theoretically, Vagrant supports Windows as well, although Ariadne
+is untested in this respect.)</p>
+
+<h2>Requirements</h2>
+
+<p><em>Tested versions in parentheses.</em></p>
+
+<ul>
+<li>
+<a href="http://www.virtualbox.org/wiki/Downloads">Virtualbox and Extension Pack</a> <a href="#note-vbox">[Note]</a> (v4.1.22)</li>
+<li>
+<a href="https://github.com/kennethreitz/osx-gcc-installer#readme">OSX GCC Installer</a> <a href="#note-gcc-installer">[Note]</a>
+</li>
+<li>
+<a href="https://rvm.io/">RVM</a> (v1.15.8) - Dealt with in "Quick Start" below</li>
+</ul><p>For Ubuntu, you'll need to install the following packages:</p>
+
+<pre><code>apt-get install build-essential libssl-dev libreadline5 libreadline-gplv2-dev zlib1g zlib1g-dev nfs-common nfs-kernel-server
+</code></pre>
+
+<p>For Ubuntu, you'll need to install the following packages:</p>
+
+<ul>
+<li>build-essential (11.5ubuntu2)</li>
+<li>libssl-dev (1.0.1-4ubuntu5.2)</li>
+<li>libreadline5 (5.2-11)</li>
+<li>libreadline-gplv2-dev (5.2-11)</li>
+<li>zlib1g (1:1.2.3.4.dfsg-3ubuntu4)</li>
+<li>zlib1g-dev (1:1.2.3.4.dfsg-3ubuntu4)</li>
+<li>nfs-common (1:1.2.5-3ubuntu3)</li>
+<li>nfs-kernel-server (1:1.2.5-3ubuntu3)</li>
+</ul><h2>Quick Start</h2>
+
+<h3>Setup</h3>
+
+<pre><code>$ curl -L get.rvm.io | bash -s 1.15.8    # Install/Update RVM
+$ rvm reload                             # Reloads RVM
+$ git clone https://github.com/myplanetdigital/ariadne.git
+$ cd ariadne                             # rvmrc script will run
+$ rake setup                             # Runs first-time setup commands
+</code></pre>
+
+<p>You're now set up and ready to boot a machine. This can be either a demo
+site, or a specific project.</p>
+
+<h3>Booting</h3>
+
+<p>Ariadne can be used to boot a simple <strong>demo</strong> or an <strong>Ariadne project</strong>.
+Instructions for each are given in the following sections, but first
+we'll note a few general items that apply to any approach:</p>
+
+<ul>
+<li>
+<p>After the demo or project-specific VM has spun up, here are several
+commands that might be useful:</p>
+
+<pre><code>$ rake send_gitconfig                    # Send your personal gitconfig to VM
+$ vagrant ssh-config &gt;&gt; ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
+</code></pre>
+</li>
+<li><p>The <code>vagrant up</code> command will take quite some time regardless, but
+it will take longer on the first run, as it must download a basebox
+VM image, which can be several hundred MB.</p></li>
+</ul><h4>Demo</h4>
+
+<p>If you'd like to spin up the demo site (currently a simple Drupal
+install), just run this command:</p>
+
+<pre><code>$ vagrant up
+</code></pre>
+
+<p>Congratulations! You now have a configured server image on your local
+machine, available at <a href="http://example.dev">http://example.dev</a>!</p>
+
+<h4>Ariadne Project</h4>
+
+<p>Since Ariadne can also be used to spin up specific Ariadne projects, you
+can also run this with a <a href="http://git-scm.com/docs/git-clone#_git_urls">Git URL</a> pointing to an Ariadne
+project repo.</p>
+
+<pre><code>$ rake "init_project[GITURL]"
+$ project=PROJECTNAME vagrant up
+</code></pre>
+
+<p>An Ariadne project is basically a Chef cookbook to take the VM through
+the last mile of project-specific configuration. An example of an
+Ariadne project cookbook is available in the
+<code>cookbooks-projects/example</code> folder of this project, which is run when
+setting up the demo site above.</p>
+
+<p>The Rake command in the code above clones the specified repository into the
+<code>cookbooks-projects</code> folder (removing the <code>ariadne-</code> from the new directory
+name if it exists). This folder is shared with the guest machine. The
+<code>project=PROJECTNAME</code> tells Chef which folder in <code>cookbooks-projects</code> to use
+for the final provisioning step.</p>
+
+<p>For simple Drupal projects, you could copy the <code>cookbooks-override/ariadne</code>
+folder and use it as a basis for your own Ariadne project.</p>
+
+<h2>Goals</h2>
+
+<ul>
+<li>Use your preferred tools from the local host machine
+(Drush, IDE, etc.)</li>
+<li>Changes should be immediately observable in browser</li>
+<li>Implement as little server configuration as possible that is specific
+to the Vagrant environment. It will strive to be as "production-like"
+as possible.</li>
+<li>Configured with advanced performance tools (Varnish,
+Memcache, APC, etc.)</li>
+<li>Configured with Percona, the drop-in MySQL replacement used by
+enterprise Drupal hosting providers.</li>
+<li>Configured with debugging tools (xhprof, xdebug, webgrind)</li>
+<li>Provision VM as quickly as possible (persistent shared folders for
+caches)</li>
+</ul><h2>Features</h2>
+
+<h3>Incredibly standardized environment</h3>
+
+<p>We've tried to lock everything down as much as possible, to ensure that
+when one user encounters an issue, we all encounter it together. Here
+are the tools we've used:</p>
+
+<ul>
+<li>
+<strong>Recommended version of Virtualbox</strong> to boot the virtual machines.</li>
+<li>
+<strong>Standard baseboxes</strong> reliably built with <a href="https://github.com/jedi4ever/veewee#readme">Veewee</a>, an
+automated basebox-building tool.</li>
+<li>
+<strong>Ruby Version Manager (RVM)</strong> to ensure a specific ruby version.</li>
+<li>
+<strong>Bundler</strong> to ensure specific versions of critical gem packages and
+their dependencies.</li>
+<li>
+<strong>Librarian</strong> to ensure specific versions of Chef cookbooks are
+used, which in turn ensures identical VM configuration.</li>
+</ul><h3>SSH agent forwarding</h3>
+
+<p>Your host machine's SSH session is forwarded into the VM, so when you
+SSH in or run Chef, the system will have all the same access that you
+have on your host machine. In other words, if you can clone a git repo
+or SSH into a remote machine from your host machine, you'll be able to
+do it on the VM as well. Wahoo!</p>
+
+<h3>Persistent apt cache</h3>
+
+<p>Every time Vagrant provisions a machine, the VM must redownload all the
+software packages using the apt package manager. Normally the VM caches
+all the downloaded files in a special directory, but this directory is lost
+whenever a VM is destroyed and rebuilt. For this reason, we share the
+directory in <code>tmp/apt/cache</code>, so it will persist between VM builds.</p>
+
+<h3><a href="https://github.com/BerlinVagrant/vagrant-dns#readme">vagrant-dns server</a></h3>
+
+<p><strong>OSX only!</strong></p>
+
+<p>Built-in DNS server for resolving vagrant domains. Server stops
+and starts with VM itself, and it can be easily uninstalled (see
+vagrant-dns README).</p>
+
+<p>If you find yourself in a broken system state related to URL's that
+aren't resolving, there's a rake task to restart vagrant-dns. (You can
+list all rake tasks using <code>rake -T</code> or <code>rake -D</code>.)</p>
+
+<h2>Upgrading</h2>
+
+<p>Should you pull changes or switch branches, you'll very likely need to
+rerun the setup. At the very least, you should exit and re-enter the
+ariadne directory so that RVM will rerun the <code>.rvmrc</code> script, where some
+setup happens. You should then run <code>rake setup</code> again.</p>
+
+<p>If you want to be extra sure that you're running in the same environment
+that your version of Ariadne was tested on, rerun the RVM setup script,
+then open a new shell. (The version of RVM that Ariadne was tested on
+might vary, and this ensure you're using the exact same one.) You can
+also ensure that you're using the recommended version of Virtualbox,
+verifiable in this README.</p>
+
+<h2>Notes</h2>
+
+<p><a name="note-vbox"></a></p>
+
+<ul>
+<li>Be sure to install your version's matching "Extension Pack" from the
+download page, as it contains the correct version of the <a href="http://www.virtualbox.org/manual/ch04.html#idp5980192">Virtualbox
+Guest Additions</a> package. This provides utlities intended to
+be installed on any VM running on VBox. Thankfully, we'll be using a
+<a href="https://github.com/dotless-de/vagrant-vbguest#readme">Vagrant plugin called vbguest</a>, which will handle
+copying this package into any VM that is out of date.
+<a name="note-gcc-installer"></a>
+</li>
+<li>Xcode should also work (as opposed to just the OXS GCC installer),
+although it will not always be fully tested.</li>
+<li>For the demo, the default password is set to "admin" during
+site-install. Also, while the local site can send mail to actual
+email addresses, the default email for admin is set to
+<code>vagrant@localhost</code>, so that any sent mail will be readable at
+<code>/var/mail/vagrant</code> in the VM. This default is mainly to prevent
+site-install errors, and can be edited via the admin user's account
+page.</li>
+<li>Several configuration settings can be tweaked in the
+<code>config/config.yml</code>: <code>project</code>, <code>basebox</code>, <code>memory</code>, <code>cpu_count</code>.
+Alternatively, any one of these can also be set on the command line
+while running vagrant commands, and the values will be written into
+<code>config.yml</code>. For example: <code>memory=2000 cpu_count=4 vagrant reload</code> will
+reload the VM using 4 cores and with 2GB of RAM.</li>
+<li>These is a special environment variable that can be set for use
+during any vagrant command that results in a chef run: <code>clean=true
+vagrant provision</code>. It is up the each external ariadne project cookbook
+to implement this feature, but the intention is that it makes it simpler
+to wipe out any data directories needed to rebuild the site.  For
+example, <code>vagrant provision</code> will not run <code>drush make</code> and <code>drush
+site-install</code> when it detects that the docroot is already present, but
+setting the <code>clean=true</code> variable can tell chef to delete the docroot,
+and so the site will be rebuilt as it was during the first chef run.</li>
+<li>
+<p>If your project's individual ariadne cookbook (for last-mile
+configuration) has implemented it, you can specify the branch of
+your project to build:</p>
+
+<pre><code>branch=123-story-description clean=true vagrant provision
+</code></pre>
+
+<p>Keep in mind that the <code>branch</code> flag might not have any effect in
+some case, such as the default <code>example</code> project.</p>
+</li>
+<li><p>Several baseboxes that are presumed to work for Ariadne are
+available for use: <code>lucid32</code> &amp; <code>lucid64</code>. (More may be added to
+<code>config/baseboxes.yml</code> in the future.)</p></li>
+<li><p>Ariadne's DNS resolver is set up to send all <code>*.dev</code> domains to the
+localhost, ie. Vagrant.</p></li>
+<li><p>Ariadne uses agent forwarding to forward the host machine's ssh
+session into the VM, including keys and passphrases stored by
+ssh-agent. What this means is that your VM will have the same Git/SSH
+access that you enjoy on your local machine.</p></li>
+<li><p>The standard MySQL port <code>3306</code> inside the VM has been forwarded to
+port <code>9306</code> on the local machine. This was done to avoid conflicts
+on systems with <code>3306</code> is already in use by MySQL on the local machine.
+When the VM is booted, you may connect your MySQL GUI to port <code>9306</code> to
+access the VM's MySQL directly.</p></li>
+<li>
+<p>If your <code>config/config.yml</code> file is showing up as altered when
+running <code>git status</code>, and you'd like git to [un]ignore it locally:</p>
+
+<pre><code>git update-index --[no-]assume-unchanged config/config.yml
+</code></pre>
+</li>
+</ul><h2>Known Issues</h2>
+
+<ul>
+<li>Having dnsmasq installed on the host computer can lead to unexpected
+behavior related to <code>resolv.conf</code> in the VM. This will manifest as a
+failure to upgrade chef (via rubygems) during boot, right off the bat.</li>
+<li>Various issues like DNS, network connectivity, easy gitconfig setup,
+etc.  can be dealt with using the various rake tasks. To see all the
+available tasks and their descriptions, run <code>rake -T</code> (for short
+descriptions) or <code>rake -D</code> (for full descriptions).</li>
+<li>When <code>cd</code>ing into non-root of project directory, for example
+<code>ariadne/data</code>, <code>.rvmrc</code> will create new directories relative to
+that dir. See notes in the <code>.rvmrc</code> for info on why normal bash script
+approach is avoided.</li>
+<li>It seems that some network connections (seems to be Rogers-related),
+will result in misconfigurations of <code>/etc/resolv.conf</code> in the VM. If
+your VM is unable to download packages or run <code>apt-get update</code>, please
+compare the <code>/etc/resolv.conf</code> of the VM with that on your host computer
+(which presumeably works fine). Copy the relevant bits from your host
+machine. Working on sorting out the origins of this.</li>
+<li>Oh god. The lucid64 basebox is 64 bit, so you must have a system
+running in 64-bit mode in order to boot it. Some models of 64-bit
+Macbooks will boot to 32-bit mode by default. Please run <code>uname -m</code> and
+ensure the system architecture is <code>x86_64</code>. (Alternatively, <code>i386</code>
+indicates 32-bit mode.) <a href="http://support.apple.com/kb/ht3773">This Apple knowledgebase
+article</a> should help you configure your machine
+correctly if it's not already.</li>
+<li>
+<p>Ariadne has been tested with a lucid64 basebox that was built on
+<strong>2012-05-07T21:00:04Z</strong>. Please consider downloading a newer build
+if yours is out of date. To see when your basebox was built, run this
+command:</p>
+
+<pre><code>$ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
+</code></pre>
+</li>
+<li><p>LogMeIn Hamachi is known to cause issues with making <code>pear.php.net</code>
+unreachable, and so the environment won't build.</p></li>
+<li>
+<p>Sometimes you might get an error like this while running <code>vagrant up</code>:</p>
+
+<pre><code>The VM failed to remain in the "running" state while attempting to boot.
+This is normally caused by a misconfiguration or host system incompatibilities.
+Please open the VirtualBox GUI and attempt to boot the virtual machine
+manually to get a more informative error message.
+</code></pre>
+
+<p>Should this occur, running <code>vagrant reload</code> seems to skirt the issue.</p>
+</li>
+</ul><h2>To Do</h2>
+
+<p><a href="https://github.com/myplanetdigital/ariadne/issues">https://github.com/myplanetdigital/ariadne/issues</a></p>
+
+<ul>
+<li>Doc the need to refresh browser for DNS <strong>or</strong> run dns rake task
+first.</li>
+<li>Create sister project to provide a base install profile that is
+pre-configured to use the advanced components (Memcache, Varnish,
+etc.) In progress: <a href="https://github.com/myplanetdigital/2ndleveldeep#readme">2ndleveldeep</a>
+</li>
+<li>Either avoid using the confusing word "host" (vs "guest" VM) to
+describe local machine, or define terminology somewhere.</li>
+<li>Add proper string support using <code>i18n</code> gem.</li>
+<li>Convert to rubygem?</li>
+<li>Convert example project to use <code>drush qd --no-server</code>.</li>
+</ul><h2>Contributing</h2>
+
+<p>Ariadne is being developed using the <a href="https://github.com/nvie/gitflow#readme">git-flow tool</a> and
+methodology. The take-home message is that pull requests should be
+submitted to the <code>develop</code> branch.</p>
+
+<p>Here's the gist of how we're applying it:</p>
+
+<ul>
+<li>New features happen on <code>develop</code> branch, not <code>master</code>.</li>
+<li>Release branches are created in preparation for a tagged release,
+and only bugfixes happen on release branches.</li>
+<li>When it seems all bugs are fixed on release branch, it's merged into
+<code>master</code>, tagged, and the release branch is removed.</li>
+<li>When developing new features on <code>develop</code>, feature branches are
+recommended.</li>
+</ul><h2>License and Author</h2>
+
+<p>Author:: <a href="http://about.me/patcon">Patrick Connolly</a> (<a href="mailto:patrick@myplanetdigital.com">patrick@myplanetdigital.com</a>)
+<a href="http://coderwall.com/patcon"><img src="http://api.coderwall.com/patcon/endorsecount.png" alt="endorse"></a></p>
+
+<p>Contributors:: <a href="https://github.com/myplanetdigital/ariadne/contributors">https://github.com/myplanetdigital/ariadne/contributors</a></p>
+
+<p>Copyright:: 2012, Myplanet Digital, Inc.</p>
+
+<p>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+
+<pre><code>http://www.apache.org/licenses/LICENSE-2.0
+</code></pre>
+
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+
+
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/myplanetdigital">myplanetdigital</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
