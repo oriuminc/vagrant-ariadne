@@ -5,7 +5,8 @@ SITE
     apt (1.4.8)
     build-essential (1.1.2)
     dmg (1.0.0)
-    git (1.0.0)
+    git (1.0.2)
+      build-essential (>= 0.0.0)
       dmg (>= 0.0.0)
       runit (>= 0.0.0)
       yum (>= 0.0.0)
@@ -21,7 +22,7 @@ SITE
     varnish (0.9.2)
     vim (1.0.2)
     xml (1.0.4)
-    yum (0.8.0)
+    yum (0.8.2)
 
 GIT
   remote: https://github.com/msonnabaum/chef-drush.git
