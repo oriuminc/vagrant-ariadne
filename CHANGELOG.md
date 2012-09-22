@@ -1,6 +1,9 @@
 1.4.0 (unreleased)
 ------------------
 
+  - Taking advantage of new GitHub CONTRIBUTING guidelines:
+    https://github.com/blog/1184-contributing-guidelines
+
 1.3.0 (Sept. 18, 2012)
 ----------------------
 
