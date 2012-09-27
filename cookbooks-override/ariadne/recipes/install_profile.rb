@@ -37,5 +37,7 @@ bash "Building site..." do
     'RERUN_MODULES' => "/vagrant/data/profiles/#{repo}/tmp/scripts/rerun-modules",
   })
   notifies :reload, "service[apache2]"
-  notifies :restart, "service[varnish]"
 end
+
+::Chef::Recipe.send(:include, Ariadne::Helpers)
+restart_service "varnish"

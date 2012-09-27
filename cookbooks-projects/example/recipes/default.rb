@@ -62,5 +62,7 @@ web_app site do
   server_aliases [ "www.#{site}" ]
   docroot "/mnt/www/html/#{project}"
   notifies :reload, "service[apache2]"
-  notifies :restart, "service[varnish]"
 end
+
+::Chef::Recipe.send(:include, Ariadne::Helpers)
+restart_service "varnish"

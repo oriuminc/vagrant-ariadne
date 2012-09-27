@@ -42,5 +42,18 @@ module Ariadne
       fail "Could not find running ssh agent - Is config.ssh.forward_agent enabled in Vagrantfile?" unless ENV['SSH_AUTH_SOCK']
     end
 
+    # Use this to restart a service that may or may not be present.
+    # It will currently act every chef run.
+    def restart_service(service)
+      res = run_context.resource_collection.lookup("service[#{service}]") rescue nil
+
+      if res
+        ruby_block "trigger-notify-restart-#{service}" do
+          #block { true }
+          notifies :restart, "service[#{service}]"
+        end
+      end
+    end
   end
 end
+

@@ -70,7 +70,6 @@ if node['ariadne']['clean']
 end
 
 ::Chef::Resource::RubyBlock.send(:include, Ariadne::Helpers)
-
 ruby_block "Give root access to the forwarded ssh agent" do
   block do
     give_ssh_agent_root
