@@ -218,7 +218,7 @@ Notes
     site-install errors, and can be edited via the admin user's account
     page.
   - Several configuration settings can be tweaked in the
-    `config/config.yml`: `project`, `basebox`, `memory`, `cpu_count`.
+    `roles/config.yml`: `project`, `basebox`, `memory`, `cpu_count`.
     Alternatively, any one of these can also be set on the command line
     while running vagrant commands, and the values will be written into
     `config.yml`. For example: `memory=2000 cpu_count=4 vagrant reload` will
@@ -251,13 +251,9 @@ Notes
     access that you enjoy on your local machine.
   - The standard MySQL port `3306` inside the VM has been forwarded to
     port `9306` on the local machine. This was done to avoid conflicts
-    on systems with `3306` is already in use by MySQL on the local machine.
+    on systems where `3306` is already in use by MySQL on the local machine.
     When the VM is booted, you may connect your MySQL GUI to port `9306` to
     access the VM's MySQL directly.
-  - If your `config/config.yml` file is showing up as altered when
-    running `git status`, and you'd like git to [un]ignore it locally:
-
-        git update-index --[no-]assume-unchanged config/config.yml
 
 Known Issues
 ------------

@@ -5,14 +5,18 @@ run_list([
   "recipe[git]",
   "recipe[vim]",
   "recipe[openssh]",
+  "recipe[postfix]",
 ])
-default_attributes(
+default_attributes({
   :openssh => {
     :client => {
       :strict_host_key_checking => "no",
     },
     :server => {
       :permit_root_login => "no",
-    }
-  }
-)
+    },
+    :postfix => {
+      :mydomain => "$myhostname",
+    },
+  },
+})

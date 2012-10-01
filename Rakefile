@@ -25,7 +25,7 @@ task :setup do
       branch: develop
       memory: 1000
       cpu_count: 2
-      roles: acquia
+      roles: acquia,dev_tools
 
       # If building an install profile according to Myplanet layout assumptions,
       # enter its repository URL here. (Otherwise, leave blank.)
