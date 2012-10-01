@@ -30,14 +30,14 @@ end
 baseboxes = YAML.load_file("#{current_dir}/config/baseboxes.yml")
 
 # Import configs from YAML file.
-conf = YAML.load_file "#{current_dir}/config/config.yml"
+conf = YAML.load_file "#{current_dir}/roles/config.yml"
 
-config_envvars = %w{ basebox branch cpu_count memory project repo_url }
+config_envvars = %w{ basebox branch cpu_count memory project repo_url roles }
 config_envvars.each do |envvar|
   create_config_envvar(envvar, conf)
 end
 
-File.open("#{current_dir}/config/config.yml", 'w') { |f| YAML.dump(conf, f) }
+File.open("#{current_dir}/roles/config.yml", 'w') { |f| YAML.dump(conf, f) }
 
 Vagrant::Config.run do |config|
   config.vm.define "ariadne"

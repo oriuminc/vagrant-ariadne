@@ -15,22 +15,23 @@ temporary vagrant-dns files, and creates several empty directories required for
 sharing with the VM."
 task :setup do
   # Write the config file if doesn't exist.
-  unless File.exists?("config/config.yml")
-    p "Creating config/config.yml..."
-    config = File.open("config/config.yml", "w")
-    config.puts <<-EOF.unindent
+  unless File.exists?("roles/config.yml")
+    p "Creating roles/config.yml..."
+    conf = File.open("roles/config.yml", "w")
+    conf.puts <<-EOF.unindent
       ---
       basebox: lucid64
       project: example
       branch: develop
       memory: 1000
       cpu_count: 2
+      roles: acquia
 
       # If building an install profile according to Myplanet layout assumptions,
       # enter its repository URL here. (Otherwise, leave blank.)
       repo_url: ''
     EOF
-    config.close
+    conf.close
   end
   p "Installing cookbooks using Librarian gem..."
   system "librarian-chef install"
