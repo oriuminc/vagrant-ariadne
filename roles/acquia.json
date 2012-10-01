@@ -9,16 +9,12 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[apt]",
     "role[apache2_mod_php]",
     "recipe[php::module_apc]",
-    "recipe[memcached]",
-    "recipe[php::module_memcache]",
-    "recipe[php::module_memcached]",
-    "recipe[php::write_inis]",
+    "role[memcache]",
     "role[drupal]",
-    "role[mysql_server]",
-    "role[varnish_frontend]",
+    "role[mysql]",
+    "role[varnish]",
     "recipe[drush::utils]",
     "recipe[drush::make]"
   ],
