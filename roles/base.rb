@@ -1,11 +1,11 @@
 name "base"
 description "Base role for general system setup."
-run_list(
+run_list([
   "recipe[apt]",
   "recipe[git]",
   "recipe[vim]",
   "recipe[openssh]",
-)
+])
 default_attributes(
   :openssh => {
     :client => {
