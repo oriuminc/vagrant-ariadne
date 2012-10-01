@@ -49,7 +49,7 @@ module Ariadne
 
       if res
         ruby_block "trigger-notify-restart-#{service}" do
-          #block { true }
+          block { true }
           notifies :restart, "service[#{service}]"
         end
       end
