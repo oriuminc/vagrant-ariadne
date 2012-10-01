@@ -254,6 +254,15 @@ Notes
     on systems where `3306` is already in use by MySQL on the local machine.
     When the VM is booted, you may connect your MySQL GUI to port `9306` to
     access the VM's MySQL directly.
+  - The chef roles installed in the VM are partially configurable via
+    `config.yml` or the command-line. Any role in the `roles/` directory
+    can be used to build the environment. We are working to allow any
+    reasonable combination of roles, but this is still a work in progress.
+    Order of roles will affect success of build. These are valid ways to
+    build Ariadne:
+
+        roles=acquia,dev_tools vagrant up                       # DEFAULT
+        roles=apache2_mod_php,memcache,mysql,drupal vagrant up  # NO VARNISH
 
 Known Issues
 ------------
