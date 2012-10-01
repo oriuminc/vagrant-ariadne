@@ -15,9 +15,6 @@
     },
     "phpunit": {
       "version": "3.6.10"
-    },
-    "postfix": {
-      "mydomain": "$myhostname"
     }
   },
   "json_class": "Chef::Role",
@@ -27,7 +24,6 @@
     "recipe[phpcs::drupal_standard]",
     "recipe[build-essential]",
     "recipe[phpunit]",
-    "recipe[postfix]",
     "recipe[xdebug]",
     "recipe[webgrind]"
   ],
