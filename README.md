@@ -300,7 +300,12 @@ Known Issues
         Please open the VirtualBox GUI and attempt to boot the virtual machine
         manually to get a more informative error message.
 
-    Should this occur, running `vagrant reload` seems to skirt the issue.
+    Should this occur, running `vagrant reload` seems to skirt the issue
+    until you have time to restart your system.
+
+  - If vagrant seems to freeze at "Waiting for VM to boot", try
+    cancelling (CTRL-C on Mac) and running `vagrant reload`. This will
+    usually go away after a system restart anyhow.
 
 
 To Do

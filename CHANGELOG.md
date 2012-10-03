@@ -6,6 +6,7 @@
   - Run list roles now configurable in `config.yml`. [GH-17]
   - Added `restart_service` function to add ability to restart services
     like Varnish even when not necessarily in run list. [GH-17]
+  - Moved to self-hosted `lucid64` basebox, as official one has bug.
 
 1.3.0 (Sept. 18, 2012)
 ----------------------
