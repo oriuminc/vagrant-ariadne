@@ -6,6 +6,7 @@ run_list([
   "recipe[vim]",
   "recipe[openssh]",
   "recipe[postfix]",
+  "recipe[ufw::recipes]",
 ])
 default_attributes({
   :openssh => {

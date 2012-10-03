@@ -11,6 +11,7 @@ cookbook "git"
 cookbook "memcached"
 cookbook "php"
 cookbook "postfix"
+cookbook "ufw"
 cookbook "varnish"
 cookbook "vim"
 
