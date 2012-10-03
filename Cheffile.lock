@@ -27,7 +27,7 @@ SITE
 GIT
   remote: https://github.com/msonnabaum/chef-drush.git
   ref: master
-  sha: ae0503ca017f923b363e727041d5aa749d45f89f
+  sha: 0753dfb106102da0fed54945b2df6f3811b6d93f
   specs:
     drush (0.10.0)
       php (>= 0.0.0)
