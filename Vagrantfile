@@ -107,11 +107,9 @@ Vagrant::Config.run do |config|
         "allow_remote_root" => true,
         "bind_address" => "0.0.0.0",
       },
-      # Send conf hash into VM.
-      "ariadne" => conf.merge({
-        # Merge in option to wipe files when set on CLI
+      "ariadne" => {
         "clean" => clean_flag,
-      })
+      }
     }
   end
 end

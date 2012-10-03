@@ -9,7 +9,9 @@ gem "vagrant-dns"
 gem "vagrant-vbguest"
 
 group :development do
+  gem "knife-solo"
   gem "sahara"
+  gem "ssh-forever"
 end
 
 group :test do

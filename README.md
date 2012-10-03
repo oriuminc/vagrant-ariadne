@@ -119,6 +119,24 @@ for the final provisioning step.
 For simple Drupal projects, you could copy the `cookbooks-override/ariadne`
 folder and use it as a basis for your own Ariadne project.
 
+## Deploying (WIP)
+
+Ariadne can theoretically be used to provision a remote dedicated
+server using the knife-solo tool. This does not yet work.
+
+Pending deploy instructions:
+
+```
+export ARIADNE_PROJECT=myproject
+export REMOTE_IP=123.45.67.89
+echo -e "\nHost $ARIADNE_PROJECT\n  User root\n  HostName $REMOTE_IP" >> ~/.ssh/config
+ssh-forever $ARIADNE_PROJECT -i path/to/ssh_key.pub # Enter root password when prompted.
+# Install Chef on the server
+knife prepare $ARIADNE_PROJECT --omnibus-version 10.14.4-1
+# Run chef-solo on remote server
+knife cook $ARIADNE_PROJECT nodes/dna.json --skip-syntax-check --skip-chef-check
+```
+
 Goals
 -----
 
