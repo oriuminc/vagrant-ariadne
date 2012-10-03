@@ -45,26 +45,28 @@ is untested in this respect.)
 Requirements
 ------------
 
-*Tested versions in parentheses.*
-
-  - [Virtualbox][vbox-downloads] (v4.1.22)
-  - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
-  - [RVM][about-rvm] (v1.15.8) - Dealt with in "Quick Start" below
-
-For Ubuntu, you'll need to install the following packages:
-
-    apt-get install build-essential libssl-dev libreadline5 libreadline-gplv2-dev zlib1g zlib1g-dev nfs-common nfs-kernel-server
 
 Quick Start
 -----------
 
+### Requirements
+
+*Tested versions in parentheses.*
+
+  - [Virtualbox][vbox-downloads] (v4.1.23)
+  - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
+
+*If running Ubuntu, [there are several extra requirements](#note-ubuntu-reqs).*
+
 ### Setup
 
-    $ curl -L get.rvm.io | bash -s 1.15.8    # Install/Update RVM
-    $ rvm reload                             # Reloads RVM
-    $ git clone https://github.com/myplanetdigital/ariadne.git
-    $ cd ariadne                             # rvmrc script will run
-    $ rake setup                             # Runs first-time setup commands
+Run these commands to set up Ariadne:
+
+    curl -L get.rvm.io | bash -s 1.16.7    # Install/Update RVM v1.16.7
+    rvm reload                             # Reloads RVM
+    git clone https://github.com/myplanetdigital/ariadne.git
+    cd ariadne                             # rvmrc script will run
+    rake setup                             # Runs first-time setup commands
 
 You're now set up and ready to boot a machine. This can be either a demo
 site, or a specific project.
@@ -200,9 +202,17 @@ verifiable in this README.
 Notes
 -----
 
-<a name="note-gcc-installer" />
-  - Xcode should also work (as opposed to just the OXS GCC installer),
+  - <a name="note-gcc-installer" /> Xcode should also work (as opposed to just the OXS GCC installer),
     although it will not always be fully tested.
+  - <a name="note-ubuntu-reqs" /> If running Ubuntu, there are several required packages:
+
+        apt-get install build-essential libssl-dev libreadline5 zlib1g zlib1g-dev nfs-common nfs-kernel-server
+
+    And one more that depends on your Ubuntu codename version and architecture:
+    - Precise 12.04: `apt-get install libreadline-gplv2-dev`
+    - Lucid 10.04, 32-bit: `apt-get install lib32readline5-dev`
+    - Lucid 10.04, 64-bit: `apt-get install lib64readline5-dev`
+
   - For the demo, the default password is set to "admin" during
     site-install. Also, while the local site can send mail to actual
     email addresses, the default email for admin is set to
