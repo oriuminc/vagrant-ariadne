@@ -51,6 +51,7 @@ module Ariadne
         ruby_block "trigger-notify-restart-#{service}" do
           block { true }
           notifies :restart, "service[#{service}]"
+          only_if true
         end
       end
     end
