@@ -16,6 +16,16 @@ sharing with the VM."
 task :setup do
   # Write the config file if doesn't exist.
   unless File.exists?("roles/config.yml")
+    p "Installing Bundler via Rubygems..."
+    BUNDLER_VERS = "1.1.4"
+    system "gem install bundler -v #{BUNDLER_VERS} --no-rdoc --no-ri"
+
+    p "Installing bundled gems via Bundler..."
+    system "bundle install"
+
+    p "Activating rubygems-bundler..." # Eff you, `bundle exec`
+    system "gem regenerate_binstubs"
+
     p "Creating roles/config.yml..."
     conf = File.open("roles/config.yml", "w")
     conf.puts <<-EOF.unindent
