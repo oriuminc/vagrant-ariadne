@@ -11,7 +11,7 @@ default_attributes({
     },
   },
   :phpcs => {
-    :drupalcs_git_ref => "7.x-1.0-alpha1",
+    :coder_git_ref => "c43676c3909038",
   },
   :phpunit => {
     :version => "3.6.10",
