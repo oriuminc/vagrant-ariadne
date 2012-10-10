@@ -91,7 +91,7 @@ Vagrant::Config.run do |config|
     # and project cookbook if not.
     # TODO: Move logic into ariadne role?
     if conf['repo_url'].empty?
-      chef.add_recipe "#{project}::default"
+      chef.add_recipe "#{conf['project']}::default"
     else
       chef.add_recipe "ariadne::install_profile"
     end

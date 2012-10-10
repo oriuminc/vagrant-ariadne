@@ -33,8 +33,20 @@ task :setup do
     EOF
     conf.close
   end
+
+  p "Installing Bundler via Rubygems..."
+  BUNDLER_VERS = "1.1.4"
+  system "gem install bundler -v #{BUNDLER_VERS} --no-rdoc --no-ri"
+
+  p "Installing bundled gems via Bundler..."
+  system "bundle install"
+
+  p "Activating rubygems-bundler..." # Eff you, `bundle exec`
+  system "gem regenerate_binstubs"
+
   p "Installing cookbooks using Librarian gem..."
   system "librarian-chef install"
+
   if RUBY_PLATFORM =~ /darwin/
     p "Starting vagrant-dns server..."
     p "(You may be prompted for your system password.)"
@@ -42,6 +54,7 @@ task :setup do
     system "rvmsudo vagrant dns --install"
   end
 
+  p "Creating required directories:"
   rel_dirs = %w{
     tmp/apt/cache/partial
     tmp/drush/cache
@@ -50,7 +63,6 @@ task :setup do
     data/profiles
     cookbooks-projects
   }
-  p "Creating required directories:"
   rel_dirs.each do |rel_dir|
     p rel_dir
     abs_dir = File.join(Dir::pwd, rel_dir)
