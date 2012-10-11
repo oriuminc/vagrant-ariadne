@@ -31,14 +31,12 @@ Windows as well, although Ariadne has not been tested on it.
 
 ## How It Works
 
-Vagrant uses Virtualbox to boot a stripped-down VM image, and then uses
-the Chef configuration management tool (one of the few components
-installed on the VM initially) to bring that blank slate into a fully
-configured state.
+Vagrant uses Virtualbox to boot a stripped-down virtual machine image, and then
+uses the Chef configuration management tool (one of the few components installed
+on the VM initially) to bring that blank slate into a fully configured state.
 
-The VM will be configured identically whether installed on Mac or Linux.
-(Theoretically, Vagrant supports Windows as well, although Ariadne
-is untested in this respect.)
+The guest virtual machine is configured identically, regardless of the host
+computer's operating system and configuration.
 
 ## Requirements
 
