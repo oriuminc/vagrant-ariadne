@@ -46,8 +46,10 @@ computer's operating system and configuration.
 - [Vagrant][about-vagrant] (1.0.3)
 - [Ruby version manager (RVM)][about-rvm] (1.14.1), installed by running:
 
-        curl -L get.rvm.io | bash -s 1.16.7 # Install/Update RVM
-        rvm reload                          # Use the updated version of RVM
+        $ curl -L get.rvm.io | bash -s 1.16.7 # Install/Update RVM
+
+  After this is done, you should open a new shell. If you are sure that you
+  already have rvm installed, you can run `rvm reload` instead.
 
 - On OS/X:
     - [OSX GCC Installer][about-osx-gcc-installer] (10.6) [[Note]](#note-gcc-installer)
