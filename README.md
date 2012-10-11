@@ -206,7 +206,7 @@ Notes
     although it will not always be fully tested.
   - <a name="note-ubuntu-reqs" /> If running Ubuntu, there are several required packages:
 
-        apt-get install build-essential libssl-dev libreadline5 zlib1g zlib1g-dev nfs-common nfs-kernel-server
+        apt-get install build-essential libssl-dev libreadline5 zlib1g zlib1g-dev nfs-common nfs-kernel-server libxml2 libxml2-dev libxslt1.1 libxslt1-dev
 
     And one more that depends on your Ubuntu codename version and architecture:
     - Precise 12.04: `apt-get install libreadline-gplv2-dev`
