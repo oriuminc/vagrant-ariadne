@@ -13,7 +13,7 @@ full documentation not yet guaranteed.**
 >
 > *-- Cobb, Inception*
 
-  - Source: https://github.com/myplanetdigital/ariadne
+- Source: https://github.com/myplanetdigital/ariadne
 
 Ariadne is a standardized virtual machine (VM) development environment
 for easily developing Drupal sites in a local sandbox that is
@@ -49,8 +49,8 @@ is untested in this respect.)
 
 *Tested versions in parentheses.*
 
-  - [Virtualbox][vbox-downloads] (v4.1.23)
-  - [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
+- [Virtualbox][vbox-downloads] (v4.1.23)
+- [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
 
 *If running Ubuntu, [there are several extra requirements](#note-ubuntu-reqs).*
 
@@ -73,15 +73,15 @@ Ariadne can be used to boot a simple **demo** or an **Ariadne project**.
 Instructions for each are given in the following sections, but first
 we'll note a few general items that apply to any approach:
 
-  - After the demo or project-specific VM has spun up, here are several
-    commands that might be useful:
+- After the demo or project-specific VM has spun up, here are several
+  commands that might be useful:
 
         $ rake send_gitconfig                    # Send your personal gitconfig to VM
         $ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
 
-  - The `vagrant up` command will take quite some time regardless, but
-    it will take longer on the first run, as it must download a basebox
-    VM image, which can be several hundred MB.
+- The `vagrant up` command will take quite some time regardless, but
+  it will take longer on the first run, as it must download a basebox
+  VM image, which can be several hundred MB.
 
 #### Demo
 
@@ -119,19 +119,19 @@ folder and use it as a basis for your own Ariadne project.
 
 ## Goals
 
-  - Use your preferred tools from the local host machine
-    (Drush, IDE, etc.)
-  - Changes should be immediately observable in browser
-  - Implement as little server configuration as possible that is specific
-    to the Vagrant environment. It will strive to be as "production-like"
-    as possible.
-  - Configured with advanced performance tools (Varnish,
-    Memcache, APC, etc.)
-  - Configured with Percona, the drop-in MySQL replacement used by
-    enterprise Drupal hosting providers.
-  - Configured with debugging tools (xhprof, xdebug, webgrind)
-  - Provision VM as quickly as possible (persistent shared folders for
-    caches)
+- Use your preferred tools from the local host machine
+  (Drush, IDE, etc.)
+- Changes should be immediately observable in browser
+- Implement as little server configuration as possible that is specific
+  to the Vagrant environment. It will strive to be as "production-like"
+  as possible.
+- Configured with advanced performance tools (Varnish,
+  Memcache, APC, etc.)
+- Configured with Percona, the drop-in MySQL replacement used by
+  enterprise Drupal hosting providers.
+- Configured with debugging tools (xhprof, xdebug, webgrind)
+- Provision VM as quickly as possible (persistent shared folders for
+  caches)
 
 ## Features
 
@@ -141,14 +141,14 @@ We've tried to lock everything down as much as possible, to ensure that
 when one user encounters an issue, we all encounter it together. Here
 are the tools we've used:
 
-  - **Recommended version of Virtualbox** to boot the virtual machines.
-  - **Standard baseboxes** reliably built with [Veewee][veewee], an
-    automated basebox-building tool.
-  - **Ruby Version Manager (RVM)** to ensure a specific ruby version.
-  - **Bundler** to ensure specific versions of critical gem packages and
-    their dependencies.
-  - **Librarian** to ensure specific versions of Chef cookbooks are
-    used, which in turn ensures identical VM configuration.
+- **Recommended version of Virtualbox** to boot the virtual machines.
+- **Standard baseboxes** reliably built with [Veewee][veewee], an
+  automated basebox-building tool.
+- **Ruby Version Manager (RVM)** to ensure a specific ruby version.
+- **Bundler** to ensure specific versions of critical gem packages and
+  their dependencies.
+- **Librarian** to ensure specific versions of Chef cookbooks are
+  used, which in turn ensures identical VM configuration.
 
 ### SSH agent forwarding
 
@@ -194,107 +194,107 @@ verifiable in this README.
 
 ## Notes
 
-  - <a name="note-gcc-installer" /> Xcode should also work (as opposed to just the OXS GCC installer),
+- <a name="note-gcc-installer" /> Xcode should also work (as opposed to just the OXS GCC installer),
     although it will not always be fully tested.
-  - <a name="note-ubuntu-reqs" /> If running Ubuntu, there are several required packages:
+- <a name="note-ubuntu-reqs" /> If running Ubuntu, there are several required packages:
 
         apt-get install build-essential libssl-dev libreadline5 zlib1g zlib1g-dev nfs-common nfs-kernel-server
 
-    And one more that depends on your Ubuntu codename version and architecture:
+  And one more that depends on your Ubuntu codename version and architecture:
     - Precise 12.04: `apt-get install libreadline-gplv2-dev`
     - Lucid 10.04, 32-bit: `apt-get install lib32readline5-dev`
     - Lucid 10.04, 64-bit: `apt-get install lib64readline5-dev`
 
-  - For the demo, the default password is set to "admin" during
-    site-install. Also, while the local site can send mail to actual
-    email addresses, the default email for admin is set to
-    `vagrant@localhost`, so that any sent mail will be readable at
-    `/var/mail/vagrant` in the VM. This default is mainly to prevent
-    site-install errors, and can be edited via the admin user's account
-    page.
-  - Several configuration settings can be tweaked in the
-    `roles/config.yml`: `project`, `basebox`, `memory`, `cpu_count`.
-    Alternatively, any one of these can also be set on the command line
-    while running vagrant commands, and the values will be written into
-    `config.yml`. For example: `memory=2000 cpu_count=4 vagrant reload` will
-    reload the VM using 4 cores and with 2GB of RAM.
-  - These is a special environment variable that can be set for use
-    during any vagrant command that results in a chef run: `clean=true
-    vagrant provision`. It is up the each external ariadne project cookbook
-    to implement this feature, but the intention is that it makes it simpler
-    to wipe out any data directories needed to rebuild the site.  For
-    example, `vagrant provision` will not run `drush make` and `drush
-    site-install` when it detects that the docroot is already present, but
-    setting the `clean=true` variable can tell chef to delete the docroot,
-    and so the site will be rebuilt as it was during the first chef run.
-  - If your project's individual ariadne cookbook (for last-mile
-    configuration) has implemented it, you can specify the branch of
-    your project to build:
+- For the demo, the default password is set to "admin" during
+  site-install. Also, while the local site can send mail to actual
+  email addresses, the default email for admin is set to
+  `vagrant@localhost`, so that any sent mail will be readable at
+  `/var/mail/vagrant` in the VM. This default is mainly to prevent
+  site-install errors, and can be edited via the admin user's account
+  page.
+- Several configuration settings can be tweaked in the
+  `roles/config.yml`: `project`, `basebox`, `memory`, `cpu_count`.
+  Alternatively, any one of these can also be set on the command line
+  while running vagrant commands, and the values will be written into
+  `config.yml`. For example: `memory=2000 cpu_count=4 vagrant reload` will
+  reload the VM using 4 cores and with 2GB of RAM.
+- These is a special environment variable that can be set for use
+  during any vagrant command that results in a chef run: `clean=true
+  vagrant provision`. It is up the each external ariadne project cookbook
+  to implement this feature, but the intention is that it makes it simpler
+  to wipe out any data directories needed to rebuild the site.  For
+  example, `vagrant provision` will not run `drush make` and `drush
+  site-install` when it detects that the docroot is already present, but
+  setting the `clean=true` variable can tell chef to delete the docroot,
+  and so the site will be rebuilt as it was during the first chef run.
+- If your project's individual ariadne cookbook (for last-mile
+  configuration) has implemented it, you can specify the branch of
+  your project to build:
 
         branch=123-story-description clean=true vagrant provision
 
-    Keep in mind that the `branch` flag might not have any effect in
-    some case, such as the default `example` project.
-  - Several baseboxes that are presumed to work for Ariadne are
-    available for use: `lucid32` & `lucid64`. (More may be added to
-    `config/baseboxes.yml` in the future.)
-  - Ariadne's DNS resolver is set up to send all `*.dev` domains to the
-    localhost, ie. Vagrant.
-  - Ariadne uses agent forwarding to forward the host machine's ssh
-    session into the VM, including keys and passphrases stored by
-    ssh-agent. What this means is that your VM will have the same Git/SSH
-    access that you enjoy on your local machine.
-  - The standard MySQL port `3306` inside the VM has been forwarded to
-    port `9306` on the local machine. This was done to avoid conflicts
-    on systems where `3306` is already in use by MySQL on the local machine.
-    When the VM is booted, you may connect your MySQL GUI to port `9306` to
-    access the VM's MySQL directly.
-  - The chef roles installed in the VM are partially configurable via
-    `config.yml` or the command-line. Any role in the `roles/` directory
-    can be used to build the environment. We are working to allow any
-    reasonable combination of roles, but this is still a work in progress.
-    Order of roles will affect success of build. These are valid ways to
-    build Ariadne:
+  Keep in mind that the `branch` flag might not have any effect in
+  some case, such as the default `example` project.
+- Several baseboxes that are presumed to work for Ariadne are
+  available for use: `lucid32` & `lucid64`. (More may be added to
+  `config/baseboxes.yml` in the future.)
+- Ariadne's DNS resolver is set up to send all `*.dev` domains to the
+  localhost, ie. Vagrant.
+- Ariadne uses agent forwarding to forward the host machine's ssh
+  session into the VM, including keys and passphrases stored by
+  ssh-agent. What this means is that your VM will have the same Git/SSH
+  access that you enjoy on your local machine.
+- The standard MySQL port `3306` inside the VM has been forwarded to
+  port `9306` on the local machine. This was done to avoid conflicts
+  on systems where `3306` is already in use by MySQL on the local machine.
+  When the VM is booted, you may connect your MySQL GUI to port `9306` to
+  access the VM's MySQL directly.
+- The chef roles installed in the VM are partially configurable via
+  `config.yml` or the command-line. Any role in the `roles/` directory
+  can be used to build the environment. We are working to allow any
+  reasonable combination of roles, but this is still a work in progress.
+  Order of roles will affect success of build. These are valid ways to
+  build Ariadne:
 
         roles=acquia,dev_tools vagrant up                       # DEFAULT
         roles=apache2_mod_php,memcache,mysql,drupal vagrant up  # NO VARNISH
 
 ## Known Issues
 
-  - Having dnsmasq installed on the host computer can lead to unexpected
-    behavior related to `resolv.conf` in the VM. This will manifest as a
-    failure to upgrade chef (via rubygems) during boot, right off the bat.
-  - Various issues like DNS, network connectivity, easy gitconfig setup,
-    etc.  can be dealt with using the various rake tasks. To see all the
-    available tasks and their descriptions, run `rake -T` (for short
-    descriptions) or `rake -D` (for full descriptions).
-  - When `cd`ing into non-root of project directory, for example
-    `ariadne/data`, `.rvmrc` will create new directories relative to
-    that dir. See notes in the `.rvmrc` for info on why normal bash script
-    approach is avoided.
-  - It seems that some network connections (seems to be Rogers-related),
-    will result in misconfigurations of `/etc/resolv.conf` in the VM. If
-    your VM is unable to download packages or run `apt-get update`, please
-    compare the `/etc/resolv.conf` of the VM with that on your host computer
-    (which presumeably works fine). Copy the relevant bits from your host
-    machine. Working on sorting out the origins of this.
-  - Oh god. The lucid64 basebox is 64 bit, so you must have a system
-    running in 64-bit mode in order to boot it. Some models of 64-bit
-    Macbooks will boot to 32-bit mode by default. Please run `uname -m` and
-    ensure the system architecture is `x86_64`. (Alternatively, `i386`
-    indicates 32-bit mode.) [This Apple knowledgebase
-    article][apple-sys-arch] should help you configure your machine
-    correctly if it's not already.
-  - Ariadne has been tested with a lucid64 basebox that was built on
-    **2012-05-07T21:00:04Z**. Please consider downloading a newer build
-    if yours is out of date. To see when your basebox was built, run this
-    command:
+- Having dnsmasq installed on the host computer can lead to unexpected
+  behavior related to `resolv.conf` in the VM. This will manifest as a
+  failure to upgrade chef (via rubygems) during boot, right off the bat.
+- Various issues like DNS, network connectivity, easy gitconfig setup,
+  etc.  can be dealt with using the various rake tasks. To see all the
+  available tasks and their descriptions, run `rake -T` (for short
+  descriptions) or `rake -D` (for full descriptions).
+- When `cd`ing into non-root of project directory, for example
+  `ariadne/data`, `.rvmrc` will create new directories relative to
+  that dir. See notes in the `.rvmrc` for info on why normal bash script
+  approach is avoided.
+- It seems that some network connections (seems to be Rogers-related),
+  will result in misconfigurations of `/etc/resolv.conf` in the VM. If
+  your VM is unable to download packages or run `apt-get update`, please
+  compare the `/etc/resolv.conf` of the VM with that on your host computer
+  (which presumeably works fine). Copy the relevant bits from your host
+  machine. Working on sorting out the origins of this.
+- Oh god. The lucid64 basebox is 64 bit, so you must have a system
+  running in 64-bit mode in order to boot it. Some models of 64-bit
+  Macbooks will boot to 32-bit mode by default. Please run `uname -m` and
+  ensure the system architecture is `x86_64`. (Alternatively, `i386`
+  indicates 32-bit mode.) [This Apple knowledgebase
+  article][apple-sys-arch] should help you configure your machine
+  correctly if it's not already.
+- Ariadne has been tested with a lucid64 basebox that was built on
+  **2012-05-07T21:00:04Z**. Please consider downloading a newer build
+  if yours is out of date. To see when your basebox was built, run this
+  command:
 
         $ sed -n 's/.*lastStateChange="\(.*\)".*/\1/p' ~/.vagrant.d/boxes/lucid64/box.ovf
 
-  - LogMeIn Hamachi is known to cause issues with making `pear.php.net`
-    unreachable, and so the environment won't build.
-  - Sometimes you might get an error like this while running `vagrant up`:
+- LogMeIn Hamachi is known to cause issues with making `pear.php.net`
+  unreachable, and so the environment won't build.
+- Sometimes you might get an error like this while running `vagrant up`:
 
         The VM failed to remain in the "running" state while attempting to boot.
         This is normally caused by a misconfiguration or host system incompatibilities.
@@ -304,9 +304,9 @@ verifiable in this README.
     Should this occur, running `vagrant reload` seems to skirt the issue
     until you have time to restart your system.
 
-  - If vagrant seems to freeze at "Waiting for VM to boot", try
-    cancelling (CTRL-C on Mac) and running `vagrant reload`. This will
-    usually go away after a system restart anyhow.
+- If vagrant seems to freeze at "Waiting for VM to boot", try
+  cancelling (CTRL-C on Mac) and running `vagrant reload`. This will
+  usually go away after a system restart anyhow.
 
 ## To Do
 
