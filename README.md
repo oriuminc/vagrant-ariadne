@@ -30,8 +30,7 @@ used to deploy an actual cluster.
 Tested on Mac OSX Snow Leopard & Lion and Ubuntu 12.04 (should work on
 other flavours of Linux).
 
-How It Works
-------------
+## How It Works
 
 Vagrant uses Virtualbox to boot a stripped-down VM image, and then uses
 the Chef configuration management tool (one of the few components
@@ -42,12 +41,9 @@ The VM will be configured identically whether installed on Mac or Linux.
 (Theoretically, Vagrant supports Windows as well, although Ariadne
 is untested in this respect.)
 
-Requirements
-------------
+## Requirements
 
-
-Quick Start
------------
+## Quick Start
 
 ### Requirements
 
@@ -121,8 +117,7 @@ for the final provisioning step.
 For simple Drupal projects, you could copy the `cookbooks-override/ariadne`
 folder and use it as a basis for your own Ariadne project.
 
-Goals
------
+## Goals
 
   - Use your preferred tools from the local host machine
     (Drush, IDE, etc.)
@@ -138,8 +133,7 @@ Goals
   - Provision VM as quickly as possible (persistent shared folders for
     caches)
 
-Features
---------
+## Features
 
 ### Incredibly standardized environment
 
@@ -184,8 +178,7 @@ If you find yourself in a broken system state related to URL's that
 aren't resolving, there's a rake task to restart vagrant-dns. (You can
 list all rake tasks using `rake -T` or `rake -D`.)
 
-Upgrading
----------
+## Upgrading
 
 Should you pull changes or switch branches, you'll very likely need to
 rerun the setup. At the very least, you should exit and re-enter the
@@ -199,8 +192,7 @@ might vary, and this ensure you're using the exact same one.) You can
 also ensure that you're using the recommended version of Virtualbox,
 verifiable in this README.
 
-Notes
------
+## Notes
 
   - <a name="note-gcc-installer" /> Xcode should also work (as opposed to just the OXS GCC installer),
     although it will not always be fully tested.
@@ -267,8 +259,7 @@ Notes
         roles=acquia,dev_tools vagrant up                       # DEFAULT
         roles=apache2_mod_php,memcache,mysql,drupal vagrant up  # NO VARNISH
 
-Known Issues
-------------
+## Known Issues
 
   - Having dnsmasq installed on the host computer can lead to unexpected
     behavior related to `resolv.conf` in the VM. This will manifest as a
@@ -317,9 +308,7 @@ Known Issues
     cancelling (CTRL-C on Mac) and running `vagrant reload`. This will
     usually go away after a system restart anyhow.
 
-
-To Do
------
+## To Do
 
 https://github.com/myplanetdigital/ariadne/issues
 
@@ -334,8 +323,7 @@ https://github.com/myplanetdigital/ariadne/issues
 * Convert to rubygem?
 * Convert example project to use `drush qd --no-server`.
 
-License and Author
-------------------
+## License and Author
 
 Author:: [Patrick Connolly][patcon] (<patrick@myplanetdigital.com>)
 [![endorse][coderwall-badge]][coderwall]
