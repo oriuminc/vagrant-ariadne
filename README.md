@@ -312,16 +312,16 @@ verifiable in this README.
 
 https://github.com/myplanetdigital/ariadne/issues
 
-* Doc the need to refresh browser for DNS **or** run dns rake task
+- Doc the need to refresh browser for DNS **or** run dns rake task
   first.
-* Create sister project to provide a base install profile that is
+- Create sister project to provide a base install profile that is
   pre-configured to use the advanced components (Memcache, Varnish,
   etc.) In progress: [2ndleveldeep][2ndleveldeep-profile]
-* Either avoid using the confusing word "host" (vs "guest" VM) to
+- Either avoid using the confusing word "host" (vs "guest" VM) to
   describe local machine, or define terminology somewhere.
-* Add proper string support using `i18n` gem.
-* Convert to rubygem?
-* Convert example project to use `drush qd --no-server`.
+- Add proper string support using `i18n` gem.
+- Convert to rubygem?
+- Convert example project to use `drush qd --no-server`.
 
 ## License and Author
 
