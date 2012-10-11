@@ -15,20 +15,19 @@ full documentation not yet guaranteed.**
 
 - Source: https://github.com/myplanetdigital/ariadne
 
-Ariadne is a standardized virtual machine (VM) development environment
-for easily developing Drupal sites in a local sandbox that is
-essentially identical to a fully-configured hosted solution. It attempts
-to emulate a dedicated Acquia/Pantheon server as closely as possible,
-with added development tools. Once several simple system requirements
-have been met, it can be set up using only a few commands from your
-computer's terminal.
+Ariadne is a standardized virtual machine (VM) development environment for
+easily developing Drupal sites in a local sandbox that is essentially identical
+to a fully-configured hosted solution. Once several simple system requirements
+have been met, it can be set up using only a few commands from your computer's
+terminal.
 
-The current iteration aims to create a local Vagrant environment that mimics Acquia's
-infrastructure as closely as possible, using cookbooks and roles that can easily be
-used to deploy an actual cluster.
+It attempts to emulate Acquia's infrastructure as closely as possible (with
+added development tools), using cookbooks and roles that can easily be used to
+deploy an actual cluster.
 
-Tested on Mac OSX Snow Leopard & Lion and Ubuntu 12.04 (should work on
-other flavours of Linux).
+Ariadne has been tested on Mac OS/X Snow Leopard & Lion and Ubuntu 12.04 (and it
+should work on other flavours of Linux). Theoretically, Vagrant should support
+Windows as well, although Ariadne has not been tested on it.
 
 ## How It Works
 
