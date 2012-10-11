@@ -75,20 +75,20 @@ Run these commands to set up Ariadne:
 You're now set up and ready to boot a machine. This can be either the simple
 **demo** site (packaged with Ariadne), or full-fledged **Ariadne project**.
 
-*If running Ubuntu, [there are several extra requirements](#note-ubuntu-reqs).*
+### Booting a demo
 
-### Setup
+If you'd like to spin up the demo site (currently a simple Drupal install on a
+basic virtual machine), just run this command:
 
-Run these commands to set up Ariadne:
+    $ vagrant up
 
-    curl -L get.rvm.io | bash -s 1.16.7    # Install/Update RVM v1.16.7
-    rvm reload                             # Reloads RVM
-    git clone https://github.com/myplanetdigital/ariadne.git
-    cd ariadne                             # rvmrc script will run
-    rake setup                             # Runs first-time setup commands
+This command will take a while to finish the first time you run it, because
+Vagrant must download the disk image for the guest operating system (which can
+be several hundred megabytes in size), and set up the virtual machine's
+hard-drive for the first time (which involves downloading and installing any
+required software to the guest machine).
 
-You're now set up and ready to boot a machine. This can be either a demo
-site, or a specific project.
+When it's done, you can visit http://example.dev/ to view the demo website!
 
 ### Booting
 
