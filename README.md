@@ -69,11 +69,14 @@ computer's operating system and configuration.
 
 Run these commands to set up Ariadne:
 
-    git clone https://github.com/myplanetdigital/ariadne.git
-    cd ariadne
-    # The RVM configuration script (.rvmrc) script will now run and ensure you
-    # have the right version of ruby and the correct gems.
-    rake setup # Runs first-time setup commands
+    $ git clone https://github.com/myplanetdigital/ariadne.git
+    $ cd ariadne
+
+The RVM configuration script (.rvmrc) script will now run and ensure you have
+the right version of ruby and the correct gems. When it's done, run the
+first-time setup commands with
+
+    $ rake setup
 
 You're now set up and ready to boot a machine. This can be either the simple
 **demo** site (packaged with Ariadne), or full-fledged **Ariadne project**.
@@ -112,6 +115,8 @@ Once the project is in place, run
 
 to spin up the project. The `project=FOLDERNAME` tells Chef which folder in
 `cookbooks-projects` to use for the final provisioning step.
+
+Your site will be available at http://FOLDERNAME.dev/ when it is done.
 
 ### After booting
 
