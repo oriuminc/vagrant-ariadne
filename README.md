@@ -90,28 +90,33 @@ required software to the guest machine).
 
 When it's done, you can visit http://example.dev/ to view the demo website!
 
-### Booting
+### Booting an Ariadne project
 
-Ariadne can be used to boot a simple **demo** or an **Ariadne project**.
-Instructions for each are given in the following sections, but first
-we'll note a few general items that apply to any approach:
+If you already have an Ariadne project (basically a Chef cookbook), you can boot
+that instead of the demo.
 
-- After the demo or project-specific VM has spun up, here are several
-  commands that might be useful:
+Either place the Ariadne project in the `cookbooks-projects` folder, or run
 
-        $ rake send_gitconfig                    # Send your personal gitconfig to VM
-        $ vagrant ssh-config >> ~/.ssh/config    # OPTIONAL: Adds entry to ssh config
+    $ rake "init_project[GITURL]" # don't forget the quotes!
 
-- The `vagrant up` command will take quite some time regardless, but
-  it will take longer on the first run, as it must download a basebox
-  VM image, which can be several hundred MB.
+to clone the project at the specified [Git URL][git-url-docs] into the correct
+folder for you. Note that for your typing convenience, it will remove the prefix
+`ariadne-` from the folder name if it exists.
 
-#### Demo
+Once the project is in place, run
 
-If you'd like to spin up the demo site (currently a simple Drupal
-install), just run this command:
+    $ project=FOLDERNAME vagrant up
 
-    $ vagrant up
+to spin up the project. The `project=FOLDERNAME` tells Chef which folder in
+`cookbooks-projects` to use for the final provisioning step.
+
+### After booting
+
+After the demo or project-specific VM has spun up, here are several commands
+that might be useful:
+
+    $ rake send_gitconfig                  # Send your personal gitconfig to the virtual machine.
+    $ vagrant ssh-config >> ~/.ssh/config  # Adds an entry to your ssh config.
 
 Congratulations! You now have a configured server image on your local
 machine, available at http://example.dev!
