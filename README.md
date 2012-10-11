@@ -52,12 +52,13 @@ computer's operating system and configuration.
   already have rvm installed, you can run `rvm reload` instead.
 
 - On OS/X:
-    - [OSX GCC Installer][about-osx-gcc-installer] (10.6) [[Note]](#note-gcc-installer)
+    - [OSX GCC Installer][about-osx-gcc-installer] (10.6) or Xcode (note that
+    Xcode may not be fully tested).
 - On Ubuntu (`sudo apt-get install` these):
     - `build-essential` (11.5ubuntu2)
     - `libssl-dev` (1.0.1-4ubuntu5.2)
     - `libreadline5` (5.2-11)
-    - `libreadline-gplv2-dev` (5.2-11) - called `libreadline5-dev` on natty 
+    - `libreadline-gplv2-dev` (5.2-11) - called `libreadline5-dev` on natty
       (11.04) or earlier
     - `zlib1g` (1:1.2.3.4.dfsg-3ubuntu4)
     - `zlib1g-dev` (1:1.2.3.4.dfsg-3ubuntu4)
