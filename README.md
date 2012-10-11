@@ -40,14 +40,40 @@ computer's operating system and configuration.
 
 ## Requirements
 
-## Quick Start
-
-### Requirements
-
 *Tested versions in parentheses.*
 
-- [Virtualbox][vbox-downloads] (v4.1.23)
-- [OSX GCC Installer][about-osx-gcc-installer] [[Note]](#note-gcc-installer)
+- [Virtualbox][vbox-downloads] (4.1.23)
+- [Vagrant][about-vagrant] (1.0.3)
+- [Ruby version manager (RVM)][about-rvm] (1.14.1), installed by running:
+
+        curl -L get.rvm.io | bash -s 1.16.7 # Install/Update RVM
+        rvm reload                          # Use the updated version of RVM
+
+- On OS/X:
+    - [OSX GCC Installer][about-osx-gcc-installer] (10.6) [[Note]](#note-gcc-installer)
+- On Ubuntu (`sudo apt-get install` these):
+    - `build-essential` (11.5ubuntu2)
+    - `libssl-dev` (1.0.1-4ubuntu5.2)
+    - `libreadline5` (5.2-11)
+    - `libreadline-gplv2-dev` (5.2-11) - called `libreadline5-dev` on natty 
+      (11.04) or earlier
+    - `zlib1g` (1:1.2.3.4.dfsg-3ubuntu4)
+    - `zlib1g-dev` (1:1.2.3.4.dfsg-3ubuntu4)
+    - `nfs-common` (1:1.2.5-3ubuntu3)
+    - `nfs-kernel-server` (1:1.2.5-3ubuntu3)
+
+## Quick Start
+
+Run these commands to set up Ariadne:
+
+    git clone https://github.com/myplanetdigital/ariadne.git
+    cd ariadne
+    # The RVM configuration script (.rvmrc) script will now run and ensure you
+    # have the right version of ruby and the correct gems.
+    rake setup # Runs first-time setup commands
+
+You're now set up and ready to boot a machine. This can be either the simple
+**demo** site (packaged with Ariadne), or full-fledged **Ariadne project**.
 
 *If running Ubuntu, [there are several extra requirements](#note-ubuntu-reqs).*
 
