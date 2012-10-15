@@ -10,6 +10,10 @@ default_attributes(
     :listen_port => "80",
     :backend_host => "127.0.0.1",
     :backend_port => "8080",
+    :firewall => {
+      :rules => {
+      }
+    }
   }
 )
 # Must be override or array just gets merged (and port 80 included)
