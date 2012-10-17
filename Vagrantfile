@@ -49,6 +49,9 @@ Vagrant::Config.run do |config|
 
   config.vm.customize ["modifyvm", :id, "--memory", conf['memory']]
   config.vm.customize ["modifyvm", :id, "--cpus", conf['cpu_count']]
+  config.vm.customize ["storagectl", :id, "--name", "SATA Controller", "--hostiocache", "off"]
+  config.vm.customize ['modifyvm', :id, '--nictype1', 'virtio']
+  config.vm.customize ['modifyvm', :id, '--nictype2', 'virtio']
 
   # Forward keys and ssh configs into VM
   # Caveats: https://github.com/mitchellh/vagrant/issues/105
@@ -71,10 +74,9 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 80, 8080, :auto => true
   config.vm.forward_port 3306, 9306
 
-  # Uncomment for testing, to speed up initial provisioning by preventing the
-  # vbguest Vagrant plugin from upgrading the Virtualbox Guest Additions.
-  #
-  # config.vbguest.no_install = true
+  # Speed up initial provisioning by preventing the vbguest Vagrant plugin from
+  # upgrading the Virtualbox Guest Additions.
+  config.vbguest.no_install = true unless ENV['ARIADNE_NO_VBGUEST'].nil?
 
   # Update Chef in VM to specific version before running chef provisioner
   config.vm.provision :shell do |shell|
@@ -87,8 +89,7 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = [ "cookbooks", "cookbooks-override", "cookbooks-projects" ]
     chef.add_role "ariadne"
 
-    # Assume install profile if repo_url given in config,
-    # and project cookbook if not.
+    # Assume install profile if repo_url given in config, and project cookbook if not.
     # TODO: Move logic into ariadne role?
     if conf['repo_url'].empty?
       chef.add_recipe "#{conf['project']}::default"
@@ -96,8 +97,7 @@ Vagrant::Config.run do |config|
       chef.add_recipe "ariadne::install_profile"
     end
 
-    # Option so cookbooks can wipe files when set on command-line
-    clean_flag = true unless ENV['clean'].nil?
+    chef.log_level = :debug unless ENV['CHEF_LOG'].nil?
 
     chef.json = {
       "mysql" => {
@@ -108,10 +108,10 @@ Vagrant::Config.run do |config|
         "bind_address" => "0.0.0.0",
       },
       # Send conf hash into VM.
-      "ariadne" => conf.merge({
-        # Merge in option to wipe files when set on CLI
-        "clean" => clean_flag,
-      })
+      "ariadne" => conf,
     }
+
+    # Option so cookbooks can wipe files when set on command-line
+    chef.json['ariadne'].merge!({ "clean" => true }) unless ENV['clean'].nil?
   end
 end
