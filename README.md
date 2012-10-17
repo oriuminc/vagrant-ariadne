@@ -22,48 +22,43 @@ have been met, it can be set up using only a few commands from your computer's
 terminal.
 
 It attempts to emulate Acquia's infrastructure as closely as possible (with
-added development tools), using cookbooks and roles that can easily be used to
-deploy an actual cluster.
+added development tools), using Chef cookbooks and roles that can easily be used
+to deploy an actual cluster.
 
 Ariadne has been tested on Mac OS/X Snow Leopard & Lion and Ubuntu 12.04 (and it
-should work on other flavours of Linux). Theoretically, Vagrant should support
+should work on other flavours of Linux). Theoretically, it should support
 Windows as well, although Ariadne has not been tested on it.
 
 ## How It Works
 
-Vagrant uses Virtualbox to boot a stripped-down virtual machine image, and then
-uses the Chef configuration management tool (one of the few components installed
-on the VM initially) to bring that blank slate into a fully configured state.
+Ariadne is a customized implementation of [Vagrant][about-vagrant].
+Vagrant uses Virtualbox to boot a stripped-down virtual machine image,
+and then uses the Chef configuration management tool (one of the few
+components installed on the VM initially) to bring that blank slate into
+a fully configured state.
 
 The guest virtual machine is configured identically, regardless of the host
 computer's operating system and configuration.
 
 ## Requirements
 
-*Tested versions in parentheses.*
+*Recommended versions in parentheses.*
 
 - [Virtualbox][vbox-downloads] (4.1.23)
-- [Vagrant][about-vagrant] (1.0.3)
-- [Ruby version manager (RVM)][about-rvm] (1.14.1), installed by running:
+- [Ruby version manager (RVM)][about-rvm] (1.16.7)
 
-        $ curl -L get.rvm.io | bash -s 1.16.7 # Install/Update RVM
+        curl -L get.rvm.io | bash -s 1.16.7 # Install/Update RVM
+        exec $SHELL                         # Relaunch shell
 
-  After this is done, you should open a new shell. If you are sure that you
-  already have rvm installed, you can run `rvm reload` instead.
+- On OS/X: _Xcode_ or _Command Line Tools for Xcode_
 
-- On OS/X:
-    - [OSX GCC Installer][about-osx-gcc-installer] (10.6) or Xcode (note that
-    Xcode may not be fully tested).
-- On Ubuntu (`sudo apt-get install` these):
-    - `build-essential` (11.5ubuntu2)
-    - `libssl-dev` (1.0.1-4ubuntu5.2)
-    - `libreadline5` (5.2-11)
-    - `libreadline-gplv2-dev` (5.2-11) - called `libreadline5-dev` on natty
-      (11.04) or earlier
-    - `zlib1g` (1:1.2.3.4.dfsg-3ubuntu4)
-    - `zlib1g-dev` (1:1.2.3.4.dfsg-3ubuntu4)
-    - `nfs-common` (1:1.2.5-3ubuntu3)
-    - `nfs-kernel-server` (1:1.2.5-3ubuntu3)
+- On Ubuntu:
+
+        apt-get install build-essential libreadline5 libssl-dev nfs-kernel-server
+
+  - Ubuntu > 12.04: `apt-get install libreadline-gplv2-dev`
+
+  - Ubuntu <= 11.04: `apt-get install libreadline5-dev`
 
 ## Quick Start
 
@@ -72,16 +67,20 @@ Run these commands to set up Ariadne:
     $ git clone https://github.com/myplanetdigital/ariadne.git
     $ cd ariadne
 
-The RVM configuration script (.rvmrc) script will now run and ensure you have
-the right version of ruby and the correct gems. When it's done, run the
-first-time setup commands with
+The RVM configuration script (.rvmrc) script will now run and ensure you
+have the right version of ruby. When it's done, run the setup command
+with
 
     $ rake setup
 
-You're now set up and ready to boot a machine. This can be either the simple
-**demo** site (packaged with Ariadne), or full-fledged **Ariadne project**.
+This is a non-destructive command that will download the correctly
+versioned rubygem packages and Chef cookbooks, among other things. You
+should run this command any time you upgrade or downgrade Ariadne.
 
-### Booting a demo
+You're now set up and ready to boot a machine. This can be either the simple
+**example** site (included with Ariadne), or a full-fledged **Ariadne project**.
+
+### Booting the example
 
 If you'd like to spin up the demo site (currently a simple Drupal install on a
 basic virtual machine), just run this command:
@@ -94,7 +93,7 @@ be several hundred megabytes in size), and set up the virtual machine's
 hard-drive for the first time (which involves downloading and installing any
 required software to the guest machine).
 
-When it's done, you can visit http://example.dev/ to view the demo website!
+When it's done, you can visit http://example.dev/ to view the example website!
 
 ### Booting an Ariadne project
 
@@ -105,18 +104,19 @@ Either place the Ariadne project in the `cookbooks-projects` folder, or run
 
     $ rake "init_project[GITURL]" # don't forget the quotes!
 
-to clone the project at the specified [Git URL][git-url-docs] into the correct
-folder for you. Note that for your typing convenience, it will remove the prefix
-`ariadne-` from the folder name if it exists.
+to clone the project at the specified [Git URL][git-url-docs] into the
+correct directory for you. Note that for your typing convenience, it will
+remove the prefix `ariadne-` from the directory name if it exists.
 
 Once the project is in place, run
 
-    $ project=FOLDERNAME vagrant up
+    $ project=PROJECTNAME vagrant up
 
-to spin up the project. The `project=FOLDERNAME` tells Chef which folder in
-`cookbooks-projects` to use for the final provisioning step.
+to spin up the project. The `project=PROJECTNAME` tells Chef which
+directory in `cookbooks-projects` to use for the final provisioning
+step.
 
-Your site will be available at http://FOLDERNAME.dev/ when it is done.
+Your site will be available at http://PROJECTNAME.dev/ when it is done.
 
 ### After booting
 
@@ -360,7 +360,6 @@ specific language governing permissions and limitations under the License.
    [about-rvm]:               https://rvm.io/
    [about-vagrant]:           http://vagrantup.com/
    [about-cap]:               https://github.com/capistrano/capistrano/wiki
-   [about-vagrant-kick]:      https://github.com/arioch/vagrant-kick#readme
    [install-rvm]:             http://beginrescueend.com/rvm/install/
    [about-osx-gcc-installer]: https://github.com/kennethreitz/osx-gcc-installer#readme
    [about-xdebug]:            http://xdebug.org/
