@@ -11,7 +11,7 @@ default_attributes({
     },
   },
   :phpcs => {
-    :coder_git_ref => "c43676c3909038",
+    :coder_git_ref => "c43676c3909038addcc75bc2c10ef35a1db1f368",
   },
   :phpunit => {
     :version => "3.6.10",
