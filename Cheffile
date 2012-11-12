@@ -19,10 +19,7 @@ cookbook "mysql",
   :git => "https://github.com/opscode-cookbooks/mysql.git",
   # Pending PR: https://github.com/opscode-cookbooks/mysql/pull/33
   :ref => "311930ad77" #master
-cookbook "openssh",
-  :git => "https://github.com/patcon/chef-openssh.git",
-  # PR: https://github.com/opscode-cookbooks/openssh/pull/4
-  :ref => "patch-1"
+cookbook "openssh"
 
 # Custom & Community GitHub-hosted
 cookbook "bash",
