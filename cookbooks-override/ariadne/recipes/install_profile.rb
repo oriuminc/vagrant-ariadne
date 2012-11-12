@@ -26,7 +26,7 @@ bash "Building site..." do
   cwd "/vagrant/data/profiles/#{repo}"
   code <<-"EOH"
     tmp/scripts/rerun/rerun 2ndlevel:build \
-      --build-file build-#{repo}.make \
+      --buildfile build-#{repo}.make \
       --destination /mnt/www/html/#{repo} \
       --revision #{branch} \
       --project #{repo}
