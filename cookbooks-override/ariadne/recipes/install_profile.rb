@@ -29,6 +29,7 @@ bash "Building site..." do
       --buildfile build-#{repo}.make \
       --destination /mnt/www/html/#{repo} \
       --revision #{branch} \
+      --install \
       --project #{repo}
   EOH
   not_if "test -d /mnt/www/html/#{repo}"
