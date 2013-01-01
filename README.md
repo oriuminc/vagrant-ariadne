@@ -13,7 +13,7 @@ full documentation not yet guaranteed.**
 >
 > *-- Cobb, Inception*
 
-- Source: https://github.com/myplanetdigital/ariadne
+- Source: https://github.com/myplanetdigital/vagrant-ariadne
 
 Ariadne is a standardized virtual machine (VM) development environment for
 easily developing Drupal sites in a local sandbox that is essentially identical
@@ -64,8 +64,8 @@ computer's operating system and configuration.
 
 Run these commands to set up Ariadne:
 
-    $ git clone https://github.com/myplanetdigital/ariadne.git
-    $ cd ariadne
+    $ git clone https://github.com/myplanetdigital/vagrant-ariadne.git
+    $ cd vagrant-ariadne
 
 The RVM configuration script (.rvmrc) script will now run and ensure you
 have the right version of ruby. When it's done, run the setup command
@@ -205,7 +205,7 @@ Ariadne project.
 
 If you pull changes or switch branches in the Ariadne repository, you'll very
 likely need to rerun the setup. At the very least, you should exit and re-enter
-the ariadne directory so that RVM will rerun the `.rvmrc` script (where some
+the vagrant-ariadne directory so that RVM will rerun the `.rvmrc` script (where some
 setup happens). You should then run `rake setup` again.
 
 ## Troubleshooting
@@ -221,9 +221,6 @@ setup happens). You should then run `rake setup` again.
   matches your basebox (`x86_64` = 64-bit; `i386` = 32-bit). [This Apple
   knowledgebase article][apple-sys-arch] should help you configure your machine
   correctly if it's not already.
-
-Please refer to https://github.com/myplanetdigital/ariadne/wiki/Troubleshooting
-for more troubleshooting tips.
 
 ## Notes
 
@@ -280,7 +277,7 @@ for more troubleshooting tips.
   related to `resolv.conf` in the VM. This will manifest as a failure to upgrade
   chef (via rubygems) during boot, right off the bat.
 - When `cd`ing into non-root of project directory (for example, typing
-  `$ cd ariadne/data`), RVM will create new directories relative to that
+  `$ cd vagrant-ariadne/data`), RVM will create new directories relative to that
   directory!. See notes in the `.rvmrc` for info on why normal bash script
   approach is avoided.
 - It seems that some network connections (especially ones from Rogers Telecom)
@@ -310,7 +307,7 @@ unreachable, and so the environment won't build.
   and running `vagrant reload`. This will usually go away after a system
   restart.
 
-Please refer to https://github.com/myplanetdigital/ariadne/issues?labels=bug&state=open
+Please refer to https://github.com/myplanetdigital/vagrant-ariadne/issues?labels=bug&state=open
 for a full list of bugs.
 
 ## To Do
@@ -330,7 +327,7 @@ for a full list of bugs.
 Author:: [Patrick Connolly][patcon] (<patrick@myplanetdigital.com>)
 [![endorse][coderwall-badge]][coderwall]
 
-Contributors: https://github.com/myplanetdigital/ariadne/contributors
+Contributors: https://github.com/myplanetdigital/vagrant-ariadne/graphs/contributors
 
 Copyright: 2012, Myplanet Digital, Inc.
 
@@ -349,12 +346,12 @@ specific language governing permissions and limitations under the License.
    [patcon]:                  http://about.me/patcon
    [coderwall]:               http://coderwall.com/patcon
    [coderwall-badge]:         http://api.coderwall.com/patcon/endorsecount.png
-   [codeclimate]:             https://codeclimate.com/github/myplanetdigital/ariadne
+   [codeclimate]:             https://codeclimate.com/github/myplanetdigital/vagrant-ariadne
    [codeclimate-badge]:       https://codeclimate.com/badge.png
-   [gemnasium]:               https://gemnasium.com/myplanetdigital/ariadne
-   [gemnasium-badge]:         https://gemnasium.com/myplanetdigital/ariadne.png 
-   [travisci]:                http://travis-ci.org/myplanetdigital/ariadne
-   [travisci-badge]:          https://secure.travis-ci.org/myplanetdigital/ariadne.png?branch=develop
+   [gemnasium]:               https://gemnasium.com/myplanetdigital/vagrant-ariadne
+   [gemnasium-badge]:         https://gemnasium.com/myplanetdigital/vagrant-ariadne.png
+   [travisci]:                http://travis-ci.org/myplanetdigital/vagrant-ariadne
+   [travisci-badge]:          https://api.travis-ci.org/myplanetdigital/vagrant-ariadne.png?branch=develop
    [condel]:                  https://github.com/myplanetdigital/condel
    [CD-summary]:              http://continuousdelivery.com/2010/02/continuous-delivery/
    [about-rvm]:               https://rvm.io/
