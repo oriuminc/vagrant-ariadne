@@ -59,7 +59,7 @@ GIT
 GIT
   remote: https://github.com/myplanetdigital/chef-phpunit.git
   ref: GH-9-pear-errors
-  sha: 9431edc912a6bdcfbcee6e3c9b83b934be1e8b9b
+  sha: 5e2106c8fa1b547f0c9f6f29f6c1eae252b219a4
   specs:
     phpunit (0.9.1)
       php (>= 0.0.0)

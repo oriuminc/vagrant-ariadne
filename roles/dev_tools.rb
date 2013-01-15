@@ -14,7 +14,7 @@ default_attributes({
     :coder_git_ref => "c43676c3909038addcc75bc2c10ef35a1db1f368",
   },
   :phpunit => {
-    :version => "3.6.10",
+    :version => "3.6.12",
   },
 })
 run_list([
