@@ -4,7 +4,7 @@ GEM
     Platform (0.4.0)
     archive-tar-minitar (0.5.2)
     bunny (0.7.9)
-    chef (10.14.4)
+    chef (10.16.6)
       bunny (>= 0.6.0, < 0.8.0)
       erubis
       highline (>= 1.6.9)
@@ -14,7 +14,7 @@ GEM
       mixlib-config (>= 1.1.2)
       mixlib-log (>= 1.3.0)
       mixlib-shellout
-      moneta
+      moneta (< 0.7.0)
       net-ssh (~> 2.2.2)
       net-ssh-multi (~> 1.1.0)
       ohai (>= 0.6.0)
@@ -22,36 +22,37 @@ GEM
       treetop (~> 1.4.9)
       uuidtools
       yajl-ruby (~> 1.1)
-    childprocess (0.3.5)
+    childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
-    coderay (1.0.7)
+    coderay (1.0.8)
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.0)
-    ffi (1.1.5)
-    foodcritic (1.6.1)
+    ffi (1.3.1)
+    foodcritic (1.7.0)
       erubis
       gherkin (~> 2.11.1)
       gist (~> 3.1.0)
-      nokogiri (= 1.5.0)
+      nokogiri (~> 1.5.4)
       pry (~> 0.9.8.4)
       rak (~> 1.4)
       treetop (~> 1.4.10)
       yajl-ruby (~> 1.1.0)
-    gherkin (2.11.2)
+    gherkin (2.11.5)
       json (>= 1.4.6)
-    gist (3.1.0)
+    gist (3.1.1)
     highline (1.6.15)
     i18n (0.6.1)
     ipaddress (0.8.0)
     json (1.5.4)
-    librarian (0.0.24)
+    librarian (0.0.26)
       archive-tar-minitar (>= 0.5.2)
       chef (>= 0.10)
       highline
       thor (~> 0.15)
     log4r (1.1.10)
     method_source (0.7.1)
+    micromachine (1.0.4)
     mime-types (1.19)
     mixlib-authentication (1.3.0)
       mixlib-log
@@ -68,7 +69,7 @@ GEM
     net-ssh-multi (1.1)
       net-ssh (>= 2.1.4)
       net-ssh-gateway (>= 0.99.0)
-    nokogiri (1.5.0)
+    nokogiri (1.5.6)
     ohai (6.14.0)
       ipaddress
       mixlib-cli
@@ -85,14 +86,16 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
       slop (>= 2.4.4, < 3)
+    rainbow (1.1.4)
     rak (1.4)
-    rake (0.9.2.2)
+    rake (10.0.3)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rexec (1.4.1)
-    rubydns (0.4.1)
-      eventmachine
-      rexec
+    rexec (1.5.1)
+      rainbow
+    rubydns (0.5.3)
+      eventmachine (~> 1.0.0)
+      rexec (~> 1.5.1)
     rubygems-bundler (1.1.0)
     sahara (0.0.13)
       popen4 (~> 0.1.2)
@@ -101,7 +104,7 @@ GEM
     slop (2.4.4)
     systemu (2.5.2)
     thor (0.16.0)
-    treetop (1.4.10)
+    treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
     uuidtools (2.1.3)
@@ -114,11 +117,14 @@ GEM
       log4r (~> 1.1.9)
       net-scp (~> 1.0.4)
       net-ssh (~> 2.2.2)
-    vagrant-dns (0.2.4)
+    vagrant-dns (0.3.0)
       daemons
-      rubydns
+      rubydns (~> 0.5.3)
       vagrant
-    vagrant-vbguest (0.3.5)
+    vagrant-vbguest (0.6.1)
+      i18n (~> 0.6.0)
+      log4r (~> 1.1.9)
+      micromachine (~> 1.0.4)
     yajl-ruby (1.1.0)
 
 PLATFORMS
