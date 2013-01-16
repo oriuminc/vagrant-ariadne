@@ -14,12 +14,12 @@ to grok. To help everyone understand how these roles fit together, here
 is how they're nested within one another (with higher-level roles
 calling deeper-level ones):
 
-    roles                      # TYPE OF CONFIG
-    └── ariadne                # Role added by Vagrant
-        ├── acquia             # Configs to emulate Acquia
-        ├── apache2_mod_php
-        ├── memcache
-        ├── mysql              # Percona drop-in MySQL replacement
-        ├── varnish
-        ├── drupal             # Drupal-specific configs
-        └── dev_tools          # Local development tools
+    roles                       # TYPE OF CONFIG
+    └── ariadne                 # Role added by Vagrant
+        └── acquia              # Configs to emulate Acquia
+        │   ├── apache2_mod_php
+        │   ├── memcache
+        │   ├── mysql           # Percona drop-in MySQL replacement
+        │   ├── varnish
+        │   └── drupal          # Drupal-specific configs
+        └── dev_tools           # Local development tools
