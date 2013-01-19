@@ -5,7 +5,10 @@ site "http://community.opscode.com/api/v1"
 
 # Opscode
 cookbook "apache2"
-cookbook "apt"
+cookbook "apt",
+  :git => "https://github.com/mpasternacki/apt.git",
+  # Pending PR: https://github.com/opscode-cookbooks/apt/pull/31
+  :ref => "COOK-2171"
 cookbook "build-essential"
 cookbook "git"
 cookbook "memcached"
