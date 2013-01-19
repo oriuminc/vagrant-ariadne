@@ -78,7 +78,7 @@ GIT
 GIT
   remote: https://github.com/myplanetdigital/chef-webgrind.git
   ref: master
-  sha: 401698e0548052d80a360e4653e0030931e2cd1a
+  sha: d99f663c4cdb388a26ef01792e8698c998b275d5
   specs:
     webgrind (0.0.0)
       apache2 (>= 0.0.0)
