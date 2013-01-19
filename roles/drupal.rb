@@ -10,6 +10,6 @@ run_list([
 ])
 default_attributes({
   :drush => {
-    :version => "5.7.0",
+    :version => "5.8.0",
   }
 })
