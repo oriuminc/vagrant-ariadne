@@ -64,5 +64,6 @@ web_app site do
   notifies :reload, "service[apache2]"
 end
 
+# Since Varnish isn't guaranteed to exist, need a helper function to restart service.
 ::Chef::Recipe.send(:include, Ariadne::Helpers)
 restart_service "varnish"
