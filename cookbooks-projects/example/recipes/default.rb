@@ -48,8 +48,8 @@ bash "Downloading Drupal..." do
       --drupal-project-rename=#{project} \
       --cache
   EOH
-  not_if "test -d /mnt/www/html/#{project}"
   notifies :run, "bash[Installing Drupal...]", :immediately
+  not_if "test -d /mnt/www/html/#{project}"
 end
 
 site = "#{project}.dev"
