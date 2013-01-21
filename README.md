@@ -159,6 +159,9 @@ Ariadne project.
 Ariadne can theoretically be used to provision a remote dedicated
 server using the knife-solo tool. This does not yet work.
 
+(Feel free to [use these instructions to deploy a fresh Rackspace
+cloud server.](https://gist.github.com/4588103)
+
 Pending deploy instructions:
 
 ```
