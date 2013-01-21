@@ -5,7 +5,10 @@ site "http://community.opscode.com/api/v1"
 
 # Opscode
 cookbook "apache2"
-cookbook "apt"
+cookbook "apt",
+  :git => "https://github.com/mpasternacki/apt.git",
+  # Pending PR: https://github.com/opscode-cookbooks/apt/pull/31
+  :ref => "COOK-2171"
 cookbook "build-essential"
 cookbook "git"
 cookbook "memcached"
@@ -19,10 +22,7 @@ cookbook "mysql",
   :git => "https://github.com/opscode-cookbooks/mysql.git",
   # Pending PR: https://github.com/opscode-cookbooks/mysql/pull/33
   :ref => "311930ad77" #master
-cookbook "openssh",
-  :git => "https://github.com/patcon/chef-openssh.git",
-  # PR: https://github.com/opscode-cookbooks/openssh/pull/4
-  :ref => "patch-1"
+cookbook "openssh"
 
 # Custom & Community GitHub-hosted
 cookbook "bash",

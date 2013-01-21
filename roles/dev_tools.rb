@@ -11,10 +11,10 @@ default_attributes({
     },
   },
   :phpcs => {
-    :coder_git_ref => "c43676c3909038",
+    :coder_git_ref => "7.x-2.0-beta1",
   },
   :phpunit => {
-    :version => "3.6.10",
+    :version => "3.6.12",
   },
 })
 run_list([

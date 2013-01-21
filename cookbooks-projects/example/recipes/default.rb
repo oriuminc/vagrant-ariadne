@@ -48,21 +48,23 @@ bash "Downloading Drupal..." do
       --drupal-project-rename=#{project} \
       --cache
   EOH
-  not_if "test -d /mnt/www/html/#{project}"
   notifies :run, "bash[Installing Drupal...]", :immediately
+  not_if "test -d /mnt/www/html/#{project}"
 end
 
 site = "#{project}.dev"
 
 web_app site do
   cookbook "ariadne"
-  template "sites.conf.erb"
+  template "drupal-site.conf.erb"
   port node['apache']['listen_ports'].to_a[0]
   server_name site
   server_aliases [ "www.#{site}" ]
   docroot "/mnt/www/html/#{project}"
+  enable_cgi node.run_list.expand(node.chef_environment, 'disk').recipes.include?("apache2::mod_fcgid")
   notifies :reload, "service[apache2]"
 end
 
+# Since Varnish isn't guaranteed to exist, need a helper function to restart service.
 ::Chef::Recipe.send(:include, Ariadne::Helpers)
 restart_service "varnish"
