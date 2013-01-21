@@ -5,7 +5,7 @@ branch = node['ariadne']['branch']
 
 web_app site_url do
   cookbook "ariadne"
-  template "sites.conf.erb"
+  template "drupal-site.conf.erb"
   server_name site_url
   server_aliases [ "*.#{site_url}" ]
   docroot "/mnt/www/html/#{repo}"

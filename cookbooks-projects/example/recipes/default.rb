@@ -56,7 +56,7 @@ site = "#{project}.dev"
 
 web_app site do
   cookbook "ariadne"
-  template "sites.conf.erb"
+  template "drupal-site.conf.erb"
   port node['apache']['listen_ports'].to_a[0]
   server_name site
   server_aliases [ "www.#{site}" ]
