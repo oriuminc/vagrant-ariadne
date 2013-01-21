@@ -1,5 +1,5 @@
 name "apache2_mod_php"
-description "Configure php5.3 and apache2 with mod_php."
+description "Configure php5.3 and apache2 with mod_fcgid."
 run_list(
   "recipe[php]",
   "recipe[apache2]",
