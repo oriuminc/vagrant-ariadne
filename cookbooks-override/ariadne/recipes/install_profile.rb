@@ -9,6 +9,7 @@ web_app site_url do
   server_name site_url
   server_aliases [ "*.#{site_url}" ]
   docroot "/mnt/www/html/#{repo}"
+  enable_cgi node.run_list.expand(node.chef_environment, 'disk').recipes.include?("apache2::mod_fcgid")
   port node['apache']['listen_ports'].to_a[0]
 end
 

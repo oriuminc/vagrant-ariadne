@@ -61,6 +61,7 @@ web_app site do
   server_name site
   server_aliases [ "www.#{site}" ]
   docroot "/mnt/www/html/#{project}"
+  enable_cgi node.run_list.expand(node.chef_environment, 'disk').recipes.include?("apache2::mod_fcgid")
   notifies :reload, "service[apache2]"
 end
 
