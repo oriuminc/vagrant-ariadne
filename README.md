@@ -159,8 +159,8 @@ Ariadne project.
 Ariadne can theoretically be used to provision a remote dedicated
 server using the knife-solo tool. This does not yet work.
 
-(Feel free to [use these instructions to deploy a fresh Rackspace
-cloud server.](https://gist.github.com/4588103)
+(Feel free to use [these instructions](https://gist.github.com/4588103)
+to deploy a fresh Rackspace cloud server.)
 
 Pending deploy instructions:
 
@@ -170,7 +170,7 @@ export REMOTE_IP=123.45.67.89
 echo -e "\nHost $ARIADNE_PROJECT\n  User root\n  HostName $REMOTE_IP" >> ~/.ssh/config
 ssh-forever $ARIADNE_PROJECT -i path/to/ssh_key.pub # Enter root password when prompted.
 # Install Chef on the server
-knife prepare $ARIADNE_PROJECT --omnibus-version 10.14.4-1
+knife prepare $ARIADNE_PROJECT --omnibus-version 10.16.6-1
 # Run chef-solo on remote server
 knife cook $ARIADNE_PROJECT nodes/dna.json --skip-syntax-check --skip-chef-check
 ```
