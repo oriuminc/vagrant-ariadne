@@ -1,0 +1,2 @@
+knife test: bundle exec knife cookbook test $COOKBOOK
+foodcritic: bundle exec foodcritic -I test/support/foodcritic/*  -f any $SANDBOX/$COOKBOOK

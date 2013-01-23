@@ -16,4 +16,5 @@ group :test do
   gem "rake"
   gem "chef"
   gem "foodcritic"
+  gem "strainer"
 end
