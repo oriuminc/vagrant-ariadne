@@ -101,9 +101,6 @@ Vagrant::Config.run do |config|
 
     chef.json = {
       "mysql" => {
-        "server_debian_password" => "root",
-        "server_root_password"   => "root",
-        "server_repl_password"   => "root",
         "allow_remote_root" => true,
         "bind_address" => "0.0.0.0",
       },
