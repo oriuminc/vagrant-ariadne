@@ -154,6 +154,27 @@ project. It's the project used to set up the demo site. For simple Drupal
 projects, you could copy the example folder and use it as a basis for your own
 Ariadne project.
 
+## Deploying (WIP)
+
+Ariadne can theoretically be used to provision a remote dedicated
+server using the knife-solo tool. This does not yet work.
+
+(Feel free to use [these instructions](https://gist.github.com/4588103)
+to deploy a fresh Rackspace cloud server.)
+
+Pending deploy instructions:
+
+```
+export ARIADNE_PROJECT=myproject
+export REMOTE_IP=123.45.67.89
+echo -e "\nHost $ARIADNE_PROJECT\n  User root\n  HostName $REMOTE_IP" >> ~/.ssh/config
+ssh-forever $ARIADNE_PROJECT -i path/to/ssh_key.pub # Enter root password when prompted.
+# Install Chef on the server
+knife prepare $ARIADNE_PROJECT --omnibus-version 10.16.6-1
+# Run chef-solo on remote server
+knife cook $ARIADNE_PROJECT nodes/dna.json --skip-syntax-check --skip-chef-check
+```
+
 ## Goals and Features
 
 - You can use your preferred tools (text editor, database browser, etc.)

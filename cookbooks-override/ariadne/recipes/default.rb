@@ -26,6 +26,14 @@ directory "/tmp/drush" do
   mode "0777"
 end
 
+# Create for remote server (b/c not created through shared dir).
+directory "/mnt/www/html" do
+  recursive true
+  owner "vagrant"
+  group "vagrant"
+  mode "0700"
+end
+
 # Create ~/.drush/ so available for other things to be dropped in.
 directory "/home/vagrant/.drush" do
   owner "vagrant"
@@ -69,9 +77,11 @@ if node['ariadne']['clean']
   end
 end
 
-::Chef::Resource::RubyBlock.send(:include, Ariadne::Helpers)
-ruby_block "Give root access to the forwarded ssh agent" do
-  block do
-    give_ssh_agent_root
+if node['instance_role'] == 'vagrant'
+  ::Chef::Resource::RubyBlock.send(:include, Ariadne::Helpers)
+  ruby_block "Give root access to the forwarded ssh agent" do
+    block do
+      give_ssh_agent_root
+    end
   end
 end

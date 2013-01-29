@@ -9,6 +9,8 @@ data/*/
 cookbooks-projects/*
 !cookbooks-projects/example/
 roles/config.yml
+nodes/*
+!nodes/dna.json
 
 # Librarian/RVM/Bundler
 cookbooks/

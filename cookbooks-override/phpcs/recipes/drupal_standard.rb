@@ -14,6 +14,13 @@ bash "copy-drupal-standard" do
   not_if "test -d $(pear config-get php_dir)/PHP/CodeSniffer/Standards/Drupal"
 end
 
+# `user` resource is interim solution so remote deploy works:
+# https://github.com/myplanetdigital/vagrant-ariadne/pull/44
+user "vagrant" do
+  home "/home/vagrant"
+  supports :manage_home => true
+end
+
 bash_profile "coder-alias" do
   user "vagrant"
 end
