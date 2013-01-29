@@ -13,6 +13,9 @@ SITE
       yum (>= 0.0.0)
     memcached (1.1.2)
       runit (>= 0.0.0)
+    mysql (2.1.0)
+      build-essential (>= 0.0.0)
+      openssl (>= 0.0.0)
     openssh (1.1.2)
     openssl (1.0.0)
     php (1.1.4)
@@ -32,7 +35,7 @@ SITE
 GIT
   remote: https://github.com/mpasternacki/apt.git
   ref: COOK-2171
-  sha: 9f36bc4dc3d6e90b93c509995dd430a8529f4c81
+  sha: e133900f9efa8fbd229ca3d4a7071c686cbf86f6
   specs:
     apt (1.8.0)
 
@@ -54,7 +57,7 @@ GIT
 GIT
   remote: https://github.com/myplanetdigital/chef-percona.git
   ref: master
-  sha: d2839b8cd2d5c8ba039705f70d0d14e6a16d3fd1
+  sha: a8577962b485862adb239b2ac269f4d780f9d70f
   specs:
     percona (0.0.1)
       mysql (>= 1.3.0)
@@ -78,7 +81,7 @@ GIT
 GIT
   remote: https://github.com/myplanetdigital/chef-webgrind.git
   ref: master
-  sha: d99f663c4cdb388a26ef01792e8698c998b275d5
+  sha: 09587d2eead8a37e3160b0963dd72e35dff502d8
   specs:
     webgrind (0.0.0)
       apache2 (>= 0.0.0)
@@ -102,15 +105,6 @@ GIT
     xhprof (0.9.0)
       apt (>= 0.0.0)
       php (>= 0.0.0)
-
-GIT
-  remote: https://github.com/opscode-cookbooks/mysql.git
-  ref: 311930ad77
-  sha: 311930ad77b1996412bf97ccd3a414cc25f2a4e6
-  specs:
-    mysql (1.3.0)
-      build-essential (>= 0.0.0)
-      openssl (>= 0.0.0)
 
 DEPENDENCIES
   apache2 (>= 0)

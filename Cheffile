@@ -12,17 +12,13 @@ cookbook "apt",
 cookbook "build-essential"
 cookbook "git"
 cookbook "memcached"
+cookbook "mysql"
+cookbook "openssh"
 cookbook "php"
 cookbook "postfix"
 cookbook "varnish"
 cookbook "vim"
 
-# Opscode with pending PR's
-cookbook "mysql",
-  :git => "https://github.com/opscode-cookbooks/mysql.git",
-  # Pending PR: https://github.com/opscode-cookbooks/mysql/pull/33
-  :ref => "311930ad77" #master
-cookbook "openssh"
 
 # Custom & Community GitHub-hosted
 cookbook "bash",

@@ -1,9 +1,11 @@
 source "http://rubygems.org"
 
 gem "chef"
+gem "knife-solo"
 gem "librarian"
 gem "rake"
 gem "rubygems-bundler"
+gem "ssh-forever"
 gem "vagrant", "> 1"
 gem "vagrant-dns"
 gem "vagrant-vbguest"

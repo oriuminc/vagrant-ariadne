@@ -81,7 +81,7 @@ Vagrant::Config.run do |config|
   # Update Chef in VM to specific version before running chef provisioner
   config.vm.provision :shell do |shell|
     shell.path = "config/upgrade_chef.sh"
-    shell.args = target_version = "10.16.6"
+    shell.args = target_version = "10.18.6"
   end
 
   config.vm.provision :chef_solo do |chef|
@@ -89,21 +89,10 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = [ "cookbooks", "cookbooks-override", "cookbooks-projects" ]
     chef.add_role "ariadne"
 
-    # Assume install profile if repo_url given in config, and project cookbook if not.
-    # TODO: Move logic into ariadne role?
-    if conf['repo_url'].empty?
-      chef.add_recipe "#{conf['project']}::default"
-    else
-      chef.add_recipe "ariadne::install_profile"
-    end
-
     chef.log_level = :debug unless ENV['CHEF_LOG'].nil?
 
     chef.json = {
       "mysql" => {
-        "server_debian_password" => "root",
-        "server_root_password"   => "root",
-        "server_repl_password"   => "root",
         "allow_remote_root" => true,
         "bind_address" => "0.0.0.0",
       },
