@@ -55,6 +55,9 @@ Vagrant::Config.run do |config|
   config.vm.customize ['modifyvm', :id, '--nictype1', 'virtio']
   config.vm.customize ['modifyvm', :id, '--nictype2', 'virtio']
 
+  # Enables host DNS resolution, crucial for VPN.
+  config.vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+
   # Forward keys and ssh configs into VM
   # Caveats: https://github.com/mitchellh/vagrant/issues/105
   config.ssh.forward_agent = true

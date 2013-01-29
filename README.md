@@ -192,6 +192,7 @@ knife cook $ARIADNE_PROJECT nodes/dna.json --skip-syntax-check --skip-chef-check
   "production-like" as possible).
 - E-mails sent by PHP will be forwarded to the nearest mail server, meaning you
   (and potentially, your clients) will recieve e-mails from the virtual machine.
+- DNS resolution from inside the VM, even when connecting through VPN.
 
 ## Differences from vanilla Vagrant
 
