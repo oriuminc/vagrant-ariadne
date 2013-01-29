@@ -89,14 +89,6 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = [ "cookbooks", "cookbooks-override", "cookbooks-projects" ]
     chef.add_role "ariadne"
 
-    # Assume install profile if repo_url given in config, and project cookbook if not.
-    # TODO: Move logic into ariadne role?
-    if conf['repo_url'].empty?
-      chef.add_recipe "#{conf['project']}::default"
-    else
-      chef.add_recipe "ariadne::install_profile"
-    end
-
     chef.log_level = :debug unless ENV['CHEF_LOG'].nil?
 
     chef.json = {
