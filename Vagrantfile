@@ -45,6 +45,8 @@ Vagrant::Config.run do |config|
   config.vm.box = conf['basebox']
   config.vm.box_url = baseboxes[config.vm.box]
 
+  config.vm.host_name = "vagrantup.com"
+
   config.vm.network :hostonly, "33.33.33.10"
 
   config.vm.customize ["modifyvm", :id, "--memory", conf['memory']]
