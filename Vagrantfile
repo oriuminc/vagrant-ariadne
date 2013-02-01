@@ -47,7 +47,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = baseboxes[config.vm.box]
 
   # Config hosts files both internally (vagrant-hostmaster) and externally (native vagrant)
-  config.vm.host_name = conf['basebox']
+  config.vm.host_name = conf['project']
   config.hosts.name = conf['host_name'].nil? ? "#{conf['project']}.dev" : conf['host_name']
   config.hosts.aliases = %W(www.#{config.hosts.name})
 
