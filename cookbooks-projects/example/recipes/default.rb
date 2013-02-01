@@ -52,7 +52,7 @@ bash "Downloading Drupal..." do
   not_if "test -d /mnt/www/html/#{project}"
 end
 
-site = "#{project}.dev"
+site = node['ariadne']['host_name'].nil? ? "#{node['ariadne']['project']}.dev" : node['ariadne']['host_name']
 
 web_app site do
   cookbook "ariadne"

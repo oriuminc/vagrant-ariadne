@@ -192,7 +192,7 @@ knife cook $ARIADNE_PROJECT nodes/dna.json --skip-syntax-check --skip-chef-check
   "production-like" as possible).
 - E-mails sent by PHP will be forwarded to the nearest mail server, meaning you
   (and potentially, your clients) will recieve e-mails from the virtual machine.
-- DNS resolution from inside the VM, even when connecting through VPN.
+- DNS resolution from inside the VM, even when connecting to endpoints through VPN.
 
 ## Differences from vanilla Vagrant
 
@@ -218,10 +218,9 @@ knife cook $ARIADNE_PROJECT nodes/dna.json --skip-syntax-check --skip-chef-check
   the VM caches all the downloaded files in a special directory, but this
   directory is lost whenever a VM is destroyed and rebuilt. For this reason, we
   share the directory in `tmp/apt/cache`, so it will persist between VM builds.
-- **[vagrant-dns server][vagrant-dns]** (OS/X only): Automatically configures
-  a DNS server for resolving domains on virtual machines. This server stops and
-  starts with VM itself, and it can be easily uninstalled (see the vagrant-dns
-  README).
+- **[vagrant-hostmaster host file management][vagrant-hostmaster]**:
+  automatically manages your systems `/etc/hosts` file based on settings
+  in `config.yml`.
 
 ## Upgrading or debugging Ariadne itself
 
@@ -232,8 +231,6 @@ setup happens). You should then run `rake setup` again.
 
 ## Troubleshooting
 
-- If your host machine is not resolving Vagrant URLs and you're running OS/X,
-  try running `rake restart_dns`.
 - Ensure you are using a basebox with the same architecture as your system. In
   other words, running the lucid64 basebox on a 32-bit system is NOT going to
   work.
@@ -253,8 +250,6 @@ setup happens). You should then run `rake setup` again.
 - Several baseboxes that are presumed to work for Ariadne are available for use:
   `lucid32` & `lucid64`. (More may be added to `config/baseboxes.yml` in the
   future.)
-- Ariadne's DNS resolver is set up to send all `*.dev` domains to the localhost,
-  ie. Vagrant.
 - Ariadne uses agent forwarding to forward the host machine's ssh session into
   the VM, including keys and passphrases stored by ssh-agent. What this means is
   that your VM will have the same Git/SSH access that you enjoy on your local
@@ -334,7 +329,6 @@ for a full list of bugs.
 
 ## To Do
 
-- Document the need to refresh browser for DNS **or** run dns rake task first.
 - Create sister project to provide a base install profile that is pre-configured
   to use the advanced components (Memcache, Varnish, etc.) In progress:
   [2ndleveldeep][2ndleveldeep-profile]
@@ -385,7 +379,7 @@ specific language governing permissions and limitations under the License.
    [install-xdebug-emacs1]:   http://code.google.com/p/geben-on-emacs/source/browse/trunk/README
    [install-xdebug-emacs2]:   http://puregin.org/debugging-php-with-xdebug-and-emacs-on-mac-os-x
    [vbox-downloads]:          http://www.virtualbox.org/wiki/Downloads
-   [vagrant-dns]:             https://github.com/BerlinVagrant/vagrant-dns#readme
+   [vagrant-hostmaster]:      https://github.com/mosaicxm/vagrant-hostmaster#readme
    [network-fix-ref]:         http://stackoverflow.com/questions/10378185/vagrant-a-better-to-way-to-reset-my-guest-vagrant-vms-network
    [install-zsh]:             http://jesperrasmussen.com/switching-bash-with-zsh
    [install-oh-my-zsh]:       https://github.com/robbyrussell/oh-my-zsh#setup

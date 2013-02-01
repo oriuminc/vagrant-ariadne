@@ -32,7 +32,7 @@ baseboxes = YAML.load_file("#{current_dir}/config/baseboxes.yml")
 # Import configs from YAML file.
 conf = YAML.load_file "#{current_dir}/roles/config.yml"
 
-config_envvars = %w{ basebox branch cpu_count memory project repo_url roles }
+config_envvars = %w{ basebox branch cpu_count host_name memory project repo_url roles }
 config_envvars.each do |envvar|
   create_config_envvar(envvar, conf)
 end
@@ -45,7 +45,10 @@ Vagrant::Config.run do |config|
   config.vm.box = conf['basebox']
   config.vm.box_url = baseboxes[config.vm.box]
 
-  config.vm.host_name = "vagrantup.com"
+  # Config hosts files both internally (vagrant-hostmaster) and externally (native vagrant)
+  config.vm.host_name = conf['basebox']
+  config.hosts.name = conf['host_name'].nil? ? "#{conf['project']}.dev" : conf['host_name']
+  config.hosts.aliases = %W(www.#{config.hosts.name})
 
   config.vm.network :hostonly, "33.33.33.10"
 
@@ -61,10 +64,6 @@ Vagrant::Config.run do |config|
   # Forward keys and ssh configs into VM
   # Caveats: https://github.com/mitchellh/vagrant/issues/105
   config.ssh.forward_agent = true
-
-  # Use vagrant-dns plugin to configure DNS server
-  config.dns.tld = "dev"
-  config.dns.patterns = [ /^.*\.dev$/ ]
 
   # Only enable NFS shares on *nix systems (Windows doesn't need).
   # Ref: http://vagrantup.com/v1/docs/nfs.html
