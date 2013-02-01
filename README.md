@@ -60,16 +60,27 @@ computer's operating system and configuration.
 
   - Ubuntu <= 11.04: `apt-get install libreadline5-dev`
 
-## Quick Start
+# Quick and Dirty Start
+
+First install Vagrant v1.0.6 DMG from the project homepage:
+
+http://downloads.vagrantup.com/tags/v1.0.6
+
+Then run these commands:
+
+    $ vagrant gem install vagrant-vbguest vagrant-hostmaster vagrant-librarian
+    $ [sudo] gem install librarian rake knife-solo
 
 Run these commands to set up Ariadne:
 
     $ git clone https://github.com/myplanetdigital/vagrant-ariadne.git
     $ cd vagrant-ariadne
 
-The RVM configuration script (.rvmrc) script will now run and ensure you
-have the right version of ruby. When it's done, run the setup command
-with
+If you have RVM installed, the `.rvmrc` script will now run and ensure you
+have the right version of ruby. Otherwise, you can simply use the system
+ruby.
+
+Next, run the setup command with:
 
     $ rake setup
 
