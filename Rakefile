@@ -35,19 +35,6 @@ task :setup do
     conf.close
   end
 
-  p "Installing Bundler via Rubygems..."
-  BUNDLER_VERS = "1.1.4"
-  system "gem install bundler -v #{BUNDLER_VERS} --no-rdoc --no-ri"
-
-  p "Installing bundled gems via Bundler..."
-  system "bundle install"
-
-  p "Activating rubygems-bundler..." # Eff you, `bundle exec`
-  system "gem regenerate_binstubs"
-
-  p "Installing cookbooks using Librarian gem..."
-  system "librarian-chef install"
-
   p "Creating required directories:"
   rel_dirs = %w{
     tmp/apt/cache/partial

@@ -117,6 +117,9 @@ GEM
       net-ssh (~> 2.2.2)
     vagrant-hostmaster (0.8.1)
       vagrant (~> 1.0.3)
+    vagrant-librarian (0.1.0)
+      librarian
+      vagrant
     vagrant-vbguest (0.6.4)
       i18n (~> 0.6.0)
       log4r (~> 1.1.9)
@@ -137,4 +140,5 @@ DEPENDENCIES
   ssh-forever
   vagrant (> 1)
   vagrant-hostmaster
+  vagrant-librarian
   vagrant-vbguest

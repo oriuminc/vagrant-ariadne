@@ -8,6 +8,7 @@ gem "rubygems-bundler"
 gem "ssh-forever"
 gem "vagrant", "> 1"
 gem "vagrant-hostmaster"
+gem "vagrant-librarian"
 gem "vagrant-vbguest"
 
 group :development do
