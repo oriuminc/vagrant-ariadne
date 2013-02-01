@@ -4,7 +4,9 @@
 site "http://community.opscode.com/api/v1"
 
 # Opscode
-cookbook "apache2"
+cookbook "apache2",
+  :git => "https://github.com/patcon/apache2.git",
+  :ref => "patch-1"
 cookbook "apt",
   :git => "https://github.com/mpasternacki/apt.git",
   # Pending PR: https://github.com/opscode-cookbooks/apt/pull/31
@@ -14,7 +16,9 @@ cookbook "git"
 cookbook "memcached"
 cookbook "mysql"
 cookbook "openssh"
-cookbook "php"
+cookbook "php",
+  :git => "https://github.com/patcon/php.git",
+  :ref => "patch-1"
 cookbook "postfix"
 cookbook "varnish"
 cookbook "vim"
