@@ -27,6 +27,7 @@ def create_config_envvar(envvar, conf)
 end
 
 # Mash of box names and urls
+require 'yaml'
 baseboxes = YAML.load_file("#{current_dir}/config/baseboxes.yml")
 
 # Import configs from YAML file.
