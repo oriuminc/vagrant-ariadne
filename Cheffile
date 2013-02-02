@@ -5,9 +5,10 @@ site "http://community.opscode.com/api/v1"
 
 # Opscode
 cookbook "apache2",
-  :git => "https://github.com/patcon/apache2.git",
-  # PR: Oracle support - https://github.com/opscode-cookbooks/apache2/pull/43
-  :ref => "patch-1"
+  :git => "https://github.com/opscode-cookbooks/apache2.git",
+  # Unreleased feature: Oracle support
+  # https://github.com/opscode-cookbooks/apache2/pull/43
+  :ref => "master"
 cookbook "apt"
 cookbook "build-essential"
 cookbook "git"
@@ -15,9 +16,10 @@ cookbook "memcached"
 cookbook "mysql"
 cookbook "openssh"
 cookbook "php",
-  :git => "https://github.com/patcon/php.git",
-  # PR: Oracle support - https://github.com/opscode-cookbooks/php/pull/21
-  :ref => "patch-1"
+  :git => "https://github.com/opscode-cookbooks/php.git",
+  # Unreleased feature: Oracle support
+  # https://github.com/opscode-cookbooks/php/pull/21
+  :ref => "master"
 cookbook "postfix"
 cookbook "varnish"
 cookbook "vim"

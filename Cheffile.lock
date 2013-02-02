@@ -97,16 +97,16 @@ GIT
       php (>= 0.0.0)
 
 GIT
-  remote: https://github.com/patcon/apache2.git
-  ref: patch-1
-  sha: 16f3a2da51899c3f52ff92d530d403e91d0bfa57
+  remote: https://github.com/opscode-cookbooks/apache2.git
+  ref: master
+  sha: 98d20b2eff8d716782e6c4d3279e4243b11a9014
   specs:
     apache2 (1.4.2)
 
 GIT
-  remote: https://github.com/patcon/php.git
-  ref: patch-1
-  sha: 38b2ab02931edf8365080a25d2a3dd9b9364ec9b
+  remote: https://github.com/opscode-cookbooks/php.git
+  ref: master
+  sha: d19c306855995452f9819275b53ea9aaeecbe596
   specs:
     php (1.1.4)
       build-essential (>= 0.0.0)
