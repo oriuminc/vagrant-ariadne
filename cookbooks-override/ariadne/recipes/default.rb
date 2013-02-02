@@ -19,6 +19,16 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+# If varnish recipe is in run-list, set template for correct version of varnish.
+if node.run_list.expand(node.chef_environment, 'disk').recipes.include?("varnish::default")
+  case node['varnish']['version']
+  when "2.0", "2.1"
+    set.node['varnish']['vcl_source'] = "drupal-varnish2.vcl.erb"
+  when "3.0"
+    set.node['varnish']['vcl_source'] = "drupal-varnish3.vcl.erb"
+  end
+end
+
 # Drush can't create when run by vagrant user
 directory "/tmp/drush" do
   owner "vagrant"
