@@ -29,8 +29,9 @@ end
 # Create for remote server (b/c not created through shared dir).
 directory "/mnt/www/html" do
   recursive true
-  owner "vagrant"
-  group "vagrant"
+  # Don't try to set perms in vagrant shared_folder
+  owner "vagrant" unless node['vagrant']
+  group "vagrant" unless node['vagrant']
   mode "0700"
 end
 
