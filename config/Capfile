@@ -1,0 +1,14 @@
+require 'drush_deploy'
+
+module UseScpForDeployment
+  def self.included(base)
+    base.send(:alias_method, :old_upload, :upload)
+    base.send(:alias_method, :upload,     :new_upload)
+  end
+
+  def new_upload(from, to, options = {})
+    old_upload(from, to, options.merge!(:via => :scp))
+  end
+end
+
+Capistrano::Configuration.send(:include, UseScpForDeployment)
