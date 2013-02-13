@@ -377,8 +377,8 @@ limitations under the License.
    [coderwall-badge]:         http://api.coderwall.com/patcon/endorsecount.png
    [codeclimate]:             https://codeclimate.com/github/myplanetdigital/ariadne
    [codeclimate-badge]:       https://codeclimate.com/badge.png
-   [gemnasium]:               https://gemnasium.com/myplanetdigital/vagrant-ariadne
-   [gemnasium-badge]:         https://gemnasium.com/myplanetdigital/vagrant-ariadne.png 
+   [gemnasium]:               https://gemnasium.com/myplanetdigital/ariadne
+   [gemnasium-badge]:         https://gemnasium.com/myplanetdigital/ariadne.png 
    [travisci]:                http://travis-ci.org/myplanetdigital/ariadne
    [travisci-badge]:          https://secure.travis-ci.org/myplanetdigital/ariadne.png?branch=develop
    [condel]:                  https://github.com/myplanetdigital/condel
