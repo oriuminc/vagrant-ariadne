@@ -1,3 +1,4 @@
 # Only baseboxes that are presumed to work are present
 lucid32: http://files.vagrantup.com/lucid32.box
 lucid64: http://files.vagrantup.com/lucid64.box
+oracle63-64: https://storage.clouddrive.com/misc_share/oracle63-64.box

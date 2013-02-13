@@ -10,37 +10,32 @@ end
 
 desc "Prepare Ariadne environmnet to spin up a project.
 
-This runs librarian-chef to install cookbooks, creates properly-permissioned
-temporary vagrant-dns files, and creates several empty directories required for
-sharing with the VM."
+This runs librarian-chef to install cookbooks, and creates several empty
+directories required for sharing with the VM."
 task :setup do
   # Write the config file if doesn't exist.
-  unless File.exists?("config/config.yml")
-    p "Creating config/config.yml..."
-    config = File.open("config/config.yml", "w")
-    config.puts <<-EOF.unindent
+  unless File.exists?("roles/config.yml")
+    p "Creating roles/config.yml..."
+    conf = File.open("roles/config.yml", "w")
+    conf.puts <<-EOF.unindent
       ---
       basebox: lucid64
       project: example
+      # host_name default to PROJECT.dev (from above) if none given.
+      host_name:
       branch: develop
       memory: 1000
       cpu_count: 2
+      roles: acquia,dev_tools
 
       # If building an install profile according to Myplanet layout assumptions,
       # enter its repository URL here. (Otherwise, leave blank.)
       repo_url: ''
     EOF
-    config.close
-  end
-  p "Installing cookbooks using Librarian gem..."
-  system "librarian-chef install"
-  if RUBY_PLATFORM =~ /darwin/
-    p "Starting vagrant-dns server..."
-    p "(You may be prompted for your system password.)"
-    system "vagrant dns --restart"
-    system "rvmsudo vagrant dns --install"
+    conf.close
   end
 
+  p "Creating required directories:"
   rel_dirs = %w{
     tmp/apt/cache/partial
     tmp/drush/cache
@@ -49,7 +44,6 @@ task :setup do
     data/profiles
     cookbooks-projects
   }
-  p "Creating required directories:"
   rel_dirs.each do |rel_dir|
     p rel_dir
     abs_dir = File.join(Dir::pwd, rel_dir)
@@ -83,31 +77,6 @@ task :fix_network do
   end
 end
 
-desc "Clear DNS cache and restart resolver. (OSX only!)
-
-Sometimes the Mac's DNS resolver controlled by vagrant-dns can go wonky. This
-will clear the Mac's DNS cache and restart the vagrant-dns resolver."
-task :restart_dns do
-  # Raise exception immediately unless running OSX
-  raise "vagrant-dns only works on OSX!" unless RUBY_PLATFORM =~ /darwin/
-
-  p "Uninstalled DNS resolver..."
-  p "(You may be prompted for your system password.)"
-  system "rvmsudo vagrant dns --uninstall"
-
-  p "Removing temporary files..."
-  system "rm -r ~/.vagrant.d/tmp/dns"
-
-  p "Restarting DNS server..."
-  system "vagrant dns --restart"
-
-  p "Re-installing DNS resolver..."
-  system "rvmsudo vagrant dns --install"
-
-  p "Flushing OSX DNS cache..."
-  system "scacheutil -flushcache"
-end
-
 desc "Transfers your user-specific .gitconfig to the VM.
 
 While this will transfer lots of personal settings into the VM, it perhaps most
@@ -135,14 +104,11 @@ end
 desc "WARNING! Will bring Ariadne back to a pristine state, good-as-new.
 
 This will:
-* uninstall the DNS resolver and tmp vagrant-dns files
 * destroy the VM
-* delete cookbooks, gems, apt packages, project-specific data & tmp dns files
+* delete cookbooks, gems, apt packages & project-specific datas
 * remove ariadne ruby version and source"
 task :fresh_start do
-  system "rvmsudo vagrant dns --uninstall"
   system "vagrant destroy --force"
-  system "rm -r ~/.vagrant.d/tmp/dns"
   system "rm -rf tmp/ cookbooks/ .bundle/"
   system "chmod -R u+w data/html/; rm -rf data/html data/make cookbooks-projects/*;"
   system "rvm remove 1.9.3-p194-ariadne"

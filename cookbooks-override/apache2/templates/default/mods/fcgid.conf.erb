@@ -1,0 +1,27 @@
+<IfModule mod_fcgid.c>
+  AddHandler fcgid-script .fcgi .php
+  # Where to look for the php.ini file?
+  DefaultInitEnv PHPRC        "/etc/php5/cgi"
+  # Maximum requests a process handles before it is terminated
+  MaxRequestsPerProcess       1000
+  # Maximum number of PHP processes
+  MaxProcessCount             10
+  # Number of seconds of idle time before a process is terminated
+  IPCCommTimeout              240
+  IdleTimeout                 240
+  #Or use this if you use the file above
+  FCGIWrapper /usr/bin/php-cgi .php
+
+
+
+  ServerLimit           500
+  StartServers            3
+  MaxClients            300
+  MaxRequestsPerChild  1000
+</IfModule>
+
+<% if %w{ rhel fedora }.include?(node['platform_family']) -%>
+# Sane place to put sockets and shared memory file
+SocketPath run/mod_fcgid
+SharememPath run/mod_fcgid/fcgid_shm
+<% end -%>
