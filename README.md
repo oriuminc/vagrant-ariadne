@@ -80,6 +80,9 @@ If you have RVM installed, the `.rvmrc` script will now run and ensure you
 have the right version of ruby. Otherwise, you can simply use the system
 ruby.
 
+Next, install the bundle
+    $ bundle install
+
 Next, run the setup command with:
 
     $ rake setup
