@@ -13,25 +13,5 @@ default_attributes(
     :directives => {
       :memory_limit => "160M"
     }
-  },
-  :apache => {
-    :listen_ports => [ "80", "443" ],
-    :keepaliverequests => 10,
-    :prefork => {
-      :startservers => 2,
-      :minspareservers => 1,
-      :maxspareservers => 3,
-      :serverlimit => 4,
-      :maxclients => 4,
-      :maxrequestsperchild => 1000
-    },
-    :worker => {
-      :startservers => 2,
-      :maxclients => 128,
-      :minsparethreads => 16,
-      :maxsparethreads => 128,
-      :threadsperchild => 16,
-      :maxrequestsperchild => 0
-    }
   }
 )
