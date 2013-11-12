@@ -399,3 +399,7 @@ specific language governing permissions and limitations under the License.
    [git-url-docs]:            http://git-scm.com/docs/git-clone#_git_urls
    [gitflow]:                 https://github.com/nvie/gitflow#readme
    [veewee]:                  https://github.com/jedi4ever/veewee#readme
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/myplanetdigital/vagrant-ariadne/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
