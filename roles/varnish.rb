@@ -7,6 +7,8 @@ run_list(
 default_attributes(
   :varnish => {
     :version => "2.1",
+    :vcl_conf => "drupal.vcl",
+    :vcl_cookbook => "ariadne",
     :listen_port => "80",
     :backend_host => "127.0.0.1",
     :backend_port => "8080",
