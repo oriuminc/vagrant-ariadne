@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem "chef"
+gem "drush-deploy"
 gem "knife-solo"
 gem "librarian"
 gem "rake"
